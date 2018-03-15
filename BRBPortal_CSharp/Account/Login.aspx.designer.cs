@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BRBPortal_CSharp {
+namespace BRBPortal_CSharp.Account {
     
     
     public partial class Login {
@@ -58,6 +58,24 @@ namespace BRBPortal_CSharp {
         protected global::System.Web.UI.WebControls.TextBox Password;
         
         /// <summary>
+        /// RememberMe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox RememberMe;
+        
+        /// <summary>
+        /// registerhyperlink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink registerhyperlink;
+        
+        /// <summary>
         /// ForgotPasswordHyperLink control.
         /// </summary>
         /// <remarks>
@@ -65,14 +83,5 @@ namespace BRBPortal_CSharp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink ForgotPasswordHyperLink;
-        
-        /// <summary>
-        /// btnLogin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogin;
     }
 }

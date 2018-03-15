@@ -271,12 +271,6 @@ C:\Projects\BerkeleyClientPortal\BRBPortal\BRBPortal\BRBPortal\obj\Debug\BRBPort
 C:\Projects\BerkeleyClientPortal\BRBPortal\BRBPortal\BRBPortal\obj\Debug\BRBPortal.dll
 C:\Projects\BerkeleyClientPortal\BRBPortal\BRBPortal\BRBPortal\obj\Debug\WebForms_Basic.xml
 C:\Projects\BerkeleyClientPortal\BRBPortal\BRBPortal\BRBPortal\obj\Debug\BRBPortal.pdb
-C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.Compression.dll
-C:\Projects\BRBPortal\BRBPortal\bin\roslyn\VBCSCompiler.exe
 C:\Projects\BRBPortal\BRBPortal\bin\BRBPortal.dll.config
 C:\Projects\BRBPortal\BRBPortal\bin\BRBPortal.dll
 C:\Projects\BRBPortal\BRBPortal\bin\BRBPortal.pdb
@@ -288,9 +282,13 @@ C:\Projects\BRBPortal\BRBPortal\bin\roslyn\csi.exe
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\csi.exe.config
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\csi.rsp
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.Win32.Primitives.dll
@@ -300,6 +298,7 @@ C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Console.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Diagnostics.Process.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.Compression.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.FileSystem.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.FileSystem.Primitives.dll
@@ -323,6 +322,7 @@ C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Xml.XPath.XDocument.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\vbc.exe
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\vbc.exe.config
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\vbc.rsp
+C:\Projects\BRBPortal\BRBPortal\bin\roslyn\VBCSCompiler.exe
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\VBCSCompiler.exe.config
 C:\Projects\BRBPortal\BRBPortal\bin\Antlr3.Runtime.dll
 C:\Projects\BRBPortal\BRBPortal\bin\AspNet.ScriptManager.bootstrap.dll

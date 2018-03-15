@@ -772,4 +772,3 @@ C:\Projects\BRBPortal\QBase\obj\Debug\QBase.vbproj.GenerateResource.Cache
 C:\Projects\BRBPortal\QBase\obj\Debug\QBase.dll
 C:\Projects\BRBPortal\QBase\obj\Debug\QBase.xml
 C:\Projects\BRBPortal\QBase\obj\Debug\QBase.pdb
-C:\Projects\BRBPortal\QBase\obj\Debug\QBase.vbprojResolveAssemblyReference.cache

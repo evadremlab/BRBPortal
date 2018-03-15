@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace BRBPortal_CSharp
 {
@@ -7,7 +11,7 @@ namespace BRBPortal_CSharp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("https://rentportaldev.cityofberkeley.info/account/login.aspx");
+
         }
     }
 }

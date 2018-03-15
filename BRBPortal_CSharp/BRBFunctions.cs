@@ -70,13 +70,13 @@ namespace BRBPortal_CSharp
             var soapMessage = NewSoapMessage();
             soapMessage.Append("<soapenv:Header/>");
             soapMessage.Append("<soapenv:Body>");
-                soapMessage.Append("<api:authenticateUserLogin>");
-                    soapMessage.Append("<authenticateUserReq>");
-                        soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", aID.Length == 0 ? "?" : EscapeXMLChars(aID));
-                        soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", aBillCd.Length == 0 ? "?" : EscapeXMLChars(aBillCd));
-                        soapMessage.AppendFormat("<pwd>{0}</pwd>", EscapeXMLChars(aPwd));
-                     soapMessage.Append("</authenticateUserReq>");
-                soapMessage.Append("</api:authenticateUserLogin>");
+            soapMessage.Append("<api:authenticateUserLogin>");
+            soapMessage.Append("<authenticateUserReq>");
+            soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", aID.Length == 0 ? "?" : EscapeXMLChars(aID));
+            soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", aBillCd.Length == 0 ? "?" : EscapeXMLChars(aBillCd));
+            soapMessage.AppendFormat("<pwd>{0}</pwd>", EscapeXMLChars(aPwd));
+            soapMessage.Append("</authenticateUserReq>");
+            soapMessage.Append("</api:authenticateUserLogin>");
             soapMessage.Append("</soapenv:Body>");
             soapMessage.Append("</soapenv:Envelope>");
 
@@ -179,13 +179,13 @@ namespace BRBPortal_CSharp
             var soapMessage = NewSoapMessage();
             soapMessage.Append("<soapenv:Header/>");
             soapMessage.Append("<soapenv:Body>");
-                soapMessage.Append("<api:confirmProfileInformation>");
-                    soapMessage.Append("<profileConfirmationReq>");
-                        soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", aID.Length == 0 ? "?" : EscapeXMLChars(aID));
-                        soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", aBillCd.Length == 0 ? "?" : EscapeXMLChars(aBillCd));
-                        soapMessage.AppendFormat("<declarationInitial>{0}</declarationInitial>", EscapeXMLChars(aInits));
-                    soapMessage.Append("</profileConfirmationReq>");
-                soapMessage.Append("</api:confirmProfileInformation>");
+            soapMessage.Append("<api:confirmProfileInformation>");
+            soapMessage.Append("<profileConfirmationReq>");
+            soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", aID.Length == 0 ? "?" : EscapeXMLChars(aID));
+            soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", aBillCd.Length == 0 ? "?" : EscapeXMLChars(aBillCd));
+            soapMessage.AppendFormat("<declarationInitial>{0}</declarationInitial>", EscapeXMLChars(aInits));
+            soapMessage.Append("</profileConfirmationReq>");
+            soapMessage.Append("</api:confirmProfileInformation>");
             soapMessage.Append("</soapenv:Body>");
             soapMessage.Append("</soapenv:Envelope>");
 
@@ -259,96 +259,96 @@ namespace BRBPortal_CSharp
 
             return isConfirmed;
         }
-//
-// CONTINUE HERE
-//
+        //
+        // CONTINUE HERE
+        //
         public static bool UpdatePassword_Soap(string aID, string aBillCd, string aCurrentPWD, string aNewPWD, string aReTypePWD)
         {
             // TODO: uncomment and convert
             return true;
-        //    WebRequest Request;
-        //    WebResponse Response;
-        //    Stream DataStream;
-        //    StreamReader Reader;
-        //    byte[] SoapByte;
-        //    string SoapStr;
-        //    SoapStr = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:api=\"http://cityofb" +
-        //    "erkeley.info/RTS/ClientPortal/API\">";
-        //    SoapStr += "<soapenv:Header/>";
-        //    SoapStr += "<soapenv:Body>";
-        //    SoapStr += "<api:updateUserPassword>";
-        //    SoapStr += "<updateUserPwdReq>";
-        //    if ((aID.Length > 0))
-        //    {
-        //        SoapStr = (SoapStr + ("<!--Optional:--><userId>"  + (aID + "</userId>")));
-        //    }
-        //    else
-        //    {
-        //        SoapStr += "<!--Optional:--><userId>?</userId>";
-        //    }
+            //    WebRequest Request;
+            //    WebResponse Response;
+            //    Stream DataStream;
+            //    StreamReader Reader;
+            //    byte[] SoapByte;
+            //    string SoapStr;
+            //    SoapStr = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:api=\"http://cityofb" +
+            //    "erkeley.info/RTS/ClientPortal/API\">";
+            //    SoapStr += "<soapenv:Header/>";
+            //    SoapStr += "<soapenv:Body>";
+            //    SoapStr += "<api:updateUserPassword>";
+            //    SoapStr += "<updateUserPwdReq>";
+            //    if ((aID.Length > 0))
+            //    {
+            //        SoapStr = (SoapStr + ("<!--Optional:--><userId>"  + (aID + "</userId>")));
+            //    }
+            //    else
+            //    {
+            //        SoapStr += "<!--Optional:--><userId>?</userId>";
+            //    }
 
-        //    if ((aBillCd.Length > 0))
-        //    {
-        //        SoapStr = (SoapStr + ("<!--Optional:--><billingCode>" + (aBillCd + "</billingCode>")));
-        //    }
-        //    else
-        //    {
-        //        SoapStr += "<!--Optional:--><billingCode>?</billingCode>";
-        //    }
+            //    if ((aBillCd.Length > 0))
+            //    {
+            //        SoapStr = (SoapStr + ("<!--Optional:--><billingCode>" + (aBillCd + "</billingCode>")));
+            //    }
+            //    else
+            //    {
+            //        SoapStr += "<!--Optional:--><billingCode>?</billingCode>";
+            //    }
 
-        //    SoapStr = (SoapStr + ("<currentPwd>" + (aCurrentPWD + "</currentPwd>")));
-        //    SoapStr = (SoapStr + ("<newPwd>" + (aNewPWD + "</newPwd>")));
-        //    SoapStr = (SoapStr + ("<retypeNewPwd>" + (aReTypePWD + "</retypeNewPwd>")));
-        //    SoapStr += "</updateUserPwdReq>";
-        //    SoapStr += "</api:updateUserPassword>";
-        //    SoapStr += "</soapenv:Body>";
-        //    SoapStr += "</soapenv:Envelope>";
+            //    SoapStr = (SoapStr + ("<currentPwd>" + (aCurrentPWD + "</currentPwd>")));
+            //    SoapStr = (SoapStr + ("<newPwd>" + (aNewPWD + "</newPwd>")));
+            //    SoapStr = (SoapStr + ("<retypeNewPwd>" + (aReTypePWD + "</retypeNewPwd>")));
+            //    SoapStr += "</updateUserPwdReq>";
+            //    SoapStr += "</api:updateUserPassword>";
+            //    SoapStr += "</soapenv:Body>";
+            //    SoapStr += "</soapenv:Envelope>";
 
-        //    try
-        //    {
-        //        SoapByte = System.Text.Encoding.UTF8.GetBytes(SoapStr);
-        //            Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.UpdatePassword/RTSClientPortalAPI_API_WSD_UpdatePassword_Port");
-        //        Request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_UpdatePassword_Binder_updateUserPassword");
-        //        Request.ContentType = "text/xml; charset=utf-8";
-        //        Request.ContentLength = SoapByte.Length;
-        //        Request.Method = "POST";
-        //        DataStream = Request.GetRequestStream();
-        //        DataStream.Write(SoapByte, 0, SoapByte.Length);
-        //        DataStream.Close();
-        //        Response = Request.GetResponse();
-        //        DataStream = Response.GetResponseStream();
-        //        Reader = new StreamReader(DataStream);
-        //        string SD2Request = Reader.ReadToEnd();
-        //        DataStream.Close();
-        //        Reader.Close();
-        //        Response.Close();
-        //        // Set session variables from response
-        //        XmlDocument doc = new XmlDocument();
-        //        doc.LoadXml(SD2Request);
-        //        foreach (XmlElement detail in doc.DocumentElement.GetElementsByTagName("response"))
-        //        {
-        //            iStatus = detail.ChildNodes(0).InnerText;
-        //            if (iStatus.ToUpper != "SUCCESS")
-        //            {
-        //                iErrMsg = detail.ChildNodes(1).InnerText;
-        //            }
-        //        }
+            //    try
+            //    {
+            //        SoapByte = System.Text.Encoding.UTF8.GetBytes(SoapStr);
+            //            Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.UpdatePassword/RTSClientPortalAPI_API_WSD_UpdatePassword_Port");
+            //        Request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_UpdatePassword_Binder_updateUserPassword");
+            //        Request.ContentType = "text/xml; charset=utf-8";
+            //        Request.ContentLength = SoapByte.Length;
+            //        Request.Method = "POST";
+            //        DataStream = Request.GetRequestStream();
+            //        DataStream.Write(SoapByte, 0, SoapByte.Length);
+            //        DataStream.Close();
+            //        Response = Request.GetResponse();
+            //        DataStream = Response.GetResponseStream();
+            //        Reader = new StreamReader(DataStream);
+            //        string SD2Request = Reader.ReadToEnd();
+            //        DataStream.Close();
+            //        Reader.Close();
+            //        Response.Close();
+            //        // Set session variables from response
+            //        XmlDocument doc = new XmlDocument();
+            //        doc.LoadXml(SD2Request);
+            //        foreach (XmlElement detail in doc.DocumentElement.GetElementsByTagName("response"))
+            //        {
+            //            iStatus = detail.ChildNodes(0).InnerText;
+            //            if (iStatus.ToUpper != "SUCCESS")
+            //            {
+            //                iErrMsg = detail.ChildNodes(1).InnerText;
+            //            }
+            //        }
 
-        //        if ((iStatus.ToUpper == "SUCCESS"))
-        //        {
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    catch (WebException ex)
-        //    {
-        //        iErrMsg = ex.ToString;
-        //        // MsgBox(ex.ToString())
-        //        return false;
-        //    }
+            //        if ((iStatus.ToUpper == "SUCCESS"))
+            //        {
+            //            return true;
+            //        }
+            //        else
+            //        {
+            //            return false;
+            //        }
+            //    }
+            //    catch (WebException ex)
+            //    {
+            //        iErrMsg = ex.ToString;
+            //        // MsgBox(ex.ToString())
+            //        return false;
+            //    }
         }
 
         public static string GetProfile(string aID, string aBillCd)
@@ -429,12 +429,12 @@ namespace BRBPortal_CSharp
             var soapMessage = NewSoapMessage();
             soapMessage.Append("<soapenv:Header/>");
             soapMessage.Append("<soapenv:Body>");
-                soapMessage.Append("<api:getProfileDetails>");
-                    soapMessage.Append("<request>");
-                        soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", aID.Length == 0 ? "?" : EscapeXMLChars(aID));
-                        soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", aBillCd.Length == 0 ? "?" : EscapeXMLChars(aBillCd));
-                    soapMessage.Append("</request>");
-                soapMessage.Append("</api:getProfileDetails>");
+            soapMessage.Append("<api:getProfileDetails>");
+            soapMessage.Append("<request>");
+            soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", aID.Length == 0 ? "?" : EscapeXMLChars(aID));
+            soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", aBillCd.Length == 0 ? "?" : EscapeXMLChars(aBillCd));
+            soapMessage.Append("</request>");
+            soapMessage.Append("</api:getProfileDetails>");
             soapMessage.Append("</soapenv:Body>");
             soapMessage.Append("</soapenv:Envelope>");
 
@@ -2100,4 +2100,3 @@ namespace BRBPortal_CSharp
         }
     }
 }
-

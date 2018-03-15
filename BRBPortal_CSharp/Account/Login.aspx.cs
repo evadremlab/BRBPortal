@@ -1,25 +1,30 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.UI;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using Owin;
-using System.Net;
-using System.Xml;
-using System.IO;
-using System;
 
-/// <summary>
-/// CONVERTED from VB.NET
-/// </summary>
-namespace BRBPortal_CSharp
+using BRBPortal_CSharp;
+using BRBPortal_CSharp.Models;
+
+namespace BRBPortal_CSharp.Account
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Login : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Form.DefaultButton = this.btnLogin.UniqueID;
-            UserIDCode.Focus();
+            //RegisterHyperLink.NavigateUrl = "Register";
+            //// Enable this once you have account confirmation enabled for password reset functionality
+            ////ForgotPasswordHyperLink.NavigateUrl = "Forgot";
+            //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
+            //var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+            //if (!String.IsNullOrEmpty(returnUrl))
+            //{
+            //    RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+            //}
+            FailureText.Text = "testing";
+            FailureText.Visible = true;
         }
 
         protected void LogIn(object sender, EventArgs e)
