@@ -17,6 +17,11 @@
 </head>
 <body>
     <form runat="server">
+        <%
+            string authenticated = Session["Authenticated"] as String;
+
+            var isAuthenticated = string.IsNullOrEmpty(authenticated) ? false : authenticated.Equals("TRUE");
+        %>
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -60,22 +65,17 @@
                         <li><a runat="server" href="~/Cart">Cart</a></li>
                         <li><a runat="server" href="http://www.ci.berkeley.ca.us/Rent_Stabilization_Board/Home/FAQs_-_Rent_Board_Mailbag.aspx" target="_blank">FAQ</a></li>
                     </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
-                            </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
-                            </ul>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
+                    <% if (isAuthenticated) { %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                        <li><asp:LinkButton runat="server" id="btnLogOff" Text="Log off" OnClick="Logoff" /></li>
+                    </ul>
+                    <% } else { %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a runat="server" href="~/Account/Register">Register</a></li>
+                        <li><a runat="server" href="~/Account/Login">Log in</a></li>
+                    </ul>
+                    <% } %>
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@ using Owin;
 
 using BRBPortal_CSharp;
 using BRBPortal_CSharp.Models;
+using System.Web.Security;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -16,6 +17,7 @@ namespace BRBPortal_CSharp.Account
         {
             FailureText.Text = "testing";
             FailureText.Visible = true;
+            Session["Authenticated"] = "FALSE";
         }
 
         protected void LogIn(object sender, EventArgs e)
@@ -35,6 +37,8 @@ namespace BRBPortal_CSharp.Account
 
                 if (result == SignInStatus.Success)
                 {
+                    Session["Authenticated"] = "TRUE";
+
                     var ProfileStr = BRBFunctions_CSharp.GetProfile(IDCode, tBillCode);
 
                     if ((ProfileStr.Length > 0))
@@ -45,7 +49,7 @@ namespace BRBPortal_CSharp.Account
                         // User Code
                         if ((wstr.Length > wstr.IndexOf("=")))
                         {
-                            IDCode = wstr.Substring((wstr.IndexOf("=") + 1));
+                            IDCode = wstr.Substring(wstr.IndexOf("=") + 1);
                         }
 
                         wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
@@ -53,7 +57,7 @@ namespace BRBPortal_CSharp.Account
                         // Billing Code
                         if ((wstr.Length > wstr.IndexOf("=")))
                         {
-                            tBillCode = wstr.Substring((wstr.IndexOf("=") + 1));
+                            tBillCode = wstr.Substring(wstr.IndexOf("=") + 1);
                         }
 
                         Session["UserCode"] = IDCode;
@@ -62,7 +66,7 @@ namespace BRBPortal_CSharp.Account
                         Session["Relationship"] = BRBFunctions_CSharp.iRelate;
                         Session["TempPwd"] = BRBFunctions_CSharp.iTempPwd;
 
-                        if ((BRBFunctions_CSharp.iTempPwd.ToUpper() == "TRUE"))
+                        if (BRBFunctions_CSharp.iTempPwd.ToUpper() == "TRUE")
                         {
                             wstr = "";
                             if ((BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE")) // comparing with True in VB
@@ -76,7 +80,7 @@ namespace BRBPortal_CSharp.Account
 
                             Response.Redirect("~/Account/ManagePassword.aspx");
                         }
-                        else if ((BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE"))
+                        else if (BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE")
                         {
                             Session["NextPage"] = "Home";
                             Response.Redirect("~/Account/ProfileConfirm.aspx");

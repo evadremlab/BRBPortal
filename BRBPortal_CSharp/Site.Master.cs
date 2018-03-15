@@ -71,10 +71,13 @@ namespace BRBPortal_CSharp
         {
 
         }
-
-        protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
+        protected void Logoff(object sender, EventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            Session["Authenticated"] = "FALSE";
+
+            Response.Redirect("~/Account/Login");
         }
     }
 
