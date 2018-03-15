@@ -9,7 +9,6 @@ namespace BRBPortal_CSharp.Account
 {
     public partial class ProfileConfirm : System.Web.UI.Page
     {
-
         protected void Page_Load(object sender, System.EventArgs e)
         {
             if (!IsPostBack == true)
@@ -117,29 +116,29 @@ namespace BRBPortal_CSharp.Account
             Response.Redirect("~/Account/Login", false);
         }
 
-        protected void chkDeclare_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkDeclare.Checked == true && DeclareInits.Text.Length > 0)
-            {
-                btnSubmit.Enabled = true;
-            }
-            else
-            {
-                btnSubmit.Enabled = false;
-            }
-        }
+        //protected void chkDeclare_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (chkDeclare.Checked == true && DeclareInits.Text.Length > 0)
+        //    {
+        //        btnSubmit.Enabled = true;
+        //    }
+        //    else
+        //    {
+        //        btnSubmit.Enabled = false;
+        //    }
+        //}
 
-        protected void DeclareInits_TextChanged(object sender, EventArgs e)
-        {
-            if (DeclareInits.Text.Length > 0 && chkDeclare.Checked == true)
-            {
-                btnSubmit.Enabled = true;
-            }
-            else
-            {
-                btnSubmit.Enabled = false;
-            }
-        }
+        //protected void DeclareInits_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (DeclareInits.Text.Length > 0 && chkDeclare.Checked == true)
+        //    {
+        //        btnSubmit.Enabled = true;
+        //    }
+        //    else
+        //    {
+        //        btnSubmit.Enabled = false;
+        //    }
+        //}
 
         protected void ShowDialogOK(string aMessage, string aTitle = "Status")
         {

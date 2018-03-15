@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:api=\"http://cityofberkeley.info/RTS/ClientPortal/API\">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <api:authenticateUserLogin>
+      <authenticateUserReq>
+        <!--Optional:-->
+        <userId>Tester@21</userId>
+        <!--Optional:-->
+        <billingCode>?</billingCode>
+        <pwd>Testing@1234</pwd>
+      </authenticateUserReq>
+    </api:authenticateUserLogin>
+  </soapenv:Body>
+</soapenv:Envelope>

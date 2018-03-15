@@ -12,7 +12,7 @@ namespace BRBPortal_CSharp
 {
     public static class BRBFunctions_CSharp
     {
-        private const bool USE_MOCK_SERVICES = true;
+        private const bool USE_MOCK_SERVICES = false;
 
         public static string iStatus = "";
         public static string iRelate = "";
@@ -51,7 +51,7 @@ namespace BRBPortal_CSharp
             }
             else
             {
-                return UserAuth(aID, aBillCd, aPwd);
+                return UserAuth_Soap(aID, aBillCd, aPwd);
             }
         }
 

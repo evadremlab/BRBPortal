@@ -15,6 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp_Test", "CSharp_Test\
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VB_Test", "VB_Test\VB_Test.vbproj", "{4D29429C-9446-4B45-9CA8-9D1457706A12}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{E6B8D0C8-6E18-4866-8201-7A99AF0412CA}"
+	ProjectSection(SolutionItems) = preProject
+		AuthenticateUser_Request.xml = AuthenticateUser_Request.xml
+		AuthenticateUser_Response.xml = AuthenticateUser_Response.xml
+		GetProfile_Response.txt = GetProfile_Response.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +55,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{119B4F43-4BDD-4D61-AEA1-40B2C081BC84} = {1D935C03-8513-4BFE-B458-ED7E2909C4B6}
 		{4D29429C-9446-4B45-9CA8-9D1457706A12} = {1D935C03-8513-4BFE-B458-ED7E2909C4B6}
+		{E6B8D0C8-6E18-4866-8201-7A99AF0412CA} = {1D935C03-8513-4BFE-B458-ED7E2909C4B6}
 	EndGlobalSection
 EndGlobal

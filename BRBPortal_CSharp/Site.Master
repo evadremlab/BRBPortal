@@ -43,7 +43,7 @@
             <asp:HyperLink ID="HomeLink2" runat="server" ImageUrl="~/Resources/RSB.jpg" ImageAlign="Top" NavigateUrl="~/Home.aspx" Style="position:relative; top:2px;"></asp:HyperLink>
         </div>
 
-        <div class="navbar navbar-inverse navbar-fixed-top" style="top:59px;">
+        <div class="navbar navbar-inverse" style="top:9px;">
             <div class="container-fluid" style="margin:0; padding:0;">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -80,7 +80,7 @@
             </div>
         </div>
 
-        <div class="container body-content" style="position:relative; top:55px;">
+        <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
 
