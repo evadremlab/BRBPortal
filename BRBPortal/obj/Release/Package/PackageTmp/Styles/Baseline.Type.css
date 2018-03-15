@@ -1,0 +1,607 @@
+﻿/*
+Baseline - a designer framework
+Copyright (C) 2009 Stephane Curzi, ProjetUrbain.com
+Creative Commons Attribution-Share Alike 3.0 License
+version 0.5
+*/
+
+/******************** Baseline grid: 13/18px ********************/
+body {
+    font-size: 13px;
+    line-height: 1.5; /*12/18*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    position: relative;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+}
+
+h1, h2, h3, h4 {
+    margin-top: 18px;
+    margin-top: 0px;
+}
+
+h3, h4, h5, h6 {
+    line-height: 22px;
+}
+
+h1 {
+    font-size: 32px;
+    line-height: 32px;
+}
+
+h2 {
+    font-size: 26px;
+    line-height: 26px;
+    top: 8px;
+    padding: 0px 30px 0px 30px;
+    margin-bottom: 0;
+    left: 0px;
+}
+
+h3 {
+    font-size: 22px;
+    top: 1px;
+}
+
+h4 {
+    font-size: 18px;
+    top: 3px;
+}
+
+h5 {
+    font-size: 15px;
+    top: 4px;
+}
+
+h6 {
+    font-size: 13px;
+    top: -3px;
+    left: 4px;
+}
+
+h1:first-child, h2:first-child, h3:first-child, h4:first-child {
+    margin-top: 0;
+    left: 0px;
+    width: 309px;
+}
+
+p, pre, address {
+    font-size: 13px;
+    line-height: 18px;
+    position: relative;
+    top: 5px;
+    left: 0px;
+    width: 301px;
+}
+
+small {
+    font-size: 11px;
+}
+
+abbr, code, kbd, samp, small, var {
+    line-height: 15px;
+}
+/*
+ul, ol, dl, dialog
+{
+    'font-size: 13px;
+    line-height: 18px;
+    position: relative;
+    top: 5px;
+    margin-top: 18px;
+    margin-bottom: 18px;  'BHS 11/2 compress tables 
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 20px;
+    'text-indent: -2em;
+    'list-style-position: outside;
+}
+li ul, li ol, ul ul, ol ol
+{
+    top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-position: outside;
+    margin-left: 1em;
+}
+*/
+li h1, li h2, li h3, li h4, li h5, li h6, li p {
+    top: 0;
+}
+
+ul {
+    /*line-height: 18px;  removed 11/20/16, to allow tooltip line height to work*/
+    margin-top: 0px; /* changed from 4px 11/20/16 */
+    margin-bottom: 0px;
+    margin-left: -10px;
+}
+
+    ul li {
+        list-style-position: outside; /* list-style-position:inside; */
+        margin-left: -10px; /* padding-left: 0; 1em;*/
+        margin-bottom: 0px; /* 11/20 */
+        margin-top: 0px; /* 11/20 */
+        padding: 0 0 0 0px; /* 11/12 */
+        text-indent: 0; /*-1em; */
+    }
+
+form, legend, label {
+    font-size: 15px;
+    line-height: 18px;
+}
+
+legend {
+    position: relative;
+    top: 5px;
+}
+
+table {
+    font-size: 13px;
+    margin-right: 0px;
+}
+
+caption {
+    font-size: 13px;
+    line-height: 18px;
+    position: relative;
+}
+
+iframe {
+    display: block;
+}
+
+li {
+    margin-left: 0;
+    padding-left: 0; /*.8em;*/
+    text-indent: 0; /*-.8em;*/
+    margin-bottom: 4px;
+}
+
+hr {
+    position: relative;
+    height: -37px;
+    top: 0px;
+    left: -26px;
+    width: 772px;
+    right: 26px;
+}
+
+a:link {
+    color: #000099;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #000066;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #6600CC;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #33FFFF;
+    text-decoration: underline;
+}
+
+/* PlantID-Specific Classes */
+/* --Control Panel */
+
+/*.ContributorsText {
+    line-height: 17px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+}*/
+
+.TopLine3 {
+    position: relative;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    line-height: 22px;
+    font-size: 22px;
+}
+
+/*.PlantIDHome:visited, link, hover, active {
+    color: Green;
+    font-size: 28px;
+}
+
+.PlantIDHome {
+    color: Green;
+    font-size: 28px;
+    line-height: 28px;
+}
+
+.PlantIDLogin {
+    font-size: 14px;
+    font-family: Verdana, Helvetica, Ariel, Sans-Serif;
+    font-weight: 500;
+}*/
+
+.center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 100px;
+    margin: -100px 0 0 -25%;
+}
+
+/*.center {
+  position: absolute;       
+  top: 10px;                
+                            
+  width: 50%;   
+  left: 0;                  
+  right: 0;
+  margin-left: auto;        
+                            
+  margin-right: auto;
+  background:red;         
+}*/
+
+.SearchName {
+    font-size: 13px;
+    color: GrayText;
+    line-height: 13px;
+    border-spacing: 0px;
+}
+
+.SearchValue {
+    font-size: 13px;
+    color: Black;
+    padding: 0px 0px 0px 0px;
+    border: 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+.GridViewColumnValue {
+    font-size: 15px;
+    color: Black;
+    padding-left: 20px;
+}
+
+.SearchButton {
+    background-color: #0099CC; /*margin: 10px;*/
+}
+
+.ClickableImage {
+    padding: 0px 0px 0px 0px;
+}
+
+.WrapButton200 {
+    background-color: #0099CC;
+    white-space: normal;
+    width: 150px;
+}
+
+.NavButton, .PlantNavButton, .PhotoNavButton {
+    text-align: left;
+    width: 1px;
+    height: 1px;
+    background-color: #EFEFEF; /*font-size: 13px;     margin-bottom: 5px; */
+}
+
+.NoteText {
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Verdana, Helvetica, Ariel, Sans-Serif;
+}
+
+/*.NoteRowStyle {
+    padding: 0 0 30 0;
+}*/
+
+.TextAlignLeft {
+    text-align: left;
+}
+
+.ChooseArticle {
+    text-align: left;
+}
+
+/*.PlantNavButton {
+    background-color: #DDE8C2;
+}
+
+.PhotoNavButton {
+    background-color: #DDD8E2;
+}*/
+
+/* --Main Panel */
+
+.LineHeight20 {
+    line-height: 25px;
+}
+
+.SubTitle {
+    font-size: 20px;
+}
+
+.TitleDescr {
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Verdana, Helvetica, Ariel, Sans-Serif;
+}
+
+.ContribText {
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 5px;
+    font-family: Verdana, Helvetica, Ariel, Sans-Serif;
+}
+
+.ToolTip {
+    font-size: 14px;
+    line-height: 17px; /*margin-bottom: 30px;    11/20 */
+    margin-bottom: 0px;
+    list-style-position: inside;
+    padding-left: 0;
+    margin-left: -20px;
+}
+
+.CaptionText {
+    font-size: 14px;
+    line-height: 15px;
+    margin-bottom: 30px;
+    list-style-position: inside;
+    padding-left: 0;
+}
+
+.CaptionTextTight {
+    font-size: 14px;
+}
+
+.Indent30 {
+    padding: 0px 30px;
+}
+
+.Margin30 {
+    margin-left: 30px;
+}
+
+.Margin30Right {
+    margin-right: 30px;
+}
+
+.Margin3070 {
+    margin-left: 30px;
+    margin-right: 70px;
+}
+
+.Margin20 {
+    margin-left: 20px;
+}
+
+.Indent20 {
+    padding: 0px 20px;
+}
+
+.FailureNotification {
+    font-size: 1.2em;
+    color: Red;
+    margin-left: 25px;
+}
+
+.CName {
+    font-size: 16px;
+}
+
+.CNameTitle {
+    font-size: 18px;
+}
+
+.MenuTitle {
+    font-size: 18px;
+}
+
+.BottomBorder td {
+    border-bottom-width: 50px;
+    border-color: transparent;
+}
+
+.BottomBorderTight td {
+    border-bottom-width: 0px;
+    border-color: transparent;
+}
+/* Once we get to CSS 3 we can use Overflox-x: to suppress horizontal scroll.  
+I don't see a way to do it in CSS 2.1 
+.NoHorizontalScroll
+{
+    overflow:hidden;
+} */
+.indent1 {
+    margin-left: 10px;
+}
+
+.minustop {
+    margin-top: -10px;
+}
+
+.minustoprelative {
+    position: relative;
+    top: -2px;
+}
+
+.plustop {
+    margin-top: 10px;
+}
+
+.tallline {
+    line-height: 250%;
+}
+
+.buttonmargin {
+    margin-bottom: 20px;
+}
+
+.swd-button2 {
+    /*background: #11c3ff linear-gradient(to bottom, transparent, #009bcf);
+    border: 1px solid white;*/
+    border-radius: 5px;
+	/*color: white;*/
+    display: inline-block;
+	font: bold 12px Arial, Helvetica, sans-serif;
+    padding: 10px 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.verticalsub {
+    vertical-align: sub;
+}
+
+.verticalup10 {
+    vertical-align: 10px;
+}
+
+.verticalup30 {
+    vertical-align: 70px;
+}
+
+.minusbottom {
+    margin-bottom: -10px;
+    padding-bottom: -10px;
+}
+
+.minusleft {
+    margin-left: -10px;
+}
+
+.minusleft200 {
+    margin-left: -200px;
+}
+
+.bottommargin {
+    margin-bottom: 15px;
+}
+
+.minusmargins {
+    margin-left: -20px;
+    margin-right: -15px;
+}
+
+.minusmargin20 {
+    margin-left: -20px;
+}
+
+.ArticleTitle {
+    font-size: 19px;
+    line-height: 19px;
+    font-weight: 700;
+    color: #663300;
+}
+
+.FilterTitle {
+    font-size: 15px;
+    line-height: 20px;
+    margin-top: 5px;
+}
+
+.HeaderTitle {
+    font-size: 19px;
+    margin-top: 5px;
+    line-height: 35px;
+    vertical-align: bottom;
+    font-weight: 700;
+    color: #663300;
+}
+
+.HeaderSubTitle {
+    font-size: 15px;
+    /*line-height: 22px;*/
+    font-weight: 700;
+    color: #663300;
+}
+
+.LinkTitle {
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
+}
+
+.QueryTitle {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.Prompt {
+    font-size: 15px;
+}
+
+.SmallerFont {
+    font-size: 12px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.SearchResults {
+    width: 740px;
+    border-style: none;
+    border-color: transparent;
+    margin-left: 30px;
+}
+
+/*.LeftPhotoButton {
+    position: relative;
+    left: 180px;
+    top: 300px;
+    margin-left: -180px;
+    margin-top: -50px;
+    width: 119px;
+}
+
+.RightPhotoButton {
+    position: relative;
+    left: 720px;
+    top: 300px;
+    margin-left: -100px;
+    margin-top: -50px;
+    width: 119px;
+}*/
+
+.Wrap60 {
+    white-space: normal;
+    width: 60px;
+}
+
+.NoMargin {
+    margin: 0 0 0 0;
+}
+
+.gvdatacell {
+    padding-left: 2px;
+    padding-right: 3px;
+    padding-top: 4px;
+}
+
+.fieldset-red {
+    display: inline-block;
+    border: 2px solid #F00;
+    border-right-style: none;
+    border-top-style: none;
+    border-bottom-style: none;
+}
+
+.fieldset-blue {
+    display: inline-block;
+    border: 2px groove #00F;
+    border-right-style: none;
+    border-top-style: none;
+    border-bottom-style: none;
+}
+
+.fieldset-green {
+    display: inline-block;
+    border: 2px groove #093;
+    border-right-style: none;
+    border-top-style: none;
+    border-bottom-style: none;
+}

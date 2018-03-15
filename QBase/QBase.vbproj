@@ -1,0 +1,650 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{376770AC-944A-4856-A339-E3848A858DF1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <StartupObject>
+    </StartupObject>
+    <RootNamespace>QSILib</RootNamespace>
+    <AssemblyName>QBase</AssemblyName>
+    <MyType>Windows</MyType>
+    <OptionStrict>On</OptionStrict>
+    <ManifestCertificateThumbprint>75B227E3B34BF49A99D6F4CAE8F3978E0AD189AC</ManifestCertificateThumbprint>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <TargetZone>LocalIntranet</TargetZone>
+    <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OptionInfer>On</OptionInfer>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <OptionCompare>Text</OptionCompare>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>http://localhost/QBase/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\bin\QBase\</OutputPath>
+    <DocumentationFile>QBase.xml</DocumentationFile>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\qbase\</OutputPath>
+    <DocumentationFile>QBase.xml</DocumentationFile>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\Lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\Lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Web" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\appl.vb" />
+    <Compile Include="App\Authority.vb" />
+    <Compile Include="Controls\Buttons\qBtnRemoveGVRow.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Buttons\qBtnInsertGVRow.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Checkbox\qCheckbox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ComboBox\qComboBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ComboBox\qCBYesNo.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGridView\qGVFoot.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGridView\qGVBase.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGridView\qGVEdit.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGridView\qGVList.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGridView\qGVTextBoxColumn.vb" />
+    <Compile Include="Controls\DD\PopUpWindow.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\DD\qDD.Designer.vb">
+      <DependentUpon>qDD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DD\qDD.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Label\qLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\qMenuItem.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\RadioButton\qRB.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\RadioButton\qRC.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Tab\qTab.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TextBox\qDateTimePicker.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TextBox\qTextDisplay.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ComboBox\qCBMultiCol.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NVOs\qTimer.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TextBox\qMaskedTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TextBox\qMultilineTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TextBox\qTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\fpMain2.Designer.vb">
+      <DependentUpon>fpMain2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\fpMain2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\feLoadQuery.Designer.vb">
+      <DependentUpon>feLoadQuery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\feLoadQuery.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\feMain2.Designer.vb">
+      <DependentUpon>feMain2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\feMain2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\flMain2.Designer.vb">
+      <DependentUpon>flMain2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\flMain2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\fpMain.Designer.vb">
+      <DependentUpon>fpMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\fpMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\fpMainVersion.Designer.vb">
+      <DependentUpon>fpMainVersion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\fpMainVersion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\fProgress.Designer.vb">
+      <DependentUpon>fProgress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\fProgress.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\fsMain.Designer.vb">
+      <DependentUpon>fsMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\fsMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTemplates\Prompt.Designer.vb">
+      <DependentUpon>Prompt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormTemplates\Prompt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NVO\BackgroundQuery.vb" />
+    <Compile Include="NVO\UserObjects.vb" />
+    <Compile Include="NVO\Exchange.vb" />
+    <Compile Include="NVO\RecordLock.vb" />
+    <Compile Include="NVO\strParam.vb" />
+    <Compile Include="Forms\frMain.Designer.vb">
+      <DependentUpon>frMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\fuMain.Designer.vb">
+      <DependentUpon>fuMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\fuMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\fBase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\fBase.Designer.vb">
+      <DependentUpon>fBase.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\feMain.Designer.vb">
+      <DependentUpon>feMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\feMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\flMain.Designer.vb">
+      <DependentUpon>flMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\flMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NVO\qFunctions.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.Designer.vb" />
+    <Compile Include="Templates\fError.Designer.vb">
+      <DependentUpon>fError.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\fError.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templates\fhMain.Designer.vb">
+      <DependentUpon>fhMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\fhMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templates\fShowTable.Designer.vb">
+      <DependentUpon>fShowTable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\fShowTable.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templates\fSyntaxError.Designer.vb">
+      <DependentUpon>fSyntaxError.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\fSyntaxError.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Templates\OneMoment.Designer.vb">
+      <DependentUpon>OneMoment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\OneMoment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\DD\qDD.resx">
+      <DependentUpon>qDD.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\fpMain2.resx">
+      <DependentUpon>fpMain2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\feLoadQuery.resx">
+      <DependentUpon>feLoadQuery.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\feMain2.resx">
+      <DependentUpon>feMain2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\flMain2.resx">
+      <DependentUpon>flMain2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\fpMain.resx">
+      <DependentUpon>fpMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\fpMainVersion.resx">
+      <DependentUpon>fpMainVersion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\fProgress.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>fProgress.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frMain.resx">
+      <DependentUpon>frMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\fsMain.resx">
+      <DependentUpon>fsMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\fuMain.resx">
+      <DependentUpon>fuMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\fBase.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>fBase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\feMain.resx">
+      <DependentUpon>feMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\flMain.resx">
+      <DependentUpon>flMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTemplates\Prompt.resx">
+      <DependentUpon>Prompt.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\fError.resx">
+      <DependentUpon>fError.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\fhMain.resx">
+      <DependentUpon>fhMain.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\fShowTable.resx">
+      <DependentUpon>fShowTable.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\fSyntaxError.resx">
+      <DependentUpon>fSyntaxError.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates\OneMoment.resx">
+      <DependentUpon>OneMoment.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App\app.config" />
+    <BaseApplicationManifest Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Local\QBase_1_TemporaryKey.pfx" />
+    <None Include="Local\QBase_TemporaryKey.pfx" />
+    <None Include="Settings.settings" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\PLUS.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\MINUS.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question.ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help6.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\help8.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="ADODB">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.Common">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.ProcessingObjectModel">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+    <PublishFile Include="Microsoft.ReportViewer.WinForms">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>Assembly</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DELETE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FIND.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NEW.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Open.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Report.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Report2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\tFPrint.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Resources\PEN04.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PRINT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ARROW10A.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ARROW38c.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ARROW10A.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ARW01DN.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PASTE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDF.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDFFile_8.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDF.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SAVEBlue.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Run.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clear.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clear.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel2a.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\excel21.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash2b.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pen.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ViewNormal16x16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dwnarrow.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\copy.bmp" />
+    <Content Include="Resources\BindingNavigatorDeleteItem.png" />
+    <Content Include="Resources\bnFirst.Image.png" />
+    <None Include="Resources\bnFirst.Image.png.png" />
+    <Content Include="Resources\bnLast.png" />
+    <Content Include="Resources\bnNext.png" />
+    <Content Include="Resources\bnPrev.png" />
+    <Content Include="Resources\downarrow.bmp" />
+    <None Include="Resources\ltarrow.bmp" />
+    <Content Include="Resources\PrintPreviewToolStripButton.png" />
+    <None Include="Resources\SQL.png" />
+    <None Include="Resources\rarrow.bmp" />
+    <None Include="Resources\rtarrow.bmp" />
+    <Content Include="Resources\SAVE&amp;CLOSE.bmp" />
+    <Content Include="Resources\SAVE&amp;NEW.bmp" />
+    <Content Include="Resources\SAVE&amp;NEXT.bmp" />
+    <Content Include="Resources\tsSaveQuery.png" />
+    <Content Include="Resources\T_utilBindingNavigatorSaveItem.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

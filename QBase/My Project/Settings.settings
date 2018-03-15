@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="appConnStr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Set in MDI::Load event</Value>
+    </Setting>
+    <Setting Name="authConnStr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=WORKXP\SQL2000;Initial Catalog=ac;Persist Security Info=True;User ID=sa;Password = october1</Value>
+    </Setting>
+    <Setting Name="ReportServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://workxp/reportserver$sql2005</Value>
+    </Setting>
+    <Setting Name="appHelp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Set in MDI::Load event</Value>
+    </Setting>
+    <Setting Name="NameValueDelimiter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">=</Value>
+    </Setting>
+    <Setting Name="NameValuePairDelimiter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">,</Value>
+    </Setting>
+    <Setting Name="TestUserAuth" Type="System.String" Scope="User">
+      <Value Profile="(Default)">writer</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,2824 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BRBPortal
+</name>
+</assembly>
+<members>
+<member name="T:BRBPortal.My.MyWebExtension">
+ <summary>
+ Module used to define the properties that are available in the My Namespace for Web projects.
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:BRBPortal.My.MyWebExtension.Computer">
+ <summary>
+ Returns information about the host computer.
+ </summary>
+</member>
+<member name="P:BRBPortal.My.MyWebExtension.User">
+ <summary>
+ Returns information for the current Web user.
+ </summary>
+</member>
+<member name="P:BRBPortal.My.MyWebExtension.Request">
+ <summary>
+ Returns Request object.
+ </summary>
+</member>
+<member name="P:BRBPortal.My.MyWebExtension.Response">
+ <summary>
+ Returns Response object.
+ </summary>
+</member>
+<member name="P:BRBPortal.My.MyWebExtension.Log">
+ <summary>
+ Returns the Asp log object.
+ </summary>
+</member>
+<member name="T:BRBPortal.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:BRBPortal.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:BRBPortal.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:BRBPortal.My.Resources.Resources.CityOfBerkley">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:BRBPortal.My.Resources.Resources.RSB">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="F:BRBPortal.CreateAccount._ErrorMessage">
+<summary>
+ErrorMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.CreateAccount._ReqUserID">
+<summary>
+ReqUserID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.CreateAccount._BillCode">
+<summary>
+BillCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.CreateAccount._FirstName">
+<summary>
+FirstName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.CreateAccount._MidName">
+<summary>
+MidName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.CreateAccount._LastName">
+<summary>
+LastName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.CreateAccount._Suffix">
+<summary>
+Suffix control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.CreateAccount._MailAddress">
+<summary>
+MailAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.CreateAccount._EmailAddress">
+<summary>
+EmailAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.CreateAccount._PhoneNo">
+<summary>
+PhoneNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.CreateAccount._SecAnswer">
+<summary>
+SecAnswer control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._ErrorMessage">
+<summary>
+ErrorMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._UserIDCode">
+<summary>
+UserIDCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._BillCode">
+<summary>
+BillCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._FirstName">
+<summary>
+FirstName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._MidName">
+<summary>
+MidName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._LastName">
+<summary>
+LastName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._Suffix">
+<summary>
+Suffix control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._MailAddress">
+<summary>
+MailAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._EmailAddress">
+<summary>
+EmailAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._PhoneNo">
+<summary>
+PhoneNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._SecAnswer">
+<summary>
+SecAnswer control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateAccount._chkDeActivate">
+<summary>
+chkDeActivate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._UserID">
+<summary>
+UserID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._BillCode">
+<summary>
+BillCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._FirstName">
+<summary>
+FirstName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._LastName">
+<summary>
+LastName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._PropAddress">
+<summary>
+PropAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._Row1Sel">
+<summary>
+Row1Sel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._UserID1">
+<summary>
+UserID1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._Row2Sel">
+<summary>
+Row2Sel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._UserID2">
+<summary>
+UserID2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._Row3Sel">
+<summary>
+Row3Sel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._UserID3">
+<summary>
+UserID3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._btnUpdAcct">
+<summary>
+btnUpdAcct control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SearchAccounts._btnCreateAcct">
+<summary>
+btnCreateAcct control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Home._HomeOption">
+<summary>
+HomeOption control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.EditCart._gvCart">
+<summary>
+gvCart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.EditCart._FeesAll">
+<summary>
+FeesAll control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.EditCart._btnSaveCart">
+<summary>
+btnSaveCart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.EditCart._btnCancEditCart">
+<summary>
+btnCancEditCart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.EditCart._btnDialogResponseYes">
+<summary>
+btnDialogResponseYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.EditCart._btnDialogResponseNo">
+<summary>
+btnDialogResponseNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.EditCart._hfDialogID">
+<summary>
+hfDialogID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.EditCart._OrigCart">
+<summary>
+OrigCart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:BRBPortal.EditCart.ShowDialogOK(System.String,System.String)">
+ <summary>Show a Dialog box with just OK.  </summary>
+</member>
+<member name="M:BRBPortal.EditCart.ShowDialogYN(System.String,System.String,System.String,System.String)">
+ <summary>Show a Yes/No Dialog box.  aDialogID defines the question for DialogResponse (below). </summary>
+</member>
+<member name="M:BRBPortal.EditCart.DialogResponseYes(System.Object,System.EventArgs)">
+ <summary>Receive Yes response from Dialog Box</summary>
+</member>
+<member name="M:BRBPortal.EditCart.DialogResponseNo(System.Object,System.EventArgs)">
+ <summary>Receive No response from Dialog Box</summary>
+</member>
+<member name="F:BRBPortal.Cart._ErrorMessage">
+<summary>
+ErrorMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Cart._FailureText">
+<summary>
+FailureText control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Cart._gvCart">
+<summary>
+gvCart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Cart._ShowFeesAll">
+<summary>
+ShowFeesAll control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Cart._btnEdCart">
+<summary>
+btnEdCart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Cart._btnPayCart">
+<summary>
+btnPayCart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Cart._btnCancelCart">
+<summary>
+btnCancelCart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Login._ErrorMessage">
+<summary>
+ErrorMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Login._FailureText">
+<summary>
+FailureText control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Login._UserIDCode">
+<summary>
+UserIDCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Login._BillCode">
+<summary>
+BillCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Login._Password">
+<summary>
+Password control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Login._ForgotPasswordHyperLink">
+<summary>
+ForgotPasswordHyperLink control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Login._btnLogin">
+<summary>
+btnLogin control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Manage._SuccessMessagePlaceHolder">
+<summary>
+SuccessMessagePlaceHolder control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Manage._ChangePassword">
+<summary>
+ChangePassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Manage._CreatePassword">
+<summary>
+CreatePassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ManagePassword._CurrentPassword">
+<summary>
+CurrentPassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ManagePassword._NewPWD">
+<summary>
+NewPWD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ManagePassword._ConfirmNewPassword">
+<summary>
+ConfirmNewPassword control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ManagePassword._btnDialogResponseYes">
+<summary>
+btnDialogResponseYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ManagePassword._btnDialogResponseNo">
+<summary>
+btnDialogResponseNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ManagePassword._hfDialogID">
+<summary>
+hfDialogID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ManagePassword._hfNextPage">
+<summary>
+hfNextPage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:BRBPortal.ManagePassword.ShowDialogOK(System.String,System.String)">
+ <summary>Show a Dialog box with just OK.  </summary>
+</member>
+<member name="M:BRBPortal.ManagePassword.ShowDialogYN(System.String,System.String,System.String,System.String)">
+ <summary>Show a Yes/No Dialog box.  aDialogID defines the question for DialogResponse (below). </summary>
+</member>
+<member name="M:BRBPortal.ManagePassword.DialogResponseYes(System.Object,System.EventArgs)">
+ <summary>Receive Yes response from Dialog Box</summary>
+</member>
+<member name="M:BRBPortal.ManagePassword.DialogResponseNo(System.Object,System.EventArgs)">
+ <summary>Receive No response from Dialog Box</summary>
+</member>
+<member name="F:BRBPortal.OpenAuthProviders._providerDetails">
+<summary>
+providerDetails control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._ErrorMessage">
+<summary>
+ErrorMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._FailureText">
+<summary>
+FailureText control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._UserIDCode2">
+<summary>
+UserIDCode2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._BillCode2">
+<summary>
+BillCode2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._Relationship">
+<summary>
+Relationship control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._OwnerGrp">
+<summary>
+OwnerGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._FirstName">
+<summary>
+FirstName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._MidName">
+<summary>
+MidName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._LastName">
+<summary>
+LastName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._Suffix">
+<summary>
+Suffix control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._AgencyGrp">
+<summary>
+AgencyGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._AgencyName">
+<summary>
+AgencyName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._StNum">
+<summary>
+StNum control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._StName">
+<summary>
+StName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._StUnit">
+<summary>
+StUnit control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._StCity">
+<summary>
+StCity control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._StState">
+<summary>
+StState control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._StZip">
+<summary>
+StZip control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._StCountry">
+<summary>
+StCountry control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._EmailAddress">
+<summary>
+EmailAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._PhoneNo">
+<summary>
+PhoneNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._Quest1">
+<summary>
+Quest1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._Answer1">
+<summary>
+Answer1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._Quest2">
+<summary>
+Quest2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._Answer2">
+<summary>
+Answer2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._btnUpdate">
+<summary>
+btnUpdate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._btnCancel">
+<summary>
+btnCancel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._btnDialogResponseYes">
+<summary>
+btnDialogResponseYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._btnDialogResponseNo">
+<summary>
+btnDialogResponseNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileEdit._hfDialogID">
+<summary>
+hfDialogID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:BRBPortal.ProfileEdit.ShowDialogOK(System.String,System.String)">
+ <summary>Show a Dialog box with just OK.  </summary>
+</member>
+<member name="M:BRBPortal.ProfileEdit.ShowDialogYN(System.String,System.String,System.String,System.String)">
+ <summary>Show a Yes/No Dialog box.  aDialogID defines the question for DialogResponse (below). </summary>
+</member>
+<member name="M:BRBPortal.ProfileEdit.DialogResponseYes(System.Object,System.EventArgs)">
+ <summary>Receive Yes response from Dialog Box</summary>
+</member>
+<member name="M:BRBPortal.ProfileEdit.DialogResponseNo(System.Object,System.EventArgs)">
+ <summary>Receive No response from Dialog Box</summary>
+</member>
+<member name="F:BRBPortal.Profilelist._UserIDCode1">
+<summary>
+UserIDCode1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Profilelist._BillCode1">
+<summary>
+BillCode1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Profilelist._FullName1">
+<summary>
+FullName1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Profilelist._MailAddress1">
+<summary>
+MailAddress1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Profilelist._EmailAddress1">
+<summary>
+EmailAddress1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Profilelist._PhoneNo1">
+<summary>
+PhoneNo1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Profilelist._Quest1">
+<summary>
+Quest1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Profilelist._Quest2">
+<summary>
+Quest2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Profilelist._UpdatePasswordHyperLink">
+<summary>
+UpdatePasswordHyperLink control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Profilelist._btnEdit">
+<summary>
+btnEdit control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Profilelist._btnCancel">
+<summary>
+btnCancel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._UserIDCode0">
+<summary>
+UserIDCode0 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._BillCode0">
+<summary>
+BillCode0 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._FullName0">
+<summary>
+FullName0 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._MailAddress0">
+<summary>
+MailAddress0 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._EmailAddress0">
+<summary>
+EmailAddress0 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._PhoneNo0">
+<summary>
+PhoneNo0 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._chkDeclare">
+<summary>
+chkDeclare control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._DeclareInits">
+<summary>
+DeclareInits control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._btnSubmit">
+<summary>
+btnSubmit control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._btnCancel">
+<summary>
+btnCancel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._btnDialogResponseYes">
+<summary>
+btnDialogResponseYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._btnDialogResponseNo">
+<summary>
+btnDialogResponseNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ProfileConfirm._hfDialogID">
+<summary>
+hfDialogID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:BRBPortal.ProfileConfirm.ShowDialogOK(System.String,System.String)">
+ <summary>Show a Dialog box with just OK.  </summary>
+</member>
+<member name="M:BRBPortal.ProfileConfirm.ShowDialogYN(System.String,System.String,System.String,System.String)">
+ <summary>Show a Yes/No Dialog box.  aDialogID defines the question for DialogResponse (below). </summary>
+</member>
+<member name="M:BRBPortal.ProfileConfirm.DialogResponseYes(System.Object,System.EventArgs)">
+ <summary>Receive Yes response from Dialog Box</summary>
+</member>
+<member name="M:BRBPortal.ProfileConfirm.DialogResponseNo(System.Object,System.EventArgs)">
+ <summary>Receive No response from Dialog Box</summary>
+</member>
+<member name="F:BRBPortal.Register._ErrorMsg">
+<summary>
+ErrorMsg control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._FailureText">
+<summary>
+FailureText control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._ReqUserID">
+<summary>
+ReqUserID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._BillCode">
+<summary>
+BillCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._PropRelate">
+<summary>
+PropRelate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._NameGrp">
+<summary>
+NameGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._FirstName">
+<summary>
+FirstName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._MidName">
+<summary>
+MidName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._LastName">
+<summary>
+LastName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._Suffix">
+<summary>
+Suffix control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._AgencyGrp">
+<summary>
+AgencyGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._AgencyName">
+<summary>
+AgencyName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._StNum">
+<summary>
+StNum control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._StName">
+<summary>
+StName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._StUnit">
+<summary>
+StUnit control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._StCity">
+<summary>
+StCity control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._StState">
+<summary>
+StState control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._StZip">
+<summary>
+StZip control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._StCountry">
+<summary>
+StCountry control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._EmailAddress">
+<summary>
+EmailAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._PhoneNo">
+<summary>
+PhoneNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._PropOwnLastName">
+<summary>
+PropOwnLastName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._PropAddress">
+<summary>
+PropAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._PurchaseYear">
+<summary>
+PurchaseYear control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._Quest1">
+<summary>
+Quest1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._Answer1">
+<summary>
+Answer1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._Quest2">
+<summary>
+Quest2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._Answer2">
+<summary>
+Answer2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._btnDialogResponseYes">
+<summary>
+btnDialogResponseYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._btnDialogResponseNo">
+<summary>
+btnDialogResponseNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Register._hfDialogID">
+<summary>
+hfDialogID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:BRBPortal.Register.ShowDialogOK(System.String,System.String)">
+ <summary>Show a Dialog box with just OK.  </summary>
+</member>
+<member name="M:BRBPortal.Register.ShowDialogYN(System.String,System.String,System.String,System.String)">
+ <summary>Show a Yes/No Dialog box.  aDialogID defines the question for DialogResponse (below). </summary>
+</member>
+<member name="M:BRBPortal.Register.DialogResponseYes(System.Object,System.EventArgs)">
+ <summary>Receive Yes response from Dialog Box</summary>
+</member>
+<member name="M:BRBPortal.Register.DialogResponseNo(System.Object,System.EventArgs)">
+ <summary>Receive No response from Dialog Box</summary>
+</member>
+<member name="F:BRBPortal.ResetPassword._ErrMessage">
+<summary>
+ErrMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._FailureText">
+<summary>
+FailureText control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._UserIDCode">
+<summary>
+UserIDCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._BillingCode">
+<summary>
+BillingCode control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._Quest1">
+<summary>
+Quest1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._Answer1">
+<summary>
+Answer1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._Quest2">
+<summary>
+Quest2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._Answer2">
+<summary>
+Answer2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._btnResetPWD">
+<summary>
+btnResetPWD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._btnDialogResponseYes">
+<summary>
+btnDialogResponseYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._btnDialogResponseNo">
+<summary>
+btnDialogResponseNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.ResetPassword._hfDialogID">
+<summary>
+hfDialogID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:BRBPortal.ResetPassword.ShowDialogOK(System.String,System.String)">
+ <summary>Show a Dialog box with just OK.  </summary>
+</member>
+<member name="M:BRBPortal.ResetPassword.ShowDialogYN(System.String,System.String,System.String,System.String)">
+ <summary>Show a Yes/No Dialog box.  aDialogID defines the question for DialogResponse (below). </summary>
+</member>
+<member name="M:BRBPortal.ResetPassword.DialogResponseYes(System.Object,System.EventArgs)">
+ <summary>Receive Yes response from Dialog Box</summary>
+</member>
+<member name="M:BRBPortal.ResetPassword.DialogResponseNo(System.Object,System.EventArgs)">
+ <summary>Receive No response from Dialog Box</summary>
+</member>
+<member name="F:BRBPortal.PmtPosting._Literal1">
+<summary>
+Literal1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.PmtPosting._ConfNo">
+<summary>
+ConfNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.PmtPosting._MiscMsgs">
+<summary>
+MiscMsgs control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.PmtPosting._btnRtnHome">
+<summary>
+btnRtnHome control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._ErrorMessage">
+<summary>
+ErrorMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._FailureText">
+<summary>
+FailureText control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._MainAddress">
+<summary>
+MainAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._OwnerName">
+<summary>
+OwnerName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._AgentName">
+<summary>
+AgentName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._BalAmt">
+<summary>
+BalAmt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._UnitNo">
+<summary>
+UnitNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._UnitStat">
+<summary>
+UnitStat control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._InitRent">
+<summary>
+InitRent control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._TenStDt">
+<summary>
+TenStDt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._HouseServs">
+<summary>
+HouseServs control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._NumTenants">
+<summary>
+NumTenants control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._SmokYN">
+<summary>
+SmokYN control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._SmokDt">
+<summary>
+SmokDt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._PriorEndDt">
+<summary>
+PriorEndDt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._TermReason">
+<summary>
+TermReason control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._gvTenants">
+<summary>
+gvTenants control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._btnBack">
+<summary>
+btnBack control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._btnDialogResponseYes">
+<summary>
+btnDialogResponseYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._btnDialogResponseNo">
+<summary>
+btnDialogResponseNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyTenants._hfDialogID">
+<summary>
+hfDialogID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:BRBPortal.MyTenants.ShowDialogOK(System.String,System.String)">
+ <summary>Show a Dialog box with just OK.  </summary>
+</member>
+<member name="M:BRBPortal.MyTenants.ShowDialogYN(System.String,System.String,System.String,System.String)">
+ <summary>Show a Yes/No Dialog box.  aDialogID defines the question for DialogResponse (below). </summary>
+</member>
+<member name="M:BRBPortal.MyTenants.DialogResponseYes(System.Object,System.EventArgs)">
+ <summary>Receive Yes response from Dialog Box</summary>
+</member>
+<member name="M:BRBPortal.MyTenants.DialogResponseNo(System.Object,System.EventArgs)">
+ <summary>Receive No response from Dialog Box</summary>
+</member>
+<member name="F:BRBPortal.MyUnits._MainAddress">
+<summary>
+MainAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyUnits._MgrName">
+<summary>
+MgrName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyUnits._btnRemAgnt">
+<summary>
+btnRemAgnt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyUnits._BillAddr">
+<summary>
+BillAddr control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyUnits._gvUnits">
+<summary>
+gvUnits control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyUnits._btnBack">
+<summary>
+btnBack control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyUnits._btnDialogResponseYes">
+<summary>
+btnDialogResponseYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyUnits._btnDialogResponseNo">
+<summary>
+btnDialogResponseNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyUnits._hfDialogID">
+<summary>
+hfDialogID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:BRBPortal.MyUnits.ShowDialogOK(System.String,System.String)">
+ <summary>Show a Dialog box with just OK.  </summary>
+</member>
+<member name="M:BRBPortal.MyUnits.ShowDialogYN(System.String,System.String,System.String,System.String)">
+ <summary>Show a Yes/No Dialog box.  aDialogID defines the question for DialogResponse (below). </summary>
+</member>
+<member name="M:BRBPortal.MyUnits.DialogResponseYes(System.Object,System.EventArgs)">
+ <summary>Receive Yes response from Dialog Box</summary>
+</member>
+<member name="M:BRBPortal.MyUnits.DialogResponseNo(System.Object,System.EventArgs)">
+ <summary>Receive No response from Dialog Box</summary>
+</member>
+<member name="F:BRBPortal.MyProperties._gvProperties">
+<summary>
+gvProperties control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.MyProperties._btnAddToCart">
+<summary>
+btnAddToCart control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._MainAddress">
+<summary>
+MainAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._OwnerName">
+<summary>
+OwnerName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._AgentName">
+<summary>
+AgentName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._BalAmt">
+<summary>
+BalAmt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._UnitNo">
+<summary>
+UnitNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._UnitStatus">
+<summary>
+UnitStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._InitRent">
+<summary>
+InitRent control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._TenStDt">
+<summary>
+TenStDt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._HServs">
+<summary>
+HServs control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._HServsOthr">
+<summary>
+HServsOthr control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._HServOthrBox">
+<summary>
+HServOthrBox control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._NumTenants">
+<summary>
+NumTenants control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._RB1Y">
+<summary>
+RB1Y control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._RB1N">
+<summary>
+RB1N control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._SmokeDt">
+<summary>
+SmokeDt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._PTenDt">
+<summary>
+PTenDt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._TermReas">
+<summary>
+TermReas control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._TermDescr">
+<summary>
+TermDescr control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._gvTenants">
+<summary>
+gvTenants control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._btnAddTenant">
+<summary>
+btnAddTenant control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._AddTenant">
+<summary>
+AddTenant control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._NewFirst">
+<summary>
+NewFirst control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._NewLast">
+<summary>
+NewLast control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._NewPhon">
+<summary>
+NewPhon control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._NewEmail">
+<summary>
+NewEmail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._SaveNewTen">
+<summary>
+SaveNewTen control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._CancelNewTen">
+<summary>
+CancelNewTen control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._chkDeclare">
+<summary>
+chkDeclare control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._DeclareInits">
+<summary>
+DeclareInits control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._btnUpdTen">
+<summary>
+btnUpdTen control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._btnCancel">
+<summary>
+btnCancel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._btnDialogResponseYes">
+<summary>
+btnDialogResponseYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._btnDialogResponseNo">
+<summary>
+btnDialogResponseNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._hfDialogID">
+<summary>
+hfDialogID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._hfUnitID">
+<summary>
+hfUnitID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._hfOrigTenStDt">
+<summary>
+hfOrigTenStDt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateTenancy._hfOwnerEmail">
+<summary>
+hfOwnerEmail control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:BRBPortal.UpdateTenancy.ShowDialogOK(System.String,System.String)">
+ <summary>Show a Dialog box with just OK.  </summary>
+</member>
+<member name="M:BRBPortal.UpdateTenancy.ShowDialogYN(System.String,System.String,System.String,System.String)">
+ <summary>Show a Yes/No Dialog box.  aDialogID defines the question for DialogResponse (below). </summary>
+</member>
+<member name="M:BRBPortal.UpdateTenancy.DialogResponseYes(System.Object,System.EventArgs)">
+ <summary>Receive Yes response from Dialog Box</summary>
+</member>
+<member name="M:BRBPortal.UpdateTenancy.DialogResponseNo(System.Object,System.EventArgs)">
+ <summary>Receive No response from Dialog Box</summary>
+</member>
+<member name="F:BRBPortal.UpdateUnit._ErrorMessage">
+<summary>
+ErrorMessage control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._FailureText">
+<summary>
+FailureText control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._MainAddress">
+<summary>
+MainAddress control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._UnitNo">
+<summary>
+UnitNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._UnitStatus">
+<summary>
+UnitStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._ExemptReas">
+<summary>
+ExemptReas control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._UnitStartDt">
+<summary>
+UnitStartDt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._UnitOccBy">
+<summary>
+UnitOccBy control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._NewUnit">
+<summary>
+NewUnit control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._ExemptGroup">
+<summary>
+ExemptGroup control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._ExemptReason">
+<summary>
+ExemptReason control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._OtherList">
+<summary>
+OtherList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._AsOfDtGrp">
+<summary>
+AsOfDtGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._UnitAsOfDt">
+<summary>
+UnitAsOfDt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._DtStrtdGrp">
+<summary>
+DtStrtdGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._StartDt">
+<summary>
+StartDt control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._OccByGrp">
+<summary>
+OccByGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._OccupiedBy">
+<summary>
+OccupiedBy control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._ContractGrp">
+<summary>
+ContractGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._ContractNo">
+<summary>
+ContractNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._CommUseGrp">
+<summary>
+CommUseGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._CommUseDesc">
+<summary>
+CommUseDesc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._RB1Y">
+<summary>
+RB1Y control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._RB1N">
+<summary>
+RB1N control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._CommZoneUse">
+<summary>
+CommZoneUse control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._CommResYN">
+<summary>
+CommResYN control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._PMUnitGrp">
+<summary>
+PMUnitGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._PropMgrName">
+<summary>
+PropMgrName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._PMEmailPhone">
+<summary>
+PMEmailPhone control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._OwnerShrGrp">
+<summary>
+OwnerShrGrp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._PrincResYN">
+<summary>
+PrincResYN control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._MultiUnitYN">
+<summary>
+MultiUnitYN control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._OtherUnits">
+<summary>
+OtherUnits control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._TenantNames">
+<summary>
+TenantNames control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._TenantContacts">
+<summary>
+TenantContacts control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._chkDeclare">
+<summary>
+chkDeclare control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._DeclareInits">
+<summary>
+DeclareInits control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._btnConfirm">
+<summary>
+btnConfirm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._btnCancel">
+<summary>
+btnCancel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._btnDialogResponseYes">
+<summary>
+btnDialogResponseYes control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._btnDialogResponseNo">
+<summary>
+btnDialogResponseNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._hfDialogID">
+<summary>
+hfDialogID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.UpdateUnit._hfUnitID">
+<summary>
+hfUnitID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="M:BRBPortal.UpdateUnit.ShowDialogOK(System.String,System.String)">
+ <summary>Show a Dialog box with just OK.  </summary>
+</member>
+<member name="M:BRBPortal.UpdateUnit.ShowDialogYN(System.String,System.String,System.String,System.String)">
+ <summary>Show a Yes/No Dialog box.  aDialogID defines the question for DialogResponse (below). </summary>
+</member>
+<member name="M:BRBPortal.UpdateUnit.DialogResponseYes(System.Object,System.EventArgs)">
+ <summary>Receive Yes response from Dialog Box</summary>
+</member>
+<member name="M:BRBPortal.UpdateUnit.DialogResponseNo(System.Object,System.EventArgs)">
+ <summary>Receive No response from Dialog Box</summary>
+</member>
+<member name="F:BRBPortal.SiteMaster._Image1">
+<summary>
+Image1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SiteMaster._ibLogo">
+<summary>
+ibLogo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.SiteMaster._MainContent">
+<summary>
+MainContent control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Site_Mobile._Head1">
+<summary>
+Head1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Site_Mobile._HeadContent">
+<summary>
+HeadContent control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Site_Mobile._form1">
+<summary>
+form1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Site_Mobile._FeaturedContent">
+<summary>
+FeaturedContent control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Site_Mobile._MainContent">
+<summary>
+MainContent control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:BRBPortal.Site_Mobile._ViewSwitcher1">
+<summary>
+ViewSwitcher1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+</members>
+</doc>

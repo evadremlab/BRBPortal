@@ -1,0 +1,138 @@
+﻿/*@charset "utf-8";*/
+/* CSS Document */
+body
+{
+    /*background-color: #E6E6F6;*/ /*pale blue*/ /* #EFEFEF;*/ /*background-color: #DDD8C2;*/
+    background-color: white;
+    font-family: "Times New Roman" , Georgia, serif;
+}
+.col2
+{
+    width: 860px; /*border-left: 1px solid #efefef;*/
+    float: left;
+    padding: 0 0px;
+    background-color: white;
+    display: block;
+    height: 900px; /* 4/18/16 */
+    overflow: auto;
+}
+.col2height1500
+{
+    width: 850px; /*border-left: 1px solid #efefef;*/
+    float: left;
+    padding: 0 0px;
+    background-color: white;
+    display: block;
+    height: 1500px; /* 4/18/16 */
+    overflow: auto;
+}
+.col2-login
+{
+    width: 800px; /*border-left: 1px solid #efefef;*/
+    float: left;
+    padding: 0 0px;
+    background-color: white;
+    display: block;
+    height: 1200px; /* 4/18/16 */
+    overflow: auto;
+}
+.col2-800
+{
+    width: 800px;
+    float: left;
+    padding: 0 0px;
+    background-color: white;
+    display: block;
+    height: 900px;
+    overflow: auto;
+}
+.col2-750
+{
+    width: 750px;
+    float: left;
+    padding: 0 0px;
+    background-color: white;
+    display: block;
+    height: 900px;
+    overflow: auto;
+}
+.col1
+{
+    width: 200px; /*height: 1000px;*/
+    padding: 0px 0px 0px 20px;
+    float: left;
+    background-color: #EFEFEF; /*light gray*/
+    background-color: #DDD8C2; /*brown*/
+    display: block;
+    height: 900px; /* 4/18/16 */
+    overflow: auto;
+}
+.col1-login
+{
+    width: 250px; /*height: 1000px;*/
+    padding: 0px 0px 0px 20px;
+    float: left;
+    background-color: #EFEFEF; /*light gray*/
+    background-color: #DDD8C2; /*brown*/
+    display: block;
+    height: 1200px; /* 4/18/16 */
+    overflow: auto;
+}
+.col1-250
+{
+    width: 250px;
+    padding: 0px 0px 0px 20px;
+    float: left;
+    background-color: #EFEFEF; /*light gray*/
+    background-color: #DDD8C2;
+    display: block;
+    height: 900px;
+    overflow: auto;
+}
+.col1-300
+{
+    width: 300px;
+    padding: 0px 0px 0px 20px;
+    float: left;
+    background-color: #EFEFEF; /*light gray*/
+    background-color: #DDD8C2;
+    display: block;
+    height: 900px;
+    overflow: auto;
+}
+.grid
+{
+    width: 1060px; /*height: 1000px;*/
+    margin-left: auto;
+    margin-right: auto;
+}
+.grid1030
+{
+    width: 1030px; /*height: 1000px;*/
+    margin-left: auto;
+    margin-right: auto;
+}
+.grid:after
+{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+*, *:after, *:before
+{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/* PlantIDWeb-Specific Classes */
+
+.footer
+{
+    background-color: white; /*#DDD8C2; background-color: #EFEFEF;*/
+    padding: 0 30px 0 0px;
+    margin-left: 200px;
+}
+
+
+
