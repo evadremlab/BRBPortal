@@ -167,6 +167,20 @@ namespace BRBPortal_CSharp
             return signInStatus;
         }
 
+        public static bool ConfirmProfile(string aID, string aBillCd, string aInits)
+        {
+            if (USE_MOCK_SERVICES)
+            {
+                iErrMsg = "";
+                iStatus = "SUCCESS";
+                return true;
+            }
+            else
+            {
+                return ConfirmProfile_Soap(aID, aBillCd, aInits);
+            }
+        }
+
         public static bool ConfirmProfile_Soap(string aID, string aBillCd, string aInits)
         {
             WebRequest request = null;

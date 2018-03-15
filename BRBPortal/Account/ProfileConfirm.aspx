@@ -3,10 +3,11 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <%--<h2><%: Title %>.</h2>--%>
 
-    <link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="../Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/Styles/StyleBRB.css" />
     <link rel="stylesheet" type="text/css" href="/Styles/Baseline.Type.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css" />
     
     <script type="text/javascript" src="<%= ResolveUrl("~/Scripts/ClientPortal.js") %>"> </script>
     <!-- Modal Dialog Box Ajax Code -->

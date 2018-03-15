@@ -3,16 +3,13 @@
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <%--  <br />--%>
-    
     <link rel="stylesheet" type="text/css" href="/Content/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/Styles/StyleBRB.css" />
     <link rel="stylesheet" type="text/css" href="/Styles/Baseline.Type.css" />
 
-
     <div class="form-horizontal" style="width: 825px; height: 500px; padding-left:15px">
         <h4>Login</h4>
-        <%--<hr />--%>
+
         <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
             <p class="text-danger">
                 <asp:Literal runat="server" ID="FailureText" />
