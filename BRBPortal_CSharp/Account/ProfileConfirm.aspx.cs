@@ -11,7 +11,7 @@ namespace BRBPortal_CSharp.Account
     {
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            if (!IsPostBack == true)
+            if (!IsPostBack)
             {
                 string userCode = Session["UserCode"] as String;
                 string billingCode = Session["BillingCode"] as String;

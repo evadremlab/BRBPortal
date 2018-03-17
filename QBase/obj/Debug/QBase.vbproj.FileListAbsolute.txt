@@ -747,6 +747,7 @@ C:\Projects\bin\QBase\QBase.dll.config
 C:\Projects\bin\QBase\QBase.dll
 C:\Projects\bin\QBase\QBase.pdb
 C:\Projects\bin\QBase\QBase.xml
+C:\Projects\BRBPortal\QBase\obj\Debug\QBase.vbprojResolveAssemblyReference.cache
 C:\Projects\BRBPortal\QBase\obj\Debug\QSILib.qDD.resources
 C:\Projects\BRBPortal\QBase\obj\Debug\QSILib.Windows.Forms.fpMain2.resources
 C:\Projects\BRBPortal\QBase\obj\Debug\QSILib.feLoadQuery.resources
@@ -772,4 +773,3 @@ C:\Projects\BRBPortal\QBase\obj\Debug\QBase.vbproj.GenerateResource.Cache
 C:\Projects\BRBPortal\QBase\obj\Debug\QBase.dll
 C:\Projects\BRBPortal\QBase\obj\Debug\QBase.xml
 C:\Projects\BRBPortal\QBase\obj\Debug\QBase.pdb
-C:\Projects\BRBPortal\QBase\obj\Debug\QBase.vbprojResolveAssemblyReference.cache

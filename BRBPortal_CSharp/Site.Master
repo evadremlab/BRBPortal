@@ -65,17 +65,14 @@
                         <li><a runat="server" href="~/Cart">Cart</a></li>
                         <li><a runat="server" href="http://www.ci.berkeley.ca.us/Rent_Stabilization_Board/Home/FAQs_-_Rent_Board_Mailbag.aspx" target="_blank">FAQ</a></li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
                     <% if (isAuthenticated) { %>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
                         <li><asp:LinkButton runat="server" id="btnLogOff" Text="Log off" OnClick="Logoff" /></li>
-                    </ul>
                     <% } else { %>
-                    <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" href="~/Account/Register">Register</a></li>
                         <li><a runat="server" href="~/Account/Login">Log in</a></li>
-                    </ul>
                     <% } %>
+                    </ul>
                 </div>
             </div>
         </div>
