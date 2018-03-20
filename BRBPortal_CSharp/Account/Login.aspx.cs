@@ -1,75 +1,64 @@
 ﻿using System;
 using System.Web;
 using System.Web.UI;
+using System.Web.Security;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 
 using BRBPortal_CSharp;
 using BRBPortal_CSharp.Models;
-using System.Web.Security;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace BRBPortal_CSharp.Account
 {
+    /// <summary>
+    /// DONE
+    /// </summary>
     public partial class Login : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            FailureText.Text = "testing";
-            FailureText.Visible = true;
-            Session["Authenticated"] = "FALSE";
+            if (!IsPostBack)
+            {
+                Session.RemoveAll();
+            }
         }
 
         protected void LogIn(object sender, EventArgs e)
         {
-            string wstr;
-            string wstr2;
-
             if (IsValid)
             {
-                var result = SignInStatus.Success;
+                var userCode = UserIDCode.Text ?? string.Empty;
+                var billCode = BillCode.Text ?? string.Empty;
+                var password = Password.Text ?? string.Empty;
 
-                var Pwd = Password.Text;
-                var IDCode = UserIDCode.Text ?? string.Empty;
-                var tBillCode = BillCode.Text ?? string.Empty;
-
-                result = BRBFunctions_CSharp.UserAuth(IDCode, tBillCode, Pwd);
+                var result = BRBFunctions_CSharp.UserAuth(userCode, billCode, password);
 
                 if (result == SignInStatus.Success)
                 {
-                    Session["Authenticated"] = "TRUE";
+                    var fields = BRBFunctions_CSharp.GetProfile(userCode, billCode);
 
-                    var ProfileStr = BRBFunctions_CSharp.GetProfile(IDCode, tBillCode);
-
-                    if ((ProfileStr.Length > 0))
+                    if (fields.Count > 0)
                     {
-                        wstr2 = ProfileStr;
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
+                        userCode = fields.GetStringValue("UserCode");
+                        billCode = fields.GetStringValue("BillingCode");
 
-                        // User Code
-                        if ((wstr.Length > wstr.IndexOf("=")))
-                        {
-                            IDCode = wstr.Substring(wstr.IndexOf("=") + 1);
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        // Billing Code
-                        if ((wstr.Length > wstr.IndexOf("=")))
-                        {
-                            tBillCode = wstr.Substring(wstr.IndexOf("=") + 1);
-                        }
-
-                        Session["UserCode"] = IDCode;
-                        Session["BillingCode"] = tBillCode;
+                        Session["UserCode"] = userCode;
+                        Session["BillingCode"] = billCode;
                         Session["FirstTimeLogin"] = BRBFunctions_CSharp.iFirstlogin;
                         Session["Relationship"] = BRBFunctions_CSharp.iRelate;
                         Session["TempPwd"] = BRBFunctions_CSharp.iTempPwd;
 
+                        var claims = new List<Claim>();
+                        claims.Add(new Claim(ClaimTypes.Name, billCode));
+                        Request.GetOwinContext().Authentication.SignIn(new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie));
+
                         if (BRBFunctions_CSharp.iTempPwd.ToUpper() == "TRUE")
                         {
-                            wstr = "";
-                            if ((BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE")) // comparing with True in VB
+                            if ((BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE"))
                             {
                                 Session["NextPage"] = "ProfileConfirm";
                             }
