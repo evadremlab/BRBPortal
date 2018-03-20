@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="BRBPortal_CSharp.Account.Login" Async="true" %>
 
-<%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
-
-<%--data-lpignore="false" tells LastPass not to show ellipsis on form fields--%>
+<%-- data-lpignore="true" tells LastPass not to show ellipsis on form fields --%>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2><%: Title %>.</h2>
@@ -18,19 +16,19 @@
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="UserIDCode" CssClass="col-md-2 control-label">User ID:</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="UserIDCode" CssClass="form-control" TextMode="SingleLine" data-lpignore="true" />
+                    <asp:TextBox runat="server" ID="UserIDCode" CssClass="form-control" TextMode="SingleLine" autofocus="autofocus" />
                 </div>
             </div>
             <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="BillCode" CssClass="col-md-2 control-label">Billing Code:</asp:Label>
+                <asp:Label runat="server" AssociatedControlID="BillCode" CssClass="col-md-2 control-label" data-lpignore="true">Billing Code:</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="BillCode" CssClass="form-control" TextMode="SingleLine" data-lpignore="true" />
+                    <asp:TextBox runat="server" ID="BillCode" CssClass="form-control" TextMode="SingleLine" />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" data-lpignore="true" />
+                    <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
                 </div>
             </div>
@@ -41,7 +39,6 @@
             </div>
         </div>
         <p>
-            <%-- enable this once you have account confirmation enabled for password reset functionality--%>
             <asp:HyperLink runat="server" NavigateUrl="~/Account/ResetPassword" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
         </p>
     </section>

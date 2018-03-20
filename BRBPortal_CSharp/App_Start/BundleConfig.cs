@@ -34,9 +34,6 @@ namespace BRBPortal_CSharp
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                            "~/Scripts/jquery-ui-*"));
-
             ScriptManager.ScriptResourceMapping.AddDefinition(
                 "respond",
                 new ScriptResourceDefinition

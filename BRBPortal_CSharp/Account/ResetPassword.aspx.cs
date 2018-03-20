@@ -11,36 +11,74 @@ namespace BRBPortal_CSharp.Account
 {
     public partial class ResetPassword : Page
     {
-        protected string StatusMessage
+        protected void Page_Load(object sender, System.EventArgs e)
         {
-            get;
-            private set;
+            if (!IsPostBack)
+            {
+                Quest1.Text = "";
+                Quest2.Text = "";
+                FailureText.Text = "";
+                ErrMessage.Visible = false;
+                btnResetPWD.Enabled = false;
+            }
         }
 
         protected void Reset_Click(object sender, EventArgs e)
         {
-            string code = IdentityHelper.GetCodeFromRequest(Request);
-            if (code != null)
+            validateReset();
+        }
+
+        //protected void SecurityAnswer_TextChanged(object sender, EventArgs e)
+        //{
+        //    if ((Answer1.Text.Length > 0 && Quest1.Text.Length > 0) || (Answer2.Text.Length > 0 && Quest2.Text.Length > 0))
+        //    {
+        //        btnResetPWD.Enabled = true;
+        //    }
+        //    else
+        //    {
+        //        btnResetPWD.Enabled = false;
+        //    }
+        //}
+
+        protected void UserIDCode_TextChanged(object sender, EventArgs e)
+        {
+            validateReset();
+        }
+
+        protected void BillingCode_TextChanged(object sender, EventArgs e)
+        {
+            validateReset();
+        }
+
+        private void ShowDialog(string message, string title)
+        {
+            var fn = string.Format("showOkModalOnPostback('{0}', '{1}';", message, title);
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Javascript", fn, true);
+        }
+
+        private void validateReset()
+        {
+            var userProfile = new UserProfile
             {
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                UserCode = UserIDCode.Text,
+                BillingCode = BillingCode.Text,
+                Question1 = Quest1.Text,
+                Question2 = Quest2.Text,
+                Answer1 = Answer1.Text,
+                Answer2 = Answer2.Text
+            };
 
-                var user = manager.FindByName(Email.Text);
-                if (user == null)
-                {
-                    ErrorMessage.Text = "No user found";
-                    return;
-                }
-                var result = manager.ResetPassword(user.Id, code, Password.Text);
-                if (result.Succeeded)
-                {
-                    Response.Redirect("~/Account/ResetPasswordConfirmation");
-                    return;
-                }
-                ErrorMessage.Text = result.Errors.FirstOrDefault();
-                return;
+            if (BRBFunctions_CSharp.ValidateReset(userProfile))
+            {
+                ShowDialog("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
+
+                Response.Redirect("~/Account/Login.aspx");
             }
-
-            ErrorMessage.Text = "An error has occurred";
+            else
+            {
+                ShowDialog("Security answer(s) did not match.", "Reset Password");
+            }
         }
     }
 }

@@ -13,49 +13,22 @@ namespace BRBPortal_CSharp.Account {
     public partial class ManagePassword {
         
         /// <summary>
-        /// setPassword control.
+        /// hfDialogID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder setPassword;
+        protected global::System.Web.UI.WebControls.HiddenField hfDialogID;
         
         /// <summary>
-        /// password control.
+        /// hfNextPage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password;
-        
-        /// <summary>
-        /// confirmPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox confirmPassword;
-        
-        /// <summary>
-        /// changePasswordHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder changePasswordHolder;
-        
-        /// <summary>
-        /// CurrentPasswordLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CurrentPasswordLabel;
+        protected global::System.Web.UI.WebControls.HiddenField hfNextPage;
         
         /// <summary>
         /// CurrentPassword control.
@@ -67,31 +40,13 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.TextBox CurrentPassword;
         
         /// <summary>
-        /// NewPasswordLabel control.
+        /// NewPWD control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NewPasswordLabel;
-        
-        /// <summary>
-        /// NewPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NewPassword;
-        
-        /// <summary>
-        /// ConfirmNewPasswordLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ConfirmNewPasswordLabel;
+        protected global::System.Web.UI.WebControls.TextBox NewPWD;
         
         /// <summary>
         /// ConfirmNewPassword control.

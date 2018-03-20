@@ -17,11 +17,6 @@
 </head>
 <body>
     <form runat="server">
-        <%
-            string authenticated = Session["Authenticated"] as String;
-
-            var isAuthenticated = string.IsNullOrEmpty(authenticated) ? false : authenticated.Equals("TRUE");
-        %>
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -39,6 +34,7 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
+                <asp:ScriptReference Path="~/Scripts/Site.js"></asp:ScriptReference>
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
@@ -66,7 +62,7 @@
                         <li><a runat="server" href="http://www.ci.berkeley.ca.us/Rent_Stabilization_Board/Home/FAQs_-_Rent_Board_Mailbag.aspx" target="_blank">FAQ</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                    <% if (isAuthenticated) { %>
+                    <% if (Context.User.Identity.IsAuthenticated) { %>
                         <li><asp:LinkButton runat="server" id="btnLogOff" Text="Log off" OnClick="Logoff" /></li>
                     <% } else { %>
                         <li><a runat="server" href="~/Account/Register">Register</a></li>
@@ -82,7 +78,6 @@
             </asp:ContentPlaceHolder>
 
             <footer>
-                <br />
                 <div class="col-md-10" style="width:320px;height:50px;border:1px solid #000;">
                     <p style="font-size:8px; height: 48px; width: 320px; line-height:10px">Rent Stabilization Board 2125 Milvia Street, Berkeley, CA 94704<br />
                         Questions or comments? Email:  <a href="mailto:Rent@cityofberkeley.info">Rent@cityofberkeley.info</a> Phone: (510) 981-7368<br />
@@ -93,5 +88,22 @@
             </footer>
         </div>
     </form>
+
+    <!-- Modals -->
+    <div id="OkModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="OkModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="OkModalLabel"></h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modals -->
 </body>
 </html>

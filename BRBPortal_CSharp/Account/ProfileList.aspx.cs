@@ -13,9 +13,9 @@ namespace BRBPortal_CSharp.Account
         {
             if (!IsPostBack)
             {
-                string userCode = Session["UserCode"] as String;
-                string billingCode = Session["BillingCode"] as String;
-                string relationship = Session["Relationship"] as String;
+                string userCode = Session["UserCode"] as String ?? "";
+                string billingCode = Session["BillingCode"] as String ?? "";
+                string relationship = Session["Relationship"] as String ?? "";
 
                 if (string.IsNullOrEmpty(userCode) || string.IsNullOrEmpty(billingCode))
                 {
@@ -32,87 +32,19 @@ namespace BRBPortal_CSharp.Account
                     Quest1.Text = "";
                     Quest2.Text = "";
 
-                    var RetStr = BRBFunctions_CSharp.GetProfile(userCode, billingCode);
+                    var fields = BRBFunctions_CSharp.GetProfile(userCode, billingCode);
 
-                    if (RetStr.Length > 0)
+                    if (fields.Count > 0)
                     {
-                        var wstr2 = RetStr;
-                        var wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            UserIDCode1.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            BillCode1.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            FullName1.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            MailAddress1.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            EmailAddress1.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            PhoneNo1.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            Quest1.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            Quest2.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("=") && relationship.ToUpper() == "AGENT")
-                        {
-                            FullName1.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
+                        UserIDCode1.Text = fields.GetStringValue("UserCode");
+                        BillCode1.Text = fields.GetStringValue("BillingCode");
+                        FullName1.Text = fields.GetStringValue("FullName");
+                        MailAddress1.Text = fields.GetStringValue("MailAddress");
+                        EmailAddress1.Text = fields.GetStringValue("Email");
+                        PhoneNo1.Text = fields.GetStringValue("Phone");
+                        Quest1.Text = fields.GetStringValue("Question1");
+                        Quest2.Text = fields.GetStringValue("Question2");
+                        FullName1.Text = fields.GetStringValue("FullName");
                     }
                 }
             }

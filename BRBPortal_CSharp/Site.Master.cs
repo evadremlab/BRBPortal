@@ -75,7 +75,7 @@ namespace BRBPortal_CSharp
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
-            Session["Authenticated"] = "FALSE";
+            Session.RemoveAll();
 
             Response.Redirect("~/Account/Login");
         }

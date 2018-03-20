@@ -13,9 +13,9 @@ namespace BRBPortal_CSharp.Account
         {
             if (!IsPostBack)
             {
-                string userCode = Session["UserCode"] as String;
-                string billingCode = Session["BillingCode"] as String;
-                string relationship = Session["Relationship"] as String;
+                string userCode = Session["UserCode"] as String ?? "";
+                string billingCode = Session["BillingCode"] as String ?? "";
+                string relationship = Session["Relationship"] as String ?? "";
 
                 if (string.IsNullOrEmpty(userCode) || string.IsNullOrEmpty(billingCode))
                 {
@@ -30,67 +30,17 @@ namespace BRBPortal_CSharp.Account
                     EmailAddress0.Text = "";
                     PhoneNo0.Text = "";
 
-                    var RetStr = BRBFunctions_CSharp.GetProfile(userCode, billingCode);
+                    var fields = BRBFunctions_CSharp.GetProfile(userCode, billingCode);
 
-                    if (RetStr.Length > 0)
+                    if (fields.Count > 0)
                     {
-                        var wstr2 = RetStr;
-                        var wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            UserIDCode0.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            BillCode0.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            FullName0.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            MailAddress0.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            EmailAddress0.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if (wstr.Length > wstr.IndexOf("="))
-                        {
-                            PhoneNo0.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
-
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-                        wstr = BRBFunctions_CSharp.ParseStr(ref wstr2, "::");
-
-                        if ((wstr.Length > wstr.IndexOf("=")) && relationship.ToUpper() == "AGENT")
-                        {
-                            FullName0.Text = wstr.Substring(wstr.IndexOf("=") + 1).Trim();
-                        }
+                        UserIDCode0.Text = fields.GetStringValue("UserCode");
+                        BillCode0.Text = fields.GetStringValue("BillingCode");
+                        FullName0.Text = fields.GetStringValue("FullName");
+                        MailAddress0.Text = fields.GetStringValue("MailAddress");
+                        EmailAddress0.Text = fields.GetStringValue("Email");
+                        PhoneNo0.Text = fields.GetStringValue("Phone");
+                        FullName0.Text = fields.GetStringValue("FullName");
                     }
                 }
 
@@ -116,49 +66,9 @@ namespace BRBPortal_CSharp.Account
             Response.Redirect("~/Account/Login", false);
         }
 
-        //protected void chkDeclare_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (chkDeclare.Checked == true && DeclareInits.Text.Length > 0)
-        //    {
-        //        btnSubmit.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        btnSubmit.Enabled = false;
-        //    }
-        //}
-
-        //protected void DeclareInits_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (DeclareInits.Text.Length > 0 && chkDeclare.Checked == true)
-        //    {
-        //        btnSubmit.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        btnSubmit.Enabled = false;
-        //    }
-        //}
-
         protected void ShowDialogOK(string aMessage, string aTitle = "Status")
         {
             ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopupOK('" + aMessage + "', '" + aTitle + "');", true);
-        }
-
-        protected void ShowDialogYN(string aDialogID, string aMessage, string aTitle, string aDialogData = "")
-        {
-            hfDialogID.Value = aDialogID;
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopupYN('" + aMessage + "', '" + aTitle + "');", true);
-        }
-
-        protected void DialogResponseYes(Object sender, EventArgs e)
-        {
-            // cannot auto-convert VB.NET handler
-        }
-
-        protected void DialogResponseNo(Object sender, EventArgs e)
-        {
-            // cannot auto-convert VB.NET handler
         }
     }
 }

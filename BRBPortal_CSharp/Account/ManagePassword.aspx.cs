@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
@@ -11,88 +12,68 @@ namespace BRBPortal_CSharp.Account
 {
     public partial class ManagePassword : System.Web.UI.Page
     {
-        protected string SuccessMessage
-        {
-            get;
-            private set;
-        }
-
-        private bool HasPassword(ApplicationUserManager manager)
-        {
-            return manager.HasPassword(User.Identity.GetUserId());
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-            if (!IsPostBack)
+            if (Session["NextPage"] == null)
             {
-                // Determine the sections to render
-                if (HasPassword(manager))
-                {
-                    changePasswordHolder.Visible = true;
-                }
-                else
-                {
-                    setPassword.Visible = true;
-                    changePasswordHolder.Visible = false;
-                }
+                Session["NextPage"] = "ProfileList";
+            }
 
-                // Render success message
-                var message = Request.QueryString["m"];
-                if (message != null)
-                {
-                    // Strip the query string from action
-                    Form.Action = ResolveUrl("~/Account/Manage");
-                }
+            if (IsPostBack)
+            {
+                ChangePassword();
             }
         }
 
-        protected void ChangePassword_Click(object sender, EventArgs e)
+        protected void ChangePassword()
         {
-            if (IsValid)
+            var result = SignInStatus.Success;
+
+            var userCode = Session["UserCode"] as String ?? "";
+            var billingCode = Session["BillingCode"] as String ?? "";
+
+            ShowDialogOK("Password rules Not met. Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id.", "Change Password");
+            return;
+
+            result = BRBFunctions_CSharp.UserAuth(userCode, billingCode, CurrentPassword.Text);
+
+            if (result == SignInStatus.Failure)
             {
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-                IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, NewPassword.Text);
-                if (result.Succeeded)
-                {
-                    var user = manager.FindById(User.Identity.GetUserId());
-                    signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
-                    Response.Redirect("~/Account/Manage?m=ChangePwdSuccess");
-                }
-                else
-                {
-                    AddErrors(result);
-                }
+                ShowDialogOK("Current password is incorrect.", "Change Password");
+                return;
+            }
+
+            if (BRBFunctions_CSharp.CheckPswdRules(NewPWD.Text, userCode) == false)
+            {
+                ShowDialogOK("Password rules Not met. Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id.", "Change Password");
+                return;
+            }
+
+            if (BRBFunctions_CSharp.UpdatePassword(userCode, billingCode, BRBFunctions_CSharp.EscapeXMLChars(CurrentPassword.Text), BRBFunctions_CSharp.EscapeXMLChars(NewPWD.Text), BRBFunctions_CSharp.EscapeXMLChars(ConfirmNewPassword.Text)) == false)
+            {
+                ShowDialogOK("Error changing password: " + BRBFunctions_CSharp.iErrMsg, "Change Password");
+                return;
+            }
+
+            if (Session["NextPage"].ToString() == "ProfileConfirm")
+            {
+                Response.Redirect("~/Account/ProfileConfirm.aspx", false);
+            }
+            else if (Session["NextPage"].ToString() == "ProfileList")
+            {
+                Response.Redirect("~/Account/ProfileList.aspx", false);
+            }
+            else
+            {
+                Response.Redirect("~/Home.aspx", false);
             }
         }
 
-        protected void SetPassword_Click(object sender, EventArgs e)
+        protected void ShowDialogOK(string message, string title = "Status")
         {
-            if (IsValid)
-            {
-                // Create the local login info and link the local account to the user
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                IdentityResult result = manager.AddPassword(User.Identity.GetUserId(), password.Text);
-                if (result.Succeeded)
-                {
-                    Response.Redirect("~/Account/Manage?m=SetPwdSuccess");
-                }
-                else
-                {
-                    AddErrors(result);
-                }
-            }
-        }
+            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
 
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
-            }
+            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
     }
 }
