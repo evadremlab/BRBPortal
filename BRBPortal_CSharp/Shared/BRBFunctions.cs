@@ -847,7 +847,6 @@ namespace BRBPortal_CSharp
                 var propertyAddress = fields.GetStringValue("PropertyAddress");
                 var purchaseYear = fields.GetStringValue("PurchaseYear");
 
-
                 var soapMessage = NewSoapMessage();
                 soapMessage.Append("<soapenv:Header/>");
                 soapMessage.Append("<soapenv:Body>");
@@ -1459,477 +1458,679 @@ namespace BRBPortal_CSharp
             return result;
         }
 
-        public static string GetPropertyTenants_Soap(string aPropID, string aID, string aBillCd, string aUnitID)
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static string GetPropertyTenants(string propertyID, string userCode, string billCode, string unitID)
         {
-            // TODO: uncomment and convert
-            return "TODO";
-
-            //WebRequest Request;
-            //WebResponse Response;
-            //Stream DataStream;
-            //StreamReader Reader;
-            //byte[] SoapByte;
-            //string SoapStr;
-            //string tServices;
-            //string tUnitInfo;
-            //string tExempt;
-            //string tStartDt;
-            //string tPriorDt;
-            //string tPriorReas;
-            //string tSmokYN;
-            //string tSmokDt;
-            //string tInitRent;
-            //int TenCnt;
-            //iStatus = "";
-            //tUnitInfo = "";
-
-            //if ((iTenantsTbl.Columns.Count < 1))
-            //{
-            //    iTenantsTbl.Columns.Add("TenantID", typeof(string));
-            //    iTenantsTbl.Columns.Add("FirstName", typeof(string));
-            //    iTenantsTbl.Columns.Add("LastName", typeof(string));
-            //    iTenantsTbl.Columns.Add("DispName", typeof(string));
-            //    iTenantsTbl.Columns.Add("PhoneNo", typeof(string));
-            //    iTenantsTbl.Columns.Add("EmailAddr", typeof(string));
-            //}
-
-            //// Clear out any units from prior call
-            //if ((iTenantsTbl.Rows.Count > 0))
-            //{
-            //    iTenantsTbl.Clear();
-            //}
-
-            //SoapStr = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:api=\"http://cityofb" +
-            //"erkeley.info/RTS/ClientPortal/API\">";
-            //SoapStr += "<soapenv:Header/>";
-            //SoapStr += "<soapenv:Body>";
-            //SoapStr += "<api:getPropertyAndUnitDetails>";
-            //SoapStr = (SoapStr + ("<propertyId>" + (aPropID + "</propertyId>")));
-            //SoapStr += "<request>";
-            //if ((aID.Length > 0))
-            //{
-            //    SoapStr = (SoapStr + ("<!--Optional:--><userId>" + (aID + "</userId>")));
-            //}
-            //else
-            //{
-            //    SoapStr += "<!--Optional:--><userId>?</userId>";
-            //}
-
-            //if ((aBillCd.Length > 0))
-            //{
-            //    SoapStr = (SoapStr + ("<!--Optional:--><billingCode>" + (aBillCd + "</billingCode>")));
-            //}
-            //else
-            //{
-            //    SoapStr += "<!--Optional:--><billingCode>?</billingCode>";
-            //}
-
-            //SoapStr += "</request>";
-            //SoapStr += "</api:getPropertyAndUnitDetails>";
-            //SoapStr += "</soapenv:Body>";
-            //SoapStr += "</soapenv:Envelope>";
-            //try
-            //{
-            //    SoapByte = System.Text.Encoding.UTF8.GetBytes(SoapStr);
-            //    Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.GetPropertyAndUnitDetails/RTSClien" +
-            //        "tPortalAPI_API_WSD_GetPropertyAndUnitDetails_Port");
-            //    Request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_GetPropertyAndUnitDetails_Binder_getPropertyAndUnitDetails");
-            //    Request.ContentType = "text/xml; charset=utf-8";
-            //    Request.ContentLength = SoapByte.Length;
-            //    Request.Method = "POST";
-            //    DataStream = Request.GetRequestStream();
-            //    DataStream.Write(SoapByte, 0, SoapByte.Length);
-            //    DataStream.Close();
-            //    Response = Request.GetResponse();
-            //    DataStream = Response.GetResponseStream();
-            //    Reader = new StreamReader(DataStream);
-            //    string SD2Request = Reader.ReadToEnd();
-            //    DataStream.Close();
-            //    Reader.Close();
-            //    Response.Close();
-            //    // Set session variables from response
-            //    XmlDocument doc = new XmlDocument();
-            //    doc.LoadXml(SD2Request);
-            //    foreach (XmlElement detail in doc.DocumentElement.GetElementsByTagName("propertyAndUnitsRes"))
-            //    {
-            //        iStatus = "SUCCESS";
-            //        iBillAddr = "";
-            //        iAgentName = "";
-            //        iPropAddr = "";
-            //        iBillContact = "";
-            //        iBillEmail = "";
-            //        if (detail.SelectSingleNode("address").SelectSingleNode("mainStreetAddress"))
-            //        {
-            //            IsNot;
-            //            null;
-            //            iPropAddr = detail.SelectSingleNode("address").SelectSingleNode("mainStreetAddress").InnerText;
-            //        }
-
-            //        if (detail.SelectSingleNode("billingDetails").SelectSingleNode("billingAddress").SelectSingleNode("mainStreetAddress"))
-            //        {
-            //            IsNot;
-            //            null;
-            //            iBillAddr = detail.SelectSingleNode("billingDetails").SelectSingleNode("billingAddress").SelectSingleNode("mainStreetAddress").InnerText;
-            //        }
-
-            //        if (detail.SelectSingleNode("ownerContactName").SelectSingleNode("nameLastFirstDisplay"))
-            //        {
-            //            IsNot;
-            //            null;
-            //            iBillContact = detail.SelectSingleNode("ownerContactName").SelectSingleNode("nameLastFirstDisplay").InnerText;
-            //            iBillContact = UnescapeXMLChars(iBillContact);
-            //        }
-
-            //        if (detail.SelectSingleNode("billingDetails").SelectSingleNode("contact").SelectSingleNode("emailAddress"))
-            //        {
-            //            IsNot;
-            //            null;
-            //            iBillEmail = detail.SelectSingleNode("billingDetails").SelectSingleNode("contact").SelectSingleNode("emailAddress").InnerText;
-            //        }
-
-            //        if (detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName"))
-            //        {
-            //            IsNot;
-            //            null;
-            //            iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName").SelectSingleNode("nameLastFirstDisplay").InnerText;
-            //            iAgentName = UnescapeXMLChars(iAgentName);
-            //        }
-
-            //        if ((iAgentName.Length < 1))
-            //        {
-            //            if (detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName"))
-            //            {
-            //                IsNot;
-            //                null;
-            //                iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName").InnerText;
-            //                iAgentName = UnescapeXMLChars(iAgentName);
-            //            }
-
-            //        }
-
-            //        tUnitInfo = "";
-            //        TenCnt = 0;
-            //        foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
-            //        {
-            //            tServices = "";
-            //            if ((aUnitID == detailUnits.SelectSingleNode("unitId").InnerText))
-            //            {
-            //                tExempt = "";
-            //                tStartDt = "";
-            //                if (detailUnits.SelectSingleNode("tenancyStartDate"))
-            //                {
-            //                    IsNot;
-            //                    null;
-            //                    if (!IsDBNull(detailUnits.SelectSingleNode("tenancyStartDate").InnerText))
-            //                    {
-            //                        tStartDt = DateTime.Parse(detailUnits.SelectSingleNode("tenancyStartDate").InnerText);
-            //                    }
-
-            //                }
-
-            //                foreach (XmlElement detailService in detailUnits.GetElementsByTagName("housingServices"))
-            //                {
-            //                    if ((tServices.Length > 0))
-            //                    {
-            //                        tServices = (tServices + (", " + detailService.SelectSingleNode("serviceName").InnerText));
-            //                    }
-            //                    else
-            //                    {
-            //                        tServices = detailService.SelectSingleNode("serviceName").InnerText;
-            //                    }
-
-            //                }
-
-            //                TenCnt = 0;
-            //                if (detailUnits.GetElementsByTagName("noOfOccupants").Item[0])
-            //                {
-            //                    IsNot;
-            //                    null;
-            //                    TenCnt = int.Parse(detailUnits.GetElementsByTagName("noOfOccupants").Item[0].InnerText);
-            //                }
-
-            //                tInitRent = "0.00";
-            //                if (detailUnits.GetElementsByTagName("initialRent").Item[0])
-            //                {
-            //                    IsNot;
-            //                    null;
-            //                    tInitRent = detailUnits.GetElementsByTagName("initialRent").Item[0].InnerText;
-            //                }
-
-            //                tPriorDt = "";
-            //                if (detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item[0])
-            //                {
-            //                    IsNot;
-            //                    null;
-            //                    tPriorDt = detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item[0].InnerText;
-            //                }
-
-            //                tPriorReas = "";
-            //                if (detailUnits.GetElementsByTagName("reasonPriorTenancyEnded").Item[0])
-            //                {
-            //                    IsNot;
-            //                    null;
-            //                    tPriorReas = detailUnits.GetElementsByTagName("reasonPriorTenancyEnded").Item[0].InnerText;
-            //                }
-
-            //                tSmokYN = "";
-            //                if (detailUnits.GetElementsByTagName("smokingProhibitionInLeaseStatus").Item[0])
-            //                {
-            //                    IsNot;
-            //                    null;
-            //                    tSmokYN = detailUnits.GetElementsByTagName("smokingProhibitionInLeaseStatus").Item[0].InnerText;
-            //                }
-
-            //                tSmokDt = "";
-            //                if (detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item[0])
-            //                {
-            //                    IsNot;
-            //                    null;
-            //                    tSmokDt = detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item[0].InnerText;
-            //                }
-
-            //                foreach (XmlElement detailOccBy in detailUnits.GetElementsByTagName("occupants"))
-            //                {
-            //                    DataRow NR = iTenantsTbl.NewRow();
-            //                    NR.Item["TenantID"] = detailOccBy.SelectSingleNode("occupantId").InnerText;
-            //                    NR.Item["FirstName"] = detailOccBy.SelectSingleNode("name").SelectSingleNode("firstName").InnerText;
-            //                    NR.Item["LastName"] = detailOccBy.SelectSingleNode("name").SelectSingleNode("lastName").InnerText;
-            //                    NR.Item["DispName"] = detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText;
-            //                    NR.Item["PhoneNo"] = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("phoneNumber").InnerText;
-            //                    NR.Item["EmailAddr"] = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("emailAddress").InnerText;
-            //                    iTenantsTbl.Rows.Add(NR);
-            //                }
-
-            //                tUnitInfo = ("CPStatus="
-            //                            + (detailUnits.SelectSingleNode("clientPortalUnitStatusCode").InnerText + ("::HServices="
-            //                            + (tServices + ("::StartDt="
-            //                            + (tStartDt + ("::NumTenants="
-            //                            + (TenCnt.ToString + ("::SmokeYN="
-            //                            + (tSmokYN + ("::SmokeDt="
-            //                            + (tSmokDt + ("::InitRent="
-            //                            + (tInitRent + ("::PriorEndDt="
-            //                            + (tPriorDt + ("::TermReason="
-            //                            + (tPriorReas + ("::OwnerName="
-            //                            + (iBillContact + ("::AgentName="
-            //                            + (iAgentName + ("::UnitID="
-            //                            + (detailUnits.SelectSingleNode("unitId").InnerText + ("::OwnerEmail=" + iBillEmail)))))))))))))))))))))))));
-            //            }
-
-            //        }
-
-            //    }
-
-            //    if ((iStatus.ToUpper != "SUCCESS"))
-            //    {
-            //        iStatus = "FAILURE";
-            //    }
-
-            //    if ((tUnitInfo.Length > 0))
-            //    {
-            //        return tUnitInfo;
-            //    }
-
-            //    return iStatus;
-            //}
-            //catch (WebException ex)
-            //{
-            //    iErrMsg = ex.ToString;
-            //    // MsgBox(ex.ToString())
-            //    return "FAILURE";
-            //}
-
+            if (USE_MOCK_SERVICES)
+            {
+                return ""; // TODO: get mock data
+            }
+            else
+            {
+                return GetPropertyTenants_Soap(propertyID, userCode, billCode, unitID);
+            }
         }
 
-        public static bool SaveCart_Soap(string aSoapStr)
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static string GetPropertyTenants_Soap(string propertyID, string userCode, string billCode, string unitID)
         {
-            // TODO: uncomment and convert
-            return true;
+            WebRequest request = null;
+            WebResponse response = null;
+            Stream requestStream = null;
+            Stream responseStream = null;
+            StreamReader reader = null;
+            var result = "FAILURE";
 
-            //WebRequest Request;
-            //WebResponse Response;
-            //Stream DataStream;
-            //StreamReader Reader;
-            //byte[] SoapByte;
-            //// Dim SoapStr As String
-            //string status = "";
-            //string errMsg = "";
-            //try
-            //{
-            //    SoapByte = System.Text.Encoding.UTF8.GetBytes(aSoapStr);
-            //    Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.SavePaymentCartDetails/RTSClientPo" +
-            //        "rtalAPI_API_WSD_SavePaymentCartDetails_Port");
-            //    Request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_SavePaymentCartDetails_Binder_savePaymentCart");
-            //    Request.ContentType = "text/xml; charset=utf-8";
-            //    Request.ContentLength = SoapByte.Length;
-            //    Request.Method = "POST";
-            //    DataStream = Request.GetRequestStream();
-            //    DataStream.Write(SoapByte, 0, SoapByte.Length);
-            //    DataStream.Close();
-            //    Response = Request.GetResponse();
-            //    DataStream = Response.GetResponseStream();
-            //    Reader = new StreamReader(DataStream);
-            //    string SD2Request = Reader.ReadToEnd();
-            //    DataStream.Close();
-            //    Reader.Close();
-            //    Response.Close();
-            //    // Set session variables from response
-            //    XmlDocument doc = new XmlDocument();
-            //    doc.LoadXml(SD2Request);
-            //    foreach (XmlElement detail in doc.DocumentElement.GetElementsByTagName("response"))
-            //    {
-            //        iStatus = detail.ChildNodes(0).InnerText;
-            //        if ((iStatus.ToUpper != "SUCCESS"))
-            //        {
-            //            iErrMsg = detail.ChildNodes(1).InnerText;
-            //        }
+            iStatus = "";
+            var tUnitInfo = "";
 
-            //    }
+            if (iTenantsTbl.Columns.Count < 1)
+            {
+                iTenantsTbl.Columns.Add("TenantID", typeof(string));
+                iTenantsTbl.Columns.Add("FirstName", typeof(string));
+                iTenantsTbl.Columns.Add("LastName", typeof(string));
+                iTenantsTbl.Columns.Add("DispName", typeof(string));
+                iTenantsTbl.Columns.Add("PhoneNo", typeof(string));
+                iTenantsTbl.Columns.Add("EmailAddr", typeof(string));
+            }
 
-            //    if ((iStatus.ToUpper == "SUCCESS"))
-            //    {
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        return false;
-            //    }
+            // Clear out any units from prior call
+            if (iTenantsTbl.Rows.Count > 0)
+            {
+                iTenantsTbl.Clear();
+            }
 
-            //}
-            //catch (WebException ex)
-            //{
-            //    iErrMsg = ex.ToString;
-            //    // MsgBox(ex.ToString())
-            //    return false;
-            //}
+            try
+            {
+                var xmlDoc = new XmlDocument();
+                var soapMessage = NewSoapMessage();
 
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:getPropertyAndUnitDetails>");
+                soapMessage.AppendFormat("<propertyId>{0}</propertyId>", propertyID);
+                soapMessage.Append("<request>");
+                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : userCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : billCode.EscapeXMLChars());
+                soapMessage.Append("</request>");
+                soapMessage.Append("</api:getPropertyAndUnitDetails>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
+
+                var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
+
+                request = WebRequest.Create(uriPrefix + "GetPropertyAndUnitDetails/RTSClientPortalAPI_API_WSD_GetPropertyAndUnitDetails_Port");
+                request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_GetPropertyAndUnitDetails_Binder_getPropertyAndUnitDetails");
+                request.ContentType = "text/xml; charset=utf-8";
+                request.ContentLength = soapByte.Length;
+                request.Method = "POST";
+
+                requestStream = request.GetRequestStream();
+                requestStream.Write(soapByte, 0, soapByte.Length);
+
+                response = request.GetResponse();
+                responseStream = response.GetResponseStream();
+                reader = new StreamReader(responseStream);
+
+                xmlDoc.LoadXml(reader.ReadToEnd());
+
+                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("propertyAndUnitsRes"))
+                {
+                    iStatus = "SUCCESS";
+                    iBillAddr = "";
+                    iAgentName = "";
+                    iPropAddr = "";
+                    iBillContact = "";
+                    iBillEmail = "";
+
+                    var tServices = "";
+                    DateTime tStartDt;
+                    string tPriorDt = "";
+                    var tPriorReas = "";
+                    var tSmokYN = "";
+                    var tSmokDt = "";
+                    var tInitRent = "";
+                    int TenCnt = 0;
+
+                    if (detail.SelectSingleNode("address").SelectSingleNode("mainStreetAddress") != null)
+                    {
+                        iPropAddr = detail.SelectSingleNode("address").SelectSingleNode("mainStreetAddress").InnerText;
+                    }
+
+                    if (detail.SelectSingleNode("billingDetails").SelectSingleNode("billingAddress").SelectSingleNode("mainStreetAddress") != null)
+                    {
+                        iBillAddr = detail.SelectSingleNode("billingDetails").SelectSingleNode("billingAddress").SelectSingleNode("mainStreetAddress").InnerText;
+                    }
+
+                    if (detail.SelectSingleNode("ownerContactName").SelectSingleNode("nameLastFirstDisplay") != null)
+                    {
+                        iBillContact = detail.SelectSingleNode("ownerContactName").SelectSingleNode("nameLastFirstDisplay").InnerText;
+                        iBillContact = iBillContact.UnescapeXMLChars();
+                    }
+
+                    if (detail.SelectSingleNode("billingDetails").SelectSingleNode("contact").SelectSingleNode("emailAddress") != null)
+                    {
+                        iBillEmail = detail.SelectSingleNode("billingDetails").SelectSingleNode("contact").SelectSingleNode("emailAddress").InnerText;
+                    }
+
+                    if (detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName") != null)
+                    {
+                        iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName").SelectSingleNode("nameLastFirstDisplay").InnerText;
+                        iAgentName = iAgentName.UnescapeXMLChars();
+                    }
+
+                    if (iAgentName.Length < 1)
+                    {
+                        if (detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName") != null)
+                        {
+                            iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName").InnerText;
+                            iAgentName = iAgentName.UnescapeXMLChars();
+                        }
+                    }
+
+                    foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
+                    {
+                        tServices = "";
+                        if (unitID == detailUnits.SelectSingleNode("unitId").InnerText)
+                        {
+                            tStartDt = DateTime.MinValue;
+                            if (detailUnits.SelectSingleNode("tenancyStartDate") != null)
+                            {
+                                if (!string.IsNullOrEmpty(detailUnits.SelectSingleNode("tenancyStartDate").InnerText))
+                                {
+                                    tStartDt = DateTime.Parse(detailUnits.SelectSingleNode("tenancyStartDate").InnerText);
+                                }
+
+                            }
+
+                            foreach (XmlElement detailService in detailUnits.GetElementsByTagName("housingServices"))
+                            {
+                                if ((tServices.Length > 0))
+                                {
+                                    tServices += (", " + detailService.SelectSingleNode("serviceName").InnerText);
+                                }
+                                else
+                                {
+                                    tServices = detailService.SelectSingleNode("serviceName").InnerText;
+                                }
+
+                            }
+
+                            TenCnt = 0;
+                            if (detailUnits.GetElementsByTagName("noOfOccupants").Item(0) != null)
+                            {
+                                TenCnt = int.Parse(detailUnits.GetElementsByTagName("noOfOccupants").Item(0).InnerText);
+                            }
+
+                            tInitRent = "0.00";
+                            if (detailUnits.GetElementsByTagName("initialRent").Item(0) != null)
+                            {
+                                tInitRent = detailUnits.GetElementsByTagName("initialRent").Item(0).InnerText;
+                            }
+
+                            tPriorDt = "";
+                            if (detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item(0) != null)
+                            {
+                                tPriorDt = detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item(0).InnerText;
+                            }
+
+                            tPriorReas = "";
+                            if (detailUnits.GetElementsByTagName("reasonPriorTenancyEnded").Item(0) != null)
+                            {
+                                tPriorReas = detailUnits.GetElementsByTagName("reasonPriorTenancyEnded").Item(0).InnerText;
+                            }
+
+                            tSmokYN = "";
+                            if (detailUnits.GetElementsByTagName("smokingProhibitionInLeaseStatus").Item(0) != null)
+                            {
+                                tSmokYN = detailUnits.GetElementsByTagName("smokingProhibitionInLeaseStatus").Item(0).InnerText;
+                            }
+
+                            tSmokDt = "";
+                            if (detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item(0) != null)
+                            {
+                                tSmokDt = detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item(0).InnerText;
+                            }
+
+                            foreach (XmlElement detailOccBy in detailUnits.GetElementsByTagName("occupants"))
+                            {
+                                var row = iTenantsTbl.NewRow();
+
+                                row.SetField<string>("TenantID", detailOccBy.SelectSingleNode("occupantId").InnerText);
+                                row.SetField<string>("FirstName", detailOccBy.SelectSingleNode("name").SelectSingleNode("firstName").InnerText);
+                                row.SetField<string>("LastName", detailOccBy.SelectSingleNode("name").SelectSingleNode("lastName").InnerText);
+                                row.SetField<string>("DispName", detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText);
+                                row.SetField<string>("PhoneNo", detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("phoneNumber").InnerText);
+                                row.SetField<string>("EmailAddr", detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("emailAddress").InnerText);
+
+                                iTenantsTbl.Rows.Add(row);
+                            }
+
+                            var fields = new Dictionary<string, string>();
+
+                            fields.Add("CPStatus", detailUnits.SelectSingleNode("clientPortalUnitStatusCode").InnerText);
+                            fields.Add("HServices", tServices);
+                            fields.Add("StartDt", tStartDt.ToString());
+                            fields.Add("NumTenants", TenCnt.ToString());
+                            fields.Add("SmokeYN", tSmokYN);
+                            fields.Add("SmokeDt", tSmokDt);
+                            fields.Add("InitRent", tInitRent);
+                            fields.Add("PriorEndDt", tPriorDt);
+                            fields.Add("TermReason", tPriorReas);
+                            fields.Add("OwnerName", iBillContact);
+                            fields.Add("AgenntName", iAgentName);
+                            fields.Add("UnitID", detailUnits.SelectSingleNode("unitId").InnerText);
+                            fields.Add("OwnerEmail", iBillEmail);
+
+                            tUnitInfo = fields.ToDelimitedString();
+                        }
+
+                    }
+
+                }
+
+                if (iStatus.ToUpper() != "SUCCESS")
+                {
+                    iStatus = "FAILURE";
+                }
+
+                if (tUnitInfo.Length > 0)
+                {
+                    result = tUnitInfo;
+                }
+            }
+            catch (Exception ex)
+            {
+                iErrMsg = ex.ToString();
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                if (requestStream != null)
+                {
+                    requestStream.Close();
+                    requestStream.Dispose();
+                }
+                if (responseStream != null)
+                {
+                    responseStream.Close();
+                    responseStream.Dispose();
+                }
+                if (response != null)
+                {
+                    response.Close();
+                    response.Dispose();
+                }
+            }
+
+            return iStatus;
         }
 
-        public static bool SaveUnit_Soap(string aSoapStr)
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static bool SaveCart(string soapString)
         {
-            // TODO: uncomment and convert
-            return true;
-
-            //WebRequest Request;
-            //WebResponse Response;
-            //Stream DataStream;
-            //StreamReader Reader;
-            //byte[] SoapByte;
-            //// Dim SoapStr As String
-            //string status = "";
-            //string errMsg = "";
-            //try
-            //{
-            //    SoapByte = System.Text.Encoding.UTF8.GetBytes(aSoapStr);
-            //    Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.UpdateUnitStatusChange/RTSClientPo" +
-            //        "rtalAPI_API_WSD_UpdateUnitStatusChange_Port");
-            //    Request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_UpdateUnitStatusChange_Binder_updateUnitStatusChange");
-            //    Request.ContentType = "text/xml; charset=utf-8";
-            //    Request.ContentLength = SoapByte.Length;
-            //    Request.Method = "POST";
-            //    DataStream = Request.GetRequestStream();
-            //    DataStream.Write(SoapByte, 0, SoapByte.Length);
-            //    DataStream.Close();
-            //    Response = Request.GetResponse();
-            //    DataStream = Response.GetResponseStream();
-            //    Reader = new StreamReader(DataStream);
-            //    string SD2Request = Reader.ReadToEnd();
-            //    DataStream.Close();
-            //    Reader.Close();
-            //    Response.Close();
-            //    // Set session variables from response
-            //    XmlDocument doc = new XmlDocument();
-            //    doc.LoadXml(SD2Request);
-            //    foreach (XmlElement detail in doc.DocumentElement.GetElementsByTagName("response"))
-            //    {
-            //        iStatus = detail.ChildNodes(0).InnerText;
-            //        if ((iStatus.ToUpper != "SUCCESS"))
-            //        {
-            //            iErrMsg = detail.ChildNodes(1).InnerText;
-            //        }
-
-            //    }
-
-            //    if ((iStatus.ToUpper == "SUCCESS"))
-            //    {
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        return false;
-            //    }
-
-            //}
-            //catch (WebException ex)
-            //{
-            //    iErrMsg = ex.ToString;
-            //    // MsgBox(ex.ToString())
-            //    return false;
-            //}
-
+            if (USE_MOCK_SERVICES)
+            {
+                return true;
+            }
+            else
+            {
+                return SaveCart_Soap(soapString);
+            }
         }
 
-        public static bool aSaveTenant_Soap(string aSoapStr)
+        /// <summary>
+        /// DONE, need to update EditCart.aspx.cs
+        /// </summary>
+        public static bool SaveCart_Soap(string soapString)
         {
-            // TODO: uncomment and convert
-            return true;
+            WebRequest request = null;
+            WebResponse response = null;
+            Stream requestStream = null;
+            Stream responseStream = null;
+            StreamReader reader = null;
+            var wasSaved = false;
 
-            //WebRequest Request;
-            //WebResponse Response;
-            //Stream DataStream;
-            //StreamReader Reader;
-            //byte[] SoapByte;
-            //// Dim SoapStr As String
-            //string status = "";
-            //string errMsg = "";
-            //try
-            //{
-            //    SoapByte = System.Text.Encoding.UTF8.GetBytes(aSoapStr);
-            //    Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.UpdateUnitTenancy/RTSClientPortalA" +
-            //        "PI_API_WSD_UpdateUnitTenancy_Port");
-            //    Request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Binder_updateUnitTenancy");
-            //    Request.ContentType = "text/xml; charset=utf-8";
-            //    Request.ContentLength = SoapByte.Length;
-            //    Request.Method = "POST";
-            //    DataStream = Request.GetRequestStream();
-            //    DataStream.Write(SoapByte, 0, SoapByte.Length);
-            //    DataStream.Close();
-            //    Response = Request.GetResponse();
-            //    DataStream = Response.GetResponseStream();
-            //    Reader = new StreamReader(DataStream);
-            //    string SD2Request = Reader.ReadToEnd();
-            //    DataStream.Close();
-            //    Reader.Close();
-            //    Response.Close();
-            //    // Set session variables from response
-            //    XmlDocument doc = new XmlDocument();
-            //    doc.LoadXml(SD2Request);
-            //    foreach (XmlElement detail in doc.DocumentElement.GetElementsByTagName("response"))
-            //    {
-            //        iStatus = detail.ChildNodes(0).InnerText;
-            //        if ((iStatus.ToUpper != "SUCCESS"))
-            //        {
-            //            iErrMsg = detail.ChildNodes(1).InnerText;
-            //        }
+            try
+            {
+                var xmlDoc = new XmlDocument();
+                var fields = Parse(soapString);
 
-            //    }
+                var userCode = fields.GetStringValue("UserID");
+                var billCode = fields.GetStringValue("BillingCode");
 
-            //    if ((iStatus.ToUpper == "SUCCESS"))
-            //    {
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        return false;
-            //    }
+                var soapMessage = NewSoapMessage();
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:savePaymentCart>");
+                soapMessage.Append("<savePaymentToCart>");
+                soapMessage.AppendFormat("<cartId>{0}</cartId>", "tbd");
+                soapMessage.Append("<paymentConfirmationNo/>");
+                soapMessage.Append("<paymentReceivedAmt/>");
+                soapMessage.AppendFormat("<isFeeOnlyPaid>{0}</isFeeOnlyPaid>", "tbd");
 
-            //}
-            //catch (WebException ex)
-            //{
-            //    iErrMsg = ex.ToString;
-            //    // MsgBox(ex.ToString())
-            //    return false;
-            //}
+                // for each item
+                soapMessage.Append("<items>");
+                soapMessage.AppendFormat("<itemId>{0}</itemId>", "tbd");
+                soapMessage.AppendFormat("<propertyId>{0}</propertyId>", "tbd");
+                soapMessage.AppendFormat("<propertyMainStreetAddress>{0}</propertyMainStreetAddress>", "tbd");
+                soapMessage.AppendFormat("<fee>{0}</fee>", "tbd");
+                soapMessage.AppendFormat("<penalties></penalties>", "tbd");
+                soapMessage.AppendFormat("<balance></balance>", "tbd");
+                soapMessage.Append("</items");
 
+                soapMessage.Append("</savePaymentToCart>");
+                soapMessage.Append("</api:savePaymentCart>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
+
+                var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
+
+                request = WebRequest.Create(uriPrefix + "SavePaymentCartDetails/RTSClientPortalAPI_API_WSD_SavePaymentCartDetails_Port");
+                request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_SavePaymentCartDetails_Binder_savePaymentCart");
+                request.ContentType = "text/xml; charset=utf-8";
+                request.ContentLength = soapByte.Length;
+                request.Method = "POST";
+
+                requestStream = request.GetRequestStream();
+                requestStream.Write(soapByte, 0, soapByte.Length);
+
+                response = request.GetResponse();
+                responseStream = response.GetResponseStream();
+                reader = new StreamReader(responseStream);
+
+                xmlDoc.LoadXml(reader.ReadToEnd());
+
+                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("response"))
+                {
+                    iStatus = detail.ChildNodes[0].InnerText;
+
+                    if (iStatus.ToUpper() != "SUCCESS")
+                    {
+                        iErrMsg = detail.ChildNodes[1].InnerText;
+                    }
+                }
+
+                wasSaved = iStatus.ToUpper().Equals("SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                iErrMsg = ex.ToString();
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                if (requestStream != null)
+                {
+                    requestStream.Close();
+                    requestStream.Dispose();
+                }
+                if (responseStream != null)
+                {
+                    responseStream.Close();
+                    responseStream.Dispose();
+                }
+                if (response != null)
+                {
+                    response.Close();
+                    response.Dispose();
+                }
+            }
+
+            return wasSaved;
+        }
+
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static bool SaveUnit(string soapString)
+        {
+            if (USE_MOCK_SERVICES)
+            {
+                return true;
+            }
+            else
+            {
+                return SaveUnit_Soap(soapString);
+            }
+        }
+
+        /// <summary>
+        /// DONE, need to update Properties/UpdateUnit.aspx.cs
+        /// </summary>
+        public static bool SaveUnit_Soap(string soapString)
+        {
+            WebRequest request = null;
+            WebResponse response = null;
+            Stream requestStream = null;
+            Stream responseStream = null;
+            StreamReader reader = null;
+            var wasSaved = false;
+
+            try
+            {
+                var xmlDoc = new XmlDocument();
+                var fields = Parse(soapString);
+
+                var userCode = fields.GetStringValue("UserID");
+                var billCode = fields.GetStringValue("BillingCode");
+
+                var soapMessage = NewSoapMessage();
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:updateUnitStatusChange>");
+                soapMessage.Append("<unitStatusChangeReq>");
+                soapMessage.AppendFormat("<userId>{0}</userId>", "from session");
+                soapMessage.AppendFormat("<propertyId>{0}</propertyId>", "from session");
+                soapMessage.AppendFormat("<unitId>{0}</unitId>", "from form");
+                soapMessage.AppendFormat("<clientPortalUnitStatusCode>{0}</clientPortalUnitStatusCode>", "from form");
+                soapMessage.AppendFormat("<unitStatus>{0}</unitStatus>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><exemptionReason>{0}</exemptionReason>", "from form");
+                soapMessage.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", "from form");
+                soapMessage.AppendFormat("<declarationInitial>{0}</declarationInitial>", "from form");
+                soapMessage.Append("<questions>");
+                soapMessage.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><occupiedBy>{0}</occupiedBy>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><contractNo>{0}</contractNo>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><commeUseDesc>{0}</commeUseDesc>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><isCommeUseZoned>{0}</isCommeUseZoned>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><isExclusivelyForCommeUse>{0}</isExclusivelyForCommeUse>", "from form");
+               
+                // Next 3 removed  when Owner Occupied Exempt Duplex was removed from the Other dropdown
+                soapMessage.Append("<!--Optional:--><_x0035_0PercentAsOf31Dec1979></_x0035_0PercentAsOf31Dec1979>");
+                soapMessage.Append("<!--Optional:--><ownerOccupantName></ownerOccupantName>");
+                soapMessage.Append("<!--Zero or more repetitions:--><namesOfownersOfRecord></namesOfownersOfRecord>");
+
+                soapMessage.AppendFormat("<!--Optional:--><nameOfPropertyManagerResiding>{0}</nameOfPropertyManagerResiding>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><emailOfPhoneOfPropertyManagerResiding>{0}</emailOfPhoneOfPropertyManagerResiding>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><IsOwnersPrinciplePlaceOfResidence>{0}</IsOwnersPrinciplePlaceOfResidence>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><doesOwnerResideInOtherUnitOfThisUnitProperty>{0}</doesOwnerResideInOtherUnitOfThisUnitProperty>", "from form");
+                soapMessage.Append("<!--Zero or more repetitions:--><tenantsAndContactInfo>");
+                soapMessage.AppendFormat("<name>{0}</name>", "from form");
+                soapMessage.AppendFormat("<contactInfo>{0}</contactInfo>", "from form");
+                soapMessage.Append("</tenantsAndContactInfo>");
+                soapMessage.Append("<questions>");
+                soapMessage.Append("</unitStatusChangeReq>");
+                soapMessage.Append("</api:updateUnitStatusChange>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
+
+                var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
+
+                request = WebRequest.Create(uriPrefix + "UpdateUnitTenancy/RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Port");
+                request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Binder_updateUnitTenancy");
+                request.ContentType = "text/xml; charset=utf-8";
+                request.ContentLength = soapByte.Length;
+                request.Method = "POST";
+
+                requestStream = request.GetRequestStream();
+                requestStream.Write(soapByte, 0, soapByte.Length);
+
+                response = request.GetResponse();
+                responseStream = response.GetResponseStream();
+                reader = new StreamReader(responseStream);
+
+                xmlDoc.LoadXml(reader.ReadToEnd());
+
+                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("response"))
+                {
+                    iStatus = detail.ChildNodes[0].InnerText;
+
+                    if (iStatus.ToUpper() != "SUCCESS")
+                    {
+                        iErrMsg = detail.ChildNodes[1].InnerText;
+                    }
+                }
+
+                wasSaved = iStatus.ToUpper().Equals("SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                iErrMsg = ex.ToString();
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                if (requestStream != null)
+                {
+                    requestStream.Close();
+                    requestStream.Dispose();
+                }
+                if (responseStream != null)
+                {
+                    responseStream.Close();
+                    responseStream.Dispose();
+                }
+                if (response != null)
+                {
+                    response.Close();
+                    response.Dispose();
+                }
+            }
+
+            return wasSaved;
+        }
+
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static bool SaveTenant(string soapString)
+        {
+            if (USE_MOCK_SERVICES)
+            {
+                return true;
+            }
+            else
+            {
+                return SaveTenant_Soap(soapString);
+            }
+        }
+
+        /// <summary>
+        /// DONE, need to update Properties/UpdateTenancy.aspx.cs
+        /// </summary>
+        public static bool SaveTenant_Soap(string soapString)
+        {
+            WebRequest request = null;
+            WebResponse response = null;
+            Stream requestStream = null;
+            Stream responseStream = null;
+            StreamReader reader = null;
+            var wasSaved = false;
+
+            try
+            {
+                var xmlDoc = new XmlDocument();
+                var fields = Parse(soapString);
+
+                var userCode = fields.GetStringValue("UserID");
+                var billCode = fields.GetStringValue("BillingCode");
+
+                var soapMessage = NewSoapMessage();
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:updateUnitTenancy>");
+                soapMessage.Append("<unitTenancyUpdateReq>");
+                soapMessage.AppendFormat("<userId>{0}</userId>", "from session");
+                soapMessage.AppendFormat("<propertyId>{0}</propertyId>", "from session");
+                soapMessage.AppendFormat("<unitId>{0}</unitId>", "from form");
+                soapMessage.AppendFormat("<unitStatus>{0}</unitStatus>", "from form");
+                soapMessage.AppendFormat("<initialRent>{0}</initialRent>", "from form");
+                soapMessage.AppendFormat("<tenancyStartDate>{0}</tenancyStartDate>", "from form");
+                soapMessage.AppendFormat("<priorTenancyEndDate>{0}</priorTenancyEndDate>", "from form");
+
+                soapMessage.Append("<!--Zero or more repetitions:-->");
+                // for each housing services
+                soapMessage.Append("<housingServices>");
+                soapMessage.AppendFormat("<serviceName>{0}</serviceName>", "from form");
+                soapMessage.Append("</housingServices>");
+
+                soapMessage.AppendFormat("<!--Optional:--><otherHousingService>{0}</otherHousingService>", "from form");
+                soapMessage.AppendFormat("<noOfTenants>{0}</noOfTenants>", "from form");
+                soapMessage.AppendFormat("<smokingProhibitionInLeaseStatus>{0}</smokingProhibitionInLeaseStatus>", "from form");
+                soapMessage.AppendFormat("<smokingProhibitionEffectiveDate>{0}</smokingProhibitionEffectiveDate>", "from form");
+                soapMessage.AppendFormat("<reasonForTermination>{0}</reasonForTermination>", "from form");
+                soapMessage.AppendFormat("<otherReasonForTermination>{0}</otherReasonForTermination>", "from form");
+                soapMessage.AppendFormat("<!--Optional:--><explainInvoluntaryTermination>{0}</explainInvoluntaryTermination>", "from form");
+
+                soapMessage.Append("<!--Zero or more repetitions:-->");
+                // for each tenant
+                soapMessage.Append("<tenants>");
+                soapMessage.Append("<code></code>");
+                soapMessage.Append("<name>");
+                soapMessage.AppendFormat("<first>{0}</first>", "from form");
+                soapMessage.Append("<!--Optional:--><middle></middle>");
+                soapMessage.AppendFormat("<last>{0}</last>", "from form");
+                soapMessage.AppendFormat("<suffix>{0}</suffix>", "from form");
+                soapMessage.Append("<!--Optional:--><nameLastFirstDisplay></nameLastFirstDisplay>");
+                soapMessage.Append("<!--Optional:--><agencyName></agencyName>");
+                soapMessage.Append("</name>");
+                soapMessage.AppendFormat("<phoneNumber>{0}</phoneNumber>", "from form");
+                soapMessage.AppendFormat("<emailAddress>{0}</emailAddress>", "from form");
+                soapMessage.Append("</tenants>");
+
+                soapMessage.Append("</unitTenancyUpdateReq>");
+                soapMessage.Append("</api:updateUnitTenancy>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
+
+                var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
+
+                request = WebRequest.Create(uriPrefix + "UpdateUnitTenancy/RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Port");
+                request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Binder_updateUnitTenancy");
+                request.ContentType = "text/xml; charset=utf-8";
+                request.ContentLength = soapByte.Length;
+                request.Method = "POST";
+
+                requestStream = request.GetRequestStream();
+                requestStream.Write(soapByte, 0, soapByte.Length);
+
+                response = request.GetResponse();
+                responseStream = response.GetResponseStream();
+                reader = new StreamReader(responseStream);
+
+                xmlDoc.LoadXml(reader.ReadToEnd());
+
+                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("response"))
+                {
+                    iStatus = detail.ChildNodes[0].InnerText;
+
+                    if (iStatus.ToUpper() != "SUCCESS")
+                    {
+                        iErrMsg = detail.ChildNodes[1].InnerText;
+                    }
+                }
+
+                wasSaved = iStatus.ToUpper().Equals("SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                iErrMsg = ex.ToString();
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                if (requestStream != null)
+                {
+                    requestStream.Close();
+                    requestStream.Dispose();
+                }
+                if (responseStream != null)
+                {
+                    responseStream.Close();
+                    responseStream.Dispose();
+                }
+                if (response != null)
+                {
+                    response.Close();
+                    response.Dispose();
+                }
+            }
+
+            return wasSaved;
         }
 
         /// <summary>

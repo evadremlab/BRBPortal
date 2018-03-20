@@ -239,6 +239,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Default.aspx" />
+    <Content Include="EditCart.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -429,6 +430,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="EditCart.aspx.cs">
+      <DependentUpon>EditCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditCart.aspx.designer.cs">
+      <DependentUpon>EditCart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Shared\BRBFunctions.cs" />
     <Compile Include="Contact.aspx.cs">
