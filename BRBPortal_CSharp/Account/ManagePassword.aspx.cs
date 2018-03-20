@@ -49,7 +49,7 @@ namespace BRBPortal_CSharp.Account
                 return;
             }
 
-            if (BRBFunctions_CSharp.UpdatePassword(userCode, billingCode, BRBFunctions_CSharp.EscapeXMLChars(CurrentPassword.Text), BRBFunctions_CSharp.EscapeXMLChars(NewPWD.Text), BRBFunctions_CSharp.EscapeXMLChars(ConfirmNewPassword.Text)) == false)
+            if (BRBFunctions_CSharp.UpdatePassword(userCode, billingCode, CurrentPassword.Text.EscapeXMLChars(), NewPWD.Text.EscapeXMLChars(), ConfirmNewPassword.Text.EscapeXMLChars()) == false)
             {
                 ShowDialogOK("Error changing password: " + BRBFunctions_CSharp.iErrMsg, "Change Password");
                 return;

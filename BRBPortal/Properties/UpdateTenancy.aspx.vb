@@ -290,7 +290,7 @@ Public Class UpdateTenancy
         SaveXML += "</unitTenancyUpdateReq>"
         SaveXML += "</api:updateUnitTenancy>"
         SaveXML += "</soapenv:Body>"
-        SaveXML += "<soapenv:Envelope>"
+        SaveXML += "</soapenv:Envelope>"
 
         'Update the tenant
         If SaveTenant_Soap(SaveXML) = False Then

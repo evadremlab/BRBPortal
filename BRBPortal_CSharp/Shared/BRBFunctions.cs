@@ -95,24 +95,25 @@ namespace BRBPortal_CSharp
             Stream requestStream = null;
             Stream responseStream = null;
             StreamReader reader = null;
-            var signInStatus = SignInStatus.Success;
-
-            var soapMessage = NewSoapMessage();
-            soapMessage.Append("<soapenv:Header/>");
-            soapMessage.Append("<soapenv:Body>");
-            soapMessage.Append("<api:authenticateUserLogin>");
-            soapMessage.Append("<authenticateUserReq>");
-            soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : EscapeXMLChars(userCode));
-            soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : EscapeXMLChars(billCode));
-            soapMessage.AppendFormat("<pwd>{0}</pwd>", EscapeXMLChars(password));
-            soapMessage.Append("</authenticateUserReq>");
-            soapMessage.Append("</api:authenticateUserLogin>");
-            soapMessage.Append("</soapenv:Body>");
-            soapMessage.Append("</soapenv:Envelope>");
+            var signInStatus = SignInStatus.Failure;
 
             try
             {
                 var xmlDoc = new XmlDocument();
+                var soapMessage = NewSoapMessage();
+
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:authenticateUserLogin>");
+                soapMessage.Append("<authenticateUserReq>");
+                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : userCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : billCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<pwd>{0}</pwd>", password.EscapeXMLChars());
+                soapMessage.Append("</authenticateUserReq>");
+                soapMessage.Append("</api:authenticateUserLogin>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
+
                 var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
 
                 request = WebRequest.Create(uriPrefix + "AuthenticateUser/RTSClientPortalAPI_API_WSD_AuthenticateUser_Port");
@@ -138,7 +139,7 @@ namespace BRBPortal_CSharp
 
                     iStatus = detail.ChildNodes[0].InnerText;
 
-                    if (iStatus.ToUpper() == "SUCCESS")
+                    if (iStatus.ToUpper().Equals("SUCCESS"))
                     {
                         if (detail.SelectSingleNode("relationship") == null)
                         {
@@ -162,15 +163,14 @@ namespace BRBPortal_CSharp
                     }
                 }
 
-                if (iStatus.ToUpper() != "SUCCESS")
+                if (iStatus.ToUpper().Equals("SUCCESS"))
                 {
-                    signInStatus = SignInStatus.Failure;
+                    signInStatus = SignInStatus.Success;
                 }
             }
             catch (Exception ex)
             {
                 iErrMsg = ex.ToString();
-                signInStatus = SignInStatus.Failure;
             }
             finally
             {
@@ -226,24 +226,25 @@ namespace BRBPortal_CSharp
             Stream requestStream = null;
             Stream responseStream = null;
             StreamReader reader = null;
-            var isConfirmed = true;
-
-            var soapMessage = NewSoapMessage();
-            soapMessage.Append("<soapenv:Header/>");
-            soapMessage.Append("<soapenv:Body>");
-            soapMessage.Append("<api:confirmProfileInformation>");
-            soapMessage.Append("<profileConfirmationReq>");
-            soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", aID.Length == 0 ? "?" : EscapeXMLChars(aID));
-            soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", aBillCd.Length == 0 ? "?" : EscapeXMLChars(aBillCd));
-            soapMessage.AppendFormat("<declarationInitial>{0}</declarationInitial>", EscapeXMLChars(aInits));
-            soapMessage.Append("</profileConfirmationReq>");
-            soapMessage.Append("</api:confirmProfileInformation>");
-            soapMessage.Append("</soapenv:Body>");
-            soapMessage.Append("</soapenv:Envelope>");
+            var isConfirmed = false;
 
             try
             {
                 var xmlDoc = new XmlDocument();
+                var soapMessage = NewSoapMessage();
+
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:confirmProfileInformation>");
+                soapMessage.Append("<profileConfirmationReq>");
+                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", aID.Length == 0 ? "?" : aID.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", aBillCd.Length == 0 ? "?" : aBillCd.EscapeXMLChars());
+                soapMessage.AppendFormat("<declarationInitial>{0}</declarationInitial>", aInits.EscapeXMLChars());
+                soapMessage.Append("</profileConfirmationReq>");
+                soapMessage.Append("</api:confirmProfileInformation>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
+
                 var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
 
                 request = WebRequest.Create(uriPrefix + "ConfirmUserProfileByDeclaration/RTSClientPortalAPI_API_WSD_ConfirmUserProfileByDeclaration_Porthttp://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.ConfirmUserProfileByDeclaration/RTSClientPortalAPI_API_WSD_ConfirmUserProfileByDeclaration_Porthttp://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.ConfirmUserProfileByDeclaration/RTSClientPortalAPI_API_WSD_ConfirmUserProfileByDeclaration_Port");
@@ -264,8 +265,6 @@ namespace BRBPortal_CSharp
 
                 foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("response"))
                 {
-                    // Set session variables from response
-
                     iStatus = detail.SelectSingleNode("status").InnerText;
 
                     if (iStatus.ToUpper() != "SUCCESS")
@@ -274,15 +273,11 @@ namespace BRBPortal_CSharp
                     }
                 }
 
-                if (iStatus.ToUpper() != "SUCCESS")
-                {
-                    isConfirmed = false;
-                }
+                isConfirmed = iStatus.ToUpper().Equals("SUCCESS");
             }
             catch (Exception ex)
             {
                 iErrMsg = ex.ToString();
-                return false;
             }
             finally
             {
@@ -336,25 +331,27 @@ namespace BRBPortal_CSharp
             Stream requestStream = null;
             Stream responseStream = null;
             StreamReader reader = null;
-
-            var soapMessage = NewSoapMessage();
-            soapMessage.Append("<soapenv:Header/>");
-            soapMessage.Append("<soapenv:Body>");
-            soapMessage.Append("<api:updateUserPassword>");
-            soapMessage.Append("<updateUserPwdReq>");
-            soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : EscapeXMLChars(userCode));
-            soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : EscapeXMLChars(billCode));
-            soapMessage.AppendFormat("<currentPwd>{0}</currentPwd>", EscapeXMLChars(currentPassword));
-            soapMessage.AppendFormat("<newPwd>{0}</newPwd>", EscapeXMLChars(newPassword));
-            soapMessage.AppendFormat("<retypeNewPwd>{0}</retypeNewPwd>", reTypePwd);
-            soapMessage.Append("</updateUserPwdReq>");
-            soapMessage.Append("</api:updateUserPassword>");
-            soapMessage.Append("</soapenv:Body>");
-            soapMessage.Append("</soapenv:Envelope>");
+            var wasUpdated = false;
 
             try
             {
                 var xmlDoc = new XmlDocument();
+                var soapMessage = NewSoapMessage();
+
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:updateUserPassword>");
+                soapMessage.Append("<updateUserPwdReq>");
+                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : userCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : billCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<currentPwd>{0}</currentPwd>", currentPassword.EscapeXMLChars());
+                soapMessage.AppendFormat("<newPwd>{0}</newPwd>", newPassword.EscapeXMLChars());
+                soapMessage.AppendFormat("<retypeNewPwd>{0}</retypeNewPwd>", reTypePwd);
+                soapMessage.Append("</updateUserPwdReq>");
+                soapMessage.Append("</api:updateUserPassword>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
+
                 var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
 
                 request = WebRequest.Create(uriPrefix + "UpdatePassword/RTSClientPortalAPI_API_WSD_UpdatePassword_Port");
@@ -382,14 +379,7 @@ namespace BRBPortal_CSharp
                     }
                 }
 
-                if (iStatus.ToUpper() == "SUCCESS")
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                wasUpdated = iStatus.ToUpper().Equals("SUCCESS");
             }
             catch (Exception ex)
             {
@@ -419,8 +409,13 @@ namespace BRBPortal_CSharp
                     response.Dispose();
                 }
             }
+
+            return wasUpdated;
         }
 
+        /// <summary>
+        /// DONE
+        /// </summary>
         public static Dictionary<string, string> GetProfile(string userCode, string billCode)
         {
             var responseString = string.Empty;
@@ -464,7 +459,7 @@ namespace BRBPortal_CSharp
         }
 
         /// <summary>
-        /// UNDER CONSTRUCTION
+        /// DONE
         /// </summary>
         private static Dictionary<string, string> GetProfile_Soap(string userCode, string billCode)
         {
@@ -473,27 +468,27 @@ namespace BRBPortal_CSharp
             Stream requestStream = null;
             Stream responseStream = null;
             StreamReader reader = null;
-
             var fields = new Dictionary<string, string>();
-
-            var soapMessage = NewSoapMessage();
-            soapMessage.Append("<soapenv:Header/>");
-            soapMessage.Append("<soapenv:Body>");
-            soapMessage.Append("<api:getProfileDetails>");
-            soapMessage.Append("<request>");
-            soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : EscapeXMLChars(userCode));
-            soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : EscapeXMLChars(billCode));
-            soapMessage.Append("</request>");
-            soapMessage.Append("</api:getProfileDetails>");
-            soapMessage.Append("</soapenv:Body>");
-            soapMessage.Append("</soapenv:Envelope>");
-
-            // clear session vars
-            iStatus = "";
 
             try
             {
                 var xmlDoc = new XmlDocument();
+                var soapMessage = NewSoapMessage();
+
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:getProfileDetails>");
+                soapMessage.Append("<request>");
+                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : userCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : billCode.EscapeXMLChars());
+                soapMessage.Append("</request>");
+                soapMessage.Append("</api:getProfileDetails>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
+
+                // clear session vars
+                iStatus = "";
+
                 var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
 
                 request = WebRequest.Create(uriPrefix + "GetUserProfile/RTSClientPortalAPI_API_WSD_GetUserProfile_Por");
@@ -557,7 +552,7 @@ namespace BRBPortal_CSharp
                             // Build Full Name
                             var middleName = fields.GetStringValue("MidName");
 
-                            fields.Add("FullName", string.Format("{0}{1}",
+                            fields.Add("FullName", string.Format("{0}{1} {2} {3}",
                                 fields.GetStringValue("FirstName"),
                                 string.IsNullOrEmpty(middleName) ? "" : (" " + middleName),
                                 fields.GetStringValue("LastName"),
@@ -578,15 +573,13 @@ namespace BRBPortal_CSharp
                             mailAddress += (", " + detailAddr.SelectSingleNode("city").InnerText);
                             mailAddress += (", " + detailAddr.SelectSingleNode("state").InnerText);
                             mailAddress += (" " + detailAddr.SelectSingleNode("zip").InnerText);
+
                             fields.Add("MailAddr", mailAddress.UnescapeXMLChars());
                         }
                     }
                 }
 
-                if (iStatus.ToUpper() == "SUCCESS")
-                {
-                }
-                else
+                if (iStatus.ToUpper() != "SUCCESS")
                 {
                     // Should be blank since the API failed
                     iStatus = "FAILURE";
@@ -623,7 +616,10 @@ namespace BRBPortal_CSharp
             return fields;
         }
 
-        public static bool UpdateProfile(string delimitedFields)
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static bool UpdateProfile(string soapString)
         {
             if (USE_MOCK_SERVICES)
             {
@@ -631,410 +627,332 @@ namespace BRBPortal_CSharp
             }
             else
             {
-                return UpdateProfile_Soap(delimitedFields);
+                return UpdateProfile_Soap(soapString);
             }
         }
 
+        /// <summary>
+        /// DONE
+        /// </summary>
         public static bool UpdateProfile_Soap(string soapString)
         {
-            // The delimitedFields should have the following structure:
-            //    UserID          - User ID from screen
-            //    Billing Code    - Billing code
-            //    First Name      - 
-            //    Middle Name     -
-            //    Last Name       -
-            //    Suffix          -   
-            //    Name Display    -
-            //    Street Number   -
-            //    Street Name     -
-            //    Unit Number     -
-            //    Full Address    -
-            //    City            -
-            //    State           - 2-character state
-            //    Zip             -
-            //    Country         -
-            //    Email Address   -
-            //    Phone Number    -
-            //    Question 1      -
-            //    Answer 1        -
-            //    Question 2      -
-            //    Answer 2        -
-            //    Agency Name     -
+            // SEE Test/Live Data/GetProfile_Response.txt for sample data
 
-            // Each field should be separated by a double-colon (::)
+            WebRequest request = null;
+            WebResponse response = null;
+            Stream requestStream = null;
+            Stream responseStream = null;
+            StreamReader reader = null;
+            var wasUpdated = false;
 
-            //WebRequest request = null;
-            //WebResponse response = null;
-            //Stream requestStream = null;
-            //Stream responseStream = null;
-            //StreamReader reader = null;
+            try
+            {
+                var fields = Parse(soapString);
 
-            var fields = Parse(soapString);
-            return true;
-            //string RetStr = "";
-            //string wstr;
-            //string wstr2;
-            //iStatus = "";
+                var userCode = fields.GetStringValue("UserID");
+                var billCode = fields.GetStringValue("BillingCode");
+                var fullName = fields.GetStringValue("FullName");
+                var firstName = fields.GetStringValue("FirstName");
+                var middleName = fields.GetStringValue("MidName");
+                var lastName = fields.GetStringValue("LastName");
+                var mailAddr = fields.GetStringValue("MailAddr");
+                var streetNum = fields.GetStringValue("StNum");
+                var streetName = fields.GetStringValue("StName");
+                var unit = fields.GetStringValue("Unit");
+                var fullAddress = fields.GetStringValue("FullAddr");
+                var city = fields.GetStringValue("City");
+                var state = fields.GetStringValue("State");
+                var zip = fields.GetStringValue("Zip");
+                var country = fields.GetStringValue("Country");
+                var email = fields.GetStringValue("Email");
+                var phone = fields.GetStringValue("Phone");
+                var answer1 = fields.GetStringValue("Answer1");
+                var answer2 = fields.GetStringValue("Answer2");
+                var question1 = fields.GetStringValue("Question1");
+                var question2 = fields.GetStringValue("Question2");
+                var suffix = fields.GetStringValue("Suffix");
+                var agentName = fields.GetStringValue("AgentName");
 
-            //var tUserCode = fields.GetStringValue("UserID");
-            //var tBillCode = fields.GetStringValue("");
-            //var tFullName = fields.GetStringValue("");
-            //var tFirst = fields.GetStringValue("");
-            //var tMid = fields.GetStringValue("");
-            //var tLast = fields.GetStringValue("");
-            //var tMailAddr = fields.GetStringValue("");
-            //var tSNum = fields.GetStringValue("");
-            //var tSName = fields.GetStringValue("");
-            //var tUnit = fields.GetStringValue("");
-            //var tFullAddr = fields.GetStringValue("");
-            //var tCity = fields.GetStringValue("");
-            //var tST = fields.GetStringValue("");
-            //var tZip = fields.GetStringValue("");
-            //var tCntry = fields.GetStringValue("");
-            //var tEmail = fields.GetStringValue("");
-            //var tPhone = fields.GetStringValue("");
-            //var tAnswer1 = fields.GetStringValue("");
-            //var tAnswer2 = fields.GetStringValue("");
-            //var tQuestion1 = fields.GetStringValue("");
-            //var tQuestion2 = fields.GetStringValue("");
-            //var tSuffix = fields.GetStringValue("");
-            //var tAgentName = fields.GetStringValue("");
+                var soapMessage = NewSoapMessage();
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:updateUserProfile>");
+                soapMessage.Append("<updateUserProfileReq>");
+                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : userCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : billCode.EscapeXMLChars());
+                soapMessage.Append("<name>");
+                soapMessage.AppendFormat("<first>{0}</first>", firstName.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><middle>{0}</middle>", middleName.Length == 0 ? "?" : middleName.EscapeXMLChars());
+                soapMessage.AppendFormat("<last>{0}</last>", lastName.EscapeXMLChars());
+                soapMessage.AppendFormat("<suffix>{0}</suffix>", suffix);
+                soapMessage.Append("<!--Optional:--><nameLastFirstDisplay>{0}</nameLastFirstDisplay>");
+                soapMessage.AppendFormat("<!--Optional:--><agencyName>{0}</agencyName>", agentName.Length == 0 ? "?" : agentName.EscapeXMLChars());
+                soapMessage.Append("</name>");
+                soapMessage.Append("<mailingAddress>");
+                soapMessage.AppendFormat("<!--Optional:--><streetNumber>{0}</streetNumber>", streetNum.Length == 0 ? "?" : streetNum);
+                soapMessage.AppendFormat("<!--Optional:--><streetName>{0}</streetName>", streetName.Length == 0 ? "?" : streetName.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><unitNumber>{0}</unitNumber>", unit.Length == 0 ? "?" : unit);
+                soapMessage.AppendFormat("<fullAddress>{0}</fullAddress>", fullAddress.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><city>{0}</city>", city);
+                soapMessage.AppendFormat("<!--Optional:--><state>{0}</state>", state);
+                soapMessage.AppendFormat("<!--Optional:--><zip>{0}</zip>", zip);
+                soapMessage.AppendFormat("<!--Optional:--><country>{0}</country>", country);
+                soapMessage.Append("</mailingAddress>");
+                soapMessage.AppendFormat("<emailAddress>{0}</emailAddress>", email);
+                soapMessage.AppendFormat("<phone>{0}</phone>", phone);
+                soapMessage.AppendFormat("<securityQuestion1>{0}</securityQuestion1>", question1);
+                soapMessage.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", answer1);
+                soapMessage.AppendFormat("<securityQuestion2>{0}</securityQuestion2>", question2);
+                soapMessage.AppendFormat("<securityAnswer2>{0}</securityAnswer2>", answer2);
+                soapMessage.Append("</updateUserProfileReq>");
+                soapMessage.Append("<isActive>Y</isActive>");
+                soapMessage.Append("</api:updateUserProfile>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
 
-            //wstr2 = aXML;
-            //wstr = ParseStr(wstr2, "::");
+                var xmlDoc = new XmlDocument();
+                var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
 
-            //// User Code
-            //if ((wstr.Length > 0))
-            //{
-            //    tUserCode = wstr;
-            //}
+                iStatus = "";
 
-            //wstr = ParseStr(wstr2, "::");
-            //// Billing Code
-            //if ((wstr.Length > 0))
-            //{
-            //    tBillCode = wstr;
-            //}
+                request = WebRequest.Create(uriPrefix + "UpdateUserProfile/RTSClientPortalAPI_API_WSD_UpdateUserProfile_Port");
+                request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_UpdateUserProfile_Binder_updateUserProfile");
+                request.ContentType = "text/xml; charset=utf-8";
+                request.ContentLength = soapByte.Length;
+                request.Method = "POST";
 
-            //wstr = ParseStr(wstr2, "::");
-            //// First Name
-            //if ((wstr.Length > 0))
-            //{
-            //    tFirst = wstr;
-            //}
+                requestStream = request.GetRequestStream();
+                requestStream.Write(soapByte, 0, soapByte.Length);
 
-            //wstr = ParseStr(wstr2, "::");
-            //// Middle Name
-            //if ((wstr.Length > 0))
-            //{
-            //    tMid = wstr;
-            //}
+                response = request.GetResponse();
+                responseStream = response.GetResponseStream();
+                reader = new StreamReader(responseStream);
 
-            //wstr = ParseStr(wstr2, "::");
-            //// Last Name
-            //if ((wstr.Length > 0))
-            //{
-            //    tLast = wstr;
-            //}
+                xmlDoc.LoadXml(reader.ReadToEnd());
 
-            //wstr = ParseStr(wstr2, "::");
-            //// Suffifx
-            //if ((wstr.Length > 0))
-            //{
-            //    tSuffix = wstr;
-            //}
+                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("response"))
+                {
+                    iStatus = detail.ChildNodes[0].InnerText;
 
-            //wstr = ParseStr(wstr2, "::");
-            //// Name Display - blanks for now
-            //wstr = ParseStr(wstr2, "::");
-            //// Street Number
-            //if ((wstr.Length > 0))
-            //{
-            //    tSNum = wstr;
-            //}
+                    if (iStatus.ToUpper() == "FAILURE")
+                    {
+                        iErrMsg = detail.ChildNodes[2].InnerText;
+                    }
+                }
 
-            //wstr = ParseStr(wstr2, "::");
-            //// Street Name
-            //if ((wstr.Length > 0))
-            //{
-            //    tSName = wstr;
-            //}
+                // For Each detail As XmlElement In doc.DocumentElement.GetElementsByTagName("profileDetails")
+                //     For Each detailName As XmlElement In doc.DocumentElement.GetElementsByTagName("name")
+                //         For Each detailAddr As XmlElement In doc.DocumentElement.GetElementsByTagName("mailingAddress")
+                //             iStatus = "SUCCESS"
+                //         Next detailAddr
+                //     Next detailName
+                // Next detail
 
-            //wstr = ParseStr(wstr2, "::");
-            //// Unit Number
-            //if ((wstr.Length > 0))
-            //{
-            //    tUnit = wstr;
-            //}
+                wasUpdated = iStatus.ToUpper().Equals("SUCCESS");
 
-            //wstr = ParseStr(wstr2, "::");
-            //// Full Address
-            //if ((wstr.Length > 0))
-            //{
-            //    tMailAddr = wstr;
-            //}
+                if (!wasUpdated)
+                {
+                    iStatus = "FAILURE";
+                }
+            }
+            catch (Exception ex)
+            {
+                iStatus = "FAILURE";
+                iErrMsg = ex.ToString();
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                if (requestStream != null)
+                {
+                    requestStream.Close();
+                    requestStream.Dispose();
+                }
+                if (responseStream != null)
+                {
+                    responseStream.Close();
+                    responseStream.Dispose();
+                }
+                if (response != null)
+                {
+                    response.Close();
+                    response.Dispose();
+                }
+            }
 
-            //wstr = ParseStr(wstr2, "::");
-            //// City
-            //if ((wstr.Length > 0))
-            //{
-            //    tCity = wstr;
-            //}
-
-            //wstr = ParseStr(wstr2, "::");
-            //// State abbrev
-            //if ((wstr.Length > 0))
-            //{
-            //    tST = wstr;
-            //}
-
-            //wstr = ParseStr(wstr2, "::");
-            //// Zip
-            //if ((wstr.Length > 0))
-            //{
-            //    tZip = wstr;
-            //}
-
-            //wstr = ParseStr(wstr2, "::");
-            //// Country
-            //if ((wstr.Length > 0))
-            //{
-            //    tCntry = wstr;
-            //}
-
-            //wstr = ParseStr(wstr2, "::");
-            //// Email
-            //if ((wstr.Length > 0))
-            //{
-            //    tEmail = wstr;
-            //}
-
-            //wstr = ParseStr(wstr2, "::");
-            //// Phone Number
-            //if ((wstr.Length > 0))
-            //{
-            //    tPhone = wstr;
-            //}
-
-            //wstr = ParseStr(wstr2, "::");
-            //// Question 1
-            //if ((wstr.Length > 0))
-            //{
-            //    tQuestion1 = wstr;
-            //}
-
-            //wstr = ParseStr(wstr2, "::");
-            //// Answer 1
-            //if ((wstr.Length > 0))
-            //{
-            //    tAnswer1 = wstr;
-            //}
-
-            //wstr = ParseStr(wstr2, "::");
-            //// Question 2
-            //if ((wstr.Length > 0))
-            //{
-            //    tQuestion2 = wstr;
-            //}
-
-            //wstr = ParseStr(wstr2, "::");
-            //// Answer 2
-            //if ((wstr.Length > 0))
-            //{
-            //    tAnswer2 = wstr;
-            //}
-
-            //wstr = ParseStr(wstr2, "::");
-            //// Agent Name
-            //if ((wstr.Length > 0))
-            //{
-            //    tAgentName = wstr;
-            //}
-
-            //SoapStr = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:api=\"http://cityofb" +
-            //"erkeley.info/RTS/ClientPortal/API\">";
-            //SoapStr += "<soapenv:Header/>";
-            //SoapStr += "<soapenv:Body>";
-            //SoapStr += "<api:updateUserProfile>";
-            //SoapStr += "<updateUserProfileReq>";
-
-            //if ((tUserCode.Length > 0))
-            //{
-            //    SoapStr = (SoapStr + ("<!--Optional:--><userId>" + (tUserCode + "</userId>")));
-            //}
-            //else
-            //{
-            //    SoapStr += "<!--Optional:--><userId></userId>";
-            //}
-
-            //if ((tBillCode.Length > 0))
-            //{
-            //    SoapStr = (SoapStr + ("<!--Optional:--><billingCode>" + (tBillCode + "</billingCode>")));
-            //}
-            //else
-            //{
-            //    SoapStr += "<!--Optional:--><billingCode></billingCode>";
-            //}
-
-            //SoapStr += "<name>";
-            //SoapStr = (SoapStr + ("<first>" + (EscapeXMLChars(tFirst) + "</first>")));
-            //if ((tMid.Length > 0))
-            //{
-            //    SoapStr = (SoapStr + ("<!--Optional:--><middle>" + (tMid + "</middle>")));
-            //}
-            //else
-            //{
-            //    SoapStr += "<!--Optional:--><middle></middle>";
-            //}
-
-            //SoapStr = (SoapStr + ("<last>" + (EscapeXMLChars(tLast) + "</last>")));
-            //SoapStr = (SoapStr + ("<suffix>" + (tSuffix + "</suffix>")));
-            //SoapStr += "<!--Optional:--><nameLastFirstDisplay></nameLastFirstDisplay>";
-            //SoapStr = (SoapStr + ("<!--Optional:--><agencyName>" + (EscapeXMLChars(tAgentName) + "</agencyName>")));
-            //SoapStr += "</name>";
-            //SoapStr += "<mailingAddress>";
-            //SoapStr = (SoapStr + ("<!--Optional:--><streetNumber>" + (tSNum + "</streetNumber>")));
-            //SoapStr = (SoapStr + ("<!--Optional:--><streetName>" + (EscapeXMLChars(tSName) + "</streetName>")));
-            //SoapStr = (SoapStr + ("<!--Optional:--><unitNumber>" + (tUnit + "</unitNumber>")));
-            //SoapStr = (SoapStr + ("<fullAddress>" + (EscapeXMLChars(tFullAddr) + "</fullAddress>")));
-            //SoapStr = (SoapStr + ("<!--Optional:--><city>" + (tCity + "</city>")));
-            //SoapStr = (SoapStr + ("<!--Optional:--><state>" + (tST + "</state>")));
-            //SoapStr = (SoapStr + ("<!--Optional:--><zip>" + (tZip + "</zip>")));
-            //SoapStr = (SoapStr + ("<!--Optional:--><country>" + (tCntry + "</country>")));
-            //SoapStr += "</mailingAddress>";
-            //SoapStr = (SoapStr + ("<emailAddress>" + (tEmail + "</emailAddress>")));
-            //SoapStr = (SoapStr + ("<phone>" + (tPhone + "</phone>")));
-            //SoapStr = (SoapStr + ("<securityQuestion1>" + (tQuestion1 + "</securityQuestion1>")));
-            //SoapStr = (SoapStr + ("<securityAnswer1>" + (EscapeXMLChars(tAnswer1) + "</securityAnswer1>")));
-            //SoapStr = (SoapStr + ("<securityQuestion2>" + (tQuestion2 + "</securityQuestion2>")));
-            //SoapStr = (SoapStr + ("<securityAnswer2>" + (EscapeXMLChars(tAnswer2) + "</securityAnswer2>")));
-            //SoapStr += "</updateUserProfileReq>";
-            //SoapStr += "<isActive>Y</isActive>";
-            //SoapStr += "</api:updateUserProfile>";
-            //SoapStr += "</soapenv:Body>";
-            //SoapStr += "</soapenv:Envelope>";
-
-            //try
-            //{
-            //    SoapByte = System.Text.Encoding.UTF8.GetBytes(SoapStr);
-            //    Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.UpdateUserProfile/RTSClientPortalA" +
-            //        "PI_API_WSD_UpdateUserProfile_Port");
-            //    Request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_UpdateUserProfile_Binder_updateUserProfile");
-            //    Request.ContentType = "text/xml; charset=utf-8";
-            //    Request.ContentLength = SoapByte.Length;
-            //    Request.Method = "POST";
-            //    DataStream = Request.GetRequestStream();
-            //    DataStream.Write(SoapByte, 0, SoapByte.Length);
-            //    DataStream.Close();
-            //    Response = Request.GetResponse();
-            //    DataStream = Response.GetResponseStream();
-            //    Reader = new StreamReader(DataStream);
-            //    string SD2Request = Reader.ReadToEnd();
-            //    DataStream.Close();
-            //    Reader.Close();
-            //    Response.Close();
-
-            //    // Set session variables from response
-            //    XmlDocument doc = new XmlDocument();
-            //    doc.LoadXml(SD2Request);
-
-            //    foreach (XmlElement detail in doc.DocumentElement.GetElementsByTagName("response"))
-            //    {
-            //        iStatus = detail.ChildNodes(0).InnerText;
-            //        if ((iStatus.ToUpper == "FAILURE"))
-            //        {
-            //            iErrMsg = detail.ChildNodes(2).InnerText;
-            //        }
-
-            //    }
-
-            //    // For Each detail As XmlElement In doc.DocumentElement.GetElementsByTagName("profileDetails")
-            //    //     For Each detailName As XmlElement In doc.DocumentElement.GetElementsByTagName("name")
-            //    //         For Each detailAddr As XmlElement In doc.DocumentElement.GetElementsByTagName("mailingAddress")
-            //    //             iStatus = "SUCCESS"
-            //    //         Next detailAddr
-            //    //     Next detailName
-            //    // Next detail
-            //    if ((iStatus.ToUpper == "SUCCESS"))
-            //    {
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        iStatus = "FAILURE";
-            //        return false;
-            //    }
-            //}
-            //catch (WebException ex)
-            //{
-            //    iErrMsg = ex.ToString;
-            //    // MsgBox(ex.ToString())
-            //    return false;
-            //}
+            return wasUpdated;
         }
 
-        public static bool Register_Soap(string aSoapStr)
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static bool Register(string soapString)
         {
-            // TODO: uncomment and convert
-            return true;
-            //WebRequest Request;
-            //WebResponse Response;
-            //Stream DataStream;
-            //StreamReader Reader;
-            //byte[] SoapByte;
-            //// Dim SoapStr As String
-            //string status = "";
-            //string errMsg = "";
+            if (USE_MOCK_SERVICES)
+            {
+                return true;
+            }
+            else
+            {
+                return Register(soapString);
+            }
+        }
 
-            //try
-            //{
-            //    SoapByte = System.Text.Encoding.UTF8.GetBytes(aSoapStr);
-            //    Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.ValidateRegistrationRequest/RTSCli" +
-            //        "entPortalAPI_API_WSD_ValidateRegistrationRequest_Port");
-            //    Request.Headers.Add("SOAPAction", "RTSClientPortalAPI.API.WSD.ValidateRegistrationRequest");
-            //    Request.ContentType = "text/xml; charset=utf-8";
-            //    Request.ContentLength = SoapByte.Length;
-            //    Request.Method = "POST";
-            //    DataStream = Request.GetRequestStream();
-            //    DataStream.Write(SoapByte, 0, SoapByte.Length);
-            //    DataStream.Close();
-            //    Response = Request.GetResponse();
-            //    DataStream = Response.GetResponseStream();
-            //    Reader = new StreamReader(DataStream);
-            //    string SD2Request = Reader.ReadToEnd();
-            //    DataStream.Close();
-            //    Reader.Close();
-            //    Response.Close();
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static bool Register_Soap(string soapString)
+        {
 
-            //    // Set session variables from response
-            //    XmlDocument doc = new XmlDocument();
-            //    doc.LoadXml(SD2Request);
+            WebRequest request = null;
+            WebResponse response = null;
+            Stream requestStream = null;
+            Stream responseStream = null;
+            StreamReader reader = null;
+            var wasRegistered = false;
 
-            //    foreach (XmlElement detail in doc.DocumentElement.GetElementsByTagName("response"))
-            //    {
-            //        iStatus = detail.ChildNodes(0).InnerText;
-            //        if ((iStatus != "SUCCESS"))
-            //        {
-            //            iErrMsg = detail.ChildNodes(1).InnerText;
-            //        }
+            try
+            {
+                var fields = Parse(soapString);
 
-            //    }
+                var userCode = fields.GetStringValue("UserID");
+                var billCode = fields.GetStringValue("BillingCode");
+                var fullName = fields.GetStringValue("FullName");
+                var firstName = fields.GetStringValue("FirstName");
+                var middleName = fields.GetStringValue("MidName");
+                var lastName = fields.GetStringValue("LastName");
+                var mailAddr = fields.GetStringValue("MailAddr");
+                var streetNum = fields.GetStringValue("StNum");
+                var streetName = fields.GetStringValue("StName");
+                var unit = fields.GetStringValue("Unit");
+                var fullAddress = fields.GetStringValue("FullAddr");
+                var city = fields.GetStringValue("City");
+                var state = fields.GetStringValue("State");
+                var zip = fields.GetStringValue("Zip");
+                var country = fields.GetStringValue("Country");
+                var email = fields.GetStringValue("Email");
+                var phone = fields.GetStringValue("Phone");
+                var answer1 = fields.GetStringValue("Answer1");
+                var answer2 = fields.GetStringValue("Answer2");
+                var question1 = fields.GetStringValue("Question1");
+                var question2 = fields.GetStringValue("Question2");
+                var suffix = fields.GetStringValue("Suffix");
+                var agentName = fields.GetStringValue("AgentName");
 
-            //    if ((iStatus.ToUpper == "SUCCESS"))
-            //    {
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        return false;
-            //    }
-            //}
-            //catch (WebException ex)
-            //{
-            //    // MsgBox(ex.ToString())
-            //    iErrMsg = ex.ToString;
-            //    return false;
-            //}
+                // TODO: need to verify field names
+                var relationship = fields.GetStringValue("Relationship");
+                var ownerLastName = fields.GetStringValue("OwnerLastName");
+                var propertyAddress = fields.GetStringValue("PropertyAddress");
+                var purchaseYear = fields.GetStringValue("PurchaseYear");
+
+
+                var soapMessage = NewSoapMessage();
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:validateRegistrationRequest>");
+                soapMessage.Append("<registrationRequestReq>");
+                soapMessage.Append("<profileDetails>");
+                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : userCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : billCode.EscapeXMLChars());
+                soapMessage.Append("<name>");
+                soapMessage.AppendFormat("<first>{0}</first>", firstName.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><middle>{0}</middle>", middleName.Length == 0 ? "?" : middleName.EscapeXMLChars());
+                soapMessage.AppendFormat("<last>{0}</last>", lastName.EscapeXMLChars());
+                soapMessage.AppendFormat("<suffix>{0}</suffix>", suffix);
+                soapMessage.Append("<!--Optional:--><nameLastFirstDisplay>{0}</nameLastFirstDisplay>");
+                soapMessage.AppendFormat("<!--Optional:--><agencyName>{0}</agencyName>", agentName.Length == 0 ? "?" : agentName.EscapeXMLChars());
+                soapMessage.Append("</name>");
+                soapMessage.Append("<mailingAddress>");
+                soapMessage.AppendFormat("<!--Optional:--><streetNumber>{0}</streetNumber>", streetNum.Length == 0 ? "?" : streetNum);
+                soapMessage.AppendFormat("<!--Optional:--><streetName>{0}</streetName>", streetName.Length == 0 ? "?" : streetName.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><unitNumber>{0}</unitNumber>", unit.Length == 0 ? "?" : unit);
+                soapMessage.AppendFormat("<fullAddress>{0}</fullAddress>", fullAddress.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><city>{0}</city>", city);
+                soapMessage.AppendFormat("<!--Optional:--><state>{0}</state>", state);
+                soapMessage.AppendFormat("<!--Optional:--><zip>{0}</zip>", zip);
+                soapMessage.AppendFormat("<!--Optional:--><country>{0}</country>", country);
+                soapMessage.Append("</mailingAddress>");
+                soapMessage.AppendFormat("<emailAddress>{0}</emailAddress>", email);
+                soapMessage.AppendFormat("<phone>{0}</phone>", phone);
+                soapMessage.AppendFormat("<securityQuestion1>{0}</securityQuestion1>", question1);
+                soapMessage.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", answer1);
+                soapMessage.AppendFormat("<securityQuestion2>{0}</securityQuestion2>", question2);
+                soapMessage.AppendFormat("<securityAnswer2>{0}</securityAnswer2>", answer2);
+                soapMessage.Append("</profileDetails>");
+                soapMessage.Append("<propertyDetails>");
+                soapMessage.AppendFormat("<relationship>{0}</relationship>", relationship);
+                soapMessage.AppendFormat("<ownerLastName>{0}</ownerLastName>", ownerLastName);
+                soapMessage.AppendFormat("<address>{0}</address>", propertyAddress);
+                soapMessage.AppendFormat("<purchaseYear>{0}</purchaseYear>", purchaseYear);
+                soapMessage.Append("</propertyDetails>");
+                soapMessage.Append("</registrationRequestReq>");
+                soapMessage.Append("</api:validateRegistrationRequest>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
+
+                var xmlDoc = new XmlDocument();
+                var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
+
+                request = WebRequest.Create(uriPrefix + "ValidateRegistrationRequest/RTSClientPortalAPI_API_WSD_ValidateRegistrationRequest_Port");
+                request.Headers.Add("SOAPAction", "RTSClientPortalAPI.API.WSD.ValidateRegistrationRequest");
+                request.ContentType = "text/xml; charset=utf-8";
+                request.ContentLength = soapByte.Length;
+                request.Method = "POST";
+
+                requestStream = request.GetRequestStream();
+                requestStream.Write(soapByte, 0, soapByte.Length);
+
+                response = request.GetResponse();
+                responseStream = response.GetResponseStream();
+                reader = new StreamReader(responseStream);
+
+                xmlDoc.LoadXml(reader.ReadToEnd());
+
+                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("response"))
+                {
+                    iStatus = detail.ChildNodes[0].InnerText;
+
+                    if (iStatus.ToUpper() != "SUCCESS")
+                    {
+                        iErrMsg = detail.ChildNodes[1].InnerText;
+                    }
+                }
+
+                wasRegistered = iStatus.ToUpper().Equals("SUCCESS");
+            }
+            catch (Exception ex)
+            {
+                iErrMsg = ex.ToString();
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                if (requestStream != null)
+                {
+                    requestStream.Close();
+                    requestStream.Dispose();
+                }
+                if (responseStream != null)
+                {
+                    responseStream.Close();
+                    responseStream.Dispose();
+                }
+                if (response != null)
+                {
+                    response.Close();
+                    response.Dispose();
+                }
+            }
+
+            return wasRegistered;
         }
 
         public static bool GetUserProperties_Soap(string aID, string aBillCd)
@@ -1925,7 +1843,7 @@ namespace BRBPortal_CSharp
         }
 
         /// <summary>
-        /// DONE, need to test
+        /// DONE
         /// </summary>
         public static bool ValidateReset(UserProfile userProfile)
         {
@@ -1940,6 +1858,9 @@ namespace BRBPortal_CSharp
             }
         }
 
+        /// <summary>
+        /// DONE
+        /// </summary>
         public static bool ValidateReset_Soap(UserProfile userProfile)
         {
             WebRequest request = null;
@@ -1953,12 +1874,12 @@ namespace BRBPortal_CSharp
             soapMessage.Append("<soapenv:Body>");
             soapMessage.Append("<api:validateResetUserPassword>");
             soapMessage.Append("<resetUserPwdReq>");
-            soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", EscapeXMLChars(userProfile.UserCode));
-            soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", userProfile.BillingCode.Length == 0 ? "?" : EscapeXMLChars(userProfile.BillingCode));
-            soapMessage.AppendFormat("<securityQuestion1>{0}</securityQuestion1>", EscapeXMLChars(userProfile.Question1));
-            soapMessage.AppendFormat("<securityQuestion2>{0}</securityQuestion1>", EscapeXMLChars(userProfile.Question2));
-            soapMessage.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", EscapeXMLChars(userProfile.Answer1));
-            soapMessage.AppendFormat("<securityAnswer2>{0}</securityAnswer2>", EscapeXMLChars(userProfile.Answer2));
+            soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userProfile.UserCode.EscapeXMLChars());
+            soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", userProfile.BillingCode.Length == 0 ? "?" : userProfile.BillingCode.EscapeXMLChars());
+            soapMessage.AppendFormat("<securityQuestion1>{0}</securityQuestion1>", userProfile.Question1.EscapeXMLChars());
+            soapMessage.AppendFormat("<securityQuestion2>{0}</securityQuestion1>", userProfile.Question2.EscapeXMLChars());
+            soapMessage.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", userProfile.Answer1.EscapeXMLChars());
+            soapMessage.AppendFormat("<securityAnswer2>{0}</securityAnswer2>", userProfile.Answer2.EscapeXMLChars());
             soapMessage.Append("</resetUserPwdReq>");
             soapMessage.Append("</api:validateResetUserPassword>");
             soapMessage.Append("</soapenv:Body>");
@@ -2063,66 +1984,6 @@ namespace BRBPortal_CSharp
 
             RetValue = tResult;
             return RetValue;
-        }
-
-        /// <summary>
-        /// Replace Ampersand, Less than, and Greater than characters with XML versions.
-        /// </summary>
-        public static string EscapeXMLChars(string str = "")
-        {
-            str = str.Replace("&", "&amp;");
-            str = str.Replace("<", "&lt;");
-            str = str.Replace(">", "&gt;");
-
-            return str;
-        }
-
-        public static string UnescapeXMLChars(string str = "")
-        {
-            str = str.Replace("&amp;", "&");
-            str = str.Replace("&lt;", "<");
-            str = str.Replace("&gt;", ">");
-
-            return str;
-        }
-
-        /// <summary>
-        /// Returns value up to aDivider, and left truncates aStr through aDivider.
-        /// aStartIndex starts searching at that position.
-        /// </summary>
-        public static string ParseStr(ref string aStr, string aDivider, int aStartIndex = 0)
-        {
-            int divlen, pos;
-            string RetStr;
-
-            if (aStartIndex > aStr.Length)
-            {
-                RetStr = aStr;
-                aStr = "";
-                return RetStr;
-            }
-
-            divlen = aDivider.Length;
-            pos = aStr.IndexOf(aDivider, aStartIndex);
-
-            if (pos == 0)
-            {
-                aStr = Mid(aStr, divlen + 1);
-                return "";
-            }
-
-            if (pos > 0)
-            {
-                RetStr = Left(aStr, pos);
-                aStr = Mid(aStr, pos + divlen + 1);
-            }
-            else
-            {
-                RetStr = aStr;
-                aStr = "";
-            }
-
-            return RetStr;
         }
 
         /// <summary>
