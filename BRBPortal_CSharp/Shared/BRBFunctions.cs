@@ -470,6 +470,8 @@ namespace BRBPortal_CSharp
             StreamReader reader = null;
             var fields = new Dictionary<string, string>();
 
+            iStatus = "";
+
             try
             {
                 var xmlDoc = new XmlDocument();
@@ -485,9 +487,6 @@ namespace BRBPortal_CSharp
                 soapMessage.Append("</api:getProfileDetails>");
                 soapMessage.Append("</soapenv:Body>");
                 soapMessage.Append("</soapenv:Envelope>");
-
-                // clear session vars
-                iStatus = "";
 
                 var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
 
@@ -645,6 +644,8 @@ namespace BRBPortal_CSharp
             StreamReader reader = null;
             var wasUpdated = false;
 
+            iStatus = "";
+
             try
             {
                 var fields = Parse(soapString);
@@ -712,8 +713,6 @@ namespace BRBPortal_CSharp
 
                 var xmlDoc = new XmlDocument();
                 var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
-
-                iStatus = "";
 
                 request = WebRequest.Create(uriPrefix + "UpdateUserProfile/RTSClientPortalAPI_API_WSD_UpdateUserProfile_Port");
                 request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_UpdateUserProfile_Binder_updateUserProfile");
@@ -803,11 +802,10 @@ namespace BRBPortal_CSharp
         }
 
         /// <summary>
-        /// DONE
+        /// DONE, need to update Register.aspx.cs
         /// </summary>
         public static bool Register_Soap(string soapString)
         {
-
             WebRequest request = null;
             WebResponse response = null;
             Stream requestStream = null;
@@ -955,418 +953,510 @@ namespace BRBPortal_CSharp
             return wasRegistered;
         }
 
-        public static bool GetUserProperties_Soap(string aID, string aBillCd)
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static bool GetUserProperties(string userCode, string billCode)
         {
-            // TODO: uncomment and convert
-            return true;
+            if (USE_MOCK_SERVICES)
+            {
+                if (iPropertyTbl.Columns.Count < 1)
+                {
+                    iPropertyTbl.Columns.Add("chkProp", typeof(string));
+                    iPropertyTbl.Columns.Add("PropertyID", typeof(string));
+                    iPropertyTbl.Columns.Add("MainAddr", typeof(string));
+                    iPropertyTbl.Columns.Add("CurrFees", typeof(Decimal));
+                    iPropertyTbl.Columns.Add("PriorFees", typeof(Decimal));
+                    iPropertyTbl.Columns.Add("CurrPenalty", typeof(Decimal));
+                    iPropertyTbl.Columns.Add("PriorPenalty", typeof(Decimal));
+                    iPropertyTbl.Columns.Add("Credits", typeof(Decimal));
+                    iPropertyTbl.Columns.Add("Balance", typeof(Decimal));
+                    iPropertyTbl.Columns.Add("btnUpdProp", typeof(string));
+                }
 
-            //WebRequest Request;
-            //WebResponse Response;
-            //Stream DataStream;
-            //StreamReader Reader;
-            //byte[] SoapByte;
-            //string SoapStr;
-            //iStatus = "";
+                // Clear out any properties from prior call
+                if (iPropertyTbl.Rows.Count > 0)
+                {
+                    iPropertyTbl.Clear();
+                }
 
-            //if ((iPropertyTbl.Columns.Count < 1))
-            //{
-            //    iPropertyTbl.Columns.Add("chkProp", typeof(string));
-            //    iPropertyTbl.Columns.Add("PropertyID", typeof(string));
-            //    iPropertyTbl.Columns.Add("MainAddr", typeof(string));
-            //    iPropertyTbl.Columns.Add("CurrFees", typeof(Decimal));
-            //    iPropertyTbl.Columns.Add("PriorFees", typeof(Decimal));
-            //    iPropertyTbl.Columns.Add("CurrPenalty", typeof(Decimal));
-            //    iPropertyTbl.Columns.Add("PriorPenalty", typeof(Decimal));
-            //    iPropertyTbl.Columns.Add("Credits", typeof(Decimal));
-            //    iPropertyTbl.Columns.Add("Balance", typeof(Decimal));
-            //    iPropertyTbl.Columns.Add("btnUpdProp", typeof(string));
-            //}
+                DataRow NR = iPropertyTbl.NewRow();
+                NR.SetField<string>("PropertyID", "123");
+                NR.SetField<string>("MainAddr", "123 Main Street, Anytown, USA 99999");
+                NR.SetField<Decimal>("CurrFees", 1.11M);
+                NR.SetField<Decimal>("PriorFees", 2.22M);
+                NR.SetField<Decimal>("CurrPenalty", 3.33M);
+                NR.SetField<Decimal>("PriorPenalty", 4.44M);
+                NR.SetField<Decimal>("Credits", 5.55M);
+                NR.SetField<Decimal>("Balance", 6.66M);
+                iPropertyTbl.Rows.Add(NR);
 
-            //// Clear out any properties from prior call
-            //if ((iPropertyTbl.Rows.Count > 0))
-            //{
-            //    iPropertyTbl.Clear();
-            //}
+                return true;
+            }
+            else
+            {
+                return GetUserProperties_Soap(userCode, billCode);
+            }
+        }
+        
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static bool GetUserProperties_Soap(string userCode, string billCode)
+        {
+            WebRequest request = null;
+            WebResponse response = null;
+            Stream requestStream = null;
+            Stream responseStream = null;
+            StreamReader reader = null;
+            var gotUserProperties = false;
 
-            //SoapStr = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:api=\"http://cityofb" +
-            //"erkeley.info/RTS/ClientPortal/API\">";
-            //SoapStr += "<soapenv:Header/>";
-            //SoapStr += "<soapenv:Body>";
-            //SoapStr += "<api:getProfileProperties>";
-            //SoapStr += "<request>";
-            //if ((aID.Length > 0))
-            //{
-            //    SoapStr = (SoapStr + ("<!--Optional:--><userId>" + (aID + "</userId>")));
-            //}
-            //else
-            //{
-            //    SoapStr += "<!--Optional:--><userId>?</userId>";
-            //}
+            iStatus = "";
 
-            //if ((aBillCd.Length > 0))
-            //{
-            //    SoapStr = (SoapStr + ("<!--Optional:--><billingCode>" + (aBillCd + "</billingCode>")));
-            //}
-            //else
-            //{
-            //    SoapStr += "<!--Optional:--><billingCode>?</billingCode>";
-            //}
+            if (iPropertyTbl.Columns.Count < 1)
+            {
+                iPropertyTbl.Columns.Add("chkProp", typeof(string));
+                iPropertyTbl.Columns.Add("PropertyID", typeof(string));
+                iPropertyTbl.Columns.Add("MainAddr", typeof(string));
+                iPropertyTbl.Columns.Add("CurrFees", typeof(Decimal));
+                iPropertyTbl.Columns.Add("PriorFees", typeof(Decimal));
+                iPropertyTbl.Columns.Add("CurrPenalty", typeof(Decimal));
+                iPropertyTbl.Columns.Add("PriorPenalty", typeof(Decimal));
+                iPropertyTbl.Columns.Add("Credits", typeof(Decimal));
+                iPropertyTbl.Columns.Add("Balance", typeof(Decimal));
+                iPropertyTbl.Columns.Add("btnUpdProp", typeof(string));
+            }
 
-            //SoapStr += "</request>";
-            //SoapStr += "</api:getProfileProperties>";
-            //SoapStr += "</soapenv:Body>";
-            //SoapStr += "</soapenv:Envelope>";
+            // Clear out any properties from prior call
+            if (iPropertyTbl.Rows.Count > 0)
+            {
+                iPropertyTbl.Clear();
+            }
 
-            //try
-            //{
-            //    SoapByte = System.Text.Encoding.UTF8.GetBytes(SoapStr);
-            //    Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.GetUserProfilePropertiesList/RTSCl" +
-            //        "ientPortalAPI_API_WSD_GetUserProfilePropertiesList_Port");
-            //    Request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_GetUserProfilePropertiesList_Binder_getProfileProperties");
-            //    Request.ContentType = "text/xml; charset=utf-8";
-            //    Request.ContentLength = SoapByte.Length;
-            //    Request.Method = "POST";
-            //    DataStream = Request.GetRequestStream();
-            //    DataStream.Write(SoapByte, 0, SoapByte.Length);
-            //    DataStream.Close();
-            //    Response = Request.GetResponse();
-            //    DataStream = Response.GetResponseStream();
-            //    Reader = new StreamReader(DataStream);
-            //    string SD2Request = Reader.ReadToEnd();
-            //    DataStream.Close();
-            //    Reader.Close();
-            //    Response.Close();
+            try
+            {
+                var xmlDoc = new XmlDocument();
+                var soapMessage = NewSoapMessage();
 
-            //    // Set session variables from response
-            //    XmlDocument doc = new XmlDocument();
-            //    doc.LoadXml(SD2Request);
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:getProfileProperties>");
+                soapMessage.Append("<request>");
+                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : userCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : billCode.EscapeXMLChars());
+                soapMessage.Append("</request>");
+                soapMessage.Append("</api:getProfileProperties>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
 
-            //    foreach (XmlElement detail in doc.DocumentElement.GetElementsByTagName("response"))
-            //    {
-            //        foreach (XmlElement detailProperty in detail.GetElementsByTagName("profileProperty"))
-            //        {
-            //            foreach (XmlElement detailAmounts in detailProperty.GetElementsByTagName("balanceAmounts"))
-            //            {
-            //                iStatus = detail.SelectSingleNode("status").InnerText;
-            //                if ((iStatus.ToUpper == "FAILURE"))
-            //                {
-            //                    iErrMsg = detail.SelectSingleNode("errorMsg").InnerText;
-            //                }
+                var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
 
-            //                DataRow NR = iPropertyTbl.NewRow();
-            //                NR.Item["PropertyID"] = detailProperty.SelectSingleNode("propertyId").InnerText;
-            //                NR.Item["MainAddr"] = detailProperty.SelectSingleNode("address").InnerText;
-            //                NR.Item["CurrFees"] = detailAmounts.SelectSingleNode("currentFees").InnerText;
-            //                NR.Item["PriorFees"] = detailAmounts.SelectSingleNode("priorFees").InnerText;
-            //                NR.Item["CurrPenalty"] = detailAmounts.SelectSingleNode("currentPenalty").InnerText;
-            //                NR.Item["PriorPenalty"] = detailAmounts.SelectSingleNode("priorPenalties").InnerText;
-            //                NR.Item["Credits"] = detailAmounts.SelectSingleNode("credit").InnerText;
-            //                NR.Item["Balance"] = detailAmounts.SelectSingleNode("totalBalance").InnerText;
-            //                iPropertyTbl.Rows.Add(NR);
-            //            }
-            //        }
-            //    }
+                request = WebRequest.Create(uriPrefix + "GetUserProfilePropertiesList/RTSClientPortalAPI_API_WSD_GetUserProfilePropertiesList_Port");
+                request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_GetUserProfilePropertiesList_Binder_getProfileProperties");
+                request.ContentType = "text/xml; charset=utf-8";
+                request.ContentLength = soapByte.Length;
+                request.Method = "POST";
 
-            //    if ((iStatus.ToUpper == "SUCCESS"))
-            //    {
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        iStatus = "FAILURE";
-            //        return false;
-            //    }
-            //}
-            //catch (WebException ex)
-            //{
-            //    iErrMsg = ex.ToString;
-            //    // MsgBox(ex.ToString())
-            //    return false;
-            //}
+                requestStream = request.GetRequestStream();
+                requestStream.Write(soapByte, 0, soapByte.Length);
+
+                response = request.GetResponse();
+                responseStream = response.GetResponseStream();
+                reader = new StreamReader(responseStream);
+
+                xmlDoc.LoadXml(reader.ReadToEnd());
+
+                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("response"))
+                {
+                    foreach (XmlElement detailProperty in detail.GetElementsByTagName("profileProperty"))
+                    {
+                        foreach (XmlElement detailAmounts in detailProperty.GetElementsByTagName("balanceAmounts"))
+                        {
+                            decimal currentFees = 0;
+                            decimal priorFees = 0;
+                            decimal currentPenalty = 0;
+                            decimal priorPenalty = 0;
+                            decimal credit = 0;
+                            decimal totalBalance = 0;
+
+                            Decimal.TryParse(detailAmounts.SelectSingleNode("currentFees").InnerText, out currentFees);
+                            Decimal.TryParse(detailAmounts.SelectSingleNode("priorFees").InnerText, out priorFees);
+                            Decimal.TryParse(detailAmounts.SelectSingleNode("currentPenalty").InnerText, out currentPenalty);
+                            Decimal.TryParse(detailAmounts.SelectSingleNode("priorPenalties").InnerText, out priorPenalty);
+                            Decimal.TryParse(detailAmounts.SelectSingleNode("credit").InnerText, out credit);
+                            Decimal.TryParse(detailAmounts.SelectSingleNode("totalBalance").InnerText, out totalBalance);
+
+                            iStatus = detail.SelectSingleNode("status").InnerText;
+
+                            if (iStatus.ToUpper().Equals("FAILURE"))
+                            {
+                                iErrMsg = detail.SelectSingleNode("errorMsg").InnerText;
+                            }
+                
+                            DataRow NR = iPropertyTbl.NewRow();
+                            NR.SetField<string>("PropertyID", detailProperty.SelectSingleNode("propertyId").InnerText);
+                            NR.SetField<string>("MainAddr", detailProperty.SelectSingleNode("address").InnerText);
+                            NR.SetField<Decimal>("CurrFees", currentFees);
+                            NR.SetField<Decimal>("PriorFees", priorFees);
+                            NR.SetField<Decimal>("CurrPenalty", currentPenalty);
+                            NR.SetField<Decimal>("PriorPenalty", priorPenalty);
+                            NR.SetField<Decimal>("Credits", credit);
+                            NR.SetField<Decimal>("Balance", totalBalance);
+                            iPropertyTbl.Rows.Add(NR);
+                        }
+                    }
+                }
+
+                gotUserProperties = iStatus.ToUpper().Equals("SUCCESS");
+
+                if (!gotUserProperties)
+                {
+                    iStatus = "FAILURE";
+                }
+            }
+            catch (Exception ex)
+            {
+                iErrMsg = ex.ToString();
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                if (requestStream != null)
+                {
+                    requestStream.Close();
+                    requestStream.Dispose();
+                }
+                if (responseStream != null)
+                {
+                    responseStream.Close();
+                    responseStream.Dispose();
+                }
+                if (response != null)
+                {
+                    response.Close();
+                    response.Dispose();
+                }
+            }
+
+            return gotUserProperties;
         }
 
-        public static string GetPropertyUnits_Soap(string aPropID, string aID, string aBillCd, string aUnitID = "")
+        /// <summary>
+        /// DONE, need mock data
+        /// </summary>
+        public static string GetPropertyUnits(string propertyID, string userCode, string billCode, string unitID = "")
         {
-            // TODO: uncomment and convert
-            return "TODO";
+            if (USE_MOCK_SERVICES)
+            {
+                return "";
+            }
+            else
+            {
+                return GetPropertyUnits_Soap(propertyID, userCode, billCode, unitID);
+            }
+        }
 
-            //WebRequest Request;
-            //// Warning!!! Optional parameters not supported
-            //WebResponse Response;
-            //Stream DataStream;
-            //StreamReader Reader;
-            //byte[] SoapByte;
-            //string SoapStr;
-            //string tServices;
-            //string tUnitInfo;
-            //string tOccBy;
-            //string tExempt;
-            //string tStartDt;
-            //iStatus = "";
-            //tUnitInfo = "";
+        /// <summary>
+        /// DONE
+        /// </summary>
+        public static string GetPropertyUnits_Soap(string propertyID, string userCode, string billCode, string unitID = "")
+        {
+            WebRequest request = null;
+            WebResponse response = null;
+            Stream requestStream = null;
+            Stream responseStream = null;
+            StreamReader reader = null;
+            var result = "FAILURE";
 
-            //if ((iUnitsTbl.Columns.Count < 1))
-            //{
-            //    iUnitsTbl.Columns.Add("chkUnit", typeof(bool));
-            //    iUnitsTbl.Columns.Add("chkTenants", typeof(bool));
-            //    iUnitsTbl.Columns.Add("UnitID", typeof(string));
-            //    iUnitsTbl.Columns.Add("UnitNo", typeof(string));
-            //    iUnitsTbl.Columns.Add("UnitStatID", typeof(string));
-            //    iUnitsTbl.Columns.Add("UnitStatCode", typeof(string));
-            //    iUnitsTbl.Columns.Add("CPUnitStatCode", typeof(string));
-            //    iUnitsTbl.Columns.Add("CPUnitStatDisp", typeof(string));
-            //    iUnitsTbl.Columns.Add("RentCeiling", typeof(Decimal));
-            //    iUnitsTbl.Columns.Add("StartDt", typeof(DateTime));
-            //    iUnitsTbl.Columns.Add("HServices", typeof(string));
-            //}
+            var tServices = "";
+            var tUnitInfo = "";
+            var tOccBy = "";
+            var tExempt = "";
+            var tStartDt = "";
 
-            //// Clear out any units from prior call
-            //if ((iUnitsTbl.Rows.Count > 0))
-            //{
-            //    iUnitsTbl.Clear();
-            //}
+            iStatus = "";
 
-            //SoapStr = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:api=\"http://cityofb" +
-            //"erkeley.info/RTS/ClientPortal/API\">";
-            //SoapStr += "<soapenv:Header/>";
-            //SoapStr += "<soapenv:Body>";
-            //SoapStr += "<api:getPropertyAndUnitDetails>";
-            //SoapStr = (SoapStr + ("<propertyId>" + (aPropID + "</propertyId>")));
-            //SoapStr += "<request>";
-            //if ((aID.Length > 0))
-            //{
-            //    SoapStr = (SoapStr + ("<!--Optional:--><userId>" + (aID + "</userId>")));
-            //}
-            //else
-            //{
-            //    SoapStr += "<!--Optional:--><userId>?</userId>";
-            //}
+            if (iUnitsTbl.Columns.Count < 1)
+            {
+                iUnitsTbl.Columns.Add("chkUnit", typeof(bool));
+                iUnitsTbl.Columns.Add("chkTenants", typeof(bool));
+                iUnitsTbl.Columns.Add("UnitID", typeof(string));
+                iUnitsTbl.Columns.Add("UnitNo", typeof(string));
+                iUnitsTbl.Columns.Add("UnitStatID", typeof(string));
+                iUnitsTbl.Columns.Add("UnitStatCode", typeof(string));
+                iUnitsTbl.Columns.Add("CPUnitStatCode", typeof(string));
+                iUnitsTbl.Columns.Add("CPUnitStatDisp", typeof(string));
+                iUnitsTbl.Columns.Add("RentCeiling", typeof(Decimal));
+                iUnitsTbl.Columns.Add("StartDt", typeof(DateTime));
+                iUnitsTbl.Columns.Add("HServices", typeof(string));
+            }
 
-            //if ((aBillCd.Length > 0))
-            //{
-            //    SoapStr = (SoapStr + ("<!--Optional:--><billingCode>" + (aBillCd + "</billingCode>")));
-            //}
-            //else
-            //{
-            //    SoapStr += "<!--Optional:--><billingCode>?</billingCode>";
-            //}
+            // Clear out any units from prior call
+            if (iUnitsTbl.Rows.Count > 0)
+            {
+                iUnitsTbl.Clear();
+            }
 
-            //SoapStr += "</request>";
-            //SoapStr += "</api:getPropertyAndUnitDetails>";
-            //SoapStr += "</soapenv:Body>";
-            //SoapStr += "</soapenv:Envelope>";
+            try
+            {
+                var xmlDoc = new XmlDocument();
+                var soapMessage = NewSoapMessage();
 
-            //try
-            //{
-            //    SoapByte = System.Text.Encoding.UTF8.GetBytes(SoapStr);
-            //    Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.GetPropertyAndUnitDetails/RTSClien" +
-            //        "tPortalAPI_API_WSD_GetPropertyAndUnitDetails_Port");
-            //    Request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_GetPropertyAndUnitDetails_Binder_getPropertyAndUnitDetails");
-            //    Request.ContentType = "text/xml; charset=utf-8";
-            //    Request.ContentLength = SoapByte.Length;
-            //    Request.Method = "POST";
-            //    DataStream = Request.GetRequestStream();
-            //    DataStream.Write(SoapByte, 0, SoapByte.Length);
-            //    DataStream.Close();
-            //    Response = Request.GetResponse();
-            //    DataStream = Response.GetResponseStream();
-            //    Reader = new StreamReader(DataStream);
-            //    string SD2Request = Reader.ReadToEnd();
-            //    DataStream.Close();
-            //    Reader.Close();
-            //    Response.Close();
+                soapMessage.Append("<soapenv:Header/>");
+                soapMessage.Append("<soapenv:Body>");
+                soapMessage.Append("<api:getPropertyAndUnitDetails>");
+                soapMessage.AppendFormat("<propertyId>{0}</propertyId>", propertyID);
+                soapMessage.Append("<request>");
+                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : userCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : billCode.EscapeXMLChars());
+                soapMessage.Append("</request>");
+                soapMessage.Append("</api:getPropertyAndUnitDetails>");
+                soapMessage.Append("</soapenv:Body>");
+                soapMessage.Append("</soapenv:Envelope>");
 
-            //    // Set session variables from response
-            //    XmlDocument doc = new XmlDocument();
-            //    doc.LoadXml(SD2Request);
+                var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
 
-            //    foreach (XmlElement detail in doc.DocumentElement.GetElementsByTagName("propertyAndUnitsRes"))
-            //    {
-            //        iStatus = "SUCCESS";
-            //        iBillAddr = "";
-            //        iAgentName = "";
-            //        iPropAddr = "";
+                request = WebRequest.Create(uriPrefix + "GetPropertyAndUnitDetails/RTSClientPortalAPI_API_WSD_GetPropertyAndUnitDetails_Port");
+                request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_GetPropertyAndUnitDetails_Binder_getPropertyAndUnitDetails");
+                request.ContentType = "text/xml; charset=utf-8";
+                request.ContentLength = soapByte.Length;
+                request.Method = "POST";
 
-            //        if (detail.SelectSingleNode("address").SelectSingleNode("mainStreetAddress") != null)
-            //        {
-            //            iPropAddr = detail.SelectSingleNode("address").SelectSingleNode("mainStreetAddress").InnerText;
-            //        }
+                requestStream = request.GetRequestStream();
+                requestStream.Write(soapByte, 0, soapByte.Length);
 
-            //        if (detail.SelectSingleNode("billingDetails").SelectSingleNode("billingAddress").SelectSingleNode("mainStreetAddress") != null)
-            //        {
-            //            iBillAddr = detail.SelectSingleNode("billingDetails").SelectSingleNode("billingAddress").SelectSingleNode("mainStreetAddress").InnerText;
-            //        }
+                response = request.GetResponse();
+                responseStream = response.GetResponseStream();
+                reader = new StreamReader(responseStream);
 
-            //        if (detail.SelectSingleNode("agentDetails") != null)
-            //        {
-            //            iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName").SelectSingleNode("nameLastFirstDisplay").InnerText;
-            //            iAgentName = EscapeXMLChars(iAgentName);
-            //        }
+                xmlDoc.LoadXml(reader.ReadToEnd());
 
-            //        tUnitInfo = "";
-            //        foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
-            //        {
-            //            tServices = "";
-            //            tOccBy = "";
-            //            DataRow NR = iUnitsTbl.NewRow();
-            //            NR.Item["chkUnit"] = false;
-            //            NR.Item["chkTenants"] = false;
-            //            NR.Item["UnitID"] = detailUnits.SelectSingleNode("unitId").InnerText;
-            //            NR.Item["UnitNo"] = detailUnits.SelectSingleNode("unitNumber").InnerText;
-            //            NR.Item["UnitStatID"] = detailUnits.SelectSingleNode("unitStatusId").InnerText;
-            //            NR.Item["UnitStatCode"] = detailUnits.SelectSingleNode("unitStatusCode").InnerText;
-            //            NR.Item["CPUnitStatCode"] = detailUnits.SelectSingleNode("clientPortalUnitStatusCode").InnerText;
-            //            if ((detailUnits.SelectSingleNode("rentCeiling").InnerText.Length > 0))
-            //            {
-            //                NR.Item["RentCeiling"] = detailUnits.SelectSingleNode("rentCeiling").InnerText;
-            //            }
-            //            else
-            //            {
-            //                NR.Item["RentCeiling"] = ((Decimal)(0));
-            //            }
+                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("propertyAndUnitsRes"))
+                {
+                    iStatus = "SUCCESS";
+                    iBillAddr = "";
+                    iAgentName = "";
+                    iPropAddr = "";
 
-            //            if (detailUnits.SelectSingleNode("unitStatusAsOfDate") != null)
-            //            {
-            //                if (!IsDBNull(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText))
-            //                {
-            //                    NR.Item["StartDt"] = DateTime.Parse(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText);
-            //                }
-            //            }
+                    if (detail.SelectSingleNode("address").SelectSingleNode("mainStreetAddress") != null)
+                    {
+                        iPropAddr = detail.SelectSingleNode("address").SelectSingleNode("mainStreetAddress").InnerText;
+                    }
 
-            //            foreach (XmlElement detailService in detailUnits.GetElementsByTagName("housingServices"))
-            //            {
-            //                if ((tServices.Length > 0))
-            //                {
-            //                    tServices = (tServices + (", " + detailService.SelectSingleNode("serviceName").InnerText));
-            //                }
-            //                else
-            //                {
-            //                    tServices = detailService.SelectSingleNode("serviceName").InnerText;
-            //                }
-            //            }
+                    if (detail.SelectSingleNode("billingDetails").SelectSingleNode("billingAddress").SelectSingleNode("mainStreetAddress") != null)
+                    {
+                        iBillAddr = detail.SelectSingleNode("billingDetails").SelectSingleNode("billingAddress").SelectSingleNode("mainStreetAddress").InnerText;
+                    }
 
-            //            NR.Item["HServices"] = tServices;
-            //            switch (NR.Item["UnitStatCode"].ToString.ToUpper)
-            //            {
-            //                case "OOCC":
-            //                    NR.Item["CPUnitStatDisp"] = "Owner-Occupied";
-            //                    break;
-            //                case "SEC8":
-            //                    NR.Item["CPUnitStatDisp"] = "Section 8";
-            //                    break;
-            //                case "RENTED":
-            //                    NR.Item["CPUnitStatDisp"] = "Rented or Available for Rent";
-            //                    break;
-            //                case "FREE":
-            //                    NR.Item["CPUnitStatDisp"] = "Rent-Free";
-            //                    break;
-            //                case "NAR":
-            //                    NR.Item["CPUnitStatDisp"] = "Not Available for Rent";
-            //                    break;
-            //                case "SPLUS":
-            //                    NR.Item["CPUnitStatDisp"] = "Shelter Plus";
-            //                    break;
-            //                case "DUPLEX":
-            //                    NR.Item["CPUnitStatDisp"] = "Owner-occupied Duplex";
-            //                    break;
-            //                case "COMM":
-            //                    NR.Item["CPUnitStatDisp"] = "Commercial";
-            //                    break;
-            //                case "SHARED":
-            //                    NR.Item["CPUnitStatDisp"] = "Owner Shares Kit/Bath";
-            //                    break;
-            //                case "MISC":
-            //                    NR.Item["CPUnitStatDisp"] = "Miscellaneous Exempt";
-            //                    break;
-            //            }
+                    if (detail.SelectSingleNode("agentDetails") != null)
+                    {
+                        iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName").SelectSingleNode("nameLastFirstDisplay").InnerText;
+                        iAgentName = iAgentName.EscapeXMLChars();
+                    }
 
-            //            iUnitsTbl.Rows.Add(NR);
-            //            // If a unit was passed in fill out information if this is the correct unit
-            //            if (((aUnitID.Length > 0) && (aUnitID == NR.Item["UnitID"].ToString)))
-            //            {
-            //                tExempt = "";
-            //                tStartDt = "";
-            //                if (!string.IsNullOrEmpty(NR.Item("StartDt")) && NR.Item("StartDt").ToString.Length > 0) {
-            //                    tStartDt = DateTime.Parse(NR.Item["StartDt"].ToString).ToString("MM/dd/yyyy");
-            //                }
+                    tUnitInfo = "";
+                    foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
+                    {
+                        Decimal rentCeiling = 0;
 
-            //                foreach (XmlElement detailOccBy in detailUnits.GetElementsByTagName("occupants"))
-            //                {
-            //                    if ((tOccBy.Length > 0))
-            //                    {
-            //                        tOccBy = (tOccBy + (", " + detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText));
-            //                    }
-            //                    else
-            //                    {
-            //                        tOccBy = detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText;
-            //                    }
+                        tServices = "";
+                        tOccBy = "";
+                        DataRow NR = iUnitsTbl.NewRow();
+                        NR.SetField<bool>("chkUnit", false);
+                        NR.SetField<bool>("chkTenants", false);
 
-            //                }
+                        NR.SetField<string>("UnitID", detailUnits.SelectSingleNode("unitId").InnerText);
+                        NR.SetField<string>("UnitNo", detailUnits.SelectSingleNode("unitNumber").InnerText);
+                        NR.SetField<string>("UnitStatID", detailUnits.SelectSingleNode("unitStatusId").InnerText);
+                        NR.SetField<string>("UnitStatCode", detailUnits.SelectSingleNode("unitStatusCode").InnerText);
+                        NR.SetField<string>("CPUnitStatCode", detailUnits.SelectSingleNode("clientPortalUnitStatusCode").InnerText);
 
-            //                tOccBy = UnescapeXMLChars(tOccBy);
-            //                switch (NR.Item["UnitStatCode"].ToString.ToUpper)
-            //                {
-            //                    case "OOCC":
-            //                        tExempt = "Owner-Occupied";
-            //                        break;
-            //                    case "SEC8":
-            //                        tExempt = "Section 8";
-            //                        break;
-            //                    case "RENTED":
-            //                        tExempt = "Rented or Available for Rent";
-            //                        break;
-            //                    case "FREE":
-            //                        tExempt = "Rent-Free";
-            //                        break;
-            //                    case "NAR":
-            //                        tExempt = "Not Available for Rent";
-            //                        break;
-            //                    case "SPLUS":
-            //                        tExempt = "Shelter Plus";
-            //                        break;
-            //                    case "DUPLEX":
-            //                        tExempt = "Owner-occupied Duplex";
-            //                        break;
-            //                    case "COMM":
-            //                        tExempt = "Commercial";
-            //                        break;
-            //                    case "SHARED":
-            //                        tExempt = "Owner Shares Kit/Bath";
-            //                        break;
-            //                    case "MISC":
-            //                        tExempt = "Miscellaneous Exempt";
-            //                        break;
-            //                }
-            //                tUnitInfo = ("CPStatus="
-            //                            + (NR.Item["CPUnitStatCode"].ToString + ("::ExReason="
-            //                            + (tExempt + ("::StartDt="
-            //                            + (tStartDt + ("::OccBy="
-            //                            + (tOccBy + ("::UnitID=" + NR.Item["UnitID"].ToString)))))))));
-            //            }
+                        if ((detailUnits.SelectSingleNode("rentCeiling").InnerText.Length > 0))
+                        {
+                            Decimal.TryParse(detailUnits.SelectSingleNode("rentCeiling").InnerText, out rentCeiling);
+                        }
 
-            //        }
+                        NR.SetField<Decimal>("RentCeiling", rentCeiling);
 
-            //    }
+                        if (detailUnits.SelectSingleNode("unitStatusAsOfDate") != null)
+                        {
+                            if (!string.IsNullOrEmpty(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText))
+                            {
+                                NR.SetField<DateTime>("StartDt", DateTime.Parse(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText));
+                            }
+                        }
 
-            //    if ((iStatus.ToUpper != "SUCCESS"))
-            //    {
-            //        iStatus = "FAILURE";
-            //    }
+                        foreach (XmlElement detailService in detailUnits.GetElementsByTagName("housingServices"))
+                        {
+                            if (tServices.Length > 0)
+                            {
+                                tServices += (", " + detailService.SelectSingleNode("serviceName").InnerText);
+                            }
+                            else
+                            {
+                                tServices = detailService.SelectSingleNode("serviceName").InnerText;
+                            }
+                        }
 
-            //    if ((tUnitInfo.Length > 0))
-            //    {
-            //        return tUnitInfo;
-            //    }
+                        NR.SetField<string>("HServices", tServices);
 
-            //    return iStatus;
-            //}
-            //catch (WebException ex)
-            //{
-            //    iErrMsg = ex.ToString;
-            //    // MsgBox(ex.ToString())
-            //    return "FAILURE";
-            //}
+                        switch (NR.Field<string>("UnitStatCode").ToString().ToUpper())
+                        {
+                            case "OOCC":
+                                NR.SetField<string>("CPUnitStatDisp", "Owner-Occupied");
+                                break;
+                            case "SEC8":
+                                NR.SetField<string>("CPUnitStatDisp", "Section 8");
+                                break;
+                            case "RENTED":
+                                NR.SetField<string>("CPUnitStatDisp", "Rented or Available for Rent");
+                                break;
+                            case "FREE":
+                                NR.SetField<string>("CPUnitStatDisp", "Rent-Free");
+                                break;
+                            case "NAR":
+                                NR.SetField<string>("CPUnitStatDisp", "Not Available for Rent");
+                                break;
+                            case "SPLUS":
+                                NR.SetField<string>("CPUnitStatDisp", "Shelter Plus");
+                                break;
+                            case "DUPLEX":
+                                NR.SetField<string>("CPUnitStatDisp", "Owner-occupied Duplex");
+                                break;
+                            case "COMM":
+                                NR.SetField<string>("CPUnitStatDisp", "Commercial");
+                                break;
+                            case "SHARED":
+                                NR.SetField<string>("CPUnitStatDisp", "Owner Shares Kit/Bath");
+                                break;
+                            case "MISC":
+                                NR.SetField<string>("CPUnitStatDisp", "Miscellaneous Exempt");
+                                break;
+                        }
 
+                        iUnitsTbl.Rows.Add(NR);
+
+                        // If a unit was passed in fill out information if this is the correct unit
+                        if (unitID.Length > 0 && unitID == NR.Field<string>("UnitID"))
+                        {
+                            tExempt = "";
+                            tStartDt = "";
+
+                            if (!string.IsNullOrEmpty(NR.Field<DateTime>("StartDt").ToString()) && NR.Field<DateTime>("StartDt").ToString().Length > 0)
+                            {
+                                tStartDt = DateTime.Parse(NR.Field<DateTime>("StartDt").ToString()).ToString("MM/dd/yyyy");
+                            }
+
+                            foreach (XmlElement detailOccBy in detailUnits.GetElementsByTagName("occupants"))
+                            {
+                                if ((tOccBy.Length > 0))
+                                {
+                                    tOccBy += (", " + detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText);
+                                }
+                                else
+                                {
+                                    tOccBy = detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText;
+                                }
+
+                            }
+
+                            tOccBy = tOccBy.UnescapeXMLChars();
+
+                            switch (NR.Field<string>("UnitStatCode").ToUpper())
+                            {
+                                case "OOCC":
+                                    tExempt = "Owner-Occupied";
+                                    break;
+                                case "SEC8":
+                                    tExempt = "Section 8";
+                                    break;
+                                case "RENTED":
+                                    tExempt = "Rented or Available for Rent";
+                                    break;
+                                case "FREE":
+                                    tExempt = "Rent-Free";
+                                    break;
+                                case "NAR":
+                                    tExempt = "Not Available for Rent";
+                                    break;
+                                case "SPLUS":
+                                    tExempt = "Shelter Plus";
+                                    break;
+                                case "DUPLEX":
+                                    tExempt = "Owner-occupied Duplex";
+                                    break;
+                                case "COMM":
+                                    tExempt = "Commercial";
+                                    break;
+                                case "SHARED":
+                                    tExempt = "Owner Shares Kit/Bath";
+                                    break;
+                                case "MISC":
+                                    tExempt = "Miscellaneous Exempt";
+                                    break;
+                            }
+
+                            var fields = new Dictionary<string, string>();
+
+                            fields.Add("CPStatus", NR.Field<string>("CPUnitStatCode"));
+                            fields.Add("ExReason", tExempt);
+                            fields.Add("StartDt", tStartDt);
+                            fields.Add("OccBy", tOccBy);
+                            fields.Add("UnitID", NR.Field<string>("UnitID"));
+
+                            tUnitInfo = fields.ToDelimitedString();
+                            //tUnitInfo = ("CPStatus="
+                            //            + (NR.Item["CPUnitStatCode"].ToString + ("::ExReason="
+                            //            + (tExempt + ("::StartDt="
+                            //            + (tStartDt + ("::OccBy="
+                            //            + (tOccBy + ("::UnitID=" + NR.Item["UnitID"].ToString)))))))));
+                        }
+                    }
+                }
+
+                if (iStatus.ToUpper() != "SUCCESS")
+                {
+                    iStatus = "FAILURE";
+                }
+
+                if (tUnitInfo.Length > 0)
+                {
+                    result = tUnitInfo;
+                }
+            }
+            catch (Exception ex)
+            {
+                iErrMsg = ex.ToString();
+            }
+            finally
+            {
+                if (reader != null)
+                {
+                    reader.Close();
+                    reader.Dispose();
+                }
+                if (requestStream != null)
+                {
+                    requestStream.Close();
+                    requestStream.Dispose();
+                }
+                if (responseStream != null)
+                {
+                    responseStream.Close();
+                    responseStream.Dispose();
+                }
+                if (response != null)
+                {
+                    response.Close();
+                    response.Dispose();
+                }
+            }
+
+            return result;
         }
 
         public static string GetPropertyTenants_Soap(string aPropID, string aID, string aBillCd, string aUnitID)
@@ -1877,8 +1967,8 @@ namespace BRBPortal_CSharp
             soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userProfile.UserCode.EscapeXMLChars());
             soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", userProfile.BillingCode.Length == 0 ? "?" : userProfile.BillingCode.EscapeXMLChars());
             soapMessage.AppendFormat("<securityQuestion1>{0}</securityQuestion1>", userProfile.Question1.EscapeXMLChars());
-            soapMessage.AppendFormat("<securityQuestion2>{0}</securityQuestion1>", userProfile.Question2.EscapeXMLChars());
             soapMessage.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", userProfile.Answer1.EscapeXMLChars());
+            soapMessage.AppendFormat("<securityQuestion2>{0}</securityQuestion2>", userProfile.Question2.EscapeXMLChars());
             soapMessage.AppendFormat("<securityAnswer2>{0}</securityAnswer2>", userProfile.Answer2.EscapeXMLChars());
             soapMessage.Append("</resetUserPwdReq>");
             soapMessage.Append("</api:validateResetUserPassword>");
@@ -1915,7 +2005,7 @@ namespace BRBPortal_CSharp
 
                 }
 
-                return iStatus.ToUpper() == "SUCCESS";
+                return iStatus.ToUpper().Equals("SUCCESS");
             }
             catch (WebException ex)
             {

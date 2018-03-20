@@ -77,6 +77,11 @@ namespace BRBPortal_CSharp
         {
             return fields.ContainsKey(key) ? fields[key] : defaultValue;
         }
+
+        public static string ToDelimitedString(this Dictionary<string, string> fields, string delimiter = "::")
+        {
+            return string.Join(delimiter, fields);
+        }
     }
     #endregion
 
