@@ -31,6 +31,15 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.Literal MainAddress;
         
         /// <summary>
+        /// AgentSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder AgentSection;
+        
+        /// <summary>
         /// MgrName control.
         /// </summary>
         /// <remarks>
@@ -38,15 +47,6 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal MgrName;
-        
-        /// <summary>
-        /// btnRemAgnt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRemAgnt;
         
         /// <summary>
         /// BillAddr control.

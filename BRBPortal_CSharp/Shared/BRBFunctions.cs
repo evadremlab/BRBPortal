@@ -1453,13 +1453,13 @@ namespace BRBPortal_CSharp
         /// <summary>
         /// DONE
         /// </summary>
-        public static string GetPropertyTenants(string propertyID, string userCode, string billCode, string unitID)
+        public static Dictionary<string, string> GetPropertyTenants(string propertyID, string userCode, string billCode, string unitID)
         {
             iErrMsg = "";
 
             if (USE_MOCK_SERVICES)
             {
-                return ""; // TODO: get mock data
+                return new Dictionary<string, string>(); // TODO: get mock data
             }
             else
             {
@@ -1470,16 +1470,15 @@ namespace BRBPortal_CSharp
         /// <summary>
         /// DONE
         /// </summary>
-        public static string GetPropertyTenants_Soap(string propertyID, string userCode, string billCode, string unitID)
+        public static Dictionary<string, string> GetPropertyTenants_Soap(string propertyID, string userCode, string billCode, string unitID)
         {
             WebRequest request = null;
             WebResponse response = null;
             Stream requestStream = null;
             Stream responseStream = null;
             StreamReader reader = null;
-            var result = "FAILURE";
+            var fields = new Dictionary<string, string>();
 
-            iStatus = "";
             var tUnitInfo = "";
 
             if (iTenantsTbl.Columns.Count < 1)
@@ -1534,7 +1533,6 @@ namespace BRBPortal_CSharp
 
                 foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("propertyAndUnitsRes"))
                 {
-                    iStatus = "SUCCESS";
                     iBillAddr = "";
                     iAgentName = "";
                     iPropAddr = "";
@@ -1571,18 +1569,21 @@ namespace BRBPortal_CSharp
                         iBillEmail = detail.SelectSingleNode("billingDetails").SelectSingleNode("contact").SelectSingleNode("emailAddress").InnerText;
                     }
 
-                    if (detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName") != null)
+                    if (detail.SelectSingleNode("agentDetails") != null)
                     {
-                        iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName").SelectSingleNode("nameLastFirstDisplay").InnerText;
-                        iAgentName = iAgentName.UnescapeXMLChars();
-                    }
-
-                    if (iAgentName.Length < 1)
-                    {
-                        if (detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName") != null)
+                        if (detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName") != null)
                         {
-                            iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName").InnerText;
+                            iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName").SelectSingleNode("nameLastFirstDisplay").InnerText;
                             iAgentName = iAgentName.UnescapeXMLChars();
+                        }
+
+                        if (iAgentName.Length < 1)
+                        {
+                            if (detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName") != null)
+                            {
+                                iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName").InnerText;
+                                iAgentName = iAgentName.UnescapeXMLChars();
+                            }
                         }
                     }
 
@@ -1598,7 +1599,6 @@ namespace BRBPortal_CSharp
                                 {
                                     tStartDt = DateTime.Parse(detailUnits.SelectSingleNode("tenancyStartDate").InnerText);
                                 }
-
                             }
 
                             foreach (XmlElement detailService in detailUnits.GetElementsByTagName("housingServices"))
@@ -1611,7 +1611,6 @@ namespace BRBPortal_CSharp
                                 {
                                     tServices = detailService.SelectSingleNode("serviceName").InnerText;
                                 }
-
                             }
 
                             TenCnt = 0;
@@ -1664,8 +1663,6 @@ namespace BRBPortal_CSharp
                                 iTenantsTbl.Rows.Add(row);
                             }
 
-                            var fields = new Dictionary<string, string>();
-
                             fields.Add("CPStatus", detailUnits.SelectSingleNode("clientPortalUnitStatusCode").InnerText);
                             fields.Add("HServices", tServices);
                             fields.Add("StartDt", tStartDt.ToString());
@@ -1679,22 +1676,8 @@ namespace BRBPortal_CSharp
                             fields.Add("AgenntName", iAgentName);
                             fields.Add("UnitID", detailUnits.SelectSingleNode("unitId").InnerText);
                             fields.Add("OwnerEmail", iBillEmail);
-
-                            tUnitInfo = fields.ToDelimitedString();
                         }
-
                     }
-
-                }
-
-                if (iStatus.ToUpper() != "SUCCESS")
-                {
-                    iStatus = "FAILURE";
-                }
-
-                if (tUnitInfo.Length > 0)
-                {
-                    result = tUnitInfo;
                 }
             }
             catch (Exception ex)
@@ -1725,7 +1708,7 @@ namespace BRBPortal_CSharp
                 }
             }
 
-            return iStatus;
+            return fields;
         }
 
         /// <summary>
@@ -1868,7 +1851,7 @@ namespace BRBPortal_CSharp
         }
 
         /// <summary>
-        /// DONE, need to update Properties/UpdateUnit.aspx.cs
+        /// DONE, need to update MyProperties/UpdateUnit.aspx.cs
         /// </summary>
         public static bool SaveUnit_Soap(string soapString)
         {
@@ -2006,7 +1989,7 @@ namespace BRBPortal_CSharp
         }
 
         /// <summary>
-        /// DONE, need to update Properties/UpdateTenancy.aspx.cs
+        /// DONE, need to update MyProperties/UpdateTenancy.aspx.cs
         /// </summary>
         public static bool SaveTenant_Soap(string soapString)
         {

@@ -8,28 +8,19 @@
     <div class="form-horizontal">
         <section id="propertiesForm">
             <div class="form-horizontal">
+                <h4><asp:Literal ID="MainAddress" runat="server" ></asp:Literal></h4>
                 <hr />
-                <div class="form-group">
-                    <h4>
-                        <asp:Literal ID="MainAddress" runat="server" ></asp:Literal>
-                    </h4>
-                </div>
-                <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-2 control-label">Manager/Agent Name:</asp:Label>
-                    <div class="col-md-10">
+                <asp:PlaceHolder ID="AgentSection" runat="server">
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="MgrName" CssClass="control-label">Manager/Agent Name:</asp:Label>
                         <asp:Literal ID="MgrName" runat="server"></asp:Literal>
-                        <asp:Button runat="server" id="btnRemAgnt" OnClick="RemAgent_Click" Text="Remove Agent" CssClass="btn btn-default" ToolTip="Remove this agent." />
+                        <%--<asp:Button runat="server" id="btnRemAgnt" OnClick="RemAgent_Click" Text="Remove Agent" CssClass="btn btn-default" ToolTip="Remove this agent." />--%>
                     </div>
-                </div>
+                </asp:PlaceHolder>
                 <div class="form-group">
-                    <asp:Label runat="server" CssClass="col-md-2 control-label">Billing Address:</asp:Label>
-                    <div class="col-md-10" style="padding-top:0.7rem;">
-                        <asp:Literal ID="BillAddr" runat="server" ></asp:Literal>
-                    </div>
+                    <asp:Label runat="server" AssociatedControlID="BillAddr" CssClass="control-label">Billing Address:</asp:Label>
+                    <asp:Literal ID="BillAddr" runat="server" ></asp:Literal>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Select the update option for a unit:</label>
             </div>
             <div class="form-group">
                 <asp:GridView ID="gvUnits" runat="server" AutoGenerateColumns="False" CellPadding="4" 
@@ -48,27 +39,25 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="UnitID" HeaderText="UnitID (NV)" ReadOnly="True" Visible="true" />
                         <asp:BoundField HeaderText="Unit No" DataField="UnitNo" ReadOnly="True">
-                        <ItemStyle Width="90px" />
                         </asp:BoundField>
-                        <asp:BoundField HeaderText="UnitStatID (NV)" DataField="UnitStatID" SortExpression="UnitStatID" Visible="False">
-                            </asp:BoundField>
+                        <asp:BoundField HeaderText="UnitStatID (NV)" DataField="UnitStatID" SortExpression="UnitStatID" Visible="False"/>
                         <asp:BoundField DataField="CPUnitStatCode" HeaderText="Unit Status (NV)" ReadOnly="True" SortExpression="UnitStatCode" Visible="False">
-                        <ItemStyle HorizontalAlign="Left" Width="100px" Wrap="False" />
+                        <ItemStyle HorizontalAlign="Left" Wrap="False" />
                         </asp:BoundField>
                         <asp:BoundField DataField="CPUnitStatDisp" HeaderText="Unit Status" ReadOnly="True" SortExpression="UnitStatCode">
-                        <ItemStyle HorizontalAlign="Left" Width="250px" Wrap="False" />
+                        <ItemStyle HorizontalAlign="Left" Wrap="False" />
                         </asp:BoundField>
                         <asp:BoundField HeaderText="Rent Ceiling" DataField="RentCeiling" SortExpression="RentCeiling" DataFormatString="{0:c}" ReadOnly="True">
-                            <HeaderStyle HorizontalAlign="Right" Wrap="False" />
-                            <ItemStyle HorizontalAlign="Right" Width="100px" Wrap="False" />
+                            <HeaderStyle CssClass="text-right" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Right" Wrap="False" />
                             </asp:BoundField>
                         <asp:BoundField HeaderText="Tenancy Start Date" DataField="StartDt" SortExpression="StartDt" DataFormatString="{0:MM/dd/yyyy}" ReadOnly="True">
-                            <HeaderStyle HorizontalAlign="Right" Wrap="False" />
-                            <ItemStyle HorizontalAlign="Center" Width="80px" Wrap="False" />
+                            <HeaderStyle CssClass="text-right" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Right" Wrap="False" />
                             </asp:BoundField>
                         <asp:BoundField HeaderText="Housing Services" DataField="HServices" SortExpression="HServices" ReadOnly="True">
-                            <HeaderStyle HorizontalAlign="Right" Wrap="False" />
-                            <ItemStyle HorizontalAlign="Left" Width="250px" Wrap="False" />
+                            <HeaderStyle CssClass="text-right" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Left" Wrap="False" />
                             </asp:BoundField>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />

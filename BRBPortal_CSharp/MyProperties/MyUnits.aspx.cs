@@ -9,7 +9,6 @@ namespace BRBPortal_CSharp.MyProperties
 {
     public partial class MyUnits : System.Web.UI.Page
     {
-        private string iPropertyAddress = "";
         private string iPropertyNo = "";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -55,6 +54,8 @@ namespace BRBPortal_CSharp.MyProperties
                     MainAddress.Text = BRBFunctions_CSharp.iPropAddr;
                     BillAddr.Text = BRBFunctions_CSharp.iBillAddr;
                     MgrName.Text = BRBFunctions_CSharp.iAgentName;
+
+                    AgentSection.Visible = !string.IsNullOrEmpty(MgrName.Text);
 
                     Session["UnitsTbl"] = BRBFunctions_CSharp.iUnitsTbl;
                 }

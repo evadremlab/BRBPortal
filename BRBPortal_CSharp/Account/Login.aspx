@@ -6,7 +6,6 @@
     <h2><%: Title %></h2>
     <section id="loginForm">
         <div class="form-horizontal">
-            <h4>To your account</h4>
             <hr />
             <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                 <div class="alert alert-danger" role="alert">

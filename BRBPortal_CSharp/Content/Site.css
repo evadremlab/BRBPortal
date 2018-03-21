@@ -45,6 +45,10 @@ span.text-danger {
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
+.form-horizontal hr {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
 footer {
     background-color: #660000;
     color: #fff;

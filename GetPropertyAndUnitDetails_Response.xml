@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ser-root:getPropertyAndUnitDetailsResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <propertyAndUnitsRes>
+        <propertyId>1039</propertyId>
+        <address>
+          <mainStreetAddress>1936 BERRYMAN ST</mainStreetAddress>
+        </address>
+        <ownerContactName>
+          <first>MILLER MERRITT</first>
+          <last>FAMILY TRUST-SHARYNE MERRITT, TRUSTEE</last>
+          <suffix xsi:nil="true" />
+          <nameLastFirstDisplay>FAMILY TRUST-SHARYNE MERRITT, TRUSTEE, MILLER MERR</nameLastFirstDisplay>
+        </ownerContactName>
+        <billingDetails>
+          <contact>
+            <code>FAMMIL1</code>
+            <name>
+              <first>MILLER MERRITT</first>
+              <last>FAMILY TRUST-SHARYNE MERRITT, TRUSTEE</last>
+              <suffix xsi:nil="true" />
+              <nameLastFirstDisplay>FAMILY TRUST-SHARYNE MERRITT, TRUSTEE, MILLER MERR</nameLastFirstDisplay>
+            </name>
+            <phoneNumber>805-266-8722</phoneNumber>
+            <emailAddress>PROFESSORMERRIT@GMAIL.COM</emailAddress>
+          </contact>
+          <billingAddress>
+            <mainStreetAddress>6555 CASITAS PASS RD, CARPINTERIA, CA, CARPINTERIA, 93013</mainStreetAddress>
+          </billingAddress>
+          <balanceAmounts xsi:nil="true" />
+        </billingDetails>
+        <units>
+          <unitId>3987</unitId>
+          <unitNumber>C</unitNumber>
+          <unitStreetAddress>1936 BERRYMAN ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
+          <unitStatusId>16</unitStatusId>
+          <unitStatusCode>NAR</unitStatusCode>
+          <rentCeiling>3500.00</rentCeiling>
+          <unitStatusAsOfDate>2018-03-01</unitStatusAsOfDate>
+          <occupancy xsi:nil="true" />
+        </units>
+        <units>
+          <unitId>3988</unitId>
+          <unitNumber>D</unitNumber>
+          <unitStreetAddress>1936 BERRYMAN ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
+          <unitStatusId>1</unitStatusId>
+          <unitStatusCode>RENTED</unitStatusCode>
+          <rentCeiling>1562.12</rentCeiling>
+          <tenancyStartDate>2015-02-01</tenancyStartDate>
+          <unitStatusAsOfDate>2014-10-05</unitStatusAsOfDate>
+          <occupancy>
+            <initialRent xsi:nil="true" />
+            <noOfOccupants>1</noOfOccupants>
+            <occupancyId>128528</occupancyId>
+            <dateTenancyStarted>2015-02-01</dateTenancyStarted>
+            <datePriorTenancyEnded>2015-01-31</datePriorTenancyEnded>
+            <reasonPriorTenancyEnded></reasonPriorTenancyEnded>
+            <smokingProhibitionInLeaseStatus>N/A</smokingProhibitionInLeaseStatus>
+            <smokingProhibitionEffectiveDate>2014-10-05</smokingProhibitionEffectiveDate>
+            <occupants>
+              <occupantId>193946</occupantId>
+              <name>
+                <lastName>DIGIONFOMRNICO</lastName>
+                <firstName>RYAN</firstName>
+                <nameLastFirstDisplay>DIGIONFOMRNICO, RYAN</nameLastFirstDisplay>
+              </name>
+              <contactInfo>
+                <phoneNumber></phoneNumber>
+                <emailAddress></emailAddress>
+              </contactInfo>
+            </occupants>
+          </occupancy>
+        </units>
+        <units>
+          <unitId>3989</unitId>
+          <unitNumber>A</unitNumber>
+          <unitStreetAddress>1936 BERRYMAN ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
+          <unitStatusId>23</unitStatusId>
+          <unitStatusCode>SPLUS</unitStatusCode>
+          <rentCeiling>200.00</rentCeiling>
+          <unitStatusAsOfDate>2018-03-08</unitStatusAsOfDate>
+          <occupancy xsi:nil="true" />
+        </units>
+        <units>
+          <unitId>3990</unitId>
+          <unitNumber>B</unitNumber>
+          <unitStreetAddress>1936 BERRYMAN ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
+          <unitStatusId>16</unitStatusId>
+          <unitStatusCode>NAR</unitStatusCode>
+          <rentCeiling>1450.00</rentCeiling>
+          <tenancyStartDate>2018-03-08</tenancyStartDate>
+          <unitStatusAsOfDate>2018-03-01</unitStatusAsOfDate>
+          <occupancy>
+            <initialRent>1450.00</initialRent>
+            <noOfOccupants>2</noOfOccupants>
+            <occupancyId>142558</occupancyId>
+            <dateTenancyStarted>2018-03-08</dateTenancyStarted>
+            <datePriorTenancyEnded>2012-06-30</datePriorTenancyEnded>
+            <reasonPriorTenancyEnded></reasonPriorTenancyEnded>
+            <smokingProhibitionInLeaseStatus>No</smokingProhibitionInLeaseStatus>
+            <smokingProhibitionEffectiveDate xsi:nil="true" />
+            <occupants>
+              <occupantId>221254</occupantId>
+              <name>
+                <lastName>smith</lastName>
+                <firstName>john </firstName>
+                <nameLastFirstDisplay>smith, john </nameLastFirstDisplay>
+              </name>
+              <contactInfo>
+                <phoneNumber>9878909878</phoneNumber>
+                <emailAddress>johnsmith@gmail.com</emailAddress>
+              </contactInfo>
+            </occupants>
+            <occupants>
+              <occupantId>221253</occupantId>
+              <name>
+                <lastName>Smith</lastName>
+                <firstName>susan </firstName>
+                <nameLastFirstDisplay>Smith, susan </nameLastFirstDisplay>
+              </name>
+              <contactInfo>
+                <phoneNumber>4099000987</phoneNumber>
+                <emailAddress>susan@gmail.com</emailAddress>
+              </contactInfo>
+            </occupants>
+          </occupancy>
+        </units>
+      </propertyAndUnitsRes>
+      <response>
+        <status>SUCCESS</status>
+        <errorMsg>Property Id matched for the User Id.</errorMsg>
+      </response>
+    </ser-root:getPropertyAndUnitDetailsResponse>
+  </soapenv:Body>
+</soapenv:Envelope>
