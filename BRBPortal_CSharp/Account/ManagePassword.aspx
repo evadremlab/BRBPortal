@@ -3,7 +3,7 @@
 <%--data-lpignore="true" tells LastPass not to show ellipsis on form fields--%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %>.</h2>
+    <h2><%: Title %></h2>
     <section id="managePasswordForm">
 
         <asp:HiddenField ID="hfDialogID" runat="server" />

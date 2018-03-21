@@ -73,20 +73,15 @@
             </div>
         </div>
 
-        <div class="container body-content">
+        <div class="container-fluid body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-
-            <footer>
-                <div class="col-md-10" style="width:320px;height:50px;border:1px solid #000;">
-                    <p style="font-size:8px; height: 48px; width: 320px; line-height:10px">Rent Stabilization Board 2125 Milvia Street, Berkeley, CA 94704<br />
-                        Questions or comments? Email:  <a href="mailto:Rent@cityofberkeley.info">Rent@cityofberkeley.info</a> Phone: (510) 981-7368<br />
-                        (510) 981-CITY/2489 or 311 from any landline in Berkeley<br />
-                        TTY: (510) 981-6903
-                    </p>
-                </div>
-            </footer>
         </div>
+
+        <footer class="footer navbar-fixed-bottom">
+            <div class="pull-left">&copy;&nbsp;Berkeley Rent Stabilization Board</div>
+            <div class="pull-right">(510) 981-CITY/2489 or 311 from any landline in Berkeley, TTY: (510) 981-6903</div>
+        </footer>
     </form>
 
     <!-- Modals -->

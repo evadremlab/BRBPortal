@@ -28,7 +28,9 @@ input[type="select"] {
 }
 
 /* Added by david.b.balmer@transsight.com */
-
+.container-fluid.body-content {
+    padding: 0 4rem;
+}
 .alert {
     font-weight: bold;
 }
@@ -39,6 +41,14 @@ input[type="select"] {
 .form-horizontal .form-group {
     margin-left: 0 !important;
     margin-right: 0 !important;
+}
+footer {
+    background-color: #660000;
+    color: #fff;
+    height: 3rem;
+    line-height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 /* Responsive: Portrait tablets and up */

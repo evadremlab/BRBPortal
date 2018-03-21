@@ -618,7 +618,7 @@ namespace BRBPortal_CSharp
         /// <summary>
         /// DONE
         /// </summary>
-        public static bool UpdateProfile(string soapString)
+        public static bool UpdateProfile(UserProfile profile)
         {
             if (USE_MOCK_SERVICES)
             {
@@ -626,14 +626,14 @@ namespace BRBPortal_CSharp
             }
             else
             {
-                return UpdateProfile_Soap(soapString);
+                return UpdateProfile_Soap(profile);
             }
         }
 
         /// <summary>
         /// DONE
         /// </summary>
-        public static bool UpdateProfile_Soap(string soapString)
+        public static bool UpdateProfile_Soap(UserProfile profile)
         {
             // SEE Test/Live Data/GetProfile_Response.txt for sample data
 
@@ -648,63 +648,37 @@ namespace BRBPortal_CSharp
 
             try
             {
-                var fields = Parse(soapString);
-
-                var userCode = fields.GetStringValue("UserID");
-                var billCode = fields.GetStringValue("BillingCode");
-                var fullName = fields.GetStringValue("FullName");
-                var firstName = fields.GetStringValue("FirstName");
-                var middleName = fields.GetStringValue("MidName");
-                var lastName = fields.GetStringValue("LastName");
-                var mailAddr = fields.GetStringValue("MailAddr");
-                var streetNum = fields.GetStringValue("StNum");
-                var streetName = fields.GetStringValue("StName");
-                var unit = fields.GetStringValue("Unit");
-                var fullAddress = fields.GetStringValue("FullAddr");
-                var city = fields.GetStringValue("City");
-                var state = fields.GetStringValue("State");
-                var zip = fields.GetStringValue("Zip");
-                var country = fields.GetStringValue("Country");
-                var email = fields.GetStringValue("Email");
-                var phone = fields.GetStringValue("Phone");
-                var answer1 = fields.GetStringValue("Answer1");
-                var answer2 = fields.GetStringValue("Answer2");
-                var question1 = fields.GetStringValue("Question1");
-                var question2 = fields.GetStringValue("Question2");
-                var suffix = fields.GetStringValue("Suffix");
-                var agentName = fields.GetStringValue("AgentName");
-
                 var soapMessage = NewSoapMessage();
                 soapMessage.Append("<soapenv:Header/>");
                 soapMessage.Append("<soapenv:Body>");
                 soapMessage.Append("<api:updateUserProfile>");
                 soapMessage.Append("<updateUserProfileReq>");
-                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "?" : userCode.EscapeXMLChars());
-                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "?" : billCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><userId>{0}</userId>", profile.UserCode.Length == 0 ? "" : profile.UserCode.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", profile.BillingCode.Length == 0 ? "" : profile.BillingCode.EscapeXMLChars());
                 soapMessage.Append("<name>");
-                soapMessage.AppendFormat("<first>{0}</first>", firstName.EscapeXMLChars());
-                soapMessage.AppendFormat("<!--Optional:--><middle>{0}</middle>", middleName.Length == 0 ? "?" : middleName.EscapeXMLChars());
-                soapMessage.AppendFormat("<last>{0}</last>", lastName.EscapeXMLChars());
-                soapMessage.AppendFormat("<suffix>{0}</suffix>", suffix);
+                soapMessage.AppendFormat("<first>{0}</first>", profile.FirstName.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><middle>{0}</middle>", profile.MiddleName.Length == 0 ? "" : profile.MiddleName.EscapeXMLChars());
+                soapMessage.AppendFormat("<last>{0}</last>", profile.LastName.EscapeXMLChars());
+                soapMessage.AppendFormat("<suffix>{0}</suffix>", profile.Suffix);
                 soapMessage.Append("<!--Optional:--><nameLastFirstDisplay>{0}</nameLastFirstDisplay>");
-                soapMessage.AppendFormat("<!--Optional:--><agencyName>{0}</agencyName>", agentName.Length == 0 ? "?" : agentName.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><agencyName>{0}</agencyName>", profile.AgencyName.Length == 0 ? "" : profile.AgencyName.EscapeXMLChars());
                 soapMessage.Append("</name>");
                 soapMessage.Append("<mailingAddress>");
-                soapMessage.AppendFormat("<!--Optional:--><streetNumber>{0}</streetNumber>", streetNum.Length == 0 ? "?" : streetNum);
-                soapMessage.AppendFormat("<!--Optional:--><streetName>{0}</streetName>", streetName.Length == 0 ? "?" : streetName.EscapeXMLChars());
-                soapMessage.AppendFormat("<!--Optional:--><unitNumber>{0}</unitNumber>", unit.Length == 0 ? "?" : unit);
-                soapMessage.AppendFormat("<fullAddress>{0}</fullAddress>", fullAddress.EscapeXMLChars());
-                soapMessage.AppendFormat("<!--Optional:--><city>{0}</city>", city);
-                soapMessage.AppendFormat("<!--Optional:--><state>{0}</state>", state);
-                soapMessage.AppendFormat("<!--Optional:--><zip>{0}</zip>", zip);
-                soapMessage.AppendFormat("<!--Optional:--><country>{0}</country>", country);
+                soapMessage.AppendFormat("<!--Optional:--><streetNumber>{0}</streetNumber>", profile.StreetNumber.Length == 0 ? "" : profile.StreetNumber);
+                soapMessage.AppendFormat("<!--Optional:--><streetName>{0}</streetName>", profile.StreetName.Length == 0 ? "" : profile.StreetName.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><unitNumber>{0}</unitNumber>", profile.Unit.Length == 0 ? "" : profile.Unit);
+                soapMessage.AppendFormat("<fullAddress>{0}</fullAddress>", profile.FullAddress.EscapeXMLChars());
+                soapMessage.AppendFormat("<!--Optional:--><city>{0}</city>", profile.City);
+                soapMessage.AppendFormat("<!--Optional:--><state>{0}</state>", profile.State);
+                soapMessage.AppendFormat("<!--Optional:--><zip>{0}</zip>", profile.Zip);
+                soapMessage.AppendFormat("<!--Optional:--><country>{0}</country>", profile.Country);
                 soapMessage.Append("</mailingAddress>");
-                soapMessage.AppendFormat("<emailAddress>{0}</emailAddress>", email);
-                soapMessage.AppendFormat("<phone>{0}</phone>", phone);
-                soapMessage.AppendFormat("<securityQuestion1>{0}</securityQuestion1>", question1);
-                soapMessage.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", answer1);
-                soapMessage.AppendFormat("<securityQuestion2>{0}</securityQuestion2>", question2);
-                soapMessage.AppendFormat("<securityAnswer2>{0}</securityAnswer2>", answer2);
+                soapMessage.AppendFormat("<emailAddress>{0}</emailAddress>", profile.Email);
+                soapMessage.AppendFormat("<phone>{0}</phone>", profile.PhoneNo);
+                soapMessage.AppendFormat("<securityQuestion1>{0}</securityQuestion1>", profile.Question1);
+                soapMessage.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", profile.Answer1);
+                soapMessage.AppendFormat("<securityQuestion2>{0}</securityQuestion2>", profile.Question2);
+                soapMessage.AppendFormat("<securityAnswer2>{0}</securityAnswer2>", profile.Answer2);
                 soapMessage.Append("</updateUserProfileReq>");
                 soapMessage.Append("<isActive>Y</isActive>");
                 soapMessage.Append("</api:updateUserProfile>");
@@ -2159,6 +2133,7 @@ namespace BRBPortal_CSharp
             Stream requestStream = null;
             Stream responseStream = null;
             StreamReader reader = null;
+            var canReset = false;
 
             var soapMessage = NewSoapMessage();
             soapMessage.Append("<soapenv:Header/>");
@@ -2206,13 +2181,11 @@ namespace BRBPortal_CSharp
 
                 }
 
-                return iStatus.ToUpper().Equals("SUCCESS");
+                canReset =  iStatus.ToUpper().Equals("SUCCESS");
             }
             catch (WebException ex)
             {
-                iErrMsg = ex.ToString();
-                return false;
-            }
+                iErrMsg = ex.ToString();            }
             finally
             {
                 if (reader != null)
@@ -2236,6 +2209,8 @@ namespace BRBPortal_CSharp
                     response.Dispose();
                 }
             }
+
+            return canReset;
         }
 
         public static bool CheckPswdRules(string aPwd, string aUserID)

@@ -13,15 +13,6 @@ namespace BRBPortal_CSharp.Account {
     public partial class ResetPassword {
         
         /// <summary>
-        /// ErrorMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ErrorMessage;
-        
-        /// <summary>
         /// hfDialogID control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace BRBPortal_CSharp.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfDialogID;
+        
+        /// <summary>
+        /// ErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ErrorMessage;
         
         /// <summary>
         /// ErrMessage control.
@@ -73,7 +73,7 @@ namespace BRBPortal_CSharp.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Quest1;
+        protected global::System.Web.UI.WebControls.TextBox Quest1;
         
         /// <summary>
         /// Answer1 control.
@@ -91,7 +91,7 @@ namespace BRBPortal_CSharp.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Quest2;
+        protected global::System.Web.UI.WebControls.TextBox Quest2;
         
         /// <summary>
         /// Answer2 control.

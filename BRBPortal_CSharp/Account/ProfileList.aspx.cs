@@ -44,7 +44,6 @@ namespace BRBPortal_CSharp.Account
                         PhoneNo1.Text = fields.GetStringValue("Phone");
                         Quest1.Text = fields.GetStringValue("Question1");
                         Quest2.Text = fields.GetStringValue("Question2");
-                        FullName1.Text = fields.GetStringValue("FullName");
                     }
                 }
             }

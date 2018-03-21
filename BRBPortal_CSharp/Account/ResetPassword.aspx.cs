@@ -20,44 +20,31 @@ namespace BRBPortal_CSharp.Account
                 FailureText.Text = "";
                 ErrMessage.Visible = false;
                 btnResetPWD.Enabled = false;
+                UserIDCode.Focus();
+            }
+        }
+
+        protected void UserIDCode_Or_BillingCode_TextChanged(object sender, EventArgs e)
+        {
+            var fields = BRBFunctions_CSharp.GetProfile(UserIDCode.Text, BillingCode.Text);
+
+            if (fields.Count > 0)
+            {
+                UserIDCode.Text = fields.GetStringValue("UserCode");
+                BillingCode.Text = fields.GetStringValue("BillingCode");
+                Quest1.Text = fields.GetStringValue("Question1");
+                Quest2.Text = fields.GetStringValue("Question2");
+                Answer1.Focus();
+            }
+            else
+            {
+                ShowDialogOK("Error: Invalid User ID or Billing Code.", "Reset Password");
+                UserIDCode.Focus();
+                return;
             }
         }
 
         protected void Reset_Click(object sender, EventArgs e)
-        {
-            validateReset();
-        }
-
-        //protected void SecurityAnswer_TextChanged(object sender, EventArgs e)
-        //{
-        //    if ((Answer1.Text.Length > 0 && Quest1.Text.Length > 0) || (Answer2.Text.Length > 0 && Quest2.Text.Length > 0))
-        //    {
-        //        btnResetPWD.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        btnResetPWD.Enabled = false;
-        //    }
-        //}
-
-        protected void UserIDCode_TextChanged(object sender, EventArgs e)
-        {
-            validateReset();
-        }
-
-        protected void BillingCode_TextChanged(object sender, EventArgs e)
-        {
-            validateReset();
-        }
-
-        private void ShowDialog(string message, string title)
-        {
-            var fn = string.Format("showOkModalOnPostback('{0}', '{1}';", message, title);
-
-            ClientScript.RegisterStartupScript(this.GetType(), "Javascript", fn, true);
-        }
-
-        private void validateReset()
         {
             var userProfile = new UserProfile
             {
@@ -71,14 +58,21 @@ namespace BRBPortal_CSharp.Account
 
             if (BRBFunctions_CSharp.ValidateReset(userProfile))
             {
-                ShowDialog("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
+                ShowDialogOK("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
 
                 Response.Redirect("~/Account/Login.aspx");
             }
             else
             {
-                ShowDialog("Security answer(s) did not match.", "Reset Password");
+                ShowDialogOK("Security answer(s) did not match.", "Reset Password");
             }
+        }
+
+        private void ShowDialogOK(string message, string title = "Status")
+        {
+            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
+
+            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
     }
 }

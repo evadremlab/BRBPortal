@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Account\Register.aspx" />
     <Content Include="Account\UNUSED\AddPhoneNumber.aspx" />
     <Content Include="Account\UNUSED\Confirm.aspx" />
     <Content Include="Account\UNUSED\Forgot.aspx" />
@@ -187,12 +188,14 @@
     <Content Include="Account\ProfileConfirm.aspx" />
     <Content Include="Account\ProfileEdit.aspx" />
     <Content Include="Account\ProfileList.aspx" />
-    <Content Include="Account\Register.aspx" />
     <Content Include="Account\UNUSED\RegisterExternalLogin.aspx" />
     <Content Include="Account\ResetPassword.aspx" />
     <Content Include="Account\UNUSED\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\UNUSED\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\UNUSED\VerifyPhoneNumber.aspx" />
+    <Content Include="Administration\CreateAccount.aspx" />
+    <Content Include="Administration\SearchAccounts.aspx" />
+    <Content Include="Administration\UpdateAccount.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -251,6 +254,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Home.aspx" />
+    <Content Include="MyProperties\Home.aspx" />
+    <Content Include="MyProperties\MyTenants.aspx" />
+    <Content Include="MyProperties\MyUnits.aspx" />
+    <Content Include="MyProperties\UpdateTenancy.aspx" />
+    <Content Include="MyProperties\UpdateUnit.aspx" />
     <Content Include="Resources\calender.png" />
     <Content Include="Resources\CityOfBerkley.jpg" />
     <Content Include="Resources\RSB.bmp" />
@@ -293,6 +301,13 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\UNUSED\AddPhoneNumber.aspx.cs">
       <DependentUpon>AddPhoneNumber.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -377,13 +392,6 @@
     <Compile Include="Account\ProfileList.aspx.designer.cs">
       <DependentUpon>ProfileList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Account\Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\UNUSED\RegisterExternalLogin.aspx.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -419,6 +427,27 @@
     <Compile Include="Account\UNUSED\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Administration\CreateAccount.aspx.cs">
+      <DependentUpon>CreateAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administration\CreateAccount.aspx.designer.cs">
+      <DependentUpon>CreateAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\SearchAccounts.aspx.cs">
+      <DependentUpon>SearchAccounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administration\SearchAccounts.aspx.designer.cs">
+      <DependentUpon>SearchAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administration\UpdateAccount.aspx.cs">
+      <DependentUpon>UpdateAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administration\UpdateAccount.aspx.designer.cs">
+      <DependentUpon>UpdateAccount.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -438,6 +467,41 @@
       <DependentUpon>EditCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="MyProperties\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyProperties\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyProperties\MyTenants.aspx.cs">
+      <DependentUpon>MyTenants.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyProperties\MyTenants.aspx.designer.cs">
+      <DependentUpon>MyTenants.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyProperties\MyUnits.aspx.cs">
+      <DependentUpon>MyUnits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyProperties\MyUnits.aspx.designer.cs">
+      <DependentUpon>MyUnits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyProperties\UpdateTenancy.aspx.cs">
+      <DependentUpon>UpdateTenancy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyProperties\UpdateTenancy.aspx.designer.cs">
+      <DependentUpon>UpdateTenancy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MyProperties\UpdateUnit.aspx.cs">
+      <DependentUpon>UpdateUnit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyProperties\UpdateUnit.aspx.designer.cs">
+      <DependentUpon>UpdateUnit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Shared\BRBFunctions.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

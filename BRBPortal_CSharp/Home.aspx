@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="BRBPortal_CSharp.Home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Home</h2>
-    <div class="form-horizontal">
+    <div class="form-horizontal offset-col-md-2 col-md-10">
         <hr />
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="HomeOption" CssClass="control-label">Select an Option:</asp:Label>

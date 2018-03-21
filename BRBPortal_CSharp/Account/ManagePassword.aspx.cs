@@ -27,29 +27,22 @@ namespace BRBPortal_CSharp.Account
 
         protected void ChangePassword()
         {
-            var result = SignInStatus.Success;
-
             var userCode = Session["UserCode"] as String ?? "";
             var billingCode = Session["BillingCode"] as String ?? "";
 
-            ShowDialogOK("Password rules Not met. Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id.", "Change Password");
-            return;
-
-            result = BRBFunctions_CSharp.UserAuth(userCode, billingCode, CurrentPassword.Text);
-
-            if (result == SignInStatus.Failure)
+            if (BRBFunctions_CSharp.UserAuth(userCode, billingCode, CurrentPassword.Text) != SignInStatus.Success)
             {
                 ShowDialogOK("Current password is incorrect.", "Change Password");
                 return;
             }
 
-            if (BRBFunctions_CSharp.CheckPswdRules(NewPWD.Text, userCode) == false)
+            if (!BRBFunctions_CSharp.CheckPswdRules(NewPWD.Text, userCode))
             {
                 ShowDialogOK("Password rules Not met. Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id.", "Change Password");
                 return;
             }
 
-            if (BRBFunctions_CSharp.UpdatePassword(userCode, billingCode, CurrentPassword.Text.EscapeXMLChars(), NewPWD.Text.EscapeXMLChars(), ConfirmNewPassword.Text.EscapeXMLChars()) == false)
+            if (!BRBFunctions_CSharp.UpdatePassword(userCode, billingCode, CurrentPassword.Text.EscapeXMLChars(), NewPWD.Text.EscapeXMLChars(), ConfirmNewPassword.Text.EscapeXMLChars()))
             {
                 ShowDialogOK("Error changing password: " + BRBFunctions_CSharp.iErrMsg, "Change Password");
                 return;

@@ -3,7 +3,7 @@
 <%-- data-lpignore="true" tells LastPass not to show ellipsis on form fields --%>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
+    <h2><%: Title %></h2>
     <section id="loginForm">
         <div class="form-horizontal">
             <h4>To your account</h4>
@@ -37,9 +37,11 @@
                     <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-primary" />
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" NavigateUrl="~/Account/ResetPassword" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
+                </div>
+            </div>
         </div>
-        <p>
-            <asp:HyperLink runat="server" NavigateUrl="~/Account/ResetPassword" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-        </p>
     </section>
 </asp:Content>
