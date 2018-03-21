@@ -20,7 +20,7 @@ namespace BRBPortal_CSharp
             }
             else if (HomeOption.SelectedValue == "Properties")
             {
-                Response.Redirect("~/Properties/MyProperties.aspx");
+                Response.Redirect("~/MyProperties/MyProperties.aspx");
             }
         }
     }

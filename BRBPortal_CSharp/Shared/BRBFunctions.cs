@@ -69,10 +69,11 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static SignInStatus UserAuth(string userCode, string billCode, string password)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 iRelate = "";
-                iErrMsg = "";
                 iTempPwd = "temp";
                 iStatus = "SUCCESS";
                 iFirstlogin = "TRUE";
@@ -204,9 +205,10 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool ConfirmProfile(string aID, string aBillCd, string aInits)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
-                iErrMsg = "";
                 iStatus = "SUCCESS";
                 return true;
             }
@@ -311,6 +313,8 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool UpdatePassword(string userCode, string billCode, string currentPassword, string newPassword, string reTypePwd)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 return true; // TODO: need sample xml
@@ -419,6 +423,8 @@ namespace BRBPortal_CSharp
         public static Dictionary<string, string> GetProfile(string userCode, string billCode)
         {
             var responseString = string.Empty;
+
+            iErrMsg = "";
 
             if (USE_MOCK_SERVICES)
             {
@@ -620,6 +626,8 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool UpdateProfile(UserProfile profile)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 return true;
@@ -765,6 +773,8 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool Register(string soapString)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 return true;
@@ -931,6 +941,8 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool GetUserProperties(string userCode, string billCode)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 if (iPropertyTbl.Columns.Count < 1)
@@ -1123,6 +1135,8 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static string GetPropertyUnits(string propertyID, string userCode, string billCode, string unitID = "")
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 return "";
@@ -1400,6 +1414,10 @@ namespace BRBPortal_CSharp
                 {
                     result = tUnitInfo;
                 }
+                else
+                {
+                    result = iStatus.ToUpper();
+                }
             }
             catch (Exception ex)
             {
@@ -1437,6 +1455,8 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static string GetPropertyTenants(string propertyID, string userCode, string billCode, string unitID)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 return ""; // TODO: get mock data
@@ -1713,6 +1733,8 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool SaveCart(string soapString)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 return true;
@@ -1833,6 +1855,8 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool SaveUnit(string soapString)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 return true;
@@ -1969,6 +1993,8 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool SaveTenant(string soapString)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 return true;
@@ -2112,6 +2138,8 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool ValidateReset(UserProfile userProfile)
         {
+            iErrMsg = "";
+
             if (USE_MOCK_SERVICES)
             {
                 // TODO: need mock object

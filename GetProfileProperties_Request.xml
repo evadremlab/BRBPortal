@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<soapenv:Envelope xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <api:getProfileProperties>
+      <request>
+        <!--Optional:-->
+        <userId>Tester@21</userId>
+        <!--Optional:-->
+        <billingCode>FAMMIL1</billingCode>
+      </request>
+    </api:getProfileProperties>
+  </soapenv:Body>
+</soapenv:Envelope>

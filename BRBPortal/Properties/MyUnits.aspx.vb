@@ -99,7 +99,7 @@
     End Sub
 
     Protected Sub ToProperty_Click(sender As Object, e As EventArgs) Handles btnBack.Click
-        Response.Redirect("~/Properties/MyProperties", False)
+        Response.Redirect("~/MyProperties/MyProperties", False)
     End Sub
 
     Protected Sub RemAgent_Click(sender As Object, e As EventArgs) Handles btnRemAgnt.Click

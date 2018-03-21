@@ -13,11 +13,16 @@ namespace BRBPortal_CSharp.Account
 
         protected void Page_Load(object sender, System.EventArgs e)
         {
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Account/Login");
+            }
+
             if (!IsPostBack)
             {
-                string userCode = Session["UserCode"] as String ?? "";
-                string billingCode = Session["BillingCode"] as String ?? "";
-                string relationship = Session["Relationship"] as String ?? "";
+                var userCode = Session["UserCode"] as String ?? "";
+                var billingCode = Session["BillingCode"] as String ?? "";
+                var relationship = Session["Relationship"] as String ?? "";
 
                 if (string.IsNullOrEmpty(userCode) || string.IsNullOrEmpty(billingCode))
                 {

@@ -11,6 +11,7 @@
 
     <section id="profileEditForm">
         <div class="form-horizontal">
+            <hr />
             <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                 <p class="text-danger">
                     <asp:Literal runat="server" ID="FailureText" />

@@ -7,72 +7,72 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BRBPortal_CSharp.MyProperties {
+namespace BRBPortal_CSharp {
     
     
-    public partial class MyUnits {
+    public partial class Cart {
         
         /// <summary>
-        /// hfDialogID control.
+        /// ErrorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfDialogID;
+        protected global::System.Web.UI.WebControls.PlaceHolder ErrorMessage;
         
         /// <summary>
-        /// MainAddress control.
+        /// FailureText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal MainAddress;
+        protected global::System.Web.UI.WebControls.Literal FailureText;
         
         /// <summary>
-        /// MgrName control.
+        /// gvCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal MgrName;
+        protected global::System.Web.UI.WebControls.GridView gvCart;
         
         /// <summary>
-        /// btnRemAgnt control.
+        /// ShowFeesAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRemAgnt;
+        protected global::System.Web.UI.WebControls.Literal ShowFeesAll;
         
         /// <summary>
-        /// BillAddr control.
+        /// btnPayCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal BillAddr;
+        protected global::System.Web.UI.WebControls.Button btnPayCart;
         
         /// <summary>
-        /// gvUnits control.
+        /// btnEdCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUnits;
+        protected global::System.Web.UI.WebControls.Button btnEdCart;
         
         /// <summary>
-        /// btnBack control.
+        /// btnCancelCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBack;
+        protected global::System.Web.UI.WebControls.Button btnCancelCart;
     }
 }

@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Live_Data", "Live_Data", "{
 		AuthenticateUser_Request.xml = AuthenticateUser_Request.xml
 		AuthenticateUser_Response.xml = AuthenticateUser_Response.xml
 		GetProfile_Response.txt = GetProfile_Response.txt
+		GetProfileProperties_Request.xml = GetProfileProperties_Request.xml
 		UpdateProfileString.txt = UpdateProfileString.txt
 	EndProjectSection
 EndProject

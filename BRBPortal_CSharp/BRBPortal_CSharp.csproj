@@ -196,6 +196,7 @@
     <Content Include="Administration\CreateAccount.aspx" />
     <Content Include="Administration\SearchAccounts.aspx" />
     <Content Include="Administration\UpdateAccount.aspx" />
+    <Content Include="Cart.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -254,7 +255,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Home.aspx" />
-    <Content Include="MyProperties\Home.aspx" />
+    <Content Include="MyProperties\MyProperties.aspx" />
     <Content Include="MyProperties\MyTenants.aspx" />
     <Content Include="MyProperties\MyUnits.aspx" />
     <Content Include="MyProperties\UpdateTenancy.aspx" />
@@ -459,6 +460,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EditCart.aspx.cs">
       <DependentUpon>EditCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -467,12 +475,12 @@
       <DependentUpon>EditCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\UserProfile.cs" />
-    <Compile Include="MyProperties\Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
+    <Compile Include="MyProperties\MyProperties.aspx.cs">
+      <DependentUpon>MyProperties.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="MyProperties\Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
+    <Compile Include="MyProperties\MyProperties.aspx.designer.cs">
+      <DependentUpon>MyProperties.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyProperties\MyTenants.aspx.cs">
       <DependentUpon>MyTenants.aspx</DependentUpon>
