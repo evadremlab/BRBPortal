@@ -57,7 +57,37 @@ footer {
     padding-left: 1rem;
     padding-right: 1rem;
 }
-
+/*.radio label, .checkbox label {
+    font-weight: bold;
+}*/
+/* http://blog.johnavis.com/blog/776/better-styling-and-accessibility-for-asp-net-controls-using-bootstrap-3 */
+.radio.radiobuttonlist input[type="radio"],
+.checkbox.checkboxlist input[type="checkbox"] {
+    margin-left: 0;
+    color: #000 !important;
+}
+.radio.radiobuttonlist label,
+.checkbox.checkboxlist label {
+    margin-bottom: 4px;
+    margin-left: 0;
+}
+.radio.radiobuttonlist label:before,
+.checkbox.checkboxlist label:before {
+    content: "\00a0"; /* space */
+}
+.checkbox.bold label {
+    font-weight: bold;
+}
+fieldset legend {
+    border: 0;
+    font-size: inherit;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+fieldset .radio,
+fieldset .checkbox {
+    margin-top: 4px;
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .jumbotron {

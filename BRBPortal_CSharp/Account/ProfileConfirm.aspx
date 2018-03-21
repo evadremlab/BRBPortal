@@ -31,11 +31,11 @@
                 <asp:Literal ID="PhoneNo0" runat="server" > </asp:Literal>
             </div>
             <div class="form-group">
-                <asp:CheckBox ID="chkDeclare" runat="server" Text="&nbsp;Declaration:  I hereby declare under penalty of perjury that .." />
+                <asp:CheckBox ID="chkDeclare" runat="server" Text=";Declaration:  I hereby declare under penalty of perjury that .." CssClass="checkbox" />
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="DeclareInits" CssClass="control-label">Declaration initials: </asp:Label>
-                <asp:TextBox runat="server" ID="DeclareInits" Width="70px" ToolTip="Enter your initials acknowledging the Declaration above." />
+                <asp:TextBox runat="server" ID="DeclareInits" Width="70px" CssClass="form-control" ToolTip="Enter your initials acknowledging the Declaration above." />
             </div>
             <div class="form-group">
                 <asp:Button runat="server" ID="btnSubmit" OnClick="SubmitProfile_Click" Text="Submit" CssClass="btn btn-primary" ToolTip="Click to confirm this information is correct." />

@@ -24,19 +24,11 @@
             </div>
             <div class="form-group">
                 <asp:GridView ID="gvUnits" runat="server" AutoGenerateColumns="False" CellPadding="4" 
-                    ForeColor="#333333" GridLines="None" OnRowDataBound="OnRowDataBound" AllowPaging="True" OnPageIndexChanging="gvUnits_PageIndexChanging" >
+                    ForeColor="#333333" GridLines="None" OnRowDataBound="OnRowDataBound" AllowPaging="True" 
+                    OnRowCommand="gvUnits_RowCommand"
+                    OnPageIndexChanging="gvUnits_PageIndexChanging" >
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:TemplateField HeaderText="Update Unit Status">
-                            <ItemTemplate>
-                                <asp:CheckBox ID="cbUnit" runat="server" OnCheckedChanged="cbUnit_CheckedChanged" AutoPostBack="true" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Update Tenancy">
-                            <ItemTemplate>
-                                <asp:CheckBox ID="cbTenant" runat="server" OnCheckedChanged="cbTenant_CheckedChanged" AutoPostBack="true" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
                         <asp:BoundField DataField="UnitID" HeaderText="UnitID (NV)" ReadOnly="True" Visible="true" />
                         <asp:BoundField HeaderText="Unit No" DataField="UnitNo" ReadOnly="True">
                         </asp:BoundField>
@@ -59,6 +51,15 @@
                             <HeaderStyle CssClass="text-right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Left" Wrap="False" />
                             </asp:BoundField>
+                        <asp:ButtonField ButtonType="Button" CommandName="UnitStatus" Text="Update Unit Status">
+                            <ControlStyle CssClass="btn btn-sm btn-primary" />
+                        </asp:ButtonField>
+                        <asp:ButtonField ButtonType="Button" CommandName="Tenancy" Text="Update Tenancy">
+                            <ControlStyle CssClass="btn btn-sm btn-primary" />
+                        </asp:ButtonField>
+                        <asp:ButtonField ButtonType="Button" CommandName="Both" Text="Update Both">
+                            <ControlStyle CssClass="btn btn-sm btn-primary" />
+                        </asp:ButtonField>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -74,7 +75,7 @@
             </div>
             <div class="form-group">
                 <asp:Button runat="server" id="btnBack" OnClick="ToProperty_Click" Text="Back" CssClass="btn tn-default" ToolTip="Return to the list of Properties." />
-                <asp:Button runat="server" OnClick="NextBtn_Click" Text="Next" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Unit or Tenancy."/>
+                <%--<asp:Button runat="server" OnClick="NextBtn_Click" Text="Next" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Unit or Tenancy."/>--%>
             </div>
         </section>
     </div>

@@ -112,8 +112,8 @@
                         </asp:GridView>
                     </div>    
                     <div class="form-group">
-                        <asp:Button runat="server" OnClick="btnUpdTen_Click" Text="Update Tenancy" CssClass="btn btn-primary" ToolTip="Proceed to Update Tenants." />
-                        <asp:Button runat="server" id="btnBack" OnClick="ToUnits_Click" Text="Back" CssClass="btn btn-default" Style="margin-left:1rem;" ToolTip="Return to the list of Units." />
+                        <asp:Button runat="server" id="btnBack" OnClick="ToUnits_Click" Text="Back" CssClass="btn btn-default" ToolTip="Return to the list of Units." />
+                        <asp:Button runat="server" OnClick="btnUpdTen_Click" Text="Update Tenancy" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Tenants." />
                     </div>
                 </div>
             </div>

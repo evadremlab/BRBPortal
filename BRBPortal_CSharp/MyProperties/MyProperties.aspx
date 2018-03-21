@@ -54,7 +54,9 @@
                                 <HeaderStyle CssClass="text-right" Wrap="False" />
                                 <ItemStyle HorizontalAlign="Right" Wrap="False" />
                                 </asp:BoundField>
-                            <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Review and Update" />
+                            <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Review and Update">
+                                <ControlStyle CssClass="btn btn-sm btn-primary" />
+                            </asp:ButtonField>
                         </Columns>
                         <EditRowStyle BackColor="#2461BF" />
                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />

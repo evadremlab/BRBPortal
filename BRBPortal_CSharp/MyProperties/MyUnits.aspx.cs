@@ -66,67 +66,15 @@ namespace BRBPortal_CSharp.MyProperties
         {
         }
 
-        protected void NextBtn_Click(object sender, EventArgs e)
-        {
-            var tUnit = "";
-            var tUnitStr = "";
-            var tUnitID = "";
-            var tsep = "::";
-
-            if (gvUnits.Rows.Count > 0)
-            {
-                foreach (GridViewRow row in gvUnits.Rows)
-                {
-                    if (row.RowType == DataControlRowType.DataRow)
-                    {
-                        tUnitID = row.Cells[2].Text; // Unit ID
-                        tUnit = row.Cells[3].Text; // Unit Number
-                        Session["UpdTenants"] = false;
-
-                        CheckBox chkUnitStatus = row.Cells[0].Controls[1] as CheckBox; // Unit Status
-                        CheckBox chkTenancyUpdate = row.Cells[1].Controls[1] as CheckBox; // Tenancy Update
-
-                        if (chkUnitStatus.Checked)
-                        {
-                            // Check if the Tenancy Update was also checked
-                            if (chkTenancyUpdate.Checked)
-                            {
-                                Session["UpdTenants"] = true;
-                            }
-
-                            Session["UnitNo"] = tUnit;
-                            Session["UnitID"] = tUnitID;
-
-                            // Build XML string for the Unit page
-                            tUnitStr = iPropertyNo + tsep + Session["PropAddr"].ToString() + tsep + tUnit + tsep;
-                            tUnitStr += row.Cells[5].Text + tsep; //  Unit Status
-                            Session["UpdUnitInfo"] = tUnitStr;
-
-                            Response.Redirect("~/MyProperties/UpdateUnit");
-                            break;
-                        }
-
-                        if (chkTenancyUpdate.Checked)
-                        {
-                            Session["UnitNo"] = tUnit;
-                            Session["UnitID"] = tUnitID;
-                            Response.Redirect("~/MyProperties/MyTenants");
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
         protected void ToProperty_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/MyProperties/MyProperties", false);
         }
 
-        protected void RemAgent_Click(object sender, EventArgs e)
-        {
-            ShowDialogOK("Please call the Rent Board to remove an agent.", "List Units");
-        }
+        //protected void RemAgent_Click(object sender, EventArgs e)
+        //{
+        //    ShowDialogOK("Please call the Rent Board to remove an agent.", "List Units");
+        //}
 
         protected void gvUnits_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -137,45 +85,36 @@ namespace BRBPortal_CSharp.MyProperties
             gvUnits.Columns[2].Visible = false; // Do this so it stores the value in the GV but doesn't show it
         }
 
-        protected void cbUnit_CheckedChanged(object sender, EventArgs e)
+        protected void gvUnits_RowCommand(Object sender, GridViewCommandEventArgs e)
         {
-            var tChkBox = (CheckBox)sender;
-            var tRow = (GridViewRow)tChkBox.Parent.Parent;
+            var tsep = "::";
+            int rowIndex = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gvUnits.Rows[rowIndex];
 
-            foreach (GridViewRow row in gvUnits.Rows)
+            var tUnitID = row.Cells[2].Text; // Unit ID
+            var tUnit = row.Cells[3].Text; // Unit Number
+
+            Session["UnitNo"] = tUnit;
+            Session["UnitID"] = tUnitID;
+            Session["UpdTenants"] = false;
+
+            if (e.CommandName.Equals("Tenancy"))
             {
-                CheckBox tOthrChkBox = row.Cells[0].Controls[1] as CheckBox; // Unit Status
-
-                if (row.RowIndex == tRow.RowIndex)
-                {
-                    continue;
-                }
-
-                if (tOthrChkBox.Checked)
-                {
-                    tOthrChkBox.Checked = false;
-                }
+                Response.Redirect("~/MyProperties/MyTenants");
             }
-        }
-
-        protected void cbTenant_CheckedChanged(object sender, EventArgs e)
-        {
-            var tChkBox = (CheckBox)sender;
-            var tRow = (GridViewRow)tChkBox.Parent.Parent;
-
-            foreach (GridViewRow row in gvUnits.Rows)
+            else
             {
-                CheckBox tOthrChkBox = row.Cells[1].Controls[1] as CheckBox; // Tenancy Update
-
-                if (row.RowIndex == tRow.RowIndex)
+                if (e.CommandName.Equals("Both"))
                 {
-                    continue;
+                    Session["UpdTenants"] = true;
                 }
 
-                if (tOthrChkBox.Checked)
-                {
-                    tOthrChkBox.Checked = false;
-                }
+                //// Build XML string for the Unit page NOT USED
+                //var tUnitStr = iPropertyNo + tsep + Session["PropAddr"].ToString() + tsep + tUnit + tsep;
+                //tUnitStr += row.Cells[5].Text + tsep; //  Unit Status
+                //Session["UpdUnitInfo"] = tUnitStr;
+
+                Response.Redirect("~/MyProperties/UpdateUnit");
             }
         }
 
