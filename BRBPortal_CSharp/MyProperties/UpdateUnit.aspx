@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdateUnit.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.UpdateUnit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="UpdateUnit.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.UpdateUnit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:HiddenField ID="hfDialogID" runat="server" />
@@ -200,8 +200,8 @@
                         </div>
 
                         <div class="form-group">
-                            <asp:Button runat="server" ID="btnConfirm" OnClick="UpdateUnit_Click" Text="Confirm" CssClass="btn btn-primary" ToolTip="Update this unit." />
-                            <asp:Button runat="server" id="btnCancel" OnClick="CancelEdit_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Returns to list of units." style="margin-left:1rem;" />
+                            <asp:Button runat="server" id="btnCancel" OnClick="btnCancel_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Returns to list of units." />
+                            <asp:Button runat="server" ID="btnConfirm" OnClick="btnConfirm_Click" Text="Confirm" CssClass="btn btn-primary" ToolTip="Update this unit." style="margin-left:1rem;" />
                         </div>
                     </div>
                 </div>
@@ -341,6 +341,14 @@
             $('#MainContent_ExemptReason').change(_setExemptReasonFields);
             $('#MainContent_OtherList').change(_otherListChanged);
             $('#MainContent_RB1').change(_rb1Changed);
+            $('#MainContent_btnConfirm').click(function (evt) {
+                $('#OkModalModal .modal-title').text('title');
+                $('#OkModalModal .modal-body').text('message');
+                $('#OkModalModal').modal('show');
+
+                evt.preventDefault();
+                return false;
+            });
         });
     </script>
 </asp:Content>

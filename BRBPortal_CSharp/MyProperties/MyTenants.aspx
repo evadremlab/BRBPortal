@@ -90,13 +90,13 @@
                                 <asp:BoundField DataField="FirstName" HeaderText="First Name" Visible="False" />
                                 <asp:BoundField DataField="LastName" HeaderText="Last Name" Visible="False" />
                                 <asp:BoundField HeaderText="Tenant Name" DataField="DispName" SortExpression="DispName">
-                                    <ItemStyle HorizontalAlign="Left" Width="250px" />
+                                    <ItemStyle HorizontalAlign="Left" Width="300px" />
                                 </asp:BoundField>
                                 <asp:BoundField HeaderText="Phone Number" DataField="PhoneNo" SortExpression="PhoneNo">
-                                    <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                    <ItemStyle HorizontalAlign="Left" Width="150px" />
                                 </asp:BoundField>
                                 <asp:BoundField HeaderText="Email Address" DataField="EmailAddr" SortExpression="EmailAddr">
-                                    <ItemStyle HorizontalAlign="Left" Width="220px" />
+                                    <ItemStyle HorizontalAlign="Left" Width="300px" />
                                 </asp:BoundField>
                             </Columns>
                             <EditRowStyle BackColor="#2461BF" />
@@ -112,11 +112,34 @@
                         </asp:GridView>
                     </div>    
                     <div class="form-group">
-                        <asp:Button runat="server" id="btnBack" OnClick="ToUnits_Click" Text="Back" CssClass="btn btn-default" ToolTip="Return to the list of Units." />
-                        <asp:Button runat="server" OnClick="btnUpdTen_Click" Text="Update Tenancy" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Tenants." />
+                        <asp:Button runat="server" id="btnBack" OnClick="ToUnits_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Return to the list of Units." />
+                        <asp:Button runat="server" Text="Update Tenancy" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Tenants." />
                     </div>
                 </div>
             </div>
         </section>
     </div>
+    
+    <script>
+        $(document).ready(function () {
+            $('form').submit(function (evt) {
+                var form = this;
+                evt.preventDefault();
+                $('#YesNoModal .modal-title').text('Update Tenancy');
+                $('#YesNoModal .modal-body').text('Have all original tenants moved out?');
+                $('#YesNoModal').one('hidden.bs.modal', function () {
+                    if ($(document.activeElement).is('.btn-primary')) { // clicked on Yes button
+                        form.submit();
+                    } else {
+                        setTimeout(function() {
+                            $('#OkModal .modal-title').text('Update Tenancy');
+                            $('#OkModal .modal-body').text('New tenancy cannot be updated until all original tenants have moved out.');
+                            $('#OkModal').modal('show');
+                        }, 10);
+                    }
+                });
+                $('#YesNoModal').modal('show');
+            });
+        });
+    </script>
 </asp:Content>

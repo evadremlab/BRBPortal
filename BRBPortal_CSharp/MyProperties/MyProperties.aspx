@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group">
                     <asp:GridView ID="gvProperties" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                        ForeColor="#333333" GridLines="None" onrowcommand="UpdatePropClicked" PageSize="10" AllowPaging="true" OnPageIndexChanging="gvProperties_PageIndexChanging">
+                        ForeColor="#333333" GridLines="None" onRowCommand="UpdatePropClicked" PageSize="10" AllowPaging="true" OnPageIndexChanging="gvProperties_PageIndexChanging">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:TemplateField>

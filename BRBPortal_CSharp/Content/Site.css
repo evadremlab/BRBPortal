@@ -57,9 +57,6 @@ footer {
     padding-left: 1rem;
     padding-right: 1rem;
 }
-/*.radio label, .checkbox label {
-    font-weight: bold;
-}*/
 /* http://blog.johnavis.com/blog/776/better-styling-and-accessibility-for-asp-net-controls-using-bootstrap-3 */
 .radio.radiobuttonlist input[type="radio"],
 .checkbox.checkboxlist input[type="checkbox"] {
@@ -87,6 +84,9 @@ fieldset legend {
 fieldset .radio,
 fieldset .checkbox {
     margin-top: 4px;
+}
+.modal-dialog {
+    padding-top: 200px !important;
 }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {

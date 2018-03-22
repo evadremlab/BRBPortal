@@ -46,10 +46,10 @@ namespace BRBPortal_CSharp.MyProperties
                     }
 
                     UnitStatus.Text = propertyUnits.GetStringValue("CPStatus");
-                    ExemptReas.Text = propertyUnits.GetStringValue("ExReason"); // missing
-                    UnitStartDt.Text = propertyUnits.GetStringValue("StartDt"); // missing
+                    ExemptReas.Text = propertyUnits.GetStringValue("ExReason");
+                    UnitStartDt.Text = propertyUnits.GetStringValue("StartDt");
                     UnitOccBy.Text = propertyUnits.GetStringValue("OccBy");
-                    hfUnitID.Value = propertyUnits.GetStringValue("UnitID"); // missing
+                    hfUnitID.Value = propertyUnits.GetStringValue("UnitID");
 
                     var ExemptGroup_Visible = false;
                     var CommUseGrp_Visible = false;
@@ -202,19 +202,21 @@ namespace BRBPortal_CSharp.MyProperties
             }
         }
 
-        protected void UpdateUnit_Click(object sender, EventArgs e)
-        {
-        }
-
-        protected void CancelEdit_Click(object sender, EventArgs e)
-        {
-        }
-
         private void ShowDialogOK(string message, string title = "Status")
         {
             var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
 
             ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
+        }
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+            ShowDialogOK("Update Unit is under construction", "Update Units");
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/MyProperties/MyUnits.aspx", true);
         }
     }
 }

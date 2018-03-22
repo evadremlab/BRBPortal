@@ -87,12 +87,11 @@ namespace BRBPortal_CSharp.MyProperties
 
         protected void gvUnits_RowCommand(Object sender, GridViewCommandEventArgs e)
         {
-            var tsep = "::";
             int rowIndex = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gvUnits.Rows[rowIndex];
 
-            var tUnitID = row.Cells[2].Text; // Unit ID
-            var tUnit = row.Cells[3].Text; // Unit Number
+            var tUnitID = row.Cells[0].Text; // Unit ID
+            var tUnit = row.Cells[1].Text; // Unit Number
 
             Session["UnitNo"] = tUnit;
             Session["UnitID"] = tUnitID;

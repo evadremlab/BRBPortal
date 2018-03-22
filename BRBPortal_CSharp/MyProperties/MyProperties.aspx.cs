@@ -164,7 +164,7 @@ namespace BRBPortal_CSharp.MyProperties
 
             Session["PropertyID"] = BRBFunctions_CSharp.iPropertyTbl.Rows[RowNum].Field<string>("PropertyID");
             Session["PropAddr"] = BRBFunctions_CSharp.iPropertyTbl.Rows[RowNum].Field<string>("MainAddr");
-            Session["PropBalance"] = BRBFunctions_CSharp.iPropertyTbl.Rows[RowNum].Field<decimal>("Balance");
+            Session["PropBalance"] = BRBFunctions_CSharp.iPropertyTbl.Rows[RowNum].Field<decimal>("Balance").ToString();
 
             Response.Redirect("~/MyProperties/MyUnits");
         }

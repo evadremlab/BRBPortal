@@ -1647,7 +1647,7 @@ namespace BRBPortal_CSharp
 
                             fields.Add("CPStatus", detailUnits.SelectSingleNode("clientPortalUnitStatusCode").InnerText);
                             fields.Add("HServices", tServices);
-                            fields.Add("StartDt", tStartDt.ToString());
+                            fields.Add("StartDt", tStartDt == DateTime.MinValue ? "" : tStartDt.ToString("MM/dd/yyyy"));
                             fields.Add("NumTenants", TenCnt.ToString());
                             fields.Add("SmokeYN", tSmokYN);
                             fields.Add("SmokeDt", tSmokDt);

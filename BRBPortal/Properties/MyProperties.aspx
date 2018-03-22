@@ -69,7 +69,7 @@
         <br />
  
         <asp:GridView ID="gvProperties" runat="server" CssClass="Margin30" AutoGenerateColumns="False" CellPadding="4" 
-            ForeColor="#333333" GridLines="None" onrowcommand="UpdatePropClicked" PageSize="10" AllowPaging="true"
+            ForeColor="#333333" GridLines="None" onRowCommand="UpdatePropClicked" PageSize="10" AllowPaging="true"
             onpageindexchanging="gvProperties_PageIndexChanging" >
             <AlternatingRowStyle BackColor="White" />
             <Columns>
