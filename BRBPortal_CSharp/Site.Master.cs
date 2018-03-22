@@ -71,6 +71,7 @@ namespace BRBPortal_CSharp
         {
 
         }
+
         protected void Logoff(object sender, EventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
@@ -80,5 +81,4 @@ namespace BRBPortal_CSharp
             Response.Redirect("~/Account/Login");
         }
     }
-
 }

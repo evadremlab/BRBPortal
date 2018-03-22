@@ -21,10 +21,6 @@ namespace BRBPortal_CSharp.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                Session.RemoveAll();
-            }
         }
 
         protected void LogIn(object sender, EventArgs e)

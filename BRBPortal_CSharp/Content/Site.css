@@ -28,6 +28,9 @@ input[type="select"] {
 }
 
 /* Added by david.b.balmer@transsight.com */
+.navbar-inverse .navbar-nav > li > a {
+    font-size: 1.75rem;
+}
 .container-fluid.body-content {
     padding: 0 4rem;
 }

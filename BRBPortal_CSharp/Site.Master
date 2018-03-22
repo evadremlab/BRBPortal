@@ -41,8 +41,8 @@
         </asp:ScriptManager>
         
         <div class="container-fluid header" style="position:absolute; top:0;">
-            <asp:HyperLink ID="HomeLink1" runat="server" ImageUrl="~/Resources/CityOfBerkley.jpg" ImageHeight="59px" ToolTip="Click here to return to the home page" ImageAlign="Top" NavigateUrl="~/Home.aspx"></asp:HyperLink>
-            <asp:HyperLink ID="HomeLink2" runat="server" ImageUrl="~/Resources/RSB.jpg" ImageAlign="Top" NavigateUrl="~/Home.aspx" Style="position:relative; top:2px;"></asp:HyperLink>
+            <asp:HyperLink ID="HomeLink1" runat="server" ImageUrl="~/Resources/CityOfBerkley.jpg" ImageHeight="59px" ToolTip="Click here to return to the home page" ImageAlign="Top" NavigateUrl="~/Default.aspx"></asp:HyperLink>
+            <asp:HyperLink ID="HomeLink2" runat="server" ImageUrl="~/Resources/RSB.jpg" ImageAlign="Top" NavigateUrl="~/Default.aspx" Style="position:relative; top:2px;"></asp:HyperLink>
         </div>
 
         <div class="navbar navbar-inverse" style="top:9px;">
@@ -60,7 +60,7 @@
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                         <li><a runat="server" href="~/Account/ProfileList">My Profile</a></li>
                         <li><a runat="server" href="~/Cart">Cart</a></li>
-                        <li><a runat="server" href="http://www.ci.berkeley.ca.us/Rent_Stabilization_Board/Home/FAQs_-_Rent_Board_Mailbag.aspx" target="_blank">FAQ</a></li>
+                        <li><a runat="server" href="https://www.cityofberkeley.info/Rent_Stabilization_Board/Home/FAQs_-_Rent_Board_Mailbag.aspx" target="_blank">FAQ</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                     <% if (Context.User.Identity.IsAuthenticated) { %>

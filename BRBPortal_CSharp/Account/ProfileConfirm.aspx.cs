@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -62,8 +63,11 @@ namespace BRBPortal_CSharp.Account
 
         protected void CancelProfile_Click(object sender, EventArgs e)
         {
-            Session.Clear();
-            Response.Redirect("~/Account/Login", false);
+            Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+            Session.RemoveAll();
+
+            Response.Redirect("~/Account/Login");
         }
 
         protected void ShowDialogOK(string aMessage, string aTitle = "Status")

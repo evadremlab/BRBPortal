@@ -38,8 +38,8 @@
                 <asp:TextBox runat="server" ID="DeclareInits" Width="70px" CssClass="form-control" ToolTip="Enter your initials acknowledging the Declaration above." />
             </div>
             <div class="form-group">
-                <asp:Button runat="server" ID="btnSubmit" OnClick="SubmitProfile_Click" Text="Submit" CssClass="btn btn-primary" ToolTip="Click to confirm this information is correct." />
-                <asp:Button runat="server" ID="btnCancel" OnClick="CancelProfile_Click" Text="Cancel & Logout" CssClass="btn btn-default" style="margin-left:1rem;" ToolTip="Clicking this button will cause this validation screen to be displayed on your next login." UseSubmitBehavior="false" />
+                <asp:Button runat="server" ID="btnCancel" OnClick="CancelProfile_Click" Text="Cancel & Logout" CssClass="btn btn-danger" ToolTip="Clicking this button will cause this validation screen to be displayed on your next login." UseSubmitBehavior="false" />
+                <asp:Button runat="server" ID="btnSubmit" OnClick="SubmitProfile_Click" Text="Submit" CssClass="btn btn-primary" ToolTip="Click to confirm this information is correct." style="margin-left:1rem;" />
             </div>
         </div>
     </section>

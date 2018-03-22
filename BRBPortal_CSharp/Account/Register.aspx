@@ -3,6 +3,10 @@
 <%@ Import Namespace="Microsoft.AspNet.Identity" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+        .navbar-nav, .navbar-right { display: none; }
+    </style>
+
     <script src="/Scripts/jquery.mask.js" type="text/javascript"></script>
 
     <asp:HiddenField ID="hfDialogID" runat="server" />
