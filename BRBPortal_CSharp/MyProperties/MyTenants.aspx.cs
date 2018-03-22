@@ -45,8 +45,9 @@ namespace BRBPortal_CSharp.MyProperties
 
         private void UpdateData()
         {
-
+            Response.Redirect("~/MyProperties/UpdateTenancy.aspx");
         }
+
         private void LoadData()
         {
             var userCode = Session["UserCode"] as String ?? "";
@@ -94,11 +95,6 @@ namespace BRBPortal_CSharp.MyProperties
 
             FailureText.Text = "";
             ErrorMessage.Visible = false;
-        }
-
-        protected void ToUnits_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/MyProperties/MyUnits", false);
         }
 
         protected void gvTenants_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -112,7 +112,7 @@
                         </asp:GridView>
                     </div>    
                     <div class="form-group">
-                        <asp:Button runat="server" id="btnBack" OnClick="ToUnits_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Return to the list of Units." />
+                        <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyUnits" Text="Cancel" CssClass="btn btn-default" ToolTip="Return to the list of Units." />
                         <asp:Button runat="server" Text="Update Tenancy" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Tenants." />
                     </div>
                 </div>
