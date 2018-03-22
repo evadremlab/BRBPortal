@@ -60,6 +60,11 @@ footer {
     padding-left: 1rem;
     padding-right: 1rem;
 }
+.literal { /* to align <asp:Literal> with <asp:Label> */
+    position: relative;
+    top: 0.7rem;
+}
+
 /* http://blog.johnavis.com/blog/776/better-styling-and-accessibility-for-asp-net-controls-using-bootstrap-3 */
 .radio.radiobuttonlist input[type="radio"],
 .checkbox.checkboxlist input[type="checkbox"] {

@@ -23,23 +23,15 @@ namespace BRBPortal_CSharp.Account
                 }
                 else
                 {
-                    UserIDCode1.Text = "";
-                    BillCode1.Text = "";
-                    FullName1.Text = "";
-                    MailAddress1.Text = "";
-                    EmailAddress1.Text = "";
-                    PhoneNo1.Text = "";
-                    Quest1.Text = "";
-                    Quest2.Text = "";
-
                     var fields = BRBFunctions_CSharp.GetProfile(userCode, billingCode);
 
                     if (fields.Count > 0)
                     {
                         UserIDCode1.Text = fields.GetStringValue("UserCode");
                         BillCode1.Text = fields.GetStringValue("BillingCode");
+                        Relationship.Text = relationship;
                         FullName1.Text = fields.GetStringValue("FullName");
-                        MailAddress1.Text = fields.GetStringValue("MailAddress");
+                        MailAddress1.Text = fields.GetStringValue("MailAddr");
                         EmailAddress1.Text = fields.GetStringValue("Email");
                         PhoneNo1.Text = fields.GetStringValue("Phone");
                         Quest1.Text = fields.GetStringValue("Question1");

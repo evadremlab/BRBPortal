@@ -522,8 +522,10 @@ namespace BRBPortal_CSharp
 
                             fields.Add("UserCode", detail.SelectSingleNode("userId").InnerText);
                             fields.Add("BillingCode", detail.SelectSingleNode("billingCode").InnerText);
+
                             fields.Add("FirstName", detailName.SelectSingleNode("first").InnerText.UnescapeXMLChars());
                             fields.Add("LastName", detailName.SelectSingleNode("last").InnerText.UnescapeXMLChars());
+
                             fields.Add("StNum", detailAddr.SelectSingleNode("streetNumber").InnerText.UnescapeXMLChars());
                             fields.Add("StName", detailAddr.SelectSingleNode("streetName").InnerText.UnescapeXMLChars());
                             fields.Add("Unit", detailAddr.SelectSingleNode("unitNumber").InnerText);
@@ -535,9 +537,20 @@ namespace BRBPortal_CSharp
                             fields.Add("Email", detail.SelectSingleNode("emailAddress").InnerText);
                             fields.Add("Phone", detail.SelectSingleNode("phone").InnerText);
                             fields.Add("Question1", detail.SelectSingleNode("securityQuestion1").InnerText);
-                            fields.Add("Answer1", detail.SelectSingleNode("securityAnswer1").InnerText.UnescapeXMLChars());
                             fields.Add("Question2", detail.SelectSingleNode("securityQuestion2").InnerText);
-                            fields.Add("Answer2", detail.SelectSingleNode("securityAnswer2").InnerText.UnescapeXMLChars());
+
+                            var securityAnswer1Node = detail.SelectSingleNode("securityAnswer1");
+                            var securityAnswer2Node = detail.SelectSingleNode("securityAnswer2");
+
+                            if (securityAnswer1Node != null)
+                            {
+                                fields.Add("Answer1", securityAnswer1Node.InnerText.UnescapeXMLChars());
+                            }
+
+                            if (securityAnswer2Node != null)
+                            {
+                                fields.Add("Answer2", securityAnswer2Node.InnerText.UnescapeXMLChars());
+                            }
 
                             if ((detailName.SelectSingleNode("middle").InnerText.Length > 0))
                             {
@@ -1610,7 +1623,9 @@ namespace BRBPortal_CSharp
                             tPriorDt = "";
                             if (detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item(0) != null)
                             {
-                                tPriorDt = detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item(0).InnerText;
+                                var dtPriorDt = DateTime.Parse(detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item(0).InnerText);
+
+                                tPriorDt = dtPriorDt.ToString("MM/dd/yyyy");
                             }
 
                             tPriorReas = "";
@@ -1628,7 +1643,9 @@ namespace BRBPortal_CSharp
                             tSmokDt = "";
                             if (detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item(0) != null)
                             {
-                                tSmokDt = detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item(0).InnerText;
+                                var dtSmokDt = DateTime.Parse(detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item(0).InnerText);
+
+                                tSmokDt = dtSmokDt.ToString("MM/dd/yyyy");
                             }
 
                             foreach (XmlElement detailOccBy in detailUnits.GetElementsByTagName("occupants"))

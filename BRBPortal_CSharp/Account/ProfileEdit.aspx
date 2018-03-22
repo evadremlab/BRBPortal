@@ -19,20 +19,20 @@
             </asp:PlaceHolder>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="UserIDCode2" CssClass="col-md-2 control-label">User ID: </asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="UserIDCode2" CssClass="form-control" TextMode="SingleLine" ReadOnly="true" style="min-width:20rem" />
+                <div class="col-md-10 literal">
+                    <asp:Literal ID="UserIDCode2" runat="server"></asp:Literal>
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="BillCode2" CssClass="col-md-2 control-label">Billing Code: </asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="BillCode2" CssClass="form-control" TextMode="SingleLine" ReadOnly="true" style="min-width:20rem" />
+                <div class="col-md-10 literal">
+                    <asp:Literal runat="server" ID="BillCode2"></asp:Literal>
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="Relationship" CssClass="col-md-2 control-label">Relationship: </asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="Relationship" CssClass="form-control" TextMode="SingleLine" ReadOnly="true" style="min-width:20rem" />
+                <div class="col-md-10 literal">
+                    <asp:Literal runat="server" ID="Relationship"></asp:Literal>
                 </div>
             </div>
 
@@ -224,7 +224,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button runat="server" id="btnCancel" OnClick="CancelEdit_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Returns to profile view." />
+                    <asp:Button runat="server" id="btnCancel" OnClick="CancelEdit_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Returns to profile view." TabIndex="-1" />
                     <asp:Button runat="server" ID="btnUpdate" OnClick="UpdateProfile_Click" Text="Update" CssClass="btn btn-primary" ToolTip="Update your profile." ValidationGroup="UpdCheck" style="margin-left:1rem;" />
                 </div>
             </div>

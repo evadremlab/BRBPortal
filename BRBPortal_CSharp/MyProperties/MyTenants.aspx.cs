@@ -91,10 +91,7 @@ namespace BRBPortal_CSharp.MyProperties
             PriorEndDt.Text = fields.GetStringValue("PriorEndDt");
             TermReason.Text = fields.GetStringValue("TermReason");
             OwnerName.Text = fields.GetStringValue("OwnerName");
-            AgentName.Text = fields.GetStringValue("AgenntName");
-
-            FailureText.Text = "";
-            ErrorMessage.Visible = false;
+            AgentName.Text = fields.GetStringValue("AgentName");
         }
 
         protected void gvTenants_PageIndexChanging(object sender, GridViewPageEventArgs e)

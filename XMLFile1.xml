@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ser-root:getProfileDetailsResponse
+        xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <profileDetails>
+        <userId>Tester@21</userId>
+        <billingCode>FAMMIL1</billingCode>
+        <name>
+          <first>MILLER MERRITT</first>
+          <middle></middle>
+          <last>FAMILY TRUST-SHARYNE MERRITT, TRUSTEE</last>
+          <suffix>1</suffix>
+          <agencyName></agencyName>
+        </name>
+        <mailingAddress>
+          <streetNumber>6555</streetNumber>
+          <streetName>CASITAS PASS RD</streetName>
+          <unitNumber></unitNumber>
+          <fullAddress>6555 CASITAS PASS RD</fullAddress>
+          <city>CARPINTERIA</city>
+          <state>CA</state>
+          <zip>93013</zip>
+          <country>CARPINTERIA</country>
+        </mailingAddress>
+        <emailAddress>PROFESSORMERRIT@GMAIL.COM</emailAddress>
+        <phone>805-266-8722</phone>
+        <relationship>Owner</relationship>
+        <securityQuestion1>green is </securityQuestion1>
+        <securityQuestion2>blue is </securityQuestion2>
+      </profileDetails>
+    </ser-root:getProfileDetailsResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

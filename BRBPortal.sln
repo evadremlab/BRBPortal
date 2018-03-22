@@ -19,11 +19,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Live_Data", "Live_Data", "{
 	ProjectSection(SolutionItems) = preProject
 		AuthenticateUser_Request.xml = AuthenticateUser_Request.xml
 		AuthenticateUser_Response.xml = AuthenticateUser_Response.xml
-		GetProfile_Response.txt = GetProfile_Response.txt
+		GetProfileDetails_Response.xml = GetProfileDetails_Response.xml
 		GetProfileProperties_Request.xml = GetProfileProperties_Request.xml
 		GetPropertyAndUnitDetails_Request.xml = GetPropertyAndUnitDetails_Request.xml
 		GetPropertyAndUnitDetails_Response.xml = GetPropertyAndUnitDetails_Response.xml
 		UpdateProfileString.txt = UpdateProfileString.txt
+		XMLFile1.xml = XMLFile1.xml
 	EndProjectSection
 EndProject
 Global

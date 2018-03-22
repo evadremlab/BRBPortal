@@ -46,7 +46,7 @@ namespace BRBPortal_CSharp.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UserIDCode2;
+        protected global::System.Web.UI.WebControls.Literal UserIDCode2;
         
         /// <summary>
         /// BillCode2 control.
@@ -55,7 +55,7 @@ namespace BRBPortal_CSharp.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox BillCode2;
+        protected global::System.Web.UI.WebControls.Literal BillCode2;
         
         /// <summary>
         /// Relationship control.
@@ -64,7 +64,7 @@ namespace BRBPortal_CSharp.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Relationship;
+        protected global::System.Web.UI.WebControls.Literal Relationship;
         
         /// <summary>
         /// OwnerGrp control.

@@ -177,7 +177,7 @@
 
 
         <div class="form-group">
-            <asp:Button runat="server" id="btnCancel" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyTenants.aspx" Text="Cancel" CssClass="btn btn-default" ToolTip="Return to the list of Tenants." />
+            <asp:Button runat="server" id="btnCancel" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyTenants.aspx" Text="Cancel" CssClass="btn btn-default" ToolTip="Return to the list of Tenants." TabIndex="-1" />
             <asp:Button runat="server" ID="btnUpdTen" OnClick="UpdateTenancy_Click" Text="Submit" CssClass="btn btn-primary" ToolTip="Update the tenants." ValidationGroup="CheckFields" style="margin-left:1rem;" />
         </div>
     </div>
