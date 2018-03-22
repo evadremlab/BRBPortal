@@ -42,13 +42,12 @@
                         <asp:Label runat="server" AssociatedControlID="UnitOccBy" CssClass="control-label">Occupied By: </asp:Label>
                         <asp:Literal ID="UnitOccBy" runat="server" ></asp:Literal>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" runat="server" id="AsOfDtGrp">
                         <asp:Label runat="server" AssociatedControlID="UnitAsOfDt" CssClass="col-md-3 control-label">As of Date: </asp:Label>
                         <div class="col-md-9">
                             <asp:TextBox runat="server" ID="UnitAsOfDt" TextMode="Date" CssClass="form-control" ToolTip="Enter the as of date for this change."  />
                         </div>
                     </div>
-                    <%--<div class="form-group" runat="server" id="AsOfDtGrp"></div>--%>
                     <div class="form-group" runat="server" id="DtStrtdGrp">
                         <asp:Label runat="server" AssociatedControlID="StartDt" CssClass="col-md-3 control-label">Date Started: </asp:Label>
                         <div class="col-md-9">
@@ -129,7 +128,7 @@
                         </div>
                     </div>
                 
-                    <div class="form-group">
+                    <div class="form-group" runat="server" id="PMUnitGrp">
                         <asp:Label runat="server" AssociatedControlID="PropMgrName" CssClass="control-label">Name(s) of the Property Manager residing in the unit: </asp:Label>
                         <br />
                         <asp:TextBox runat="server" ID="PropMgrName" TextMode="MultiLine" CssClass="form-control" style="width:80rem;" ToolTip="Enter the property manager name(s)." />
@@ -164,7 +163,7 @@
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="OtherUnits" CssClass="control-label">If Yes, please indicate which unit(s): </asp:Label>
-                            <asp:TextBox runat="server" ID="OtherUnits" TextMode="SingleLine" CssClass="form-control" ToolTip="Enter the other units the owner occupies." />
+                            <asp:TextBox runat="server" ID="OtherUnits" TextMode="SingleLine" CssClass="form-control" ToolTip="Enter the other units the owner occupies." style="width:38rem; max-width:38rem;" />
                         </div>
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="TenantNames" CssClass="control-label">Name and contact information of the tenants residing in the unit?  Name(s): </asp:Label>

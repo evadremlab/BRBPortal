@@ -33,7 +33,7 @@ namespace BRBPortal_CSharp.MyProperties
                 {
                     var propertyUnits = BRBFunctions_CSharp.GetPropertyUnits(propertyID, userCode, billingCode);
 
-                    if (propertyUnits == "FAILURE")
+                    if (propertyUnits.Count == 0)
                     {
                         if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
                         {

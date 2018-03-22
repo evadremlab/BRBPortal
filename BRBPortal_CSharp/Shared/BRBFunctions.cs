@@ -1133,13 +1133,13 @@ namespace BRBPortal_CSharp
         /// <summary>
         /// DONE, need mock data
         /// </summary>
-        public static string GetPropertyUnits(string propertyID, string userCode, string billCode, string unitID = "")
+        public static Dictionary<string, string> GetPropertyUnits(string propertyID, string userCode, string billCode, string unitID = "")
         {
             iErrMsg = "";
 
             if (USE_MOCK_SERVICES)
             {
-                return "";
+                return new Dictionary<string, string>(); // TODO: get mock data
             }
             else
             {
@@ -1150,14 +1150,14 @@ namespace BRBPortal_CSharp
         /// <summary>
         /// DONE
         /// </summary>
-        public static string GetPropertyUnits_Soap(string propertyID, string userCode, string billCode, string unitID = "")
+        public static Dictionary<string, string> GetPropertyUnits_Soap(string propertyID, string userCode, string billCode, string unitID = "")
         {
             WebRequest request = null;
             WebResponse response = null;
             Stream requestStream = null;
             Stream responseStream = null;
             StreamReader reader = null;
-            var result = "FAILURE";
+            var fields = new Dictionary<string, string>();
 
             var tServices = "";
             var tUnitInfo = "";
@@ -1386,37 +1386,19 @@ namespace BRBPortal_CSharp
                                     tExempt = "Miscellaneous Exempt";
                                     break;
                             }
-
-                            var fields = new Dictionary<string, string>();
-
-                            fields.Add("CPStatus", NR.Field<string>("CPUnitStatCode"));
-                            fields.Add("ExReason", tExempt);
-                            fields.Add("StartDt", tStartDt);
-                            fields.Add("OccBy", tOccBy);
-                            fields.Add("UnitID", NR.Field<string>("UnitID"));
-
-                            tUnitInfo = fields.ToDelimitedString();
-                            //tUnitInfo = ("CPStatus="
-                            //            + (NR.Item["CPUnitStatCode"].ToString + ("::ExReason="
-                            //            + (tExempt + ("::StartDt="
-                            //            + (tStartDt + ("::OccBy="
-                            //            + (tOccBy + ("::UnitID=" + NR.Item["UnitID"].ToString)))))))));
                         }
+
+                        fields.Add("CPStatus", NR.Field<string>("CPUnitStatCode"));
+                        fields.Add("ExReason", tExempt);
+                        fields.Add("StartDt", tStartDt);
+                        fields.Add("OccBy", tOccBy);
+                        fields.Add("UnitID", NR.Field<string>("UnitID"));
                     }
                 }
 
                 if (iStatus.ToUpper() != "SUCCESS")
                 {
                     iStatus = "FAILURE";
-                }
-
-                if (tUnitInfo.Length > 0)
-                {
-                    result = tUnitInfo;
-                }
-                else
-                {
-                    result = iStatus.ToUpper();
                 }
             }
             catch (Exception ex)
@@ -1447,7 +1429,7 @@ namespace BRBPortal_CSharp
                 }
             }
 
-            return result;
+            return fields;
         }
 
         /// <summary>
