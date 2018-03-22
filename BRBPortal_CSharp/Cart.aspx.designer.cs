@@ -49,6 +49,15 @@ namespace BRBPortal_CSharp {
         protected global::System.Web.UI.WebControls.Literal ShowFeesAll;
         
         /// <summary>
+        /// btnCancelCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelCart;
+        
+        /// <summary>
         /// btnPayCart control.
         /// </summary>
         /// <remarks>
@@ -65,14 +74,5 @@ namespace BRBPortal_CSharp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEdCart;
-        
-        /// <summary>
-        /// btnCancelCart control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelCart;
     }
 }

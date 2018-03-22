@@ -16,6 +16,11 @@ namespace BRBPortal_CSharp
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Context.User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("~/Account/Login");
+            }
+
             if (!IsPostBack)
             {
                 if (iCartTbl != null || iCartTbl.Columns.Count < 1) {
