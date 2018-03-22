@@ -35,6 +35,7 @@
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
                 <asp:ScriptReference Path="~/Scripts/Site.js"></asp:ScriptReference>
+                <asp:ScriptReference Path="~/Scripts/bootstrap-select.js"></asp:ScriptReference>
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>

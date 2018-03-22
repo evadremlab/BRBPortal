@@ -130,6 +130,15 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.RadioButtonList ExemptReason;
         
         /// <summary>
+        /// OtherListContainer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl OtherListContainer;
+        
+        /// <summary>
         /// OtherList control.
         /// </summary>
         /// <remarks>

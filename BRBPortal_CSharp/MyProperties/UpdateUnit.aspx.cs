@@ -190,7 +190,7 @@ namespace BRBPortal_CSharp.MyProperties
                     }
                     if (!OtherList_Visible)
                     {
-                        OtherList.Attributes["class"] = "hidden";
+                        OtherListContainer.Attributes["class"] = "hidden";
                     }
 
                 }
@@ -198,8 +198,7 @@ namespace BRBPortal_CSharp.MyProperties
                 MainAddress.Text = iPropertyAddress;
                 UnitNo.Text = iUnitNum;
                 NewUnit.SelectedValue = UnitStatus.Text;
-                //FailureText.Text = "";
-                //ErrorMessage .Attributes["class"] = "hidden";
+                FailureText.Text = "";
             }
         }
 
