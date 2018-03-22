@@ -46,107 +46,160 @@ namespace BRBPortal_CSharp.MyProperties
                     }
 
                     UnitStatus.Text = propertyUnits.GetStringValue("CPStatus");
-                    ExemptReas.Text = propertyUnits.GetStringValue("ExReason");
-                    UnitStartDt.Text = propertyUnits.GetStringValue("StartDt");
+                    ExemptReas.Text = propertyUnits.GetStringValue("ExReason"); // missing
+                    UnitStartDt.Text = propertyUnits.GetStringValue("StartDt"); // missing
                     UnitOccBy.Text = propertyUnits.GetStringValue("OccBy");
-                    hfUnitID.Value = propertyUnits.GetStringValue("UnitID");
+                    hfUnitID.Value = propertyUnits.GetStringValue("UnitID"); // missing
+
+                    var ExemptGroup_Visible = false;
+                    var CommUseGrp_Visible = false;
+                    var PMUnitGrp_Visible = false;
+                    var OwnerShrGrp_Visible = false;
+                    var AsOfDtGrp_Visible = false;
+                    var DtStrtdGrp_Visible = false;
+                    var OccByGrp_Visible = false;
+                    var ContractGrp_Visible = false;
+                    var OtherList_Visible = false;
 
                     if (UnitStatus.Text == "Rented")
                     {
-                        ExemptReas.Text = "";
                         ExemptReason.SelectedIndex = -1;
-                        ExemptGroup.Visible = false;
-                        CommUseGrp.Visible = false;
-                        PMUnitGrp.Visible = false;
-                        OwnerShrGrp.Visible = false;
-                        AsOfDtGrp.Visible = false;
-                        DtStrtdGrp.Visible = false;
-                        OccByGrp.Visible = false;
-                        ContractGrp.Visible = false;
+                        ExemptReason.Text = "";
+                        ExemptGroup_Visible = false;
+                        CommUseGrp_Visible = false;
+                        PMUnitGrp_Visible = false;
+                        OwnerShrGrp_Visible = false;
+                        AsOfDtGrp_Visible = false;
+                        DtStrtdGrp_Visible = false;
+                        OccByGrp_Visible = false;
+                        ContractGrp_Visible = false;
                     }
                     else
                     {
                         ExemptReason.SelectedValue = ExemptReas.Text;
-                        ExemptGroup.Visible = true;
-                        CommUseGrp.Visible = false;
-                        PMUnitGrp.Visible = false;
-                        OwnerShrGrp.Visible = false;
-                        AsOfDtGrp.Visible = false;
-                        DtStrtdGrp.Visible = false;
-                        OccByGrp.Visible = false;
-                        ContractGrp.Visible = false;
+                        ExemptGroup_Visible = true;
+                        CommUseGrp_Visible = false;
+                        PMUnitGrp_Visible = false;
+                        OwnerShrGrp_Visible = false;
+                        AsOfDtGrp_Visible = false;
+                        DtStrtdGrp_Visible = false;
+                        OccByGrp_Visible = false;
+                        ContractGrp_Visible = false;
 
                         switch (ExemptReason.SelectedValue.ToString().ToUpper())
                         {
-                            case "NAR":
-                                ExemptGroup.Visible = true;
-                                CommUseGrp.Visible = false;
-                                PMUnitGrp.Visible = false;
-                                OwnerShrGrp.Visible = false;
-                                AsOfDtGrp.Visible = true;
-                                DtStrtdGrp.Visible = false;
-                                OccByGrp.Visible = false;
-                                ContractGrp.Visible = false;
-                                OtherList.Visible = false;
-                                OtherList.ClearSelection();
-                               break;
-                            case "OOCC":
-                                ExemptGroup.Visible = true;
-                                CommUseGrp.Visible = false;
-                                PMUnitGrp.Visible = false;
-                                OwnerShrGrp.Visible = false;
-                                AsOfDtGrp.Visible = false;
-                                DtStrtdGrp.Visible = true;
-                                OccByGrp.Visible = true;
-                                ContractGrp.Visible = false;
-                                OtherList.Visible = false;
-                                OtherList.ClearSelection();
+                            case "NAR": // Vacant and not available for rent
+                                ExemptGroup_Visible = true;
+                                CommUseGrp_Visible = false;
+                                PMUnitGrp_Visible = false;
+                                OwnerShrGrp_Visible = false;
+                                AsOfDtGrp_Visible = true;
+                                DtStrtdGrp_Visible = false;
+                                OccByGrp_Visible = false;
+                                ContractGrp_Visible = false;
+                                OtherList_Visible = false;
+                                OtherList.Text = "";
+                                OtherList.SelectedIndex = -1;
                                 break;
-                            case "SEC8":
-                                ExemptGroup.Visible = true;
-                                CommUseGrp.Visible = false;
-                                PMUnitGrp.Visible = false;
-                                OwnerShrGrp.Visible = false;
-                                AsOfDtGrp.Visible = false;
-                                DtStrtdGrp.Visible = true;
-                                OccByGrp.Visible = false;
-                                ContractGrp.Visible = true;
-                                OtherList.Visible = false;
-                                OtherList.ClearSelection();
+                            case "OOCC": // Owner-Occupied
+                                ExemptGroup_Visible = true;
+                                CommUseGrp_Visible = false;
+                                PMUnitGrp_Visible = false;
+                                OwnerShrGrp_Visible = false;
+                                AsOfDtGrp_Visible = false;
+                                DtStrtdGrp_Visible = true;
+                                OccByGrp_Visible = true;
+                                ContractGrp_Visible = false;
+                                OtherList_Visible = false;
+                                OtherList.Text = "";
+                                OtherList.SelectedIndex = -1;
                                 break;
-                            case "FREE":
-                                ExemptGroup.Visible = true;
-                                CommUseGrp.Visible = false;
-                                PMUnitGrp.Visible = false;
-                                OwnerShrGrp.Visible = false;
-                                AsOfDtGrp.Visible = false;
-                                DtStrtdGrp.Visible = true;
-                                OccByGrp.Visible = true;
-                                ContractGrp.Visible = false;
-                                OtherList.Visible = false;
-                                OtherList.ClearSelection();
+                            case "SEC8": // Section 8
+                                ExemptGroup_Visible = true;
+                                CommUseGrp_Visible = false;
+                                PMUnitGrp_Visible = false;
+                                OwnerShrGrp_Visible = false;
+                                AsOfDtGrp_Visible = false;
+                                DtStrtdGrp_Visible = true;
+                                OccByGrp_Visible = false;
+                                ContractGrp_Visible = true;
+                                OtherList_Visible = false;
+                                OtherList.Text = "";
+                                OtherList.SelectedIndex = -1;
+                                break;
+                            case "FREE": // Occupied Rent Free
+                                ExemptGroup_Visible = true;
+                                CommUseGrp_Visible = false;
+                                PMUnitGrp_Visible = false;
+                                OwnerShrGrp_Visible = false;
+                                AsOfDtGrp_Visible = false;
+                                DtStrtdGrp_Visible = true;
+                                OccByGrp_Visible = true;
+                                ContractGrp_Visible = false;
+                                OtherList_Visible = false;
+                                OtherList.Text = "";
+                                OtherList.SelectedIndex = -1;
                                 break;
                             case "OTHER":
-                                ExemptGroup.Visible = true;
-                                CommUseGrp.Visible = false;
-                                PMUnitGrp.Visible = false;
-                                OwnerShrGrp.Visible = false;
-                                AsOfDtGrp.Visible = false;
-                                DtStrtdGrp.Visible = false;
-                                OccByGrp.Visible = false;
-                                ContractGrp.Visible = false;
-                                OtherList.Visible = true;
-                                OtherList.ClearSelection();
+                                ExemptGroup_Visible = true;
+                                CommUseGrp_Visible = false;
+                                PMUnitGrp_Visible = false;
+                                OwnerShrGrp_Visible = false;
+                                AsOfDtGrp_Visible = false;
+                                DtStrtdGrp_Visible = false;
+                                OccByGrp_Visible = false;
+                                ContractGrp_Visible = false;
+                                OtherList_Visible = true;
+                                OtherList.Text = "";
+                                OtherList.SelectedIndex = -1;
                                 break;
                         }
                     }
+
+                    if (!ExemptGroup_Visible)
+                    {
+                        ExemptGroup.Attributes["class"] = "hidden";
+                    }
+                    if (!CommUseGrp_Visible)
+                    {
+                        CommUseGrp.Attributes["class"] = "hidden";
+                    }
+                    if (!PMUnitGrp_Visible)
+                    {
+                        PMUnitGrp.Attributes["class"] = "hidden";
+                    }
+                    if (!OwnerShrGrp_Visible)
+                    {
+                        OwnerShrGrp.Attributes["class"] = "hidden";
+                    }
+                    if (!AsOfDtGrp_Visible)
+                    {
+                        AsOfDtGrp.Attributes["class"] = "hidden";
+                    }
+                    if (!DtStrtdGrp_Visible)
+                    {
+                        DtStrtdGrp.Attributes["class"] = "hidden";
+                    }
+                    if (!OccByGrp_Visible)
+                    {
+                        OccByGrp.Attributes["class"] = "hidden";
+                    }
+                    if (!ContractGrp_Visible)
+                    {
+                        ContractGrp.Attributes["class"] = "hidden";
+                    }
+                    if (!OtherList_Visible)
+                    {
+                        OtherList.Attributes["class"] = "hidden";
+                    }
+
                 }
 
                 MainAddress.Text = iPropertyAddress;
                 UnitNo.Text = iUnitNum;
                 NewUnit.SelectedValue = UnitStatus.Text;
-                FailureText.Text = "";
-                ErrorMessage.Visible = true;
+                //FailureText.Text = "";
+                //ErrorMessage .Attributes["class"] = "hidden";
             }
         }
 

@@ -4,6 +4,13 @@
     <asp:HiddenField ID="hfDialogID" runat="server" />
     <asp:HiddenField ID="hfUnitID" runat="server" />
 
+    <style>
+        html, body { height: 101%; } /* always show scrollbar so the controls don't jump when hiding/showing */
+        .table { margin-bottom: 0; border: none; overflow-x: hidden; }
+        .table th, .table td {  border-top: none !important; padding: 4px !important; }
+        .table .radio { padding-left: 0; }
+    </style>
+
     <h2>Update Unit Status</h2>
 
     <div class="form-horizontal">
@@ -11,104 +18,124 @@
             <div class="form-horizontal">
                 <h4><asp:Literal ID="MainAddress" runat="server"></asp:Literal></h4>
                 <hr />
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                            <p class="text-danger" >
-                                <asp:Literal runat="server" ID="FailureText" />
-                            </p>
-                        </asp:PlaceHolder>
+                <div class="form-group">
+                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
+                        <p class="text-danger" >
+                            <asp:Literal runat="server" ID="FailureText" />
+                        </p>
+                    </asp:PlaceHolder>
+                </div>
+
+                <h4>Current Unit Status</h4>
+
+                <div class="form-group">
+                    <asp:Label runat="server" AssociatedControlID="UnitNo" CssClass="control-label">Unit #: </asp:Label>
+                    <asp:Literal ID="UnitNo" runat="server" ></asp:Literal>
+                    <br />
+                    <asp:Label runat="server" AssociatedControlID="UnitStatus" CssClass="control-label">Unit Status: </asp:Label>
+                    <asp:Literal ID="UnitStatus" runat="server" ></asp:Literal>
+                    <br />
+                    <asp:Label runat="server" AssociatedControlID="ExemptReas" CssClass="control-label">Exemption Reason: </asp:Label>
+                    <asp:Literal ID="ExemptReas" runat="server" ></asp:Literal>
+                    <br />
+                    <asp:Label runat="server" AssociatedControlID="UnitStartDt" CssClass="control-label">Date Started: </asp:Label>
+                    <asp:Literal ID="UnitStartDt" runat="server"></asp:Literal>
+                    <br />
+                    <asp:Label runat="server" AssociatedControlID="UnitOccBy" CssClass="control-label">Occupied By: </asp:Label>
+                    <asp:Literal ID="UnitOccBy" runat="server"></asp:Literal>
+                </div>
+
+                <h4>New Unit Status</h4>
+
+                <div class="table table-responsive">
+                    <div style="display:table-cell; min-width:20rem;">
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="NewUnit" CssClass="control-label">New Unit Status: </asp:Label>
+                            <div class="radio radiobuttonlist">
+                                <asp:RadioButtonList runat="server" ID="NewUnit" RepeatDirection="Horizontal" ToolTip="Select unit status." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
+                                    <asp:ListItem Enabled="true" Text="Rented" Value="Rented"></asp:ListItem>
+                                    <asp:ListItem Enabled="true" Text="Exempt" Value="Exempt"></asp:ListItem>
+                                </asp:RadioButtonList>
+                            </div>
+                        </div>
                     </div>
+                    <div style="display:table-cell;">
+                        <div class="form-group" id="ExemptGroup" runat="server">
+                            <asp:Label runat="server" AssociatedControlID="ExemptReason" CssClass="control-label">Exemption Reason: </asp:Label>
+                            <div class="radio radiobuttonlist">
+                                <asp:RadioButtonList runat="server" ID="ExemptReason" RepeatDirection="Vertical" ToolTip="Select exemption reason.">
+                                    <asp:ListItem Enabled="true" Text="Vacant and not available for rent" Value="NAR"></asp:ListItem>
+                                    <asp:ListItem Enabled="true" Text="Owner-Occupied" Value="OOCC"></asp:ListItem>
+                                    <asp:ListItem Enabled="true" Text="Section 8" Value="SEC8"></asp:ListItem>
+                                    <asp:ListItem Enabled="true" Text="Occupied Rent Free" Value="FREE"></asp:ListItem>
+                                    <asp:ListItem Enabled="true" Text="Other" Value="OTHER"></asp:ListItem>
+                                </asp:RadioButtonList>
+                                <asp:dropdownlist runat="server" ID="OtherList" RepeatDirection="Vertical" ToolTip="Select a reason from the list (optional)." CssClass="form-control">
+                                    <asp:ListItem enabled="true" text="" value="-1"></asp:ListItem>
+                                    <asp:ListItem enabled="true" text="Commercial Use" value="COMM"></asp:ListItem>
+                                    <asp:ListItem enabled="true" text="Property Manager's Unit" value="MISC"></asp:ListItem>
+                                    <asp:ListItem enabled="true" text="Owner shares kitchen & bath with tenant" value="SHARED"></asp:ListItem>
+                                    <asp:ListItem enabled="true" text="Shelter Plus Care" value="SPLUS"></asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
 
-                    <h4>Current Unit Status</h4>
-
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="UnitNo" CssClass="control-label">Unit #: </asp:Label>
-                        <asp:Literal ID="UnitNo" runat="server" ></asp:Literal>
-                        <asp:Label runat="server" AssociatedControlID="UnitStatus" CssClass="control-label">Unit Status: </asp:Label>
-                        <asp:Literal ID="UnitStatus" runat="server" ></asp:Literal>
-                        <br />
-                        <asp:Label runat="server" AssociatedControlID="ExemptReas" CssClass="control-label">Exemption Reason: </asp:Label>
-                        <asp:Literal ID="ExemptReas" runat="server" ></asp:Literal>
                     </div>
                 </div>
 
-                <div class="col-md-5">
-                    <h4>Exemption Additional Information</h4>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="UnitStartDt" CssClass="control-label">Date Started: </asp:Label>
-                        <asp:Literal ID="UnitStartDt" runat="server" ></asp:Literal>
+                <h4>Exemption Additional Information</h4>
 
-                        <asp:Label runat="server" AssociatedControlID="UnitOccBy" CssClass="control-label">Occupied By: </asp:Label>
-                        <asp:Literal ID="UnitOccBy" runat="server" ></asp:Literal>
-                    </div>
-                    <div class="form-group" runat="server" id="AsOfDtGrp">
-                        <asp:Label runat="server" AssociatedControlID="UnitAsOfDt" CssClass="col-md-3 control-label">As of Date: </asp:Label>
-                        <div class="col-md-9">
-                            <asp:TextBox runat="server" ID="UnitAsOfDt" TextMode="Date" CssClass="form-control" ToolTip="Enter the as of date for this change."  />
-                        </div>
-                    </div>
-                    <div class="form-group" runat="server" id="DtStrtdGrp">
-                        <asp:Label runat="server" AssociatedControlID="StartDt" CssClass="col-md-3 control-label">Date Started: </asp:Label>
-                        <div class="col-md-9">
-                            <asp:TextBox runat="server" ID="StartDt" TextMode="Date" CssClass="form-control" ToolTip="Enter the start date." />
-                        </div>
-                    </div>
-                    <div class="form-group" runat="server" id="OccByGrp">
-                        <asp:Label runat="server" AssociatedControlID="OccupiedBy" CssClass="col-md-3 control-label">Occupied By: </asp:Label>
-                        <div class="col-md-9">
-                            <asp:TextBox runat="server" ID="OccupiedBy" CssClass="form-control" ToolTip="Enter name of tenant." data-lpignore="true" />
-                        </div>
-                   </div>
-                    <div class="form-group" runat="server" id="ContractGrp">
-                        <asp:Label runat="server" AssociatedControlID="ContractNo" CssClass="col-md-3 control-label">Contract #: </asp:Label>
-                        <div class="col-md-9">
-                            <asp:TextBox runat="server" ID="ContractNo" CssClass="form-control" ToolTip="Enter any contract number." />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" runat="server" id="AsOfDtGrp">
+                            <asp:Label runat="server" AssociatedControlID="UnitAsOfDt" CssClass="col-md-2 control-label">As of Date: </asp:Label>
+                            <div class="col-md-10">
+                                <asp:TextBox runat="server" ID="UnitAsOfDt" TextMode="Date" CssClass="form-control" ToolTip="Enter the as of date for this change."  />
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-7">
-                    <h4>New Unit Status</h4>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="NewUnit" CssClass="col-md-2 control-label">New Unit Status: </asp:Label>
-                        <div class="col-md-10 radio radiobuttonlist">
-                            <asp:RadioButtonList runat="server" ID="NewUnit" RepeatDirection="Horizontal" ToolTip="Select unit status." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
-                                <asp:ListItem Enabled="true" Text="Rented" Value="Rented"></asp:ListItem>
-                                <asp:ListItem Enabled="true" Text="Exempt" Value="Exempt"></asp:ListItem>
-                            </asp:RadioButtonList>
+                <div class="row" runat="server" id="DtStrtdGrp">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="StartDt" CssClass="col-md-2 control-label">Date Started: </asp:Label>
+                            <div class="col-md-10">
+                                <asp:TextBox runat="server" ID="StartDt" TextMode="Date" CssClass="form-control" ToolTip="Enter the start date." />
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group" id="ExemptGroup" runat="server">
-                        <asp:Label runat="server" AssociatedControlID="ExemptReason" CssClass="col-md-2 control-label">Exemption Reason: </asp:Label>
-                        <div class="col-md-10 radio radiobuttonlist">
-                            <asp:RadioButtonList runat="server" ID="ExemptReason" RepeatDirection="Vertical" ToolTip="Select exemption reason.">
-                                <asp:ListItem Enabled="true" Text="Vacant and not available for rent" Value="NAR"></asp:ListItem>
-                                <asp:ListItem Enabled="true" Text="Owner-Occupied" Value="OOCC"></asp:ListItem>
-                                <asp:ListItem Enabled="true" Text="Section 8" Value="SEC8"></asp:ListItem>
-                                <asp:ListItem Enabled="true" Text="Occupied Rent Free" Value="FREE"></asp:ListItem>
-                                <asp:ListItem Enabled="true" Text="Other" Value="OTHER"></asp:ListItem>
-                            </asp:RadioButtonList>
-                            <asp:dropdownlist runat="server" ID="OtherList" RepeatDirection="Vertical" ToolTip="Select a reason from the list (optional)." CssClass="form-control">
-                                <asp:ListItem enabled="true" text="" value="-1"></asp:ListItem>
-                                <asp:ListItem enabled="true" text="Commercial Use" value="COMM"></asp:ListItem>
-                                <asp:ListItem enabled="true" text="Property Manager's Unit" value="MISC"></asp:ListItem>
-                                <asp:ListItem enabled="true" text="Owner shares kitchen & bath with tenant" value="SHARED"></asp:ListItem>
-                                <asp:ListItem enabled="true" text="Shelter Plus Care" value="SPLUS"></asp:ListItem>
-                            </asp:DropDownList>
+                </div>
+
+                <div class="row" runat="server" id="OccByGrp">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="OccupiedBy" CssClass="col-md-2 control-label">Occupied By: </asp:Label>
+                            <div class="col-md-10">
+                                <asp:TextBox runat="server" ID="OccupiedBy" CssClass="form-control" ToolTip="Enter name of tenant." data-lpignore="true" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" runat="server" id="ContractGrp">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="ContractNo" CssClass="col-md-2 control-label">Contract #: </asp:Label>
+                            <div class="col-md-10">
+                                <asp:TextBox runat="server" ID="ContractNo" CssClass="form-control" ToolTip="Enter any contract number." />
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="col-md-12" style="clear:left;">
-                    <div class="form-group">
-                        <div class="Prompt" style="align-content:stretch;" id="CommUseGrp" runat="server">
+                <div class="row" runat="server" id="CommUseGrp">
+                    <div class="col-md-12">
+                        <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="CommUseDesc" CssClass="control-label">Please describe the current commercial use of this unit: </asp:Label>
                             <br />
                             <asp:TextBox runat="server" ID="CommUseDesc" TextMode="MultiLine" CssClass="form-control" style="width:80rem; height:7.5rem;" ToolTip="Enter commercial use description." />
                         </div>
-                    </div>
-                    <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="RB1" CssClass="control-label">Is the property zoned for commercial use?</asp:Label>
                             <div class="radio radiobuttonlist" style="display:inline-block;">
                                 <asp:RadioButtonList runat="server" ID="RB1" RepeatDirection="Horizontal" ToolTip="Select Yes or No." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
@@ -117,7 +144,6 @@
                             </asp:RadioButtonList>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="CommResYN" CssClass="control-label">Is the unit used exclusively for commercial use?</asp:Label>
                         <div class="radio radiobuttonlist" style="display:inline-block;">
@@ -127,8 +153,10 @@
                             </asp:RadioButtonList>
                         </div>
                     </div>
-                
-                    <div class="form-group" runat="server" id="PMUnitGrp">
+                </div>
+
+                <div runat="server" id="PMUnitGrp">
+                    <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="PropMgrName" CssClass="control-label">Name(s) of the Property Manager residing in the unit: </asp:Label>
                         <br />
                         <asp:TextBox runat="server" ID="PropMgrName" TextMode="MultiLine" CssClass="form-control" style="width:80rem;" ToolTip="Enter the property manager name(s)." />
@@ -139,55 +167,58 @@
                         <br />
                         <asp:TextBox runat="server" ID="PMEmailPhone" TextMode="MultiLine" CssClass="form-control" style="width:80rem;" ToolTip="Enter the property manager email and/or phone number." />
                     </div>
+                </div>
 
-                    <%--<div class="form-group" runat="server" id="PMUnitGrp"></div>--%>
-
-                    <div runat="server" id="OwnerShrGrp">
-                        <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="PrincResYN" CssClass="control-label">Is this unit the owner's principal place of residence?</asp:label>
-                            <div class="radio radiobuttonlist" style="display:inline-block;">
-                                <asp:RadioButtonList runat="server" ID="PrincResYN" RepeatDirection="Horizontal" ToolTip="Select Yes or No." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
-                                    <asp:ListItem Enabled="true" Text="Yes" Value="Yes"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Text="No" Value="No"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="MultiUnitYN" CssClass="control-label">Does the owner reside in any other unit on the property other than this unit?</asp:label>
-                            <div class="radio radiobuttonlist" style="display:inline-block;">
-                                <asp:RadioButtonList runat="server" ID="MultiUnitYN" RepeatDirection="Horizontal" ToolTip="Select Yes or No." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
-                                    <asp:ListItem Enabled="true" Text="Yes" Value="Yes"></asp:ListItem>
-                                    <asp:ListItem Enabled="true" Text="No" Value="No"></asp:ListItem>
-                                </asp:RadioButtonList>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="OtherUnits" CssClass="control-label">If Yes, please indicate which unit(s): </asp:Label>
-                            <asp:TextBox runat="server" ID="OtherUnits" TextMode="SingleLine" CssClass="form-control" ToolTip="Enter the other units the owner occupies." style="width:38rem; max-width:38rem;" />
-                        </div>
-                        <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TenantNames" CssClass="control-label">Name and contact information of the tenants residing in the unit?  Name(s): </asp:Label>
-                            <br />
-                            <asp:TextBox runat="server" ID="TenantNames" TextMode="MultiLine" CssClass="form-control" style="width:80rem; height:7.5rem;" ToolTip="Enter the names of the tenants." />
-                        </div>
-                        <div class="form-group">
-                            <asp:Label runat="server" AssociatedControlID="TenantContacts" CssClass="control-label">Contact info: </asp:Label>
-                            <br />
-                            <asp:TextBox runat="server" ID="TenantContacts" TextMode="MultiLine" CssClass="form-control" style="width:80rem; height:7.5rem;" ToolTip="Enter the contact information for the tenants." />
+                <div id="OwnerShrGrp" runat="server">
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="PrincResYN" CssClass="control-label">Is this unit the owner's principal place of residence?</asp:label>
+                        <div class="radio radiobuttonlist" style="display:inline-block;">
+                            <asp:RadioButtonList runat="server" ID="PrincResYN" RepeatDirection="Horizontal" ToolTip="Select Yes or No." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
+                                <asp:ListItem Enabled="true" Text="Yes" Value="Yes"></asp:ListItem>
+                                <asp:ListItem Enabled="true" Text="No" Value="No"></asp:ListItem>
+                            </asp:RadioButtonList>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <asp:CheckBox ID="chkDeclare" runat="server" Text="Declaration: I hereby declare under penalty of perjury that .." CssClass="checkbox bold" />
+                        <asp:Label runat="server" AssociatedControlID="MultiUnitYN" CssClass="control-label">Does the owner reside in any other unit on the property other than this unit?</asp:label>
+                        <div class="radio radiobuttonlist" style="display:inline-block;">
+                            <asp:RadioButtonList runat="server" ID="MultiUnitYN" RepeatDirection="Horizontal" ToolTip="Select Yes or No." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
+                                <asp:ListItem Enabled="true" Text="Yes" Value="Yes"></asp:ListItem>
+                                <asp:ListItem Enabled="true" Text="No" Value="No"></asp:ListItem>
+                            </asp:RadioButtonList>
+                        </div>
                     </div>
-
                     <div class="form-group">
-                        <Label runat="server" AssociatedControlID="DeclareInits" CssClass="control-label">Declaration initials: </Label>
-                        <asp:TextBox runat="server" ID="DeclareInits" Width="70px" CssClass="form-control" ToolTip="Enter your initials acknowledging the Declaration above." />
+                        <asp:Label runat="server" AssociatedControlID="OtherUnits" CssClass="control-label">If Yes, please indicate which unit(s): </asp:Label>
+                        <asp:TextBox runat="server" ID="OtherUnits" TextMode="SingleLine" CssClass="form-control" ToolTip="Enter the other units the owner occupies." style="width:38rem; max-width:38rem;" />
                     </div>
                     <div class="form-group">
-                        <asp:Button runat="server" ID="btnConfirm" OnClick="UpdateUnit_Click" Text="Confirm" CssClass="btn btn-primary" ToolTip="Update this unit." />
-                        <asp:Button runat="server" id="btnCancel" OnClick="CancelEdit_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Returns to list of units." style="margin-left:1rem;" />
+                        <asp:Label runat="server" AssociatedControlID="TenantNames" CssClass="control-label">Name and contact information of the tenants residing in the unit?  Name(s): </asp:Label>
+                        <br />
+                        <asp:TextBox runat="server" ID="TenantNames" TextMode="MultiLine" CssClass="form-control" style="width:80rem; height:7.5rem;" ToolTip="Enter the names of the tenants." />
+                    </div>
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="TenantContacts" CssClass="control-label">Contact info: </asp:Label>
+                        <br />
+                        <asp:TextBox runat="server" ID="TenantContacts" TextMode="MultiLine" CssClass="form-control" style="width:80rem; height:7.5rem;" ToolTip="Enter the contact information for the tenants." />
+                    </div>
+                </div>
+
+                <div class="table table-responsive" style="margin-top:2rem;">
+                    <div class="table-cell">
+                        <div class="form-group">
+                            <asp:CheckBox ID="chkDeclare" runat="server" Text="&nbsp;Declaration: I hereby declare under penalty of perjury that .."  />
+                        </div>
+
+                        <div class="form-group">
+                            <Label runat="server" AssociatedControlID="DeclareInits" CssClass="control-label">Declaration initials: </Label>
+                            <asp:TextBox runat="server" ID="DeclareInits" Width="70px" CssClass="form-control" ToolTip="Enter your initials acknowledging the Declaration above." />
+                        </div>
+
+                        <div class="form-group">
+                            <asp:Button runat="server" ID="btnConfirm" OnClick="UpdateUnit_Click" Text="Confirm" CssClass="btn btn-primary" ToolTip="Update this unit." />
+                            <asp:Button runat="server" id="btnCancel" OnClick="CancelEdit_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Returns to list of units." style="margin-left:1rem;" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -197,10 +228,94 @@
 
     <script>
         $(document).ready(function () {
-            $("#datepicker").datepicker();
+            function _setExemptReasonFields() {
+                switch ($('#MainContent_ExemptReason input:checked').val()) {
+                    case "NAR": // Vacant and not available for rent
+                        $('#MainContent_ExemptGroup').removeClass('hidden');
+                        $('#MainContent_CommUseGrp').addClass('hidden');
+                        $('#MainContent_PMUnitGrp').addClass('hidden');
+                        $('#MainContent_OwnerShrGrp').addClass('hidden');
+                        $('#MainContent_AsOfDtGrp').removeClass('hidden');
+                        $('#MainContent_DtStrtdGrp').addClass('hidden');
+                        $('#MainContent_OccByGrp').addClass('hidden');
+                        $('#MainContent_ContractGrp').addClass('hidden');
+                        $('#MainContent_OtherList').addClass('hidden');
+                        $('#MainContent_OtherList').val('');
+                        break;
+                    case "OOCC": // Owner-Occupied
+                        $('#MainContent_ExemptGroup').removeClass('hidden');
+                        $('#MainContent_CommUseGrp').addClass('hidden');
+                        $('#MainContent_PMUnitGrp').addClass('hidden');
+                        $('#MainContent_OwnerShrGrp').addClass('hidden');
+                        $('#MainContent_AsOfDtGrp').addClass('hidden');
+                        $('#MainContent_DtStrtdGrp').removeClass('hidden');
+                        $('#MainContent_OccByGrp').removeClass('hidden');
+                        $('#MainContent_ContractGrp').addClass('hidden');
+                        $('#MainContent_OtherList').addClass('hidden');
+                        $('#MainContent_OtherList').val('');
+                        break;
+                    case "SEC8": // Section 8
+                        $('#MainContent_ExemptGroup').removeClass('hidden');
+                        $('#MainContent_CommUseGrp').addClass('hidden');
+                        $('#MainContent_PMUnitGrp').addClass('hidden');
+                        $('#MainContent_OwnerShrGrp').addClass('hidden');
+                        $('#MainContent_AsOfDtGrp').addClass('hidden');
+                        $('#MainContent_DtStrtdGrp').removeClass('hidden');
+                        $('#MainContent_OccByGrp').addClass('hidden');
+                        $('#MainContent_ContractGrp').removeClass('hidden');
+                        $('#MainContent_OtherList').addClass('hidden');
+                        $('#MainContent_OtherList').val('');
+                        break;
+                    case "FREE": // Occupied Rent Free
+                        $('#MainContent_ExemptGroup').removeClass('hidden');
+                        $('#MainContent_CommUseGrp').addClass('hidden');
+                        $('#MainContent_PMUnitGrp').addClass('hidden');
+                        $('#MainContent_OwnerShrGrp').addClass('hidden');
+                        $('#MainContent_AsOfDtGrp').addClass('hidden');
+                        $('#MainContent_DtStrtdGrp').removeClass('hidden');
+                        $('#MainContent_OccByGrp').removeClass('hidden');
+                        $('#MainContent_ContractGrp').addClass('hidden');
+                        $('#MainContent_OtherList').addClass('hidden');
+                        $('#MainContent_OtherList').val('');
+                        break;
+                    case "OTHER":
+                        $('#MainContent_ExemptGroup').removeClass('hidden');
+                        $('#MainContent_CommUseGrp').addClass('hidden');
+                        $('#MainContent_PMUnitGrp').addClass('hidden');
+                        $('#MainContent_OwnerShrGrp').addClass('hidden');
+                        $('#MainContent_AsOfDtGrp').addClass('hidden');
+                        $('#MainContent_DtStrtdGrp').addClass('hidden');
+                        $('#MainContent_OccByGrp').addClass('hidden');
+                        $('#MainContent_ContractGrp').addClass('hidden');
+                        $('#MainContent_OtherList').removeClass('hidden');
+                        $('#MainContent_OtherList').val('');
+                        break;
+                }
+            }
+
+            function _setNewUnitfields() {
+                if ($('#MainContent_NewUnit input:checked').val() === 'Rented') {
+                    $('#MainContent_ExemptGroup').addClass('hidden');
+                    $('#MainContent_ExemptReason').addClass('hidden');
+                    $('#MainContent_OtherList').addClass('hidden');
+                    $('#MainContent_ExemptReason').val('');
+                    $('#MainContent_OtherList').val('');
+                    $('#MainContent_AsOfDtGrp').removeClass('hidden');
+                } else {
+                    $('#MainContent_ExemptGroup').removeClass('hidden');
+                    $('#MainContent_ExemptReason').removeClass('hidden');
+                    $('#MainContent_OtherList').removeClass('hidden');
+                    $('#MainContent_ExemptReason').val('');
+                    $('#MainContent_OtherList').val('');
+                    $('#MainContent_AsOfDtGrp').addClass('hidden');
+                }
+
+                _setExemptReasonFields();
+            }
+
+            $('#MainContent_NewUnit input').change(_setNewUnitfields);
+            $('#MainContent_ExemptReason input').change(_setExemptReasonFields);
         });
-        // new unit clicked
-        // exemption clicked
         //OtherList_Clicked
         //RB1_Clicked
         //RB1Y and RB1N

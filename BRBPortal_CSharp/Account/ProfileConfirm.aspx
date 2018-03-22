@@ -31,7 +31,7 @@
                 <asp:Literal ID="PhoneNo0" runat="server" > </asp:Literal>
             </div>
             <div class="form-group">
-                <asp:CheckBox ID="chkDeclare" runat="server" Text=";Declaration:  I hereby declare under penalty of perjury that .." CssClass="checkbox" />
+                <asp:CheckBox ID="chkDeclare" runat="server" Text="Declaration: I hereby declare under penalty of perjury that .." CssClass="checkbox bold" />
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="DeclareInits" CssClass="control-label">Declaration initials: </asp:Label>
@@ -41,8 +41,6 @@
                 <asp:Button runat="server" ID="btnSubmit" OnClick="SubmitProfile_Click" Text="Submit" CssClass="btn btn-primary" ToolTip="Click to confirm this information is correct." />
                 <asp:Button runat="server" ID="btnCancel" OnClick="CancelProfile_Click" Text="Cancel & Logout" CssClass="btn btn-default" style="margin-left:1rem;" ToolTip="Clicking this button will cause this validation screen to be displayed on your next login." UseSubmitBehavior="false" />
             </div>
-            <asp:Button ID="btnDialogResponseYes" runat="server" Text="Hidden Button" OnClick="DialogResponseYes" Style="display: none" UseSubmitBehavior="false" />
-            <asp:Button ID="btnDialogResponseNo" runat="server" Text="Hidden Button" OnClick="DialogResponseNo" Style="display: none" UseSubmitBehavior="false" />
         </div>
     </section>
 
