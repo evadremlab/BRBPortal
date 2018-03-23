@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyProperties.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.MyProperties" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>My Properties</h2>
+    <h2>List of Properties</h2>
     <div class="form-horizontal">
         <section id="propertiesForm">
             <div class="form-horizontal">
@@ -70,9 +70,10 @@
                         <SortedDescendingHeaderStyle BackColor="#4870BE" />
                     </asp:GridView>
                 </div>
-<%--                <div class="form-group">
-                    <asp:Button runat="server" id="btnAddToCart" OnClick="AddCart_Click" Text="Add to Cart" CssClass="btn btn-primary" ToolTip="Add this property balance to your cart." />
-                </div>--%>
+                <div class="form-group">
+                    <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Home" Text="Back" CssClass="btn btn-default" ToolTip="Return to the list of Units." TabIndex="-1" />
+                    <%--<asp:Button runat="server" id="btnAddToCart" OnClick="AddCart_Click" Text="Add to Cart" CssClass="btn btn-primary" ToolTip="Add this property balance to your cart." />--%>
+                </div>
                 <div class="well" style="display:inline-block; width:auto;">
                     <p style="font-size: small;">Please contact the Rent Stabilization Board if you wish to: </p>
                     <ul style="font-size: small;">

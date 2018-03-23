@@ -1,14 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyTenants.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.MyTenants" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>View Tenancy</h2>
+    <h2>List of Tenants</h2>
     
     <asp:HiddenField ID="hfDialogID" runat="server" />
 
     <div class="form-horizontal">
         <section id="updatePropertiesForm">
             <div class="form-horizontal">
-                <h4><asp:Literal ID="MainAddress" runat="server" ></asp:Literal></h4>
+                <h4>at <asp:Literal ID="MainAddress" runat="server" ></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server"></asp:Literal></h4>
                 <hr />
                 <div class="row hidden">
                     <div class="form-group">
@@ -38,18 +38,16 @@
                         </div>
                         <div class="row">
                             <div class="form-group">
-                                <asp:Label runat="server" AssociatedControlID="UnitNo" CssClass="col-md-4 control-label">Unit #: </asp:Label>
+                                <asp:Label runat="server" AssociatedControlID="UnitStat" CssClass="col-md-4 control-label">Unit Status: </asp:Label>
                                 <div class="col-md-8 literal">
-                                    <asp:Literal ID="UnitNo" runat="server"></asp:Literal>
+                                    <asp:Literal ID="UnitStat" runat="server"></asp:Literal>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group">
-                                <asp:Label runat="server" AssociatedControlID="UnitStat" CssClass="col-md-4 control-label">Unit Status: </asp:Label>
-                                <div class="col-md-8">
-                                    <asp:Literal ID="UnitStat" runat="server"></asp:Literal>
-                                    <asp:Label runat="server" AssociatedControlID="NumTenants" CssClass="control-label" style="padding-left:2rem;"># of Tenants: </asp:Label>
+                                <asp:Label runat="server" AssociatedControlID="NumTenants" CssClass="col-md-4 control-label" style="padding-left:2rem;"># of Tenants: </asp:Label>
+                                <div class="col-md-8 literal">
                                     <asp:Literal ID="NumTenants" runat="server"></asp:Literal>
                                 </div>
                             </div>
@@ -68,7 +66,9 @@
                                 <div class="col-md-8">
                                     <asp:Literal ID="SmokYN" runat="server"></asp:Literal>
                                     <asp:Label runat="server" AssociatedControlID="SmokDt" CssClass="control-label" style="padding-left:2rem;">Effective date:</asp:Label>
+                                    <% if (!(string.IsNullOrEmpty(SmokYN.Text) || SmokYN.Text.Equals("N/A"))) { %>
                                     <asp:Literal ID="SmokDt" runat="server"></asp:Literal>
+                                    <% } %>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                             </asp:GridView>
                         </div>    
                         <div class="form-group">
-                            <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyUnits" Text="Cancel" CssClass="btn btn-default" ToolTip="Return to the list of Units." TabIndex="-1" />
+                            <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyUnits" Text="Back" CssClass="btn btn-default" ToolTip="Return to the list of Units." TabIndex="-1" />
                             <asp:Button runat="server" Text="Update Tenancy" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Tenants." />
                         </div>
                     </div>

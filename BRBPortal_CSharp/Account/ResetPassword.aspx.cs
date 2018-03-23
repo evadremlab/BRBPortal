@@ -46,7 +46,7 @@ namespace BRBPortal_CSharp.Account
 
         protected void Reset_Click(object sender, EventArgs e)
         {
-            var userProfile = new UserProfile
+            var profile = new UserProfile
             {
                 UserCode = UserIDCode.Text,
                 BillingCode = BillingCode.Text,
@@ -56,7 +56,7 @@ namespace BRBPortal_CSharp.Account
                 Answer2 = Answer2.Text
             };
 
-            if (BRBFunctions_CSharp.ValidateReset(userProfile))
+            if (BRBFunctions_CSharp.ValidateReset(profile))
             {
                 ShowDialogOK("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
 

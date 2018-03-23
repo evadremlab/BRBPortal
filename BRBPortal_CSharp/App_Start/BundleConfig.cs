@@ -34,6 +34,16 @@ namespace BRBPortal_CSharp
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                             "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
+                "~/Scripts/Inputmask/inputmask.js",
+                "~/Scripts/Inputmask/jquery.inputmask.js",
+                "~/Scripts/Inputmask/inputmask.extensions.js",
+                "~/Scripts/Inputmask/inputmask.date.extensions.js",
+                //and other extensions you want to include
+                "~/Scripts/Inputmask/inputmask.date.extensions.js",
+                "~/Scripts/Inputmask/inputmask.numeric.extensions.js",
+                "~/Scripts/Inputmask/inputmask.phone.extensions.js"));
+
             ScriptManager.ScriptResourceMapping.AddDefinition(
                 "respond",
                 new ScriptResourceDefinition

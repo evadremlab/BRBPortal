@@ -11,27 +11,17 @@
         .table .radio { padding-left: 0; }
     </style>
 
-    <h2>Update Unit Status</h2>
+    <h2>Unit Status</h2>
 
     <div class="form-horizontal">
         <section id="updateUnitForm">
             <div class="form-horizontal">
-                <h4><asp:Literal ID="MainAddress" runat="server"></asp:Literal></h4>
+                <h4>at <asp:Literal ID="MainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
                 <hr />
-                <div class="form-group">
-                    <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                        <p class="text-danger" >
-                            <asp:Literal runat="server" ID="FailureText" />
-                        </p>
-                    </asp:PlaceHolder>
-                </div>
 
                 <h4>Current Unit Status</h4>
 
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="UnitNo" CssClass="control-label">Unit #: </asp:Label>
-                    <asp:Literal ID="UnitNo" runat="server" ></asp:Literal>
-                    <br />
                     <asp:Label runat="server" AssociatedControlID="UnitStatus" CssClass="control-label">Unit Status: </asp:Label>
                     <asp:Literal ID="UnitStatus" runat="server" ></asp:Literal>
                     <br />
@@ -43,6 +33,23 @@
                     <br />
                     <asp:Label runat="server" AssociatedControlID="UnitOccBy" CssClass="control-label">Occupied By: </asp:Label>
                     <asp:Literal ID="UnitOccBy" runat="server"></asp:Literal>
+                </div>
+
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    New Unit Status
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h4>New Unit Status</h4>

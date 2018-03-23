@@ -38,14 +38,14 @@
             <asp:Label runat="server" AssociatedControlID="InitRent" Width="140px" CssClass="col-md-1 control-label">Initial Rent:&nbsp;&nbsp;&nbsp;$</asp:Label>
             <asp:TextBox runat="server" ID="InitRent"></asp:TextBox>
             <asp:RequiredFieldValidator runat="server" ControlToValidate="InitRent" ValidationGroup="CheckFields"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="The Initial Rent field is required." />
+                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Initial Rent is required." />
         </div>
 
         <div class="form-group" style="padding-left:10px">
             <asp:Label runat="server" AssociatedControlID="TenStDt" Width="160px" CssClass="col-md-1 control-label">Tenancy Start Date:</asp:Label>
             <asp:TextBox runat="server" ID="TenStDt" TextMode="Date"></asp:TextBox>
             <asp:RequiredFieldValidator runat="server" ControlToValidate="TenStDt" ValidationGroup="CheckFields"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="The Tenancy Start Date is required." />
+                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Tenancy Start Date is required." />
         </div>
 
         <br />
@@ -73,7 +73,7 @@
             <label class="control-label" style="width:100px; padding-bottom:4px"># of tenants:</label>
             <asp:TextBox runat="server" ID="NumTenants" Width="70px" ></asp:TextBox>
             <asp:RequiredFieldValidator runat="server" ControlToValidate="NumTenants" ValidationGroup="CheckFields"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="The Number of Tenants is required." />
+                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Number of Tenants is required." />
         </div>
 
         <div class="Prompt" style="align-content:stretch">
@@ -92,7 +92,7 @@
             <label class="control-label" style="width:160px; padding-bottom:4px">Prior Tenancy end date:</label>
             <asp:TextBox runat="server" ID="PTenDt" TextMode="Date" ToolTip="Enter the prior tenency date." />
             <asp:RequiredFieldValidator runat="server" ControlToValidate="PTenDt" ValidationGroup="CheckFields"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="The Prior Tenancy end date is required." />
+                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Prior Tenancy end date is required." />
         </div>
         
         <div class="form-group" style="padding-left:10px">
@@ -105,7 +105,7 @@
                 <asp:ListItem enabled="true" text="Other" value="4"></asp:ListItem>
             </asp:DropDownList>
             <asp:RequiredFieldValidator runat="server" ControlToValidate="TermReas" ValidationGroup="CheckFields"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="The Reason for termination is required." />
+                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Reason for termination is required." />
         </div>
 
         <%--<br />--%>

@@ -198,7 +198,6 @@ namespace BRBPortal_CSharp.MyProperties
                 MainAddress.Text = iPropertyAddress;
                 UnitNo.Text = iUnitNum;
                 NewUnit.SelectedValue = UnitStatus.Text;
-                FailureText.Text = "";
             }
         }
 

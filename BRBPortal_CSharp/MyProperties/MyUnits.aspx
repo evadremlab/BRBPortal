@@ -3,12 +3,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:HiddenField ID="hfDialogID" runat="server" />
 
-    <h2>My Properties</h2>
+    <h2>List of Units</h2>
 
     <div class="form-horizontal">
         <section id="propertiesForm">
             <div class="form-horizontal">
-                <h4><asp:Literal ID="MainAddress" runat="server" ></asp:Literal></h4>
+                <h4>at <asp:Literal ID="MainAddress" runat="server" ></asp:Literal></h4>
                 <hr />
                 <asp:PlaceHolder ID="AgentSection" runat="server">
                     <div class="form-group">

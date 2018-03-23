@@ -22,24 +22,6 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.HiddenField hfDialogID;
         
         /// <summary>
-        /// ErrorMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder ErrorMsg;
-        
-        /// <summary>
-        /// FailureText control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal FailureText;
-        
-        /// <summary>
         /// ReqUserID control.
         /// </summary>
         /// <remarks>
@@ -67,13 +49,13 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.RadioButtonList PropRelate;
         
         /// <summary>
-        /// NameGrp control.
+        /// OwnerGrp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NameGrp;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl OwnerGrp;
         
         /// <summary>
         /// FirstName control.
@@ -85,15 +67,6 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.TextBox FirstName;
         
         /// <summary>
-        /// MidName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox MidName;
-        
-        /// <summary>
         /// LastName control.
         /// </summary>
         /// <remarks>
@@ -101,15 +74,6 @@ namespace BRBPortal_CSharp.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox LastName;
-        
-        /// <summary>
-        /// Suffix control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Suffix;
         
         /// <summary>
         /// AgencyGrp control.
@@ -130,6 +94,15 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.TextBox AgencyName;
         
         /// <summary>
+        /// PropOwnLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PropOwnLastName;
+        
+        /// <summary>
         /// StNum control.
         /// </summary>
         /// <remarks>
@@ -146,15 +119,6 @@ namespace BRBPortal_CSharp.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox StName;
-        
-        /// <summary>
-        /// StUnit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StUnit;
         
         /// <summary>
         /// StCity control.
@@ -184,15 +148,6 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.TextBox StZip;
         
         /// <summary>
-        /// StCountry control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StCountry;
-        
-        /// <summary>
         /// EmailAddress control.
         /// </summary>
         /// <remarks>
@@ -211,15 +166,6 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.TextBox PhoneNo;
         
         /// <summary>
-        /// PropOwnLastName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PropOwnLastName;
-        
-        /// <summary>
         /// PropAddress control.
         /// </summary>
         /// <remarks>
@@ -229,48 +175,12 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.TextBox PropAddress;
         
         /// <summary>
-        /// PurchaseYear control.
+        /// btnBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PurchaseYear;
-        
-        /// <summary>
-        /// Quest1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Quest1;
-        
-        /// <summary>
-        /// Answer1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Answer1;
-        
-        /// <summary>
-        /// Quest2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Quest2;
-        
-        /// <summary>
-        /// Answer2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Answer2;
+        protected global::System.Web.UI.WebControls.Button btnBack;
     }
 }

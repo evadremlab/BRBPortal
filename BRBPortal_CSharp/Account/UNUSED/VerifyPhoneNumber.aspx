@@ -15,7 +15,7 @@
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Code" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Code"
-                    CssClass="text-danger" ErrorMessage="The Code field is required." />
+                    CssClass="text-danger" ErrorMessage="Code field is required." />
             </div>
         </div>
         <div class="form-group">

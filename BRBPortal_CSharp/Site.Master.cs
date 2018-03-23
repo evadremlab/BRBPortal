@@ -78,7 +78,7 @@ namespace BRBPortal_CSharp
 
             Session.RemoveAll();
 
-            Response.Redirect("~/Account/Login");
+            Response.Redirect("~/Default");
         }
     }
 }

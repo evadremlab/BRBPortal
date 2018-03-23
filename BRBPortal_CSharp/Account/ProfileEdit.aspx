@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
         .form-control { width: auto; }
+        input[type="text"] { text-transform:uppercase; }
     </style>
 
     <asp:HiddenField ID="hfDialogID" runat="server" />
@@ -57,8 +58,8 @@
                 </div>
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="Suffix" CssClass="col-md-2 control-label">Suffix: </asp:Label>
-                    <div class="col-md-10">
-                        <asp:dropdownlist runat="server" ID="Suffix" ToolTip="Select a suffix from the list (optional)." CssClass="form-control">
+                    <div class="col-md-10" style="max-width:15.5rem;">
+                        <asp:dropdownlist runat="server" ID="Suffix" ToolTip="Select a suffix from the list (optional)." CssClass="form-control selectpicker">
                             <asp:ListItem enabled="true" text="Select suffix" value="-1"></asp:ListItem>
                             <asp:ListItem enabled="true" text="Jr." value="1"></asp:ListItem>
                             <asp:ListItem enabled="true" text="Sr." value="2"></asp:ListItem>
@@ -84,19 +85,19 @@
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="StNum" CssClass="col-md-2 control-label">* Street Number: </asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="StNum" ToolTip="Enter the street number of the mailing address." CssClass="form-control" TextMode="SingleLine" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StNum"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="The street number field is required." />
+                    <asp:TextBox runat="server" ID="StNum" ToolTip="Enter the street number of the mailing address." CssClass="form-control" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StNum" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="street number is required." />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="StName" CssClass="col-md-2 control-label">* Street Name: </asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="StName" ToolTip="Enter the street name of the mailing address." CssClass="form-control" TextMode="SingleLine" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StName"  ValidationGroup="UpdCheck" CssClass="text-danger" style="width:40rem; max-width:40rem;" Display="Dynamic" ErrorMessage="The street name field is required." />
+                    <asp:TextBox runat="server" ID="StName" ToolTip="Enter the street name of the mailing address." CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StName"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="street name is required." />
                 </div>
             </div>
             <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="StUnit" CssClass="col-md-2 control-label">&nbsp;&nbsp;&nbsp;Unit Number: </asp:Label>
+                <asp:Label runat="server" AssociatedControlID="StUnit" CssClass="col-md-2 control-label">Unit Number: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="StUnit" ToolTip="Enter the street number of the mailing address." CssClass="form-control" TextMode="SingleLine" />
                 </div>
@@ -105,13 +106,13 @@
                 <asp:Label runat="server" AssociatedControlID="StCity" CssClass="col-md-2 control-label">* City: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="StCity" ToolTip="Enter the city of the mailing address." CssClass="form-control" TextMode="SingleLine" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StCity"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="The city field is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StCity"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="city is required." />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="StState" CssClass="col-md-2 control-label">* State: </asp:Label>
-                <div class="col-md-10">
-                    <asp:dropdownlist runat="server" ID="StState" ToolTip="Select a state from the list." CssClass="form-control">
+                <div class="col-md-10" style="max-width:15.5rem;">
+                    <asp:dropdownlist runat="server" ID="StState" ToolTip="Select a state from the list." CssClass="form-control selectpicker">
                         <asp:ListItem enabled="true" text="Select state" value="-1"></asp:ListItem>
                         <asp:ListItem enabled="true" text="AK" value="AK"></asp:ListItem>
                         <asp:ListItem enabled="true" text="AL" value="AL"></asp:ListItem>
@@ -163,14 +164,14 @@
                         <asp:ListItem enabled="true" text="WV" value="WV"></asp:ListItem>
                         <asp:ListItem enabled="true" text="WY" value="WY"></asp:ListItem>
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StState"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="The state field is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StState"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="state is required." />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="StZip" CssClass="col-md-2 control-label">* Zip Code: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="StZip" ToolTip="Enter the zip code of the mailing address." CssClass="form-control" TextMode="SingleLine" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StZip"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="The zip code field is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StZip"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="zip code is required." />
                 </div>
             </div>
             <div class="form-group">
@@ -183,42 +184,42 @@
                 <asp:Label runat="server" AssociatedControlID="EmailAddress" CssClass="col-md-2 control-label">* Email Address: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="EmailAddress" ToolTip="Enter your email address." CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EmailAddress" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="The Email Address field is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EmailAddress" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Email Address is required." />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="PhoneNo" CssClass="col-md-2 control-label">* Phone Number: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="PhoneNo" ToolTip="Enter your phone number." CssClass="form-control" TextMode="SingleLine" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="PhoneNo" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="The Phone Number field is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="PhoneNo" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Phone Number is required." />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="Quest1" CssClass="col-md-2 control-label">* Security Question:</asp:Label>
                 <div class="col-md-10">
                     <asp:textbox runat="server" id="Quest1" CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;"></asp:textbox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest1" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="The Security Question field is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest1" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Security Question is required." />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="Answer1" CssClass="col-md-2 control-label">* Security Answer:</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="Answer1" CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Answer1" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="The Security Answer field is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Answer1" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Security Answer is required." />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="Quest2" CssClass="col-md-2 control-label">* Security Question:</asp:Label>
                 <div class="col-md-10">
                     <asp:textbox runat="server" id="Quest2" CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;"></asp:textbox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest2" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="The Security Question field is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest2" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Security Question is required." />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="Answer2" CssClass="col-md-2 control-label">* Security Answer:</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="Answer2" CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Answer2" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="The Security Answer field is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Answer2" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Security Answer is required." />
                 </div>
             </div>
 
@@ -228,8 +229,13 @@
                     <asp:Button runat="server" ID="btnUpdate" OnClick="UpdateProfile_Click" Text="Update" CssClass="btn btn-primary" ToolTip="Update your profile." ValidationGroup="UpdCheck" style="margin-left:1rem;" />
                 </div>
             </div>
-
-            <div style="height:3rem;">&nbsp;</div><!-- to move buttons off the bottom of the screen -->
         </div>
+        <div style="height:3rem;">&nbsp;</div><!-- to move buttons off the bottom of the screen -->
     </section>
+
+    <script>
+        $(document).ready(function () {
+            $(".selectpicker").selectpicker();
+        });
+    </script>
 </asp:Content>
