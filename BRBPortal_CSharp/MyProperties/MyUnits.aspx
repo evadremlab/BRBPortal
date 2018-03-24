@@ -74,7 +74,7 @@
                 </asp:GridView>
             </div>
             <div class="form-group">
-                <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyProperties" Text="Back" CssClass="btn btn-default" ToolTip="Return to the list of Properties." TabIndex="-1" />
+                <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyProperties" Text="Back" CssClass="btn btn-sm btn-default" ToolTip="Return to the list of Properties." TabIndex="-1" />
                 <%--<asp:Button runat="server" OnClick="NextBtn_Click" Text="Next" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Unit or Tenancy."/>--%>
             </div>
         </section>

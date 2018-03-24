@@ -207,7 +207,7 @@
                         </div>
 
                         <div class="form-group">
-                            <asp:Button runat="server" id="btnCancel" OnClick="btnCancel_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Returns to list of units." TabIndex="-1" />
+                            <asp:Button runat="server" id="btnCancel" OnClick="btnCancel_Click" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Returns to list of units." TabIndex="-1" />
                             <asp:Button runat="server" ID="btnConfirm" OnClick="btnConfirm_Click" Text="Confirm" CssClass="btn btn-primary" ToolTip="Update this unit." style="margin-left:1rem;" />
                         </div>
                     </div>

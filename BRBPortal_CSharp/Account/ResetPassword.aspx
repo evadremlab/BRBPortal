@@ -56,7 +56,8 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <asp:Button runat="server" ID="btnResetPWD" OnClick="Reset_Click" Text="Reset Password" CssClass="btn btn-primary" />
+                <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Default" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to Home page." TabIndex="-1" />
+                <asp:Button runat="server" ID="btnResetPWD" OnClick="Reset_Click" Text="Reset Password" CssClass="btn btn-primary" style="margin-left:1rem;" />
             </div>
         </div>
     </div>

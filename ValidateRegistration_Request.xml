@@ -1,0 +1,51 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"	xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <api:validateRegistrationRequest>
+      <registrationRequestReq>
+        <profileDetails>
+          <!--Optional:-->
+          <userId>DAVE01</userId>
+          <!--Optional:-->
+          <billingCode>TOUCHR</billingCode>
+          <name>
+            <first>CHRISTINE</first>
+            <!--Optional:-->
+            <middle></middle>
+            <last>TOUR-SARKISSIAN</last>
+            <suffix></suffix>
+            <!--Optional:-->
+            <nameLastFirstDisplay></nameLastFirstDisplay>
+            <!--Optional:-->
+            <agencyName></agencyName>
+          </name>
+          <mailingAddress>
+            <!--Optional:-->
+            <streetNumber>2946</streetNumber>
+            <!--Optional:-->
+            <streetName>PINE ST</streetName>
+            <!--Optional:-->
+            <unitNumber></unitNumber>
+            <fullAddress></fullAddress>
+            <!--Optional:-->
+            <city>SAN FRANCISCO</city>
+            <!--Optional:-->
+            <state>CA</state>
+            <!--Optional:-->
+            <zip>94115</zip>
+            <!--Optional:-->
+            <country></country>
+          </mailingAddress>
+          <emailAddress>CHRISINE@TSLO.COM</emailAddress>
+          <phone>415-271-5200</phone>
+        </profileDetails>
+        <propertyDetails>
+          <relationship>Owner</relationship>
+          <ownerLastName></ownerLastName>
+          <address>2208 WARD ST</address>
+          <purchaseYear></purchaseYear>
+        </propertyDetails>
+      </registrationRequestReq>
+    </api:validateRegistrationRequest>
+  </soapenv:Body>
+</soapenv:Envelope>

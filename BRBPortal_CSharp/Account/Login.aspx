@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="BRBPortal_CSharp.Account.Login" Async="true" %>
+﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="BRBPortal_CSharp.Account.Login" Async="true" %>
 
 <%-- data-lpignore="true" tells LastPass not to show ellipsis on form fields --%>
 
@@ -36,8 +36,8 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Default" Text="Back" CssClass="btn btn-default" ToolTip="Return to Home page." TabIndex="-1" />
-                    <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-primary" style="margin-left:1rem;" />
+                    <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Default" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to Home page." TabIndex="-1" />
+                    <asp:Button runat="server" OnClick="LogIn" Text="Login" CssClass="btn btn-primary" style="margin-left:1rem;" />
                 </div>
             </div>
             <div class="form-group">

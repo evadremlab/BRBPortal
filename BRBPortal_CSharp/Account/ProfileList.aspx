@@ -61,7 +61,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button runat="server" id="btnCancel" OnClick="CancelList_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Returns to Home page." UseSubmitBehavior="false" TabIndex="-1" />
+                    <asp:Button runat="server" id="btnCancel" OnClick="CancelList_Click" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Returns to Home page." UseSubmitBehavior="false" TabIndex="-1" />
                     <asp:Button runat="server" ID="btnEdit" OnClick="EditProfile_Click" Text="Edit" CssClass="btn btn-primary" ToolTip="Edit your profile." style="margin-left:1rem;" />
                 </div>
             </div>

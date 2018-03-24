@@ -187,7 +187,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Default" CausesValidation="false" Text="Back" CssClass="btn btn-default" ToolTip="Return to Home page." TabIndex="-1" />
+                <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Default" CausesValidation="false" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to Home page." TabIndex="-1" />
                 <asp:Button runat="server" Text="Register" CssClass="btn btn-primary" style="margin-left:1rem;" />
             </div>
         </div>
@@ -207,7 +207,7 @@
                 } else {
                     $('#MainContent_OwnerGrp').hide();
                     $('#MainContent_AgencyGrp').show();
-                    $('#MainContent_FirstName.Text, #MainContent_LastName.Text').val('');
+                    $('#MainContent_FirstName, #MainContent_LastName').val('');
                 }
             });
         });

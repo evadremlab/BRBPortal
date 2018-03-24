@@ -34,7 +34,7 @@ namespace BRBPortal_CSharp.Account
 
                     if (fields.Count > 0)
                     {
-                        UserIDCode2.Text = fields.GetStringValue("UserCode").Trim();
+                        UserIDCode2.Text = fields.GetStringValue("UserCode");
                         BillCode2.Text = fields.GetStringValue("BillingCode").Trim();
                         FirstName.Text = fields.GetStringValue("FirstName").Trim();
                         MidName.Text = fields.GetStringValue("MidName");
@@ -102,23 +102,23 @@ namespace BRBPortal_CSharp.Account
             {
                 UserCode = UserIDCode2.Text,
                 BillingCode = BillCode2.Text,
-                FirstName = FirstName.Text,
-                MiddleName = MidName.Text,
-                LastName = LastName.Text,
+                FirstName = FirstName.Text.ToUpper(),
+                MiddleName = MidName.Text.ToUpper(),
+                LastName = LastName.Text.ToUpper(),
                 Suffix = Suffix.Text,
-                StreetNumber = StNum.Text,
-                StreetName = StName.Text,
-                Unit = StUnit.Text,
-                City = StCity.Text,
-                Country = StCity.Text,
-                Zip = StZip.Text,
-                Email = EmailAddress.Text,
+                StreetNumber = StNum.Text.ToUpper(),
+                StreetName = StName.Text.ToUpper(),
+                Unit = StUnit.Text.ToUpper(),
+                City = StCity.Text.ToUpper(),
+                Country = StCity.Text.ToUpper(),
+                Zip = StZip.Text.ToUpper(),
+                Email = EmailAddress.Text.ToUpper(),
                 PhoneNo = PhoneNo.Text,
-                Question1 = Quest1.Text,
-                Answer1 = Answer1.Text,
-                Question2 = Quest2.Text,
-                Answer2 = Answer2.Text,
-                AgencyName = AgencyName.Text
+                //Question1 = Quest1.Text,
+                //Answer1 = Answer1.Text,
+                //Question2 = Quest2.Text,
+                //Answer2 = Answer2.Text,
+                AgencyName = AgencyName.Text.ToUpper()
             };
 
             profile.FullAddress = string.Format("{0} {1} {2}", profile.StreetNumber, profile.StreetName, profile.Unit);

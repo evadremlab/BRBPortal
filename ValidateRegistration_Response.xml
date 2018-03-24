@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ser-root:validateRegistrationRequestResponse
+			xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <response>
+        <status>FAILURE</status>
+        <errorMsg>(Billing Code) Data provided did not match our records. Please contact Rent Stabilization Board.</errorMsg>
+      </response>
+    </ser-root:validateRegistrationRequestResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

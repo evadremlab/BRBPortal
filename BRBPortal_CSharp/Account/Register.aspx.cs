@@ -49,7 +49,7 @@ namespace BRBPortal_CSharp.Account
                 {
                     UserCode = ReqUserID.Text.ToUpper(),
                     BillingCode = BillCode.Text.ToUpper(),
-                    Relationship = PropRelate.Text.ToUpper(), // Owner or Agency
+                    Relationship = PropRelate.Text, // Owner or Agency
 
                     // Owner fields
                     FirstName = FirstName.Text.ToUpper(),

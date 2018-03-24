@@ -71,7 +71,7 @@
                     </asp:GridView>
                 </div>
                 <div class="form-group">
-                    <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Home" Text="Back" CssClass="btn btn-default" ToolTip="Return to the list of Units." TabIndex="-1" />
+                    <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Home" Text="Back" CssClass="btn btn-sm btn-default" ToolTip="Return to the list of Units." TabIndex="-1" />
                     <%--<asp:Button runat="server" id="btnAddToCart" OnClick="AddCart_Click" Text="Add to Cart" CssClass="btn btn-primary" ToolTip="Add this property balance to your cart." />--%>
                 </div>
                 <div class="well" style="display:inline-block; width:auto;">

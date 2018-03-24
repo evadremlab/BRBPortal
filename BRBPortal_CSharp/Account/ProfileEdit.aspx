@@ -225,7 +225,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button runat="server" id="btnCancel" OnClick="CancelEdit_Click" Text="Cancel" CssClass="btn btn-default" ToolTip="Returns to profile view." TabIndex="-1" />
+                    <asp:Button runat="server" id="btnCancel" OnClick="CancelEdit_Click" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Returns to profile view." TabIndex="-1" />
                     <asp:Button runat="server" ID="btnUpdate" OnClick="UpdateProfile_Click" Text="Update" CssClass="btn btn-primary" ToolTip="Update your profile." ValidationGroup="UpdCheck" style="margin-left:1rem;" />
                 </div>
             </div>
