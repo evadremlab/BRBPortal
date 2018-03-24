@@ -35,51 +35,51 @@ namespace BRBPortal_CSharp.Account
 
                 if (result == SignInStatus.Success)
                 {
-                    var fields = BRBFunctions_CSharp.GetProfile(userCode, billCode);
+                    Session["UserCode"] = userCode;
+                    Session["BillingCode"] = billCode;
+                    Session["FirstTimeLogin"] = BRBFunctions_CSharp.iFirstlogin;
+                    Session["Relationship"] = BRBFunctions_CSharp.iRelate;
+                    Session["TempPwd"] = BRBFunctions_CSharp.iTempPwd;
 
-                    if (fields.Count > 0)
+                    if (BRBFunctions_CSharp.iTempPwd.ToUpper() == "TRUE")
                     {
-                        userCode = fields.GetStringValue("UserCode");
-                        billCode = fields.GetStringValue("BillingCode");
-
-                        Session["UserCode"] = userCode;
-                        Session["BillingCode"] = billCode;
-                        Session["FirstTimeLogin"] = BRBFunctions_CSharp.iFirstlogin;
-                        Session["Relationship"] = BRBFunctions_CSharp.iRelate;
-                        Session["TempPwd"] = BRBFunctions_CSharp.iTempPwd;
-
-                        var claims = new List<Claim>();
-                        claims.Add(new Claim(ClaimTypes.Name, billCode));
-                        Request.GetOwinContext().Authentication.SignIn(new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie));
-
-                        if (BRBFunctions_CSharp.iTempPwd.ToUpper() == "TRUE")
+                        if ((BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE"))
                         {
-                            if ((BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE"))
-                            {
-                                Session["NextPage"] = "ProfileConfirm";
-                            }
-                            else
-                            {
-                                Session["NextPage"] = "Home";
-                            }
-
-                            Response.Redirect("~/Account/ManagePassword.aspx");
-                        }
-                        else if (BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE")
-                        {
-                            Session["NextPage"] = "Home";
-                            Response.Redirect("~/Account/ProfileConfirm.aspx");
+                            Session["NextPage"] = "ProfileConfirm";
                         }
                         else
                         {
-                            Response.Redirect("~/Home.aspx");
+                            Session["NextPage"] = "Home";
                         }
+
+                        Response.Redirect("~/Account/ManagePassword.aspx");
+                    }
+                    else if (BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE")
+                    {
+                        Session["NextPage"] = "Home";
+                        Response.Redirect("~/Account/ProfileConfirm.aspx");
                     }
                     else
                     {
-                        FailureText.Text = "Invalid login attempt";
-                        ErrorMessage.Visible = true;
-                        Session.Clear();
+                        var fields = BRBFunctions_CSharp.GetProfile(userCode, billCode);
+
+                        if (fields.Count > 0)
+                        {
+                            userCode = fields.GetStringValue("UserCode");
+                            billCode = fields.GetStringValue("BillingCode");
+
+                            var claims = new List<Claim>();
+                            claims.Add(new Claim(ClaimTypes.Name, billCode));
+                            Request.GetOwinContext().Authentication.SignIn(new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie));
+
+                            Response.Redirect("~/Home.aspx");
+                        }
+                        else
+                        {
+                            FailureText.Text = "Invalid login attempt";
+                            ErrorMessage.Visible = true;
+                            Session.Clear();
+                        }
                     }
                 }
                 else
