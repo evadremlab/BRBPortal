@@ -1,0 +1,15 @@
+﻿"
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ser-root:confirmProfileInformationResponse
+			xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <response>
+        <status>SUCCESS</status>
+        <errorMsg>Update Successful.</errorMsg>
+      </response>
+    </ser-root:confirmProfileInformationResponse>
+  </soapenv:Body>
+</soapenv:Envelope>"
