@@ -119,5 +119,17 @@ namespace BRBPortal_CSharp.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnResetPWD;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new BRBPortal_CSharp.SiteMaster Master {
+            get {
+                return ((BRBPortal_CSharp.SiteMaster)(base.Master));
+            }
+        }
     }
 }

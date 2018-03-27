@@ -58,15 +58,6 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl OwnerGrp;
         
         /// <summary>
-        /// FirstName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FirstName;
-        
-        /// <summary>
         /// LastName control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace BRBPortal_CSharp.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox LastName;
+        
+        /// <summary>
+        /// CustomLastNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomLastNameValidator;
         
         /// <summary>
         /// AgencyGrp control.
@@ -94,6 +94,15 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.TextBox AgencyName;
         
         /// <summary>
+        /// CustomAgencyNameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomAgencyNameValidator;
+        
+        /// <summary>
         /// PropOwnLastName control.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace BRBPortal_CSharp.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PropOwnLastName;
+        
+        /// <summary>
+        /// PropertyOwnerLastNameValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator PropertyOwnerLastNameValidator1;
         
         /// <summary>
         /// StNum control.
@@ -139,15 +157,6 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.DropDownList StState;
         
         /// <summary>
-        /// StZip control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox StZip;
-        
-        /// <summary>
         /// EmailAddress control.
         /// </summary>
         /// <remarks>
@@ -182,5 +191,17 @@ namespace BRBPortal_CSharp.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new BRBPortal_CSharp.SiteMaster Master {
+            get {
+                return ((BRBPortal_CSharp.SiteMaster)(base.Master));
+            }
+        }
     }
 }

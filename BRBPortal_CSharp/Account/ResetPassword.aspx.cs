@@ -15,9 +15,6 @@ namespace BRBPortal_CSharp.Account
         {
             if (!IsPostBack)
             {
-                Quest1.Text = "";
-                Quest2.Text = "";
-                FailureText.Text = "";
                 ErrMessage.Visible = false;
                 btnResetPWD.Enabled = false;
                 UserIDCode.Focus();
@@ -26,14 +23,18 @@ namespace BRBPortal_CSharp.Account
 
         protected void UserIDCode_Or_BillingCode_TextChanged(object sender, EventArgs e)
         {
-            var fields = BRBFunctions_CSharp.GetProfile(UserIDCode.Text, BillingCode.Text);
-
-            if (fields.Count > 0)
+            var user = new BRBUser
             {
-                UserIDCode.Text = fields.GetStringValue("UserCode");
-                BillingCode.Text = fields.GetStringValue("BillingCode");
-                Quest1.Text = fields.GetStringValue("Question1");
-                Quest2.Text = fields.GetStringValue("Question2");
+                UserCode = UserIDCode.Text,
+                BillingCode = BillingCode.Text
+            };
+
+            if (BRBFunctions_CSharp.GetProfile(ref user))
+            {
+                Master.UpdateSession(user);
+
+                Quest1.Text = Master.User.Question1;
+                Quest2.Text = Master.User.Question2;
                 Answer1.Focus();
             }
             else
@@ -46,18 +47,11 @@ namespace BRBPortal_CSharp.Account
 
         protected void Reset_Click(object sender, EventArgs e)
         {
-            var profile = new UserProfile
-            {
-                UserCode = UserIDCode.Text,
-                BillingCode = BillingCode.Text,
-                Question1 = Quest1.Text,
-                Question2 = Quest2.Text,
-                Answer1 = Answer1.Text,
-                Answer2 = Answer2.Text
-            };
+            var user = Master.User;
 
-            if (BRBFunctions_CSharp.ValidateReset(profile))
+            if (BRBFunctions_CSharp.ValidateReset(ref user))
             {
+                Master.UpdateSession(user);
                 ShowDialogOK("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
 
                 Response.Redirect("~/Account/Login.aspx");

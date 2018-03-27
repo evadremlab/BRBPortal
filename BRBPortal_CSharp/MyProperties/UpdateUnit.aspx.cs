@@ -23,176 +23,172 @@ namespace BRBPortal_CSharp.MyProperties
 
             if (!IsPostBack)
             {
-                var userCode = Session["UserCode"] as String ?? "";
-                var billingCode = Session["BillingCode"] as String ?? "";
                 var iPropertyNo = Session["PropertyID"] as String ?? "";
                 var iPropertyAddress = Session["PropAddr"] as String ?? "";
                 iUnitID = Session["UnitID"] as String ?? "";
                 iUnitNum = Session["UnitNo"] as String ?? "";
                 var propertyBalance = Session["PropBalance"] as String ?? "";
 
-                if (string.IsNullOrEmpty(userCode) || string.IsNullOrEmpty(billingCode))
+                var user = Master.User;
+                BRBFunctions_CSharp.GetPropertyUnits(ref user, iPropertyNo, iUnitID);
+
+                if (user.CurrentProperty.Units.Count == 0)
                 {
-                    Response.Redirect("~/Account/Login");
+                    ShowDialogOK("Error: Error retrieving Unit ID " + iUnitID + " Unit No " + iUnitNum + ".", "Update Units");
+                    return;
+                }
+
+                UnitStatus.Text = user.CurrentProperty.Units[0].ClientPortalUnitStatusCode;
+                ExemptReas.Text = user.CurrentProperty.Units[0].ExemptionReason;
+
+                if (user.CurrentProperty.Units[0].StartDt.HasValue)
+                {
+                    UnitStartDt.Text = user.CurrentProperty.Units[0].StartDt.Value.ToString("MM/dd/yyyy");
+                }
+
+                UnitOccBy.Text = user.CurrentProperty.Units[0].OccupiedBy;
+                hfUnitID.Value = user.CurrentProperty.Units[0].UnitID;
+
+                var ExemptGroup_Visible = false;
+                var CommUseGrp_Visible = false;
+                var PMUnitGrp_Visible = false;
+                var OwnerShrGrp_Visible = false;
+                var AsOfDtGrp_Visible = false;
+                var DtStrtdGrp_Visible = false;
+                var OccByGrp_Visible = false;
+                var ContractGrp_Visible = false;
+                var OtherList_Visible = false;
+
+                if (UnitStatus.Text == "Rented")
+                {
+                    ExemptReason.SelectedIndex = -1;
+                    ExemptReason.Text = "";
+                    ExemptGroup_Visible = false;
+                    CommUseGrp_Visible = false;
+                    PMUnitGrp_Visible = false;
+                    OwnerShrGrp_Visible = false;
+                    AsOfDtGrp_Visible = false;
+                    DtStrtdGrp_Visible = false;
+                    OccByGrp_Visible = false;
+                    ContractGrp_Visible = false;
                 }
                 else
                 {
-                    var propertyUnits = BRBFunctions_CSharp.GetPropertyUnits(iPropertyNo, userCode, billingCode, iUnitID);
+                    ExemptReason.SelectedValue = ExemptReas.Text;
+                    ExemptGroup_Visible = true;
+                    CommUseGrp_Visible = false;
+                    PMUnitGrp_Visible = false;
+                    OwnerShrGrp_Visible = false;
+                    AsOfDtGrp_Visible = false;
+                    DtStrtdGrp_Visible = false;
+                    OccByGrp_Visible = false;
+                    ContractGrp_Visible = false;
 
-                    if (propertyUnits.Count == 0)
+                    switch (ExemptReason.SelectedValue.ToString().ToUpper())
                     {
-                        ShowDialogOK("Error: Error retrieving Unit ID " + iUnitID + " Unit No " + iUnitNum + ".", "Update Units");
-                        return;
+                        case "NAR": // Vacant and not available for rent
+                            ExemptGroup_Visible = true;
+                            CommUseGrp_Visible = false;
+                            PMUnitGrp_Visible = false;
+                            OwnerShrGrp_Visible = false;
+                            AsOfDtGrp_Visible = true;
+                            DtStrtdGrp_Visible = false;
+                            OccByGrp_Visible = false;
+                            ContractGrp_Visible = false;
+                            OtherList_Visible = false;
+                            OtherList.Text = "";
+                            OtherList.SelectedIndex = -1;
+                            break;
+                        case "OOCC": // Owner-Occupied
+                            ExemptGroup_Visible = true;
+                            CommUseGrp_Visible = false;
+                            PMUnitGrp_Visible = false;
+                            OwnerShrGrp_Visible = false;
+                            AsOfDtGrp_Visible = false;
+                            DtStrtdGrp_Visible = true;
+                            OccByGrp_Visible = true;
+                            ContractGrp_Visible = false;
+                            OtherList_Visible = false;
+                            OtherList.Text = "";
+                            OtherList.SelectedIndex = -1;
+                            break;
+                        case "SEC8": // Section 8
+                            ExemptGroup_Visible = true;
+                            CommUseGrp_Visible = false;
+                            PMUnitGrp_Visible = false;
+                            OwnerShrGrp_Visible = false;
+                            AsOfDtGrp_Visible = false;
+                            DtStrtdGrp_Visible = true;
+                            OccByGrp_Visible = false;
+                            ContractGrp_Visible = true;
+                            OtherList_Visible = false;
+                            OtherList.Text = "";
+                            OtherList.SelectedIndex = -1;
+                            break;
+                        case "FREE": // Occupied Rent Free
+                            ExemptGroup_Visible = true;
+                            CommUseGrp_Visible = false;
+                            PMUnitGrp_Visible = false;
+                            OwnerShrGrp_Visible = false;
+                            AsOfDtGrp_Visible = false;
+                            DtStrtdGrp_Visible = true;
+                            OccByGrp_Visible = true;
+                            ContractGrp_Visible = false;
+                            OtherList_Visible = false;
+                            OtherList.Text = "";
+                            OtherList.SelectedIndex = -1;
+                            break;
+                        case "OTHER":
+                            ExemptGroup_Visible = true;
+                            CommUseGrp_Visible = false;
+                            PMUnitGrp_Visible = false;
+                            OwnerShrGrp_Visible = false;
+                            AsOfDtGrp_Visible = false;
+                            DtStrtdGrp_Visible = false;
+                            OccByGrp_Visible = false;
+                            ContractGrp_Visible = false;
+                            OtherList_Visible = true;
+                            OtherList.Text = "";
+                            OtherList.SelectedIndex = -1;
+                            break;
                     }
+                }
 
-                    UnitStatus.Text = propertyUnits.GetStringValue("CPStatus");
-                    ExemptReas.Text = propertyUnits.GetStringValue("ExReason");
-                    UnitStartDt.Text = propertyUnits.GetStringValue("StartDt");
-                    UnitOccBy.Text = propertyUnits.GetStringValue("OccBy");
-                    hfUnitID.Value = propertyUnits.GetStringValue("UnitID");
-
-                    var ExemptGroup_Visible = false;
-                    var CommUseGrp_Visible = false;
-                    var PMUnitGrp_Visible = false;
-                    var OwnerShrGrp_Visible = false;
-                    var AsOfDtGrp_Visible = false;
-                    var DtStrtdGrp_Visible = false;
-                    var OccByGrp_Visible = false;
-                    var ContractGrp_Visible = false;
-                    var OtherList_Visible = false;
-
-                    if (UnitStatus.Text == "Rented")
-                    {
-                        ExemptReason.SelectedIndex = -1;
-                        ExemptReason.Text = "";
-                        ExemptGroup_Visible = false;
-                        CommUseGrp_Visible = false;
-                        PMUnitGrp_Visible = false;
-                        OwnerShrGrp_Visible = false;
-                        AsOfDtGrp_Visible = false;
-                        DtStrtdGrp_Visible = false;
-                        OccByGrp_Visible = false;
-                        ContractGrp_Visible = false;
-                    }
-                    else
-                    {
-                        ExemptReason.SelectedValue = ExemptReas.Text;
-                        ExemptGroup_Visible = true;
-                        CommUseGrp_Visible = false;
-                        PMUnitGrp_Visible = false;
-                        OwnerShrGrp_Visible = false;
-                        AsOfDtGrp_Visible = false;
-                        DtStrtdGrp_Visible = false;
-                        OccByGrp_Visible = false;
-                        ContractGrp_Visible = false;
-
-                        switch (ExemptReason.SelectedValue.ToString().ToUpper())
-                        {
-                            case "NAR": // Vacant and not available for rent
-                                ExemptGroup_Visible = true;
-                                CommUseGrp_Visible = false;
-                                PMUnitGrp_Visible = false;
-                                OwnerShrGrp_Visible = false;
-                                AsOfDtGrp_Visible = true;
-                                DtStrtdGrp_Visible = false;
-                                OccByGrp_Visible = false;
-                                ContractGrp_Visible = false;
-                                OtherList_Visible = false;
-                                OtherList.Text = "";
-                                OtherList.SelectedIndex = -1;
-                                break;
-                            case "OOCC": // Owner-Occupied
-                                ExemptGroup_Visible = true;
-                                CommUseGrp_Visible = false;
-                                PMUnitGrp_Visible = false;
-                                OwnerShrGrp_Visible = false;
-                                AsOfDtGrp_Visible = false;
-                                DtStrtdGrp_Visible = true;
-                                OccByGrp_Visible = true;
-                                ContractGrp_Visible = false;
-                                OtherList_Visible = false;
-                                OtherList.Text = "";
-                                OtherList.SelectedIndex = -1;
-                                break;
-                            case "SEC8": // Section 8
-                                ExemptGroup_Visible = true;
-                                CommUseGrp_Visible = false;
-                                PMUnitGrp_Visible = false;
-                                OwnerShrGrp_Visible = false;
-                                AsOfDtGrp_Visible = false;
-                                DtStrtdGrp_Visible = true;
-                                OccByGrp_Visible = false;
-                                ContractGrp_Visible = true;
-                                OtherList_Visible = false;
-                                OtherList.Text = "";
-                                OtherList.SelectedIndex = -1;
-                                break;
-                            case "FREE": // Occupied Rent Free
-                                ExemptGroup_Visible = true;
-                                CommUseGrp_Visible = false;
-                                PMUnitGrp_Visible = false;
-                                OwnerShrGrp_Visible = false;
-                                AsOfDtGrp_Visible = false;
-                                DtStrtdGrp_Visible = true;
-                                OccByGrp_Visible = true;
-                                ContractGrp_Visible = false;
-                                OtherList_Visible = false;
-                                OtherList.Text = "";
-                                OtherList.SelectedIndex = -1;
-                                break;
-                            case "OTHER":
-                                ExemptGroup_Visible = true;
-                                CommUseGrp_Visible = false;
-                                PMUnitGrp_Visible = false;
-                                OwnerShrGrp_Visible = false;
-                                AsOfDtGrp_Visible = false;
-                                DtStrtdGrp_Visible = false;
-                                OccByGrp_Visible = false;
-                                ContractGrp_Visible = false;
-                                OtherList_Visible = true;
-                                OtherList.Text = "";
-                                OtherList.SelectedIndex = -1;
-                                break;
-                        }
-                    }
-
-                    if (!ExemptGroup_Visible)
-                    {
-                        ExemptGroup.Attributes["class"] = "hidden";
-                    }
-                    if (!CommUseGrp_Visible)
-                    {
-                        CommUseGrp.Attributes["class"] = "hidden";
-                    }
-                    if (!PMUnitGrp_Visible)
-                    {
-                        PMUnitGrp.Attributes["class"] = "hidden";
-                    }
-                    if (!OwnerShrGrp_Visible)
-                    {
-                        OwnerShrGrp.Attributes["class"] = "hidden";
-                    }
-                    if (!AsOfDtGrp_Visible)
-                    {
-                        AsOfDtGrp.Attributes["class"] = "hidden";
-                    }
-                    if (!DtStrtdGrp_Visible)
-                    {
-                        DtStrtdGrp.Attributes["class"] = "hidden";
-                    }
-                    if (!OccByGrp_Visible)
-                    {
-                        OccByGrp.Attributes["class"] = "hidden";
-                    }
-                    if (!ContractGrp_Visible)
-                    {
-                        ContractGrp.Attributes["class"] = "hidden";
-                    }
-                    if (!OtherList_Visible)
-                    {
-                        OtherListContainer.Attributes["class"] = "hidden";
-                    }
-
+                if (!ExemptGroup_Visible)
+                {
+                    ExemptGroup.Attributes["class"] = "hidden";
+                }
+                if (!CommUseGrp_Visible)
+                {
+                    CommUseGrp.Attributes["class"] = "hidden";
+                }
+                if (!PMUnitGrp_Visible)
+                {
+                    PMUnitGrp.Attributes["class"] = "hidden";
+                }
+                if (!OwnerShrGrp_Visible)
+                {
+                    OwnerShrGrp.Attributes["class"] = "hidden";
+                }
+                if (!AsOfDtGrp_Visible)
+                {
+                    AsOfDtGrp.Attributes["class"] = "hidden";
+                }
+                if (!DtStrtdGrp_Visible)
+                {
+                    DtStrtdGrp.Attributes["class"] = "hidden";
+                }
+                if (!OccByGrp_Visible)
+                {
+                    OccByGrp.Attributes["class"] = "hidden";
+                }
+                if (!ContractGrp_Visible)
+                {
+                    ContractGrp.Attributes["class"] = "hidden";
+                }
+                if (!OtherList_Visible)
+                {
+                    OtherListContainer.Attributes["class"] = "hidden";
                 }
 
                 MainAddress.Text = iPropertyAddress;

@@ -13,12 +13,15 @@ namespace BRBPortal_CSharp {
     public partial class Home {
         
         /// <summary>
-        /// HomeOption control.
+        /// Master property.
         /// </summary>
         /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// Auto-generated property.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList HomeOption;
+        public new BRBPortal_CSharp.SiteMaster Master {
+            get {
+                return ((BRBPortal_CSharp.SiteMaster)(base.Master));
+            }
+        }
     }
 }

@@ -396,10 +396,10 @@ Public Module BRBFunctions
 
                         tEmail = detail.SelectSingleNode("emailAddress").InnerText
                         tPhone = detail.SelectSingleNode("phone").InnerText
-                        tQuestion1 = detail.SelectSingleNode("securityQuestion1").InnerText
-                        tAnswer1 = detail.SelectSingleNode("securityAnswer1").InnerText
-                        tQuestion2 = detail.SelectSingleNode("securityQuestion2").InnerText
-                        tAnswer2 = detail.SelectSingleNode("securityAnswer2").InnerText
+                        'tQuestion1 = detail.SelectSingleNode("securityQuestion1").InnerText
+                        'tAnswer1 = detail.SelectSingleNode("securityAnswer1").InnerText
+                        'tQuestion2 = detail.SelectSingleNode("securityQuestion2").InnerText
+                        'tAnswer2 = detail.SelectSingleNode("securityAnswer2").InnerText
                     Next detailAddr
                 Next detailName
             Next detail

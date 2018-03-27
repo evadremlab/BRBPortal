@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Reset Password" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResetPassword.aspx.cs" Inherits="BRBPortal_CSharp.Account.ResetPassword" Async="true" %>
+<%@ MasterType  virtualPath="~/Site.Master"%>
 
 <%-- data-lpignore="true" tells LastPass not to show ellipsis on form fields --%>
 

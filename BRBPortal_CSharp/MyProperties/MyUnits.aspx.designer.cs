@@ -31,6 +31,24 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.Literal MainAddress;
         
         /// <summary>
+        /// CurrFee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal CurrFee;
+        
+        /// <summary>
+        /// Balance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal Balance;
+        
+        /// <summary>
         /// AgentSection control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal MgrName;
+        
+        /// <summary>
+        /// PropAddr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal PropAddr;
         
         /// <summary>
         /// BillAddr control.
@@ -74,5 +101,17 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new BRBPortal_CSharp.SiteMaster Master {
+            get {
+                return ((BRBPortal_CSharp.SiteMaster)(base.Master));
+            }
+        }
     }
 }

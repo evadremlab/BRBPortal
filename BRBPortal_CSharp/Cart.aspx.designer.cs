@@ -58,6 +58,15 @@ namespace BRBPortal_CSharp {
         protected global::System.Web.UI.WebControls.Button btnCancelCart;
         
         /// <summary>
+        /// btnEdCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEdCart;
+        
+        /// <summary>
         /// btnPayCart control.
         /// </summary>
         /// <remarks>
@@ -67,12 +76,15 @@ namespace BRBPortal_CSharp {
         protected global::System.Web.UI.WebControls.Button btnPayCart;
         
         /// <summary>
-        /// btnEdCart control.
+        /// Master property.
         /// </summary>
         /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// Auto-generated property.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdCart;
+        public new BRBPortal_CSharp.SiteMaster Master {
+            get {
+                return ((BRBPortal_CSharp.SiteMaster)(base.Master));
+            }
+        }
     }
 }

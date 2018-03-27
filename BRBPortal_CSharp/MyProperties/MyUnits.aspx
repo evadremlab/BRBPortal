@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyUnits.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.MyUnits" %>
+<%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:HiddenField ID="hfDialogID" runat="server" />
@@ -10,13 +11,22 @@
             <div class="form-horizontal">
                 <h4>at <asp:Literal ID="MainAddress" runat="server" ></asp:Literal></h4>
                 <hr />
+                <div class="form-group">
+                    <asp:Label runat="server" AssociatedControlID="CurrFee" CssClass="control-label">Current Fee:</asp:Label>
+                    <asp:Literal ID="CurrFee" runat="server" ></asp:Literal>
+                    <asp:Label runat="server" AssociatedControlID="Balance" CssClass="control-label" style="margin-left:2rem;">Balance:</asp:Label>
+                    <asp:Literal ID="Balance" runat="server" ></asp:Literal>
+                </div>
                 <asp:PlaceHolder ID="AgentSection" runat="server">
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="MgrName" CssClass="control-label">Manager/Agent Name:</asp:Label>
                         <asp:Literal ID="MgrName" runat="server"></asp:Literal>
-                        <%--<asp:Button runat="server" id="btnRemAgnt" OnClick="RemAgent_Click" Text="Remove Agent" CssClass="btn btn-default" ToolTip="Remove this agent." />--%>
                     </div>
                 </asp:PlaceHolder>
+                <div class="form-group">
+                    <asp:Label runat="server" AssociatedControlID="PropAddr" CssClass="control-label">Property Address:</asp:Label>
+                    <asp:Literal ID="PropAddr" runat="server" ></asp:Literal>
+                </div>
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="BillAddr" CssClass="control-label">Billing Address:</asp:Label>
                     <asp:Literal ID="BillAddr" runat="server" ></asp:Literal>
@@ -25,8 +35,7 @@
             <div class="form-group">
                 <asp:GridView ID="gvUnits" runat="server" AutoGenerateColumns="False" CellPadding="4" 
                     ForeColor="#333333" GridLines="None" OnRowDataBound="OnRowDataBound" AllowPaging="True" 
-                    OnRowCommand="gvUnits_RowCommand"
-                    OnPageIndexChanging="gvUnits_PageIndexChanging" >
+                    OnRowCommand="gvUnits_RowCommand" OnPageIndexChanging="gvUnits_PageIndexChanging" >
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="UnitID" HeaderText="UnitID (NV)" ReadOnly="True" Visible="true" />
@@ -55,9 +64,6 @@
                             <ControlStyle CssClass="btn btn-sm btn-primary" />
                         </asp:ButtonField>
                         <asp:ButtonField ButtonType="Button" CommandName="Tenancy" Text="Update Tenancy">
-                            <ControlStyle CssClass="btn btn-sm btn-primary" />
-                        </asp:ButtonField>
-                        <asp:ButtonField ButtonType="Button" CommandName="Both" Text="Update Both">
                             <ControlStyle CssClass="btn btn-sm btn-primary" />
                         </asp:ButtonField>
                     </Columns>

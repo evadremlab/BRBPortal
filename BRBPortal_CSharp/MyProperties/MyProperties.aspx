@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyProperties.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.MyProperties" %>
+<%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h2>List of Properties</h2>
@@ -17,7 +18,8 @@
                 </div>
                 <div class="form-group">
                     <asp:GridView ID="gvProperties" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                        ForeColor="#333333" GridLines="None" onRowCommand="UpdatePropClicked" PageSize="10" AllowPaging="true" OnPageIndexChanging="gvProperties_PageIndexChanging">
+                        ForeColor="#333333" GridLines="None" PageSize="10" AllowPaging="true" 
+                        onRowCommand="gvProperties_RowCommand" OnPageIndexChanging="gvProperties_PageIndexChanging">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:TemplateField>
@@ -55,7 +57,7 @@
                                 <ItemStyle HorizontalAlign="Right" Wrap="False" />
                                 </asp:BoundField>
                             <asp:ButtonField ButtonType="Button" CommandName="Select" Text="Review and Update">
-                                <ControlStyle CssClass="btn btn-sm btn-primary" />
+                                <ControlStyle CssClass="btn btn-sm btn-success" />
                             </asp:ButtonField>
                         </Columns>
                         <EditRowStyle BackColor="#2461BF" />

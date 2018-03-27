@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdateTenancy.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.UpdateTenancy" %>
+<%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:HiddenField ID="hfDialogID" runat="server" />
@@ -37,15 +38,13 @@
         <div class="form-group" style="padding-left:10px">
             <asp:Label runat="server" AssociatedControlID="InitRent" Width="140px" CssClass="col-md-1 control-label">Initial Rent:&nbsp;&nbsp;&nbsp;$</asp:Label>
             <asp:TextBox runat="server" ID="InitRent"></asp:TextBox>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="InitRent" ValidationGroup="CheckFields"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Initial Rent is required." />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="InitRent" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
         </div>
 
         <div class="form-group" style="padding-left:10px">
             <asp:Label runat="server" AssociatedControlID="TenStDt" Width="160px" CssClass="col-md-1 control-label">Tenancy Start Date:</asp:Label>
             <asp:TextBox runat="server" ID="TenStDt" TextMode="Date"></asp:TextBox>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="TenStDt" ValidationGroup="CheckFields"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Tenancy Start Date is required." />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="TenStDt" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
         </div>
 
         <br />
@@ -72,8 +71,7 @@
         <div class="form-group" style="padding-left:10px">
             <label class="control-label" style="width:100px; padding-bottom:4px"># of tenants:</label>
             <asp:TextBox runat="server" ID="NumTenants" Width="70px" ></asp:TextBox>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="NumTenants" ValidationGroup="CheckFields"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Number of Tenants is required." />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="NumTenants" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
         </div>
 
         <div class="Prompt" style="align-content:stretch">
@@ -91,8 +89,7 @@
         <div class="form-group" style="padding-left:10px">
             <label class="control-label" style="width:160px; padding-bottom:4px">Prior Tenancy end date:</label>
             <asp:TextBox runat="server" ID="PTenDt" TextMode="Date" ToolTip="Enter the prior tenency date." />
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="PTenDt" ValidationGroup="CheckFields"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Prior Tenancy end date is required." />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="PTenDt" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
         </div>
         
         <div class="form-group" style="padding-left:10px">
@@ -104,8 +101,7 @@
                 <asp:ListItem enabled="true" text="Non-payment of rent" value="3"></asp:ListItem>
                 <asp:ListItem enabled="true" text="Other" value="4"></asp:ListItem>
             </asp:DropDownList>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="TermReas" ValidationGroup="CheckFields"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Reason for termination is required." />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="TermReas" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
         </div>
 
         <%--<br />--%>
@@ -178,7 +174,7 @@
 
         <div class="form-group">
             <asp:Button runat="server" id="btnCancel" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyTenants.aspx" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to the list of Tenants." TabIndex="-1" />
-            <asp:Button runat="server" ID="btnUpdTen" OnClick="UpdateTenancy_Click" Text="Submit" CssClass="btn btn-primary" ToolTip="Update the tenants." ValidationGroup="CheckFields" style="margin-left:1rem;" />
+            <asp:Button runat="server" ID="btnUpdTen" OnClick="UpdateTenancy_Click" Text="Submit" CssClass="btn btn-primary" ToolTip="Update the tenants." style="margin-left:1rem;" />
         </div>
     </div>
 <!--

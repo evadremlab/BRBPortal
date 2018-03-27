@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Security.Principal;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+
 using Microsoft.AspNet.Identity;
+using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp
 {
@@ -15,6 +15,22 @@ namespace BRBPortal_CSharp
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+
+        /// <summary>
+        /// Visible to child pages as "Master.User" via MasterType declaration on the child page.
+        /// </summary>
+
+        public BRBUser User
+        {
+            get
+            {
+                return (BRBUser)Session["User"];
+            }
+            set
+            {
+                Session["User"] = value;
+            }
+        }
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -38,6 +54,7 @@ namespace BRBPortal_CSharp
                     HttpOnly = true,
                     Value = _antiXsrfTokenValue
                 };
+
                 if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
                 {
                     responseCookie.Secure = true;
@@ -69,7 +86,34 @@ namespace BRBPortal_CSharp
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.User = (BRBUser)Session["User"];
 
+            if (this.User == null)
+            {
+                UpdateSession(new BRBUser());
+            }
+
+            if (!IsPostBack)
+            {
+                if (!Regex.IsMatch(Path.GetFileName(Request.Url.AbsolutePath), "Default|Login|Register", RegexOptions.IgnoreCase))
+                {
+                    // must be authenticated and have either UserCode or BillingCode
+
+                    if (!Context.User.Identity.IsAuthenticated)
+                    {
+                        Response.Redirect("~/Account/Login");
+                    }
+                    else if (string.IsNullOrEmpty(this.User.UserCode) && string.IsNullOrEmpty(this.User.BillingCode))
+                    {
+                        Response.Redirect("~/Account/Login");
+                    }
+                }
+            }
+        }
+
+        public void UpdateSession(BRBUser user)
+        {
+            this.User = user;
         }
 
         protected void Logoff(object sender, EventArgs e)

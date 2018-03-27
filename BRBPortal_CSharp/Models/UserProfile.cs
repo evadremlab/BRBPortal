@@ -4,10 +4,9 @@ namespace BRBPortal_CSharp.Models
 {
     public class UserProfile
     {
-        public string UserCode { get; set; }
-        public string BillingCode { get; set; }
-
-        public string Relationship { get; set; } // Owner or Agency
+        public string UserCode { get; set; } = "";
+        public string BillingCode { get; set; } = "";
+        public string Relationship { get; set; } = "";
 
         #region Owner Fields
         public string FirstName { get; set; }
@@ -32,6 +31,7 @@ namespace BRBPortal_CSharp.Models
         public string Email { get; set; }
         public string PhoneNo { get; set; }
 
+        public string DeclarationInitials { get; set; }
         public string PropertyAddress { get; set; }
 
         public string Question1 { get; set; }

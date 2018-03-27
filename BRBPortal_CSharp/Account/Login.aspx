@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="BRBPortal_CSharp.Account.Login" Async="true" %>
+<%@ MasterType  virtualPath="~/Site.Master"%>
 
 <%-- data-lpignore="true" tells LastPass not to show ellipsis on form fields --%>
 
@@ -16,22 +17,39 @@
                 </div>
             </asp:PlaceHolder>
             <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="UserIDCode" CssClass="col-md-2 control-label">User ID:</asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="UserIDCode" CssClass="form-control" TextMode="SingleLine" autofocus="autofocus" />
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="radio radiobuttonlist" style="padding-top:0; padding-left:0;">
+                        <asp:RadioButtonList runat="server" ID="UserIDOrBillCode" RepeatDirection="Horizontal" ToolTip="Do you have a User ID or Billing Code?">
+                            <asp:ListItem Enabled="true" Text="User ID&nbsp;&nbsp;" Value="UserID" Selected="True"></asp:ListItem>
+                            <asp:ListItem Enabled="true" Text="Billing Code" Value="BillingCode"></asp:ListItem>
+                        </asp:RadioButtonList>
+                    </div>
+                </div>    
+            </div>
+
+            <div id="UserIDGrp" runat="server">
+                <div class="form-group">
+                    <asp:Label runat="server" AssociatedControlID="UserIDCode" CssClass="col-md-2 control-label">User ID:</asp:Label>
+                    <div class="col-md-10">
+                        <asp:TextBox runat="server" ID="UserIDCode" CssClass="form-control" TextMode="SingleLine" autofocus="autofocus" />
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="BillCode" CssClass="col-md-2 control-label" data-lpignore="true">Billing Code:</asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="BillCode" CssClass="form-control" TextMode="SingleLine" />
+
+            <div id="BillCodeGrp" runat="server" style="display:none;">
+                <div class="form-group">
+                    <asp:Label runat="server" AssociatedControlID="BillCode" CssClass="col-md-2 control-label" data-lpignore="true">Billing Code:</asp:Label>
+                    <div class="col-md-10">
+                        <asp:TextBox runat="server" ID="BillCode" CssClass="form-control" TextMode="SingleLine" />
+                    </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="password is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="required." />
                 </div>
             </div>
             <div class="form-group">
@@ -47,4 +65,21 @@
             </div>
         </div>
     </section>
+    <script>
+        $(document).ready(function () {
+            $('input[type="radio"]').change(function () {
+                if ($(this).val() === 'UserID') {
+                    $('#MainContent_UserIDGrp').show();
+                    $('#MainContent_BillCodeGrp').hide();
+                    $('#MainContent_BillCode').val('');
+                    $('#MainContent_UserCode').focus();
+                } else {
+                    $('#MainContent_UserIDGrp').hide();
+                    $('#MainContent_BillCodeGrp').show();
+                    $('#MainContent_UserCode').val('');
+                    $('#MainContent_BillCode').focus();
+                }
+            });
+        });
+    </script>
 </asp:Content>

@@ -11,19 +11,25 @@ namespace BRBPortal_CSharp
 {
     public partial class Cart : System.Web.UI.Page
     {
+        public DataTable iCartTbl;
         public Decimal iBalance = 0.0M;
-        public DataTable iCartTbl = new DataTable();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Context.User.Identity.IsAuthenticated)
+            try
             {
-                Response.Redirect("~/Account/Login");
-            }
+                if (Session["Cart"] == null)
+                {
+                    iCartTbl = new DataTable();
+                    Session["Cart"] = iCartTbl;
+                }
+                else
+                {
+                    iCartTbl = (DataTable)Session["Cart"];
+                }
 
-            if (!IsPostBack)
-            {
-                if (iCartTbl != null || iCartTbl.Columns.Count < 1) {
+                if (iCartTbl.Columns.Count < 1)
+                {
                     iCartTbl.Columns.Add("PropertyID", typeof(String));
                     iCartTbl.Columns.Add("MainAddr", typeof(String));
                     iCartTbl.Columns.Add("CurrFees", typeof(Decimal));
@@ -34,34 +40,43 @@ namespace BRBPortal_CSharp
                     iCartTbl.Columns.Add("Balance", typeof(Decimal));
                 }
 
-                btnEdCart.Enabled = false;
-                btnPayCart.Enabled = false;
-
-                if (Session["Cart"] != null && Session["Cart"].ToString() != "")
+                if (iCartTbl.Rows.Count == 0)
                 {
-                    PopulateCartView();
+                    btnEdCart.Enabled = false;
+                    btnPayCart.Enabled = false;
+                    ShowFeesAll.Text = "Nothing in your cart.";
+                    return;
+                }
 
+                if (!IsPostBack)
+                {
                     gvCart.DataSource = iCartTbl;
                     gvCart.DataBind();
                     gvCart.Columns[0].Visible = false; // Hide the PropertyID column
 
-                    Session["CartTbl"] = iCartTbl;
-
                     btnEdCart.Enabled = true;
                     btnPayCart.Enabled = true;
 
-                    if (Session["FeesAll"] != null) {
+                    if (Session["FeesAll"] == null)
+                    {
                         ShowFeesAll.Text = "All Fees and Penalties";
-                    } else {
-                        if (Session["FeesAll"].ToString() == "AllFees" || Session["FeesAll"].ToString() == "") {
+                    }
+                    else
+                    {
+                        if (Session["FeesAll"].ToString() == "AllFees" || Session["FeesAll"].ToString() == "")
+                        {
                             ShowFeesAll.Text = "All Fees and Penalties";
-                        } else {
+                        }
+                        else
+                        {
                             ShowFeesAll.Text = "Fees Only";
                         }
                     }
-                } else {
-                    ShowFeesAll.Text = "Nothing in your cart.";
                 }
+            }
+            catch (Exception ex)
+            {
+                ShowDialogOK(ex.Message, "Cart View");
             }
         }
 
@@ -75,8 +90,6 @@ namespace BRBPortal_CSharp
         {
             var XMLstr = "";
             decimal tSubTotal = 0.0M;
-
-            PopulateCartView();
 
             // TODO: Build XML to send to ACI Universal Payment
         }
@@ -98,7 +111,7 @@ namespace BRBPortal_CSharp
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 var value = 0.0M;
-                string txtBalance = e.Row.Cells[7].Text;
+                string txtBalance = e.Row.Cells[7].Text.Replace("$", "");
                 Decimal.TryParse(txtBalance, out value);
                 iBalance += value;
             }
@@ -108,42 +121,11 @@ namespace BRBPortal_CSharp
             }
         }
 
-        private void PopulateCartView()
+        protected void ShowDialogOK(string message, string title = "Status")
         {
-            if (Session["Cart"] != null && Session["Cart"].ToString() != "")
-            {
-                var xmlDoc = new XmlDocument();
+            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
 
-                xmlDoc.LoadXml(Session["Cart"].ToString());
-
-                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("property"))
-                {
-                    decimal currentFees = 0;
-                    decimal priorFees = 0;
-                    decimal currentPenalty = 0;
-                    decimal priorPenalty = 0;
-                    decimal credit = 0;
-                    decimal totalBalance = 0;
-
-                    Decimal.TryParse(detail.SelectSingleNode("currentFees").InnerText, out currentFees);
-                    Decimal.TryParse(detail.SelectSingleNode("priorFees").InnerText, out priorFees);
-                    Decimal.TryParse(detail.SelectSingleNode("currentPenalty").InnerText, out currentPenalty);
-                    Decimal.TryParse(detail.SelectSingleNode("priorPenalties").InnerText, out priorPenalty);
-                    Decimal.TryParse(detail.SelectSingleNode("credit").InnerText, out credit);
-                    Decimal.TryParse(detail.SelectSingleNode("totalBalance").InnerText, out totalBalance);
-
-                    DataRow NR = iCartTbl.NewRow();
-                    NR.SetField<string>("PropertyID", detail.SelectSingleNode("propno").InnerText);
-                    NR.SetField<string>("MainAddr", detail.SelectSingleNode("addr").InnerText);
-                    NR.SetField<Decimal>("CurrFees", currentFees);
-                    NR.SetField<Decimal>("PriorFees", priorFees);
-                    NR.SetField<Decimal>("CurrPenalty", currentPenalty);
-                    NR.SetField<Decimal>("PriorPenalty", priorPenalty);
-                    NR.SetField<Decimal>("Credits", credit);
-                    NR.SetField<Decimal>("Balance", totalBalance);
-                    iCartTbl.Rows.Add(NR);
-                }
-            }
+            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
     }
 }

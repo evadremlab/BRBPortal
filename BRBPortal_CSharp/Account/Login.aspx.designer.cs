@@ -31,6 +31,24 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.Literal FailureText;
         
         /// <summary>
+        /// UserIDOrBillCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList UserIDOrBillCode;
+        
+        /// <summary>
+        /// UserIDGrp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserIDGrp;
+        
+        /// <summary>
         /// UserIDCode control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,15 @@ namespace BRBPortal_CSharp.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox UserIDCode;
+        
+        /// <summary>
+        /// BillCodeGrp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl BillCodeGrp;
         
         /// <summary>
         /// BillCode control.
@@ -74,5 +101,17 @@ namespace BRBPortal_CSharp.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink ForgotPasswordHyperLink;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new BRBPortal_CSharp.SiteMaster Master {
+            get {
+                return ((BRBPortal_CSharp.SiteMaster)(base.Master));
+            }
+        }
     }
 }

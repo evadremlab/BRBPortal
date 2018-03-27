@@ -11,17 +11,5 @@ namespace BRBPortal_CSharp
                 Response.Redirect("~/Account/Login");
             }
         }
-
-        protected void MngSel_Click(object sender, EventArgs e)
-        {
-            if (HomeOption.SelectedValue == "Profile")
-            {
-                Response.Redirect("~/Account/ProfileList.aspx");
-            }
-            else if (HomeOption.SelectedValue == "Properties")
-            {
-                Response.Redirect("~/MyProperties/MyProperties.aspx");
-            }
-        }
     }
 }

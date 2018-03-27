@@ -14,8 +14,7 @@
             <asp:Label runat="server" AssociatedControlID="Code" CssClass="col-md-2 control-label">Code</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Code" CssClass="form-control" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="Code"
-                    CssClass="text-danger" ErrorMessage="Code field is required." />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Code" CssClass="text-danger" ErrorMessage="required" />
             </div>
         </div>
         <div class="form-group">

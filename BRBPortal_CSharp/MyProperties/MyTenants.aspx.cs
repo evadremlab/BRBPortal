@@ -17,21 +17,8 @@ namespace BRBPortal_CSharp.MyProperties
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var userCode = Session["UserCode"] as String ?? "";
-            var billingCode = Session["BillingCode"] as String ?? "";
-
             iUnitID = Session["UnitID"] as String ?? "";
             iUnitNum = Session["UnitNo"] as String ?? "";
-
-            if (!Context.User.Identity.IsAuthenticated)
-            {
-                Response.Redirect("~/Account/Login");
-            }
-
-            if (string.IsNullOrEmpty(userCode) || string.IsNullOrEmpty(billingCode))
-            {
-                Response.Redirect("~/Account/Login");
-            }
 
             if (IsPostBack)
             {
@@ -50,15 +37,14 @@ namespace BRBPortal_CSharp.MyProperties
 
         private void LoadData()
         {
-            var userCode = Session["UserCode"] as String ?? "";
-            var billingCode = Session["BillingCode"] as String ?? "";
             var propertyID = Session["PropertyID"] as String ?? "";
             var propertyAddress = Session["PropAddr"] as String ?? "";
             var propertyBalance = Session["PropBalance"] as String ?? "";
 
-            var fields = BRBFunctions_CSharp.GetPropertyTenants(propertyID, userCode, billingCode, iUnitID);
+            var user = Master.User;
+            BRBFunctions_CSharp.GetPropertyTenants(ref user, propertyID, iUnitID);
 
-            if (fields.Count == 0)
+            if (user.CurrentUnit.Tenants.Count == 0)
             {
                 if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
                 {
@@ -69,29 +55,45 @@ namespace BRBPortal_CSharp.MyProperties
                 return;
             }
 
-            BRBFunctions_CSharp.iTenantsTbl.DefaultView.Sort = "LastName, FirstName ASC";
-            BRBFunctions_CSharp.iTenantsTbl = BRBFunctions_CSharp.iTenantsTbl.DefaultView.ToTable();
+            //BRBFunctions_CSharp.iTenantsTbl.DefaultView.Sort = "LastName, FirstName ASC";
+            //BRBFunctions_CSharp.iTenantsTbl = BRBFunctions_CSharp.iTenantsTbl.DefaultView.ToTable();
 
-            gvTenants.DataSource = BRBFunctions_CSharp.iTenantsTbl;
-            gvTenants.DataBind();
+            //gvTenants.DataSource = BRBFunctions_CSharp.iTenantsTbl;
+            //gvTenants.DataBind();
 
-            Session["TenantsTbl"] = BRBFunctions_CSharp.iTenantsTbl;
+            //Session["TenantsTbl"] = BRBFunctions_CSharp.iTenantsTbl;
+            Master.UpdateSession(user);
 
-            MainAddress.Text = BRBFunctions_CSharp.iPropAddr;
+            MainAddress.Text = user.CurrentProperty.MainStreetAddress;
             UnitNo.Text = iUnitNum;
             BalAmt.Text = propertyBalance;
 
-            UnitStat.Text = fields.GetStringValue("CPStatus");
-            HouseServs.Text = fields.GetStringValue("HServices");
-            TenStDt.Text = fields.GetStringValue("StartDt");
-            NumTenants.Text = fields.GetStringValue("NumTenants");
-            SmokYN.Text = fields.GetStringValue("SmokeYN");
-            SmokDt.Text = fields.GetStringValue("SmokeDt");
-            InitRent.Text = fields.GetStringValue("InitRent");
-            PriorEndDt.Text = fields.GetStringValue("PriorEndDt");
-            TermReason.Text = fields.GetStringValue("TermReason");
-            OwnerName.Text = fields.GetStringValue("OwnerName");
-            AgentName.Text = fields.GetStringValue("AgentName");
+            UnitStat.Text = user.CurrentProperty.Units[0].ClientPortalUnitStatusCode;
+            HouseServs.Text = user.CurrentUnit.HServices;
+
+            if (user.CurrentUnit.StartDt.HasValue)
+            {
+                TenStDt.Text = user.CurrentUnit.StartDt.Value.ToString("MM/dd/yyyy");
+            }
+
+            NumTenants.Text = user.CurrentUnit.NumberOfTenants.ToString();
+            SmokYN.Text = user.CurrentUnit.SmokingProhibitionInLeaseStatus;
+
+            if (user.CurrentUnit.SmokingProhibitionEffectiveDate.HasValue)
+            {
+                SmokDt.Text = user.CurrentUnit.SmokingProhibitionEffectiveDate.Value.ToString("MM/dd/yyyy");
+            }
+
+            InitRent.Text = user.CurrentUnit.InitialRent;
+
+            if (user.CurrentUnit.DatePriorTenancyEnded.HasValue)
+            {
+                PriorEndDt.Text = user.CurrentUnit.DatePriorTenancyEnded.Value.ToString("MM/dd/yyyy");
+            }
+
+            TermReason.Text = user.CurrentUnit.TerminationReason;
+            OwnerName.Text = user.CurrentProperty.OwnerContactName;
+            AgentName.Text = user.CurrentProperty.AgencyName;
         }
 
         protected void gvTenants_PageIndexChanging(object sender, GridViewPageEventArgs e)

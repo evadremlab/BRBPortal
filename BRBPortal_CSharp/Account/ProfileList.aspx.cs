@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -13,30 +8,21 @@ namespace BRBPortal_CSharp.Account
         {
             if (!IsPostBack)
             {
-                string userCode = Session["UserCode"] as String ?? "";
-                string billingCode = Session["BillingCode"] as String ?? "";
-                string relationship = Session["Relationship"] as String ?? "";
+                var user = Master.User;
 
-                if (string.IsNullOrEmpty(userCode) || string.IsNullOrEmpty(billingCode))
+                if (BRBFunctions_CSharp.GetProfile(ref user))
                 {
-                    Response.Redirect("~/Account/Login");
-                }
-                else
-                {
-                    var fields = BRBFunctions_CSharp.GetProfile(userCode, billingCode);
+                    Master.UpdateSession(user);
 
-                    if (fields.Count > 0)
-                    {
-                        UserIDCode1.Text = fields.GetStringValue("UserCode");
-                        BillCode1.Text = fields.GetStringValue("BillingCode");
-                        Relationship.Text = relationship;
-                        FullName1.Text = fields.GetStringValue("FullName");
-                        MailAddress1.Text = fields.GetStringValue("MailAddr");
-                        EmailAddress1.Text = fields.GetStringValue("Email");
-                        PhoneNo1.Text = fields.GetStringValue("Phone");
-                        Quest1.Text = fields.GetStringValue("Question1");
-                        Quest2.Text = fields.GetStringValue("Question2");
-                    }
+                    UserIDCode1.Text = user.UserCode;
+                    BillCode1.Text = user.BillingCode;
+                    Relationship.Text = user.Relationship;
+                    FullName1.Text = user.FullName;
+                    MailAddress1.Text = user.MailAddress;
+                    EmailAddress1.Text = user.Email;
+                    PhoneNo1.Text = user.PhoneNumber;
+                    Quest1.Text = user.Question1;
+                    Quest2.Text = user.Question2;
                 }
             }
         }

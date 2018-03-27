@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileEdit.aspx.cs" Inherits="BRBPortal_CSharp.Account.ProfileEdit" %>
+<%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
@@ -58,7 +59,7 @@
                 </div>
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="Suffix" CssClass="col-md-2 control-label">Suffix: </asp:Label>
-                    <div class="col-md-10" style="max-width:15.5rem;">
+                    <div class="col-md-10" style="max-width:12.5rem;">
                         <asp:dropdownlist runat="server" ID="Suffix" ToolTip="Select a suffix from the list (optional)." CssClass="form-control selectpicker">
                             <asp:ListItem enabled="true" text="Select suffix" value="-1"></asp:ListItem>
                             <asp:ListItem enabled="true" text="Jr." value="1"></asp:ListItem>
@@ -86,14 +87,14 @@
                 <asp:Label runat="server" AssociatedControlID="StNum" CssClass="col-md-2 control-label">* Street Number: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="StNum" ToolTip="Enter the street number of the mailing address." CssClass="form-control" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StNum" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="street number is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StNum" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="StName" CssClass="col-md-2 control-label">* Street Name: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="StName" ToolTip="Enter the street name of the mailing address." CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StName"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="street name is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StName" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">
@@ -106,72 +107,74 @@
                 <asp:Label runat="server" AssociatedControlID="StCity" CssClass="col-md-2 control-label">* City: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="StCity" ToolTip="Enter the city of the mailing address." CssClass="form-control" TextMode="SingleLine" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StCity"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="city is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StCity" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="StState" CssClass="col-md-2 control-label">* State: </asp:Label>
-                <div class="col-md-10" style="max-width:15.5rem;">
-                    <asp:dropdownlist runat="server" ID="StState" ToolTip="Select a state from the list." CssClass="form-control selectpicker">
-                        <asp:ListItem enabled="true" text="Select state" value="-1"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="AK" value="AK"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="AL" value="AL"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="AR" value="AR"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="AZ" value="AZ"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="CA" value="CA"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="CT" value="CT"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="DE" value="DE"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="FL" value="FL"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="GA" value="GA"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="HI" value="HI"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="IA" value="IA"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="ID" value="ID"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="IL" value="IL"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="IN" value="IN"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="KS" value="KS"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="KY" value="KY"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="LA" value="LA"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="MA" value="MA"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="MD" value="MD"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="ME" value="ME"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="MI" value="MI"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="MN" value="MN"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="MO" value="MO"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="MS" value="MS"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="MT" value="MT"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="NC" value="NC"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="ND" value="ND"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="NE" value="NE"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="NH" value="NH"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="NJ" value="NJ"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="NM" value="NM"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="NV" value="NV"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="NY" value="NY"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="OH" value="OH"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="OK" value="OK"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="OR" value="OR"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="PA" value="PA"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="RI" value="RI"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="SC" value="SC"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="SD" value="SD"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="TN" value="TN"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="TX" value="TX"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="UT" value="UT"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="VA" value="VA"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="VT" value="VT"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="WA" value="WA"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="WI" value="WI"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="WV" value="WV"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="WY" value="WY"></asp:ListItem>
-                    </asp:DropDownList>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StState"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="state is required." />
+                <div class="col-md-10">
+                    <span style="display:inline-block; max-width:12.5rem;">
+                        <asp:dropdownlist runat="server" ID="StState" ToolTip="Select a state from the list." CssClass="form-control selectpicker">
+                            <asp:ListItem enabled="true" text="Select state" value="-1"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="AK" value="AK"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="AL" value="AL"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="AR" value="AR"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="AZ" value="AZ"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="CA" value="CA"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="CT" value="CT"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="DE" value="DE"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="FL" value="FL"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="GA" value="GA"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="HI" value="HI"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="IA" value="IA"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="ID" value="ID"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="IL" value="IL"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="IN" value="IN"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="KS" value="KS"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="KY" value="KY"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="LA" value="LA"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="MA" value="MA"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="MD" value="MD"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="ME" value="ME"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="MI" value="MI"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="MN" value="MN"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="MO" value="MO"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="MS" value="MS"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="MT" value="MT"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="NC" value="NC"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="ND" value="ND"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="NE" value="NE"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="NH" value="NH"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="NJ" value="NJ"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="NM" value="NM"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="NV" value="NV"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="NY" value="NY"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="OH" value="OH"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="OK" value="OK"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="OR" value="OR"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="PA" value="PA"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="RI" value="RI"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="SC" value="SC"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="SD" value="SD"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="TN" value="TN"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="TX" value="TX"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="UT" value="UT"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="VA" value="VA"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="VT" value="VT"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="WA" value="WA"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="WI" value="WI"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="WV" value="WV"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="WY" value="WY"></asp:ListItem>
+                        </asp:DropDownList>
+                    </span>
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StState" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="StZip" CssClass="col-md-2 control-label">* Zip Code: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="StZip" ToolTip="Enter the zip code of the mailing address." CssClass="form-control" TextMode="SingleLine" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StZip"  ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="zip code is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="StZip" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">
@@ -184,49 +187,21 @@
                 <asp:Label runat="server" AssociatedControlID="EmailAddress" CssClass="col-md-2 control-label">* Email Address: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="EmailAddress" ToolTip="Enter your email address." CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EmailAddress" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Email Address is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="EmailAddress" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="PhoneNo" CssClass="col-md-2 control-label">* Phone Number: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="PhoneNo" ToolTip="Enter your phone number." CssClass="form-control" TextMode="SingleLine" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="PhoneNo" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Phone Number is required." />
-                </div>
-            </div>
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="Quest1" CssClass="col-md-2 control-label">* Security Question:</asp:Label>
-                <div class="col-md-10">
-                    <asp:textbox runat="server" id="Quest1" CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;"></asp:textbox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest1" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Security Question is required." />
-                </div>
-            </div>
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="Answer1" CssClass="col-md-2 control-label">* Security Answer:</asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="Answer1" CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Answer1" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Security Answer is required." />
-                </div>
-            </div>
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="Quest2" CssClass="col-md-2 control-label">* Security Question:</asp:Label>
-                <div class="col-md-10">
-                    <asp:textbox runat="server" id="Quest2" CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;"></asp:textbox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest2" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Security Question is required." />
-                </div>
-            </div>
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="Answer2" CssClass="col-md-2 control-label">* Security Answer:</asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="Answer2" CssClass="form-control" TextMode="SingleLine" style="width:40rem; max-width:40rem;" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Answer2" ValidationGroup="UpdCheck" CssClass="text-danger" Display="Dynamic" ErrorMessage="Security Answer is required." />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="PhoneNo" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <asp:Button runat="server" id="btnCancel" OnClick="CancelEdit_Click" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Returns to profile view." TabIndex="-1" />
-                    <asp:Button runat="server" ID="btnUpdate" OnClick="UpdateProfile_Click" Text="Update" CssClass="btn btn-primary" ToolTip="Update your profile." ValidationGroup="UpdCheck" style="margin-left:1rem;" />
+                    <asp:Button runat="server" ID="btnUpdate" OnClick="UpdateProfile_Click" Text="Update" CssClass="btn btn-primary" ToolTip="Update your profile." style="margin-left:1rem;" />
                 </div>
             </div>
         </div>

@@ -1,16 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Web;
 using System.Web.UI;
-using System.Web.Security;
 
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Owin;
 
-using BRBPortal_CSharp;
 using BRBPortal_CSharp.Models;
-using System.Collections.Generic;
-using System.Security.Claims;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -27,50 +24,37 @@ namespace BRBPortal_CSharp.Account
         {
             if (IsValid)
             {
-                var userCode = UserIDCode.Text ?? string.Empty;
-                var billCode = BillCode.Text ?? string.Empty;
-                var password = Password.Text ?? string.Empty;
+                Session.Clear();
 
-                var result = BRBFunctions_CSharp.UserAuth(userCode, billCode, password);
-
-                if (result == SignInStatus.Success)
+                var user = new BRBUser
                 {
-                    Session["UserCode"] = userCode;
-                    Session["BillingCode"] = billCode;
-                    Session["FirstTimeLogin"] = BRBFunctions_CSharp.iFirstlogin;
-                    Session["Relationship"] = BRBFunctions_CSharp.iRelate;
-                    Session["TempPwd"] = BRBFunctions_CSharp.iTempPwd;
+                    UserCode = UserIDCode.Text ?? "",
+                    BillingCode = BillCode.Text ?? ""
+                };
 
-                    if (BRBFunctions_CSharp.iTempPwd.ToUpper() == "TRUE")
+                if (BRBFunctions_CSharp.UserAuth(ref user, Password.Text ?? "") == SignInStatus.Success)
+                {
+                    Master.UpdateSession(user);
+
+                    if (user.IsTemporaryPassword)
                     {
-                        if ((BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE"))
-                        {
-                            Session["NextPage"] = "ProfileConfirm";
-                        }
-                        else
-                        {
-                            Session["NextPage"] = "Home";
-                        }
-
+                        Session["NextPage"] = user.IsFirstlogin ? "ProfileConfirm" : "Home";
                         Response.Redirect("~/Account/ManagePassword.aspx");
                     }
-                    else if (BRBFunctions_CSharp.iFirstlogin.ToUpper() == "TRUE")
+                    else if (user.IsFirstlogin)
                     {
                         Session["NextPage"] = "Home";
                         Response.Redirect("~/Account/ProfileConfirm.aspx");
                     }
                     else
                     {
-                        var fields = BRBFunctions_CSharp.GetProfile(userCode, billCode);
-
-                        if (fields.Count > 0)
+                        if (BRBFunctions_CSharp.GetProfile(ref user))
                         {
-                            userCode = fields.GetStringValue("UserCode");
-                            billCode = fields.GetStringValue("BillingCode");
-
                             var claims = new List<Claim>();
-                            claims.Add(new Claim(ClaimTypes.Name, billCode));
+                            claims.Add(new Claim(ClaimTypes.Name, user.BillingCode));
                             Request.GetOwinContext().Authentication.SignIn(new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie));
+
+                            Master.UpdateSession(user);
 
                             Response.Redirect("~/Home.aspx");
                         }

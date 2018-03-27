@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace BRBPortal_CSharp.MyProperties
 {
@@ -20,45 +23,52 @@ namespace BRBPortal_CSharp.MyProperties
 
             if (!IsPostBack)
             {
-                var userCode = Session["UserCode"] as String ?? "";
-                var billingCode = Session["BillingCode"] as String ?? "";
+                string userCode = Master.User.UserCode;
+                string billingCode = Master.User.BillingCode;
+                var currentFees = Session["CurrFees"] as String ?? "0";
+                var propertyBalance = Session["PropBalance"] as String ?? "0";
                 var propertyID = Session["PropertyID"] as String ?? "";
                 var propertyAddress = Session["PropAddr"] as String ?? "";
 
-                if (string.IsNullOrEmpty(userCode) || string.IsNullOrEmpty(billingCode))
-                {
-                    Response.Redirect("~/Account/Login");
-                }
-                else
-                {
-                    var propertyUnits = BRBFunctions_CSharp.GetPropertyUnits(propertyID, userCode, billingCode);
+                var user = Master.User;
+                BRBFunctions_CSharp.GetPropertyUnits(ref user, propertyID);
 
-                    if (propertyUnits.Count == 0)
+                if (!string.IsNullOrEmpty(BRBFunctions_CSharp.iErrMsg))
+                {
+                    if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
                     {
-                        if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
-                        {
-                            BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
-                        }
-                        ShowDialogOK("Error retrieving Units: " + BRBFunctions_CSharp.iErrMsg, "View Units");
-                        return;
+                        BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
                     }
-
-                    BRBFunctions_CSharp.iUnitsTbl.DefaultView.Sort = "UnitNo ASC";
-                    BRBFunctions_CSharp.iUnitsTbl = BRBFunctions_CSharp.iUnitsTbl.DefaultView.ToTable();
-
-                    gvUnits.DataSource = BRBFunctions_CSharp.iUnitsTbl;
-                    gvUnits.DataBind();
-
-                    gvUnits.Columns[2].Visible = false; // Do this so it stores the value in the GV but doesn't show it
-
-                    MainAddress.Text = BRBFunctions_CSharp.iPropAddr;
-                    BillAddr.Text = BRBFunctions_CSharp.iBillAddr;
-                    MgrName.Text = BRBFunctions_CSharp.iAgentName;
-
-                    AgentSection.Visible = !string.IsNullOrEmpty(MgrName.Text);
-
-                    Session["UnitsTbl"] = BRBFunctions_CSharp.iUnitsTbl;
+                    ShowDialogOK("Error retrieving Units: " + BRBFunctions_CSharp.iErrMsg, "View Units");
+                    return;
                 }
+
+                Master.UpdateSession(user);
+
+                if (user.CurrentProperty.Units.Count == 0)
+                {
+                    ShowDialogOK("No Units found for this property.", "View Units");
+                    return;
+                }
+
+                //BRBFunctions_CSharp.iUnitsTbl = BRBFunctions_CSharp.ConvertToDataTable(propertyUnits);
+                //BRBFunctions_CSharp.iUnitsTbl.DefaultView.Sort = "UnitNo ASC";
+
+                //gvUnits.DataSource = BRBFunctions_CSharp.iUnitsTbl;
+                //gvUnits.DataBind();
+
+                gvUnits.Columns[2].Visible = false; // Do this so it stores the value in the GV but doesn't show it
+
+                CurrFee.Text = currentFees;
+                Balance.Text = propertyBalance;
+                PropAddr.Text = propertyAddress;
+                MainAddress.Text = user.CurrentProperty.MainStreetAddress;
+                BillAddr.Text = user.CurrentProperty.BillingAddress;
+                MgrName.Text = user.AgencyName;
+
+                AgentSection.Visible = !string.IsNullOrEmpty(MgrName.Text);
+
+                Session["UnitsTbl"] = BRBFunctions_CSharp.iUnitsTbl;
             }
         }
 
@@ -103,11 +113,6 @@ namespace BRBPortal_CSharp.MyProperties
             }
             else
             {
-                if (e.CommandName.Equals("Both"))
-                {
-                    Session["UpdTenants"] = true;
-                }
-
                 //// Build XML string for the Unit page NOT USED
                 //var tUnitStr = iPropertyNo + tsep + Session["PropAddr"].ToString() + tsep + tUnit + tsep;
                 //tUnitStr += row.Cells[5].Text + tsep; //  Unit Status
