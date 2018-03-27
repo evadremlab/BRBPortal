@@ -21,8 +21,6 @@ namespace BRBPortal_CSharp.Account
                     MailAddress1.Text = user.MailAddress;
                     EmailAddress1.Text = user.Email;
                     PhoneNo1.Text = user.PhoneNumber;
-                    Quest1.Text = user.Question1;
-                    Quest2.Text = user.Question2;
                 }
             }
         }
@@ -34,7 +32,7 @@ namespace BRBPortal_CSharp.Account
 
         protected void CancelList_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Home.aspx", false);
+            Response.Redirect("~/Home.aspx", true);
         }
     }
 }

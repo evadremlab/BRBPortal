@@ -1,0 +1,27 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <api:savePaymentCart>
+      <savePaymentToCart>
+        <cartId></cartId>
+        <paymentConfirmationNo/>
+        <paymentReceivedAmt/>
+        <isFeeOnlyPaid>True</isFeeOnlyPaid>
+        <items>
+          <itemId>1</itemId>
+          <propertyId>1968</propertyId>
+          <propertyMainStreetAddress>2336 CURTIS ST</propertyMainStreetAddress>
+          <fee>154.99</fee>
+          <penalties>0.00</penalties>
+          <balance>154.99</balance>
+        </items>
+      </savePaymentToCart>
+      <request>
+        <!--Optional:-->
+        <userId>DAVE02</userId>
+        <!--Optional:-->
+        <billingCode>LIUHEL</billingCode>
+      </request>
+    </api:savePaymentCart>
+  </soapenv:Body>
+</soapenv:Envelope>

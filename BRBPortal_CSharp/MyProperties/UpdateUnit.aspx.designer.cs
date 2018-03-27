@@ -31,13 +31,13 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.HiddenField hfUnitID;
         
         /// <summary>
-        /// MainAddress control.
+        /// PropertyAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal MainAddress;
+        protected global::System.Web.UI.WebControls.Literal PropertyAddress;
         
         /// <summary>
         /// UnitNo control.
@@ -83,6 +83,33 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal UnitOccBy;
+        
+        /// <summary>
+        /// InitalEditButtons control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl InitalEditButtons;
+        
+        /// <summary>
+        /// btnBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBack;
+        
+        /// <summary>
+        /// EditUnitStatusPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EditUnitStatusPanel;
         
         /// <summary>
         /// NewUnit control.

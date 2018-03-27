@@ -76,24 +76,6 @@ namespace BRBPortal_CSharp.Account {
         protected global::System.Web.UI.WebControls.Literal PhoneNo1;
         
         /// <summary>
-        /// Quest1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Quest1;
-        
-        /// <summary>
-        /// Quest2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Quest2;
-        
-        /// <summary>
         /// btnCancel control.
         /// </summary>
         /// <remarks>

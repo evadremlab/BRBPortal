@@ -7,31 +7,25 @@
     <section id="cartForm">
         <div class="form-horizontal">
             <hr />
-            <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                <p class="text-danger">
-                    <asp:Literal runat="server" ID="FailureText" />
-                </p>
-            </asp:PlaceHolder>
-
             <div class="form-group">
                 <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False" CellPadding="4" 
                     ForeColor="#333333" GridLines="None" AllowPaging="True" ShowFooter="True" 
                     onRowCommand="gvCart_RowCommand" OnRowDataBound="gvCart_RowDataBound">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:BoundField HeaderText="PropertyID" DataField="PropertyID" ReadOnly="True"></asp:BoundField>
-                        <asp:BoundField HeaderText="Address" DataField="MainAddr" SortExpression="MainAddr">
+                        <asp:BoundField HeaderText="PropertyID" DataField="PropertyID" ReadOnly="True" Visible="false"></asp:BoundField>
+                        <asp:BoundField HeaderText="Address" DataField="PropertyAddress" SortExpression="PropertyAddress">
                             <ItemStyle HorizontalAlign="Left" Width="200px" Wrap="False" />
                             </asp:BoundField>
-                        <asp:BoundField HeaderText="Current Fee" DataField="CurrFees" SortExpression="CurrFees" DataFormatString="{0:c}" ReadOnly="True">
+                        <asp:BoundField HeaderText="Current Fee" DataField="CurrentFee" SortExpression="CurrentFee" DataFormatString="{0:c}" ReadOnly="True">
                             <HeaderStyle HorizontalAlign="Right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Width="75px" Wrap="False" />
                             </asp:BoundField>
-                        <asp:BoundField HeaderText="Prior Fee" DataField="PriorFees" SortExpression="PriorFees" DataFormatString="{0:c}" ReadOnly="True">
+                        <asp:BoundField HeaderText="Prior Fee" DataField="PriorFee" SortExpression="PriorFee" DataFormatString="{0:c}" ReadOnly="True">
                             <HeaderStyle HorizontalAlign="Right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Width="75px" Wrap="False" />
                             </asp:BoundField>
-                        <asp:BoundField HeaderText="Current Penalty" DataField="CurrPenalty" SortExpression="CurrPenalty" DataFormatString="{0:c}" ReadOnly="True">
+                        <asp:BoundField HeaderText="Current Penalty" DataField="CurrentPenalty" SortExpression="CurrentPenalty" DataFormatString="{0:c}" ReadOnly="True">
                             <HeaderStyle HorizontalAlign="Right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Width="75px" Wrap="False" />
                             </asp:BoundField>
@@ -71,7 +65,6 @@
 
             <div class="form-group">
                 <asp:Button runat="server" id="btnBack" PostBackUrl="~/Cart.aspx" CausesValidation="false" Text="Back" CssClass="btn btn-sm btn-default" ToolTip="Cancel any changes to this cart." TabIndex="-1" />
-                <asp:Button runat="server" id="btnSave" OnClick="UpdateCart_Click" Text="Save" CssClass="btn btn-primary" ToolTip="Save changes to your cart." style="margin-left:1rem;" />
             </div>
         </div>
     </section>

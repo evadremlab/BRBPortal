@@ -48,18 +48,6 @@
                     <asp:Literal ID="PhoneNo1" runat="server"></asp:Literal>
                 </div>
             </div>
-            <div class="form-group" >
-                <asp:Label runat="server" AssociatedControlID="Quest1" CssClass="col-md-2 control-label">Security Question:</asp:Label>
-                <div class="col-md-10 literal">
-                    <asp:literal runat="server" id="Quest1"></asp:literal>
-                </div>
-            </div>
-            <div class="form-group" >
-                <asp:Label runat="server" AssociatedControlID="Quest2" CssClass="col-md-2 control-label">Security Question:</asp:Label>
-                <div class="col-md-10 literal">
-                    <asp:literal runat="server" id="Quest2"></asp:literal>
-                </div>
-            </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <asp:Button runat="server" id="btnCancel" OnClick="CancelList_Click" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Returns to Home page." UseSubmitBehavior="false" TabIndex="-1" />

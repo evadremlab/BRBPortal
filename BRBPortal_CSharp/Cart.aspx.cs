@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BRBPortal_CSharp.Models;
+using BRBPortal_CSharp.Shared;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,72 +13,60 @@ namespace BRBPortal_CSharp
 {
     public partial class Cart : System.Web.UI.Page
     {
-        public DataTable iCartTbl;
-        public Decimal iBalance = 0.0M;
+        public Decimal totalBalance = 0.0M;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                if (Session["Cart"] == null)
-                {
-                    iCartTbl = new DataTable();
-                    Session["Cart"] = iCartTbl;
-                }
-                else
-                {
-                    iCartTbl = (DataTable)Session["Cart"];
-                }
+                var user = Master.User;
 
-                if (iCartTbl.Columns.Count < 1)
-                {
-                    iCartTbl.Columns.Add("PropertyID", typeof(String));
-                    iCartTbl.Columns.Add("MainAddr", typeof(String));
-                    iCartTbl.Columns.Add("CurrFees", typeof(Decimal));
-                    iCartTbl.Columns.Add("PriorFees", typeof(Decimal));
-                    iCartTbl.Columns.Add("CurrPenalty", typeof(Decimal));
-                    iCartTbl.Columns.Add("PriorPenalty", typeof(Decimal));
-                    iCartTbl.Columns.Add("Credits", typeof(Decimal));
-                    iCartTbl.Columns.Add("Balance", typeof(Decimal));
-                }
+                gvCart.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
+                gvCart.DataBind();
 
-                if (iCartTbl.Rows.Count == 0)
+                if (user.Cart.Items.Count == 0)
                 {
                     btnEdCart.Enabled = false;
                     btnPayCart.Enabled = false;
-                    ShowFeesAll.Text = "Nothing in your cart.";
+
+                    gvCart.Visible = false;
+                    EmptyCartHeader.Visible = true;
+                    EmptyCartMessage.Text = "is empty";
                     return;
+                }
+                else
+                {
+                    gvCart.Visible = true;
+                    EmptyCartMessage.Text = "";
+                    EmptyCartHeader.Visible = false;
                 }
 
                 if (!IsPostBack)
                 {
-                    gvCart.DataSource = iCartTbl;
-                    gvCart.DataBind();
-                    gvCart.Columns[0].Visible = false; // Hide the PropertyID column
-
                     btnEdCart.Enabled = true;
                     btnPayCart.Enabled = true;
+                    ShowFeesAll.Text = "ShowFeesAll is under construction";
 
-                    if (Session["FeesAll"] == null)
-                    {
-                        ShowFeesAll.Text = "All Fees and Penalties";
-                    }
-                    else
-                    {
-                        if (Session["FeesAll"].ToString() == "AllFees" || Session["FeesAll"].ToString() == "")
-                        {
-                            ShowFeesAll.Text = "All Fees and Penalties";
-                        }
-                        else
-                        {
-                            ShowFeesAll.Text = "Fees Only";
-                        }
-                    }
+                    //if (user.FeesAll == null)
+                    //{
+                    //    ShowFeesAll.Text = "All Fees and Penalties";
+                    //}
+                    //else
+                    //{
+                    //    if (Session["FeesAll"].ToString() == "AllFees" || Session["FeesAll"].ToString() == "")
+                    //    {
+                    //        ShowFeesAll.Text = "All Fees and Penalties";
+                    //    }
+                    //    else
+                    //    {
+                    //        ShowFeesAll.Text = "Fees Only";
+                    //    }
+                    //}
                 }
             }
             catch (Exception ex)
             {
-                ShowDialogOK(ex.Message, "Cart View");
+                Master.ShowDialogOK(ex.Message, "Cart");
             }
         }
 
@@ -88,8 +78,40 @@ namespace BRBPortal_CSharp
 
         protected void PayCart_Click(object sender, EventArgs e)
         {
-            var XMLstr = "";
-            decimal tSubTotal = 0.0M;
+            try
+            {
+                var user = Master.User;
+
+                if (BRBFunctions_CSharp.SaveCart(user))
+                {
+                    Logger.Log("SaveCart", "Saved!");
+                }
+                else
+                {
+                    Logger.Log("SaveCart - Error", BRBFunctions_CSharp.iErrMsg);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException("PayCart", ex);
+            }
+            //    sbCart.Append("<properties>");
+
+            //    foreach (DataRow dataRow in iCartTbl.Rows)
+            //    {
+            //        sbCart.Append("<property>");
+            //        sbCart.AppendFormat("<propno>{0}</propno>", dataRow.Field<string>("PropertyID"));
+            //        sbCart.AppendFormat("<addr>{0}</addr>", dataRow.Field<string>("MainAddr"));
+            //        sbCart.AppendFormat("<cfees>{0}</cfees>", dataRow.Field<decimal>("CurrFees"));
+            //        sbCart.AppendFormat("<pfees>{0}</pfees>", dataRow.Field<decimal>("PriorFees"));
+            //        sbCart.AppendFormat("<cpen>{0}</cpen>", dataRow.Field<decimal>("CurrPenalty"));
+            //        sbCart.AppendFormat("<ppen>{0}</ppen>", dataRow.Field<decimal>("PriorPenalty"));
+            //        sbCart.AppendFormat("<creds>{0}</creds>", dataRow.Field<decimal>("Credits"));
+            //        sbCart.AppendFormat("<bal>{0}</bal>", dataRow.Field<decimal>("Balance"));
+            //        sbCart.Append("</property>");
+            //    }
+
+            //    sbCart.Append("</properties>");
 
             // TODO: Build XML to send to ACI Universal Payment
         }
@@ -101,8 +123,10 @@ namespace BRBPortal_CSharp
 
         protected void gvCart_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            var user = Master.User;
+
             gvCart.PageIndex = e.NewPageIndex;
-            gvCart.DataSource = Session["CartTbl"];
+            gvCart.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
             gvCart.DataBind();
         }
 
@@ -111,21 +135,15 @@ namespace BRBPortal_CSharp
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 var value = 0.0M;
-                string txtBalance = e.Row.Cells[7].Text.Replace("$", "");
+                var colIndex = e.Row.GetColumnIndexByName("Balance");
+                string txtBalance = e.Row.Cells[colIndex].Text.Replace("$", "");
                 Decimal.TryParse(txtBalance, out value);
-                iBalance += value;
+                totalBalance += value;
             }
             else if (e.Row.RowType == DataControlRowType.Footer)
             {
-                e.Row.Cells[7].Text = iBalance.ToString("c");
+                e.Row.Cells[7].Text = totalBalance.ToString("c");
             }
-        }
-
-        protected void ShowDialogOK(string message, string title = "Status")
-        {
-            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
-
-            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
     }
 }

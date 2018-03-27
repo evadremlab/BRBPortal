@@ -9,7 +9,7 @@
     <div class="form-horizontal">
         <section id="propertiesForm">
             <div class="form-horizontal">
-                <h4>at <asp:Literal ID="MainAddress" runat="server" ></asp:Literal></h4>
+                <h4>at <asp:Literal ID="PropertyAddress" runat="server" ></asp:Literal></h4>
                 <hr />
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="CurrFee" CssClass="control-label">Current Fee:</asp:Label>
@@ -24,29 +24,30 @@
                     </div>
                 </asp:PlaceHolder>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="PropAddr" CssClass="control-label">Property Address:</asp:Label>
-                    <asp:Literal ID="PropAddr" runat="server" ></asp:Literal>
+                    <asp:Label runat="server" AssociatedControlID="BillingAddress" CssClass="control-label">Billing Address:</asp:Label>
+                    <asp:Literal ID="BillingAddress" runat="server" ></asp:Literal>
                 </div>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="BillAddr" CssClass="control-label">Billing Address:</asp:Label>
-                    <asp:Literal ID="BillAddr" runat="server" ></asp:Literal>
+                    <asp:Button runat="server" id="btnAddCart" OnClick="AddCart_Click"  Text="Add to Cart" CssClass="btn btn-primary" ToolTip="Add to cart." TabIndex="-1" />
                 </div>
             </div>
             <div class="form-group">
                 <asp:GridView ID="gvUnits" runat="server" AutoGenerateColumns="False" CellPadding="4" 
-                    ForeColor="#333333" GridLines="None" OnRowDataBound="OnRowDataBound" AllowPaging="True" 
-                    OnRowCommand="gvUnits_RowCommand" OnPageIndexChanging="gvUnits_PageIndexChanging" >
+                    ForeColor="#333333" GridLines="None" OnRowDataBound="gvUnits_OnRowDataBound" AllowPaging="True" 
+                    OnRowCommand="gvUnits_RowCommand" OnPageIndexChanging="gvUnits_OnRowDataBound" >
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:BoundField DataField="UnitID" HeaderText="UnitID (NV)" ReadOnly="True" Visible="true" />
-                        <asp:BoundField HeaderText="Unit No" DataField="UnitNo" ReadOnly="True">
+                        <asp:BoundField DataField="UnitID" HeaderText="UnitID (NV)" ReadOnly="True" Visible="false" />
+                        <asp:BoundField HeaderText="UnitStatID (NV)" DataField="UnitStatID" SortExpression="UnitStatID" Visible="false" />
+                        <asp:BoundField DataField="CPUnitStatCode" HeaderText="Unit Status (NV)" ReadOnly="True" SortExpression="UnitStatCode" Visible="false">
+                            <ItemStyle Wrap="False" />
                         </asp:BoundField>
-                        <asp:BoundField HeaderText="UnitStatID (NV)" DataField="UnitStatID" SortExpression="UnitStatID" Visible="False"/>
-                        <asp:BoundField DataField="CPUnitStatCode" HeaderText="Unit Status (NV)" ReadOnly="True" SortExpression="UnitStatCode" Visible="False">
-                        <ItemStyle HorizontalAlign="Left" Wrap="False" />
+                        <asp:BoundField DataField="StreetAddress" HeaderText="Address" ReadOnly="True" SortExpression="StreetAddress">
+                            <ItemStyle Wrap="False" />
                         </asp:BoundField>
+                        <asp:BoundField HeaderText="Unit No" DataField="UnitNo" ReadOnly="True" />
                         <asp:BoundField DataField="CPUnitStatDisp" HeaderText="Unit Status" ReadOnly="True" SortExpression="UnitStatCode">
-                        <ItemStyle HorizontalAlign="Left" Wrap="False" />
+                            <ItemStyle Wrap="False" />
                         </asp:BoundField>
                         <asp:BoundField HeaderText="Rent Ceiling" DataField="RentCeiling" SortExpression="RentCeiling" DataFormatString="{0:c}" ReadOnly="True">
                             <HeaderStyle CssClass="text-right" Wrap="False" />
@@ -57,14 +58,14 @@
                             <ItemStyle HorizontalAlign="Right" Wrap="False" />
                             </asp:BoundField>
                         <asp:BoundField HeaderText="Housing Services" DataField="HServices" SortExpression="HServices" ReadOnly="True">
-                            <HeaderStyle CssClass="text-right" Wrap="False" />
-                            <ItemStyle HorizontalAlign="Left" Wrap="False" />
+                            <HeaderStyle Wrap="False" />
+                            <ItemStyle Wrap="False" />
                             </asp:BoundField>
                         <asp:ButtonField ButtonType="Button" CommandName="UnitStatus" Text="Update Unit Status">
-                            <ControlStyle CssClass="btn btn-sm btn-primary" />
+                            <ControlStyle CssClass="btn btn-sm btn-success" />
                         </asp:ButtonField>
                         <asp:ButtonField ButtonType="Button" CommandName="Tenancy" Text="Update Tenancy">
-                            <ControlStyle CssClass="btn btn-sm btn-primary" />
+                            <ControlStyle CssClass="btn btn-sm btn-success" />
                         </asp:ButtonField>
                     </Columns>
                     <EditRowStyle BackColor="#2461BF" />
@@ -80,7 +81,7 @@
                 </asp:GridView>
             </div>
             <div class="form-group">
-                <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyProperties" Text="Back" CssClass="btn btn-sm btn-default" ToolTip="Return to the list of Properties." TabIndex="-1" />
+                <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyProperties" CausesValidation="false" Text="Back" CssClass="btn btn-sm btn-default" ToolTip="Return to the list of Properties." TabIndex="-1" />
                 <%--<asp:Button runat="server" OnClick="NextBtn_Click" Text="Next" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Unit or Tenancy."/>--%>
             </div>
         </section>

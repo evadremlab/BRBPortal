@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ser-root:savePaymentCartResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <response>
+        <status>SUCCESS</status>
+        <errorMsg>Payment cart saved successfully.</errorMsg>
+      </response>
+      <cartId>8</cartId>
+    </ser-root:savePaymentCartResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

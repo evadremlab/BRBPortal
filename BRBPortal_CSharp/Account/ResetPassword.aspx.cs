@@ -39,7 +39,7 @@ namespace BRBPortal_CSharp.Account
             }
             else
             {
-                ShowDialogOK("Error: Invalid User ID or Billing Code.", "Reset Password");
+                Master.ShowDialogOK("Error: Invalid User ID or Billing Code.", "Reset Password");
                 UserIDCode.Focus();
                 return;
             }
@@ -52,21 +52,14 @@ namespace BRBPortal_CSharp.Account
             if (BRBFunctions_CSharp.ValidateReset(ref user))
             {
                 Master.UpdateSession(user);
-                ShowDialogOK("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
+                Master.ShowDialogOK("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
 
-                Response.Redirect("~/Account/Login.aspx");
+                Response.Redirect("~/Account/Login.aspx", true);
             }
             else
             {
-                ShowDialogOK("Security answer(s) did not match.", "Reset Password");
+                Master.ShowDialogOK("Security answer(s) did not match.", "Reset Password");
             }
-        }
-
-        private void ShowDialogOK(string message, string title = "Status")
-        {
-            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
-
-            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
     }
 }

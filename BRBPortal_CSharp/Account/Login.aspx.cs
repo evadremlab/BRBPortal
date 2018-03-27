@@ -26,11 +26,16 @@ namespace BRBPortal_CSharp.Account
             {
                 Session.Clear();
 
-                var user = new BRBUser
+                var user = new BRBUser();
+
+                if (UserIDOrBillCode.SelectedValue == "UserID")
                 {
-                    UserCode = UserIDCode.Text ?? "",
-                    BillingCode = BillCode.Text ?? ""
-                };
+                    user.UserCode = UserIDCode.Text ?? "";
+                }
+                else
+                {
+                    user.BillingCode = BillCode.Text ?? "";
+                }
 
                 if (BRBFunctions_CSharp.UserAuth(ref user, Password.Text ?? "") == SignInStatus.Success)
                 {
@@ -56,7 +61,7 @@ namespace BRBPortal_CSharp.Account
 
                             Master.UpdateSession(user);
 
-                            Response.Redirect("~/Home.aspx");
+                            Response.Redirect("~/Home.aspx", true);
                         }
                         else
                         {

@@ -9,45 +9,32 @@ namespace BRBPortal_CSharp.MyProperties
 {
     public partial class UpdateUnit : System.Web.UI.Page
     {
-        private string iPropertyAddress = "";
-        private string iUnitNum = "";
-        private string iUnitID = "";
-        private string iPropertyNo = "";
-
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            if (!Context.User.Identity.IsAuthenticated)
+            if (IsPostBack)
             {
-                Response.Redirect("~/Account/Login");
+                InitalEditButtons.Style.Add("display", "none");
+                EditUnitStatusPanel.Style.Remove("display");
             }
-
-            if (!IsPostBack)
+            else
             {
-                var iPropertyNo = Session["PropertyID"] as String ?? "";
-                var iPropertyAddress = Session["PropAddr"] as String ?? "";
-                iUnitID = Session["UnitID"] as String ?? "";
-                iUnitNum = Session["UnitNo"] as String ?? "";
-                var propertyBalance = Session["PropBalance"] as String ?? "";
-
                 var user = Master.User;
-                BRBFunctions_CSharp.GetPropertyUnits(ref user, iPropertyNo, iUnitID);
+                BRBFunctions_CSharp.GetPropertyUnits(ref user, user.CurrentUnit.UnitID);
 
-                if (user.CurrentProperty.Units.Count == 0)
+                EditUnitStatusPanel.Style.Add("display", "none");
+
+                PropertyAddress.Text = user.CurrentUnit.StreetAddress;
+                UnitStatus.Text = user.CurrentUnit.ClientPortalUnitStatusCode;
+                UnitNo.Text = user.CurrentUnit.UnitNo;
+                NewUnit.SelectedValue = UnitStatus.Text;
+                ExemptReas.Text = user.CurrentUnit.ExemptionReason;
+                UnitOccBy.Text = user.CurrentUnit.OccupiedBy;
+                hfUnitID.Value = user.CurrentUnit.UnitID;
+
+                if (user.CurrentUnit.StartDt.HasValue)
                 {
-                    ShowDialogOK("Error: Error retrieving Unit ID " + iUnitID + " Unit No " + iUnitNum + ".", "Update Units");
-                    return;
+                    UnitStartDt.Text = user.CurrentUnit.StartDt.Value.ToString("MM/dd/yyyy");
                 }
-
-                UnitStatus.Text = user.CurrentProperty.Units[0].ClientPortalUnitStatusCode;
-                ExemptReas.Text = user.CurrentProperty.Units[0].ExemptionReason;
-
-                if (user.CurrentProperty.Units[0].StartDt.HasValue)
-                {
-                    UnitStartDt.Text = user.CurrentProperty.Units[0].StartDt.Value.ToString("MM/dd/yyyy");
-                }
-
-                UnitOccBy.Text = user.CurrentProperty.Units[0].OccupiedBy;
-                hfUnitID.Value = user.CurrentProperty.Units[0].UnitID;
 
                 var ExemptGroup_Visible = false;
                 var CommUseGrp_Visible = false;
@@ -190,23 +177,12 @@ namespace BRBPortal_CSharp.MyProperties
                 {
                     OtherListContainer.Attributes["class"] = "hidden";
                 }
-
-                MainAddress.Text = iPropertyAddress;
-                UnitNo.Text = iUnitNum;
-                NewUnit.SelectedValue = UnitStatus.Text;
             }
-        }
-
-        private void ShowDialogOK(string message, string title = "Status")
-        {
-            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
-
-            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
 
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
-            ShowDialogOK("Update Unit is under construction", "Update Units");
+            Master.ShowDialogOK("Update Unit is under construction", "Update Units");
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

@@ -34,6 +34,9 @@ input[type="select"] {
 .container-fluid.body-content {
     padding: 0 4rem;
 }
+.invisible {
+    visibility: hidden; /* used for Update Tenancy button */
+}
 .alert {
     font-weight: bold;
 }

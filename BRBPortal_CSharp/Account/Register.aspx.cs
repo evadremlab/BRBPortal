@@ -16,7 +16,7 @@ namespace BRBPortal_CSharp.Account
                     {
                         if (string.IsNullOrEmpty(LastName.Text))
                         {
-                            ShowDialogOK("Last name must be entered when property relationship is Owner.");
+                            Master.ShowDialogOK("Last name must be entered when property relationship is Owner.");
                             return;
                         }
                     }
@@ -24,7 +24,7 @@ namespace BRBPortal_CSharp.Account
                     {
                         if (AgencyName.Text == "")
                         {
-                            ShowDialogOK("Agency name must be entered when property relationship is Agent.");
+                            Master.ShowDialogOK("Agency name must be entered when property relationship is Agent.");
                             return;
                         }
                     }
@@ -54,7 +54,7 @@ namespace BRBPortal_CSharp.Account
 
                     if (BRBFunctions_CSharp.Register(profile) == false)
                     {
-                        ShowDialogOK(BRBFunctions_CSharp.iErrMsg, "Registration Error");
+                        Master.ShowDialogOK(BRBFunctions_CSharp.iErrMsg, "Registration Error");
                         return;
                     }
 
@@ -62,16 +62,9 @@ namespace BRBPortal_CSharp.Account
                 }
                 catch (Exception ex)
                 {
-                    ShowDialogOK(ex.Message, "Register");
+                    Master.ShowDialogOK(ex.Message, "Register");
                 }
             }
-        }
-
-        private void ShowDialogOK(string message, string title = "Status")
-        {
-            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
-
-            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
     }
 }

@@ -6,12 +6,10 @@
 
     <section id="cartForm">
         <div class="form-horizontal">
-            <hr />
-            <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                <p class="text-danger">
-                    <asp:Literal runat="server" ID="FailureText" />
-                </p>
+            <asp:PlaceHolder runat="server" ID="EmptyCartHeader" Visible="false">
+                <h4><asp:Literal runat="server" ID="EmptyCartMessage" /></h4>
             </asp:PlaceHolder>
+            <hr />
 
             <div class="form-group">
                 <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False" CellPadding="4" 
@@ -19,19 +17,19 @@
                     OnRowDataBound="gvCart_RowDataBound" >
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
-                        <asp:BoundField HeaderText="PropertyID" DataField="PropertyID" ReadOnly="True"></asp:BoundField>
-                        <asp:BoundField HeaderText="Address" DataField="MainAddr" SortExpression="MainAddr">
+                        <asp:BoundField HeaderText="PropertyID" DataField="PropertyID" ReadOnly="True" Visible="false"></asp:BoundField>
+                        <asp:BoundField HeaderText="Address" DataField="PropertyAddress" SortExpression="PropertyAddress">
                             <ItemStyle HorizontalAlign="Left" Width="200px" Wrap="False" />
                             </asp:BoundField>
-                        <asp:BoundField HeaderText="Current Fee" DataField="CurrFees" SortExpression="CurrFees" DataFormatString="{0:c}" ReadOnly="True">
+                        <asp:BoundField HeaderText="Current Fee" DataField="CurrentFee" SortExpression="CurrentFee" DataFormatString="{0:c}" ReadOnly="True">
                             <HeaderStyle HorizontalAlign="Right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Width="75px" Wrap="False" />
                             </asp:BoundField>
-                        <asp:BoundField HeaderText="Prior Fee" DataField="PriorFees" SortExpression="PriorFees" DataFormatString="{0:c}" ReadOnly="True">
+                        <asp:BoundField HeaderText="Prior Fee" DataField="PriorFee" SortExpression="PriorFee" DataFormatString="{0:c}" ReadOnly="True">
                             <HeaderStyle HorizontalAlign="Right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Width="75px" Wrap="False" />
                             </asp:BoundField>
-                        <asp:BoundField HeaderText="Current Penalty" DataField="CurrPenalty" SortExpression="CurrPenalty" DataFormatString="{0:c}" ReadOnly="True">
+                        <asp:BoundField HeaderText="Current Penalty" DataField="CurrentPenalty" SortExpression="CurrentPenalty" DataFormatString="{0:c}" ReadOnly="True">
                             <HeaderStyle HorizontalAlign="Right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Width="75px" Wrap="False" />
                             </asp:BoundField>
@@ -39,7 +37,7 @@
                             <HeaderStyle HorizontalAlign="Right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Width="75px" Wrap="False" />
                             </asp:BoundField>
-                        <asp:BoundField HeaderText="Credits" DataField="Credits" SortExpression="Credit" DataFormatString="{0:c}" ReadOnly="True">
+                        <asp:BoundField HeaderText="Credits" DataField="Creditss" SortExpression="Credits" DataFormatString="{0:c}" ReadOnly="True">
                             <HeaderStyle HorizontalAlign="Right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Width="75px" Wrap="False" />
                             </asp:BoundField>

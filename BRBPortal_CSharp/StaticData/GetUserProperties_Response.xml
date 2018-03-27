@@ -1,0 +1,32 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ser-root:getProfilePropertiesResponse
+        xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <response>
+        <status>SUCCESS</status>
+        <profileProperty>
+          <propertyId>1968</propertyId>
+          <address>
+            <mainStreetAddress>2336 CURTIS ST</mainStreetAddress>
+          </address>
+          <balanceAmounts>
+            <currentFees>1.11</currentFees>
+            <priorFees>2.22</priorFees>
+            <currentPenalty>3.33</currentPenalty>
+            <priorPenalties>4.44</priorPenalties>
+            <credit>5.55</credit>
+            <totalBalance>6.66</totalBalance>
+          </balanceAmounts>
+        </profileProperty>
+      </response>
+      <isTodayFallsInBlackOutPeriodOp>
+        <isTodayBlackOut>false</isTodayBlackOut>
+        <startDate></startDate>
+        <endDate></endDate>
+      </isTodayFallsInBlackOutPeriodOp>
+    </ser-root:getProfilePropertiesResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

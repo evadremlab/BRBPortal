@@ -49,14 +49,14 @@
                 <asp:Label runat="server" AssociatedControlID="Quest1" CssClass="col-md-2 control-label">* Security Question:</asp:Label>
                 <div class="col-md-10" style="max-width:43rem;">
                     <asp:dropdownlist runat="server" ID="Quest1" ToolTip="Select a question from the list." CssClass="form-control selectpicker">
-                        <asp:ListItem text="Select a Question" Value="-1"></asp:ListItem>
+                        <asp:ListItem text="Select a Question" Value=""></asp:ListItem>
                         <asp:ListItem enabled="true" text="What was your favorite sport in high school?" value="What was your favorite sport in high school?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="What was your favorite food as a child?" value="What was your favorite food as a child?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="What is your favorite movie?" value="What is your favorite movie?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="In what town was your first job?" value="In what town was your first job?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="What was the make and model of your first car?" value="What was the make and model of your first car?"></asp:ListItem>
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest1" IntialValue="-1" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest1" IntialValue="" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">
@@ -70,14 +70,14 @@
                 <asp:Label runat="server" AssociatedControlID="Quest2" CssClass="col-md-2 control-label">* Security Question:</asp:Label>
                 <div class="col-md-10" style="max-width:43rem;">
                     <asp:dropdownlist runat="server" ID="Quest2" ToolTip="Select a question from the list." CssClass="form-control selectpicker">
-                        <asp:ListItem text="Select a Question" Value="-1"></asp:ListItem>
+                        <asp:ListItem text="Select a Question" Value=""></asp:ListItem>
                         <asp:ListItem enabled="true" text="What was your favorite sport in high school?" value="What was your favorite sport in high school?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="What was your favorite food as a child?" value="What was your favorite food as a child?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="What is your favorite movie?" value="What is your favorite movie?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="In what town was your first job?" value="In what town was your first job?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="What was the make and model of your first car?" value="What was the make and model of your first car?"></asp:ListItem>
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest2" IntialValue="-1" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest2" IntialValue="" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">

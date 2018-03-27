@@ -31,19 +31,19 @@ namespace BRBPortal_CSharp.Account
 
             if (BRBFunctions_CSharp.UserAuth(ref user, CurrentPassword.Text) != SignInStatus.Success)
             {
-                ShowDialogOK("Current password is incorrect.", "Change Password");
+                Master.ShowDialogOK("Current password is incorrect.", "Change Password");
                 return;
             }
 
-            if (!BRBFunctions_CSharp.CheckPswdRules(NewPWD.Text, user.UserCode))
+            if (!BRBFunctions_CSharp.CheckPswdRules(user, NewPWD.Text))
             {
-                ShowDialogOK("Password rules Not met. Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id.", "Change Password");
+                Master.ShowDialogOK("Password rules Not met. Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id.", "Change Password");
                 return;
             }
 
-            if (!BRBFunctions_CSharp.UpdatePassword(user.UserCode, user.BillingCode, CurrentPassword.Text.EscapeXMLChars(), NewPWD.Text.EscapeXMLChars(), ConfirmNewPassword.Text.EscapeXMLChars()))
+            if (!BRBFunctions_CSharp.UpdatePassword(user, CurrentPassword.Text.EscapeXMLChars(), NewPWD.Text.EscapeXMLChars(), ConfirmNewPassword.Text.EscapeXMLChars()))
             {
-                ShowDialogOK("Error changing password: " + BRBFunctions_CSharp.iErrMsg, "Change Password");
+                Master.ShowDialogOK("Error changing password: " + BRBFunctions_CSharp.iErrMsg, "Change Password");
                 return;
             }
 
@@ -59,15 +59,8 @@ namespace BRBPortal_CSharp.Account
             }
             else
             {
-                Response.Redirect("~/Home.aspx", false);
+                Response.Redirect("~/Home.aspx", true);
             }
-        }
-
-        protected void ShowDialogOK(string message, string title = "Status")
-        {
-            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
-
-            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
     }
 }

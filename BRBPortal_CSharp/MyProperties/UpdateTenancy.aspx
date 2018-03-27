@@ -95,13 +95,13 @@
         <div class="form-group" style="padding-left:10px">
             <label class="control-label"  style="padding-bottom:4px; width:160px" >Reason for termination:</label>
             <asp:dropdownlist runat="server" ID="TermReas" Height="20px" ToolTip="Select a termination reason." >
-                <asp:ListItem enabled="true" text="" value="-1"></asp:ListItem>
+                <asp:ListItem enabled="true" text="" value=""></asp:ListItem>
                 <asp:ListItem enabled="true" text="Voluntary Vacancy" value="1"></asp:ListItem>
                 <asp:ListItem enabled="true" text="Landlord move in" value="2"></asp:ListItem>
                 <asp:ListItem enabled="true" text="Non-payment of rent" value="3"></asp:ListItem>
                 <asp:ListItem enabled="true" text="Other" value="4"></asp:ListItem>
             </asp:DropDownList>
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="TermReas" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="TermReas" InitialValue="" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
         </div>
 
         <%--<br />--%>

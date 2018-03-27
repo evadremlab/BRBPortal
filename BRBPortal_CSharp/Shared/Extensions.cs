@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.UI.WebControls;
 
 namespace BRBPortal_CSharp
 {
@@ -66,6 +67,30 @@ namespace BRBPortal_CSharp
             TimeSpan diff = datetime - origin;
 
             return (long)Math.Floor(diff.TotalSeconds);
+        }
+    }
+    #endregion
+
+    #region GridViewRow
+    public static class GridViewRowExtensions
+    {
+        public static int GetColumnIndexByName(this GridViewRow row, string columnName)
+        {
+            int columnIndex = 0;
+
+            foreach (DataControlFieldCell cell in row.Cells)
+            {
+                if (cell.ContainingField is BoundField)
+                {
+                    if (((BoundField)cell.ContainingField).DataField.Equals(columnName))
+                    {
+                        break;
+                    }
+                }
+                columnIndex++; // keep adding 1 while we don't have the correct name
+            }
+
+            return columnIndex;
         }
     }
     #endregion

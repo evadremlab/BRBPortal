@@ -22,13 +22,13 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.HiddenField hfDialogID;
         
         /// <summary>
-        /// MainAddress control.
+        /// PropertyAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal MainAddress;
+        protected global::System.Web.UI.WebControls.Literal PropertyAddress;
         
         /// <summary>
         /// CurrFee control.
@@ -67,22 +67,22 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.Literal MgrName;
         
         /// <summary>
-        /// PropAddr control.
+        /// BillingAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal PropAddr;
+        protected global::System.Web.UI.WebControls.Literal BillingAddress;
         
         /// <summary>
-        /// BillAddr control.
+        /// btnAddCart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal BillAddr;
+        protected global::System.Web.UI.WebControls.Button btnAddCart;
         
         /// <summary>
         /// gvUnits control.

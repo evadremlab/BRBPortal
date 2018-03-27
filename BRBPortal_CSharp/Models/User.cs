@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 
 namespace BRBPortal_CSharp.Models
@@ -73,14 +74,34 @@ namespace BRBPortal_CSharp.Models
         public BRBTenant CurrentTenant { get; set; }
         public BRBProperty CurrentProperty { get; set; }
 
+        public BRBCart Cart { get; set; } = new BRBCart();
         public List<BRBProperty> Properties { get; set; } = new List<BRBProperty>();
+    }
+
+    public class BRBCart
+    {
+        public int? CartID { get; set; }
+        public bool WasUpdated { get; set; } = false;
+        public List<BRBCartItem> Items { get; set; } = new List<BRBCartItem>();
+    }
+
+    public class BRBCartItem
+    {
+        public string PropertyId { get; set; } = "";
+        public string PropertyAddress { get; set; } = "";
+        public decimal CurrentFee { get; set; } = 0;
+        public decimal PriorFee { get; set; } = 0;
+        public decimal CurrentPenalty { get; set; } = 0;
+        public decimal PriorPenalty { get; set; } = 0;
+        public decimal Credits { get; set; } = 0;
+        public decimal Balance { get; set; } = 0;
     }
 
     public class BRBProperty
     {
+        public string PropertyID { get; set; } = "";
         public string OwnerContactName { get; set; } = "";
         public string AgencyName { get; set; } = "";
-        public string PropertyID { get; set; } = "";
         public string PropertyAddress { get; set; } = "";
         public string BillingAddress { get; set; } = "";
         public string MainStreetAddress { get; set; } = "";
@@ -93,6 +114,21 @@ namespace BRBPortal_CSharp.Models
         public string BillingEmail { get; set; } = "";
 
         public List<BRBUnit> Units { get; set; } = new List<BRBUnit>();
+
+        public BRBCartItem ConvertToCartItem()
+        {
+            return new BRBCartItem
+            {
+                PropertyId = this.PropertyID,
+                PropertyAddress = this.PropertyAddress,
+                Balance = this.Balance,
+                Credits = this.Credits,
+                CurrentFee = this.CurrentFee,
+                CurrentPenalty = this.CurrentPenalty,
+                PriorFee = this.PriorFee,
+                PriorPenalty = this.PriorPenalty
+            };
+        }
     }
 
     public class BRBUnit
@@ -101,6 +137,7 @@ namespace BRBPortal_CSharp.Models
         public string UnitNo { get; set; } = "";
         public string UnitStatID { get; set; } = "";
         public string UnitStatCode { get; set; } = "";
+        public string StreetAddress { get; set; } = "";
         public string ClientPortalUnitStatusCode { get; set; } = "";
         public decimal RentCeiling { get; set; } = 0;
         public DateTime? StartDt { get; set; }

@@ -13,7 +13,7 @@ namespace BRBPortal_CSharp
         {
             if (Context.User.Identity.IsAuthenticated)
             {
-                Response.Redirect("~/Home.aspx");
+                Response.Redirect("~/Home.aspx", true);
             }
         }
     }

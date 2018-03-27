@@ -88,11 +88,11 @@ namespace BRBPortal_CSharp
         {
             if (!String.IsNullOrEmpty(returnUrl) && IsLocalUrl(returnUrl))
             {
-                response.Redirect(returnUrl);
+                response.Redirect(returnUrl, true);
             }
             else
             {
-                response.Redirect("~/");
+                response.Redirect("~/", true);
             }
         }
     }

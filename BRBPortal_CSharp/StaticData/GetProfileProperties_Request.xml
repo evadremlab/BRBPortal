@@ -1,14 +1,32 @@
-﻿<?xml version="1.0"?>
-<soapenv:Envelope xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-  <soapenv:Header/>
+﻿<?xml version='1.0' encoding='utf-8'?>
+<soapenv:Envelope 
+  xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Body>
-    <api:getProfileProperties>
-      <request>
-        <!--Optional:-->
-        <userId>Tester@21</userId>
-        <!--Optional:-->
-        <billingCode>FAMMIL1</billingCode>
-      </request>
-    </api:getProfileProperties>
+    <ser-root:getProfilePropertiesResponse 
+      xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <response>
+        <status>SUCCESS</status>
+        <profileProperty>
+          <propertyId>1968</propertyId>
+          <address>
+            <mainStreetAddress>2336 CURTIS ST</mainStreetAddress>
+          </address>
+          <balanceAmounts>
+            <currentFees>0.00</currentFees>
+            <priorFees>0.00</priorFees>
+            <currentPenalty>0.00</currentPenalty>
+            <priorPenalties>0.00</priorPenalties>
+            <credit>0.00</credit>
+            <totalBalance>0.00</totalBalance>
+          </balanceAmounts>
+        </profileProperty>
+      </response>
+      <isTodayFallsInBlackOutPeriodOp>
+        <isTodayBlackOut>false</isTodayBlackOut>
+        <startDate></startDate>
+        <endDate></endDate>
+      </isTodayFallsInBlackOutPeriodOp>
+    </ser-root:getProfilePropertiesResponse>
   </soapenv:Body>
 </soapenv:Envelope>

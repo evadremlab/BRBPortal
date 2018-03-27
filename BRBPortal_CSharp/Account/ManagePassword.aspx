@@ -39,7 +39,7 @@
         
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Home" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to Home page." TabIndex="-1" />
+                    <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Home" CausesValidation="false" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to Home page." TabIndex="-1" />
                     <asp:Button runat="server" Text="Submit" CssClass="btn btn-primary" style="margin-left:1rem;" />
                 </div>
             </div>

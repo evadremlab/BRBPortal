@@ -8,7 +8,7 @@ namespace BRBPortal_CSharp
         {
             if (!Context.User.Identity.IsAuthenticated)
             {
-                Response.Redirect("~/Account/Login");
+                Response.Redirect("~/Account/Login", true);
             }
         }
     }

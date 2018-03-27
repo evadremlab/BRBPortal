@@ -1,135 +1,207 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<soapenv:Envelope
-    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+﻿<?xml version='1.0' encoding='utf-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Body>
     <ser-root:getPropertyAndUnitDetailsResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <propertyAndUnitsRes>
-        <propertyId>1039</propertyId>
+        <propertyId>1968</propertyId>
         <address>
-          <mainStreetAddress>1936 BERRYMAN ST</mainStreetAddress>
+          <mainStreetAddress>2336 CURTIS ST</mainStreetAddress>
         </address>
         <ownerContactName>
-          <first>MILLER MERRITT</first>
-          <last>FAMILY TRUST-SHARYNE MERRITT, TRUSTEE</last>
+          <first>HELLEN</first>
+          <last>LIU</last>
           <suffix xsi:nil="true" />
-          <nameLastFirstDisplay>FAMILY TRUST-SHARYNE MERRITT, TRUSTEE, MILLER MERR</nameLastFirstDisplay>
+          <nameLastFirstDisplay>LIU, HELLEN</nameLastFirstDisplay>
         </ownerContactName>
         <billingDetails>
           <contact>
-            <code>FAMMIL1</code>
+            <code>LIUHEL</code>
             <name>
-              <first>MILLER MERRITT</first>
-              <last>FAMILY TRUST-SHARYNE MERRITT, TRUSTEE</last>
+              <first>HELLEN</first>
+              <last>LIU</last>
               <suffix xsi:nil="true" />
-              <nameLastFirstDisplay>FAMILY TRUST-SHARYNE MERRITT, TRUSTEE, MILLER MERR</nameLastFirstDisplay>
+              <nameLastFirstDisplay>LIU, HELLEN</nameLastFirstDisplay>
             </name>
-            <phoneNumber>805-266-8722</phoneNumber>
-            <emailAddress>PROFESSORMERRIT@GMAIL.COM</emailAddress>
+            <phoneNumber>415-370-0006</phoneNumber>
+            <emailAddress>hellenmclin@gmail.com</emailAddress>
           </contact>
           <billingAddress>
-            <mainStreetAddress>6555 CASITAS PASS RD, CARPINTERIA, CA, CARPINTERIA, 93013</mainStreetAddress>
+            <mainStreetAddress>465B 14TH STREET, SAN FRANCISCO, CA, USA, 94103</mainStreetAddress>
           </billingAddress>
-          <balanceAmounts xsi:nil="true" />
+          <balanceAmounts>
+            <currentFees>0.00</currentFees>
+            <priorFees>0.00</priorFees>
+            <currentPenalty>0.00</currentPenalty>
+            <priorPenalties>0.00</priorPenalties>
+            <credit>0.00</credit>
+            <totalBalance>0.00</totalBalance>
+          </balanceAmounts>
         </billingDetails>
         <units>
-          <unitId>3987</unitId>
-          <unitNumber>C</unitNumber>
-          <unitStreetAddress>1936 BERRYMAN ST</unitStreetAddress>
-          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
-          <unitStatusId>16</unitStatusId>
-          <unitStatusCode>NAR</unitStatusCode>
-          <rentCeiling>3500.00</rentCeiling>
-          <unitStatusAsOfDate>2018-03-01</unitStatusAsOfDate>
-          <occupancy xsi:nil="true" />
-        </units>
-        <units>
-          <unitId>3988</unitId>
-          <unitNumber>D</unitNumber>
-          <unitStreetAddress>1936 BERRYMAN ST</unitStreetAddress>
+          <unitId>7773</unitId>
+          <unitNumber>A</unitNumber>
+          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
           <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
           <unitStatusId>1</unitStatusId>
           <unitStatusCode>RENTED</unitStatusCode>
-          <rentCeiling>1562.12</rentCeiling>
-          <tenancyStartDate>2015-02-01</tenancyStartDate>
-          <unitStatusAsOfDate>2014-10-05</unitStatusAsOfDate>
+          <rentCeiling>2100.00</rentCeiling>
+          <tenancyStartDate>2017-08-06</tenancyStartDate>
+          <unitStatusAsOfDate>2013-02-27</unitStatusAsOfDate>
+          <housingServices>
+            <serviceId>8</serviceId>
+            <serviceName>Appliances</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>10</serviceId>
+            <serviceName>Garbage</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>7</serviceId>
+            <serviceName>Heat</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>9</serviceId>
+            <serviceName>Laundry Access</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>11</serviceId>
+            <serviceName>Parking</serviceName>
+          </housingServices>
+          <occupancy>
+            <initialRent xsi:nil="true" />
+            <noOfOccupants>2</noOfOccupants>
+            <occupancyId>138835</occupancyId>
+            <dateTenancyStarted>2017-08-06</dateTenancyStarted>
+            <datePriorTenancyEnded>2017-08-05</datePriorTenancyEnded>
+            <reasonPriorTenancyEnded></reasonPriorTenancyEnded>
+            <smokingProhibitionInLeaseStatus>Yes</smokingProhibitionInLeaseStatus>
+            <smokingProhibitionEffectiveDate>2017-08-06</smokingProhibitionEffectiveDate>
+            <occupants>
+              <occupantId>213834</occupantId>
+              <name>
+                <lastName>CARRASCO</lastName>
+                <firstName>ANA</firstName>
+                <nameLastFirstDisplay>CARRASCO, ANA</nameLastFirstDisplay>
+              </name>
+              <contactInfo>
+                <phoneNumber>916-213-8182</phoneNumber>
+                <emailAddress>carrasco.m.ana@gmail.com</emailAddress>
+              </contactInfo>
+            </occupants>
+            <occupants>
+              <occupantId>213835</occupantId>
+              <name>
+                <lastName>CARRASCO</lastName>
+                <firstName>KELLEY</firstName>
+                <nameLastFirstDisplay>CARRASCO, KELLEY</nameLastFirstDisplay>
+              </name>
+              <contactInfo>
+                <phoneNumber>508-320-7928</phoneNumber>
+                <emailAddress>kelleyagandner@gmail.com</emailAddress>
+              </contactInfo>
+            </occupants>
+          </occupancy>
+        </units>
+        <units>
+          <unitId>7774</unitId>
+          <unitNumber>B</unitNumber>
+          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
+          <unitStatusId>1</unitStatusId>
+          <unitStatusCode>RENTED</unitStatusCode>
+          <rentCeiling>2100.00</rentCeiling>
+          <tenancyStartDate>2018-01-01</tenancyStartDate>
+          <unitStatusAsOfDate>2009-08-01</unitStatusAsOfDate>
           <occupancy>
             <initialRent xsi:nil="true" />
             <noOfOccupants>1</noOfOccupants>
-            <occupancyId>128528</occupancyId>
-            <dateTenancyStarted>2015-02-01</dateTenancyStarted>
-            <datePriorTenancyEnded>2015-01-31</datePriorTenancyEnded>
+            <occupancyId>141987</occupancyId>
+            <dateTenancyStarted>2018-01-01</dateTenancyStarted>
+            <datePriorTenancyEnded>2017-12-31</datePriorTenancyEnded>
+            <reasonPriorTenancyEnded></reasonPriorTenancyEnded>
+            <smokingProhibitionInLeaseStatus>Yes</smokingProhibitionInLeaseStatus>
+            <smokingProhibitionEffectiveDate>2014-09-22</smokingProhibitionEffectiveDate>
+            <occupants>
+              <occupantId>220284</occupantId>
+              <name>
+                <lastName>HARRIS</lastName>
+                <firstName>BRIDGET</firstName>
+                <nameLastFirstDisplay>HARRIS, BRIDGET</nameLastFirstDisplay>
+              </name>
+              <contactInfo>
+                <phoneNumber>805-796-9960</phoneNumber>
+                <emailAddress>bridgetharris@gmail.com</emailAddress>
+              </contactInfo>
+            </occupants>
+          </occupancy>
+        </units>
+        <units>
+          <unitId>30632</unitId>
+          <unitNumber>C</unitNumber>
+          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
+          <unitStatusId>1</unitStatusId>
+          <unitStatusCode>RENTED</unitStatusCode>
+          <rentCeiling>991.92</rentCeiling>
+          <tenancyStartDate>2013-11-01</tenancyStartDate>
+          <unitStatusAsOfDate>2009-05-31</unitStatusAsOfDate>
+          <housingServices>
+            <serviceId>8</serviceId>
+            <serviceName>Appliances</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>10</serviceId>
+            <serviceName>Garbage</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>9</serviceId>
+            <serviceName>Laundry Access</serviceName>
+          </housingServices>
+          <occupancy>
+            <initialRent xsi:nil="true" />
+            <noOfOccupants>1</noOfOccupants>
+            <occupancyId>128154</occupancyId>
+            <dateTenancyStarted>2013-11-01</dateTenancyStarted>
+            <datePriorTenancyEnded>2013-10-31</datePriorTenancyEnded>
             <reasonPriorTenancyEnded></reasonPriorTenancyEnded>
             <smokingProhibitionInLeaseStatus>N/A</smokingProhibitionInLeaseStatus>
-            <smokingProhibitionEffectiveDate>2014-10-05</smokingProhibitionEffectiveDate>
+            <smokingProhibitionEffectiveDate>2013-11-01</smokingProhibitionEffectiveDate>
             <occupants>
-              <occupantId>193946</occupantId>
+              <occupantId>193304</occupantId>
               <name>
-                <lastName>DIGIONFOMRNICO</lastName>
-                <firstName>RYAN</firstName>
-                <nameLastFirstDisplay>DIGIONFOMRNICO, RYAN</nameLastFirstDisplay>
+                <lastName>NHEY</lastName>
+                <firstName>BOUN</firstName>
+                <nameLastFirstDisplay>NHEY, BOUN</nameLastFirstDisplay>
               </name>
               <contactInfo>
-                <phoneNumber></phoneNumber>
-                <emailAddress></emailAddress>
+                <phoneNumber>415-531-4169</phoneNumber>
+                <emailAddress>Boon.nhey@gmail.com</emailAddress>
               </contactInfo>
             </occupants>
           </occupancy>
         </units>
         <units>
-          <unitId>3989</unitId>
-          <unitNumber>A</unitNumber>
-          <unitStreetAddress>1936 BERRYMAN ST</unitStreetAddress>
-          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
-          <unitStatusId>23</unitStatusId>
-          <unitStatusCode>SPLUS</unitStatusCode>
-          <rentCeiling>200.00</rentCeiling>
-          <unitStatusAsOfDate>2018-03-08</unitStatusAsOfDate>
+          <unitId>30633</unitId>
+          <unitNumber>D</unitNumber>
+          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
+          <unitStatusId>1</unitStatusId>
+          <unitStatusCode>RENTED</unitStatusCode>
+          <rentCeiling>969.78</rentCeiling>
+          <unitStatusAsOfDate>2013-05-31</unitStatusAsOfDate>
+          <housingServices>
+            <serviceId>8</serviceId>
+            <serviceName>Appliances</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>10</serviceId>
+            <serviceName>Garbage</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>9</serviceId>
+            <serviceName>Laundry Access</serviceName>
+          </housingServices>
           <occupancy xsi:nil="true" />
-        </units>
-        <units>
-          <unitId>3990</unitId>
-          <unitNumber>B</unitNumber>
-          <unitStreetAddress>1936 BERRYMAN ST</unitStreetAddress>
-          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
-          <unitStatusId>16</unitStatusId>
-          <unitStatusCode>NAR</unitStatusCode>
-          <rentCeiling>1450.00</rentCeiling>
-          <tenancyStartDate>2018-03-08</tenancyStartDate>
-          <unitStatusAsOfDate>2018-03-01</unitStatusAsOfDate>
-          <occupancy>
-            <initialRent>1450.00</initialRent>
-            <noOfOccupants>2</noOfOccupants>
-            <occupancyId>142558</occupancyId>
-            <dateTenancyStarted>2018-03-08</dateTenancyStarted>
-            <datePriorTenancyEnded>2012-06-30</datePriorTenancyEnded>
-            <reasonPriorTenancyEnded></reasonPriorTenancyEnded>
-            <smokingProhibitionInLeaseStatus>No</smokingProhibitionInLeaseStatus>
-            <smokingProhibitionEffectiveDate xsi:nil="true" />
-            <occupants>
-              <occupantId>221254</occupantId>
-              <name>
-                <lastName>smith</lastName>
-                <firstName>john </firstName>
-                <nameLastFirstDisplay>smith, john </nameLastFirstDisplay>
-              </name>
-              <contactInfo>
-                <phoneNumber>9878909878</phoneNumber>
-                <emailAddress>johnsmith@gmail.com</emailAddress>
-              </contactInfo>
-            </occupants>
-            <occupants>
-              <occupantId>221253</occupantId>
-              <name>
-                <lastName>Smith</lastName>
-                <firstName>susan </firstName>
-                <nameLastFirstDisplay>Smith, susan </nameLastFirstDisplay>
-              </name>
-              <contactInfo>
-                <phoneNumber>4099000987</phoneNumber>
-                <emailAddress>susan@gmail.com</emailAddress>
-              </contactInfo>
-            </occupants>
-          </occupancy>
         </units>
       </propertyAndUnitsRes>
       <response>

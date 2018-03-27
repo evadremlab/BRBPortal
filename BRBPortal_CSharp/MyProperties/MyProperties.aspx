@@ -28,19 +28,19 @@
                                </ItemTemplate>
                             </asp:TemplateField>
                             <asp:BoundField HeaderText="PropertyID" DataField="PropertyID" ReadOnly="True"></asp:BoundField>
-                            <asp:BoundField HeaderText="Address" DataField="MainAddr" SortExpression="MainAddr">
+                            <asp:BoundField HeaderText="Address" DataField="PropertyAddress" SortExpression="PropertyAddress">
                                 <HeaderStyle Wrap="False" />
                                 <ItemStyle HorizontalAlign="Left" Wrap="False" />
                                 </asp:BoundField>
-                            <asp:BoundField HeaderText="Current Fee" DataField="CurrFees" SortExpression="CurrFees" DataFormatString="{0:c}" ReadOnly="True">
+                            <asp:BoundField HeaderText="Current Fee" DataField="CurrentFee" SortExpression="CurrentFee" DataFormatString="{0:c}" ReadOnly="True">
                                 <HeaderStyle CssClass="text-right" Wrap="False" />
                                 <ItemStyle HorizontalAlign="Right" Wrap="False" />
                                 </asp:BoundField>
-                            <asp:BoundField HeaderText="Prior Fee" DataField="PriorFees" SortExpression="PriorFees" DataFormatString="{0:c}" ReadOnly="True">
+                            <asp:BoundField HeaderText="Prior Fee" DataField="PriorFee" SortExpression="PriorFee" DataFormatString="{0:c}" ReadOnly="True">
                                 <HeaderStyle CssClass="text-right" Wrap="False" />
                                 <ItemStyle HorizontalAlign="Right" Wrap="False" />
                                 </asp:BoundField>
-                            <asp:BoundField HeaderText="Current Penalty" DataField="CurrPenalty" SortExpression="CurrPenalty" DataFormatString="{0:c}" ReadOnly="True">
+                            <asp:BoundField HeaderText="Current Penalty" DataField="CurrentPenalty" SortExpression="CurrentPenalty" DataFormatString="{0:c}" ReadOnly="True">
                                 <HeaderStyle CssClass="text-right" Wrap="False" />
                                 <ItemStyle HorizontalAlign="Right" Wrap="False" />
                                 </asp:BoundField>
@@ -48,7 +48,7 @@
                                 <HeaderStyle CssClass="text-right" Wrap="False" />
                                 <ItemStyle HorizontalAlign="Right" Wrap="False" />
                                 </asp:BoundField>
-                            <asp:BoundField HeaderText="Credits" DataField="Credits" SortExpression="Credit" DataFormatString="{0:c}" ReadOnly="True">
+                            <asp:BoundField HeaderText="Credits" DataField="Credits" SortExpression="Credits" DataFormatString="{0:c}" ReadOnly="True">
                                 <HeaderStyle CssClass="text-right" Wrap="False" />
                                 <ItemStyle HorizontalAlign="Right" Wrap="False" />
                                 </asp:BoundField>

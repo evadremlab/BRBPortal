@@ -44,10 +44,10 @@ namespace BRBPortal_CSharp.Account
 
             if (!success)
             {
-                ShowDialogOK("Error updating confirmation.", "Confirm Profile");
+                Master.ShowDialogOK("Error updating confirmation.", "Confirm Profile");
             }
 
-            Response.Redirect("~/Home", false);
+            Response.Redirect("~/Home", true);
         }
 
         protected void CancelProfile_Click(object sender, EventArgs e)
@@ -56,12 +56,7 @@ namespace BRBPortal_CSharp.Account
 
             Session.RemoveAll();
 
-            Response.Redirect("~/Account/Login");
-        }
-
-        protected void ShowDialogOK(string aMessage, string aTitle = "Status")
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopupOK('" + aMessage + "', '" + aTitle + "');", true);
+            Response.Redirect("~/Account/Login", true);
         }
     }
 }

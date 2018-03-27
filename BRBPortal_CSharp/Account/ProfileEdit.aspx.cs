@@ -20,24 +20,24 @@ namespace BRBPortal_CSharp.Account
                 {
                     Master.UpdateSession(user);
 
-                    UserIDCode2.Text = Master.User.UserCode;
-                    BillCode2.Text = Master.User.BillingCode;
-                    FirstName.Text = Master.User.FirstName;
-                    MidName.Text = Master.User.MiddleName;
-                    LastName.Text = Master.User.LastName;
-                    Suffix.Text = Master.User.Suffix;
-                    StNum.Text = Master.User.StreetNumber;
-                    StName.Text = Master.User.StreetName;
-                    StUnit.Text = Master.User.UnitNumber;
-                    StCity.Text = Master.User.City;
-                    StState.Text = Master.User.StateCode;
-                    StZip.Text = Master.User.ZipCode;
-                    StCountry.Text = Master.User.Country;
-                    EmailAddress.Text = Master.User.Email;
-                    PhoneNo.Text = Master.User.PhoneNumber;
-                    AgencyName.Text = Master.User.AgencyName;
+                    UserIDCode2.Text = user.UserCode;
+                    BillCode2.Text = user.BillingCode;
+                    FirstName.Text = user.FirstName;
+                    MidName.Text = user.MiddleName;
+                    LastName.Text = user.LastName;
+                    Suffix.Text = user.Suffix;
+                    StNum.Text = user.StreetNumber;
+                    StName.Text = user.StreetName;
+                    StUnit.Text = user.UnitNumber;
+                    StCity.Text = user.City;
+                    StState.Text = user.StateCode;
+                    StZip.Text = user.ZipCode;
+                    StCountry.Text = user.Country;
+                    EmailAddress.Text = user.Email;
+                    PhoneNo.Text = user.PhoneNumber;
+                    AgencyName.Text = user.AgencyName;
 
-                    if (Master.User.Relationship.ToUpper().Equals("OWNER"))
+                    if (user.Relationship.ToUpper().Equals("OWNER"))
                     {
                         Relationship.Text = "Owner";
                         OwnerGrp.Visible = true;
@@ -60,11 +60,13 @@ namespace BRBPortal_CSharp.Account
 
         protected void UpdateProfile_Click(object sender, EventArgs e)
         {
-            if (Master.User.Relationship.ToUpper().Equals("OWNER"))
+            var user = Master.User;
+
+            if (user.Relationship.ToUpper().Equals("OWNER"))
             {
                 if (string.IsNullOrEmpty(FirstName.Text) || string.IsNullOrEmpty(LastName.Text))
                 {
-                    ShowDialogOK("When Relationship is Owner, first and last name must be entered.");
+                    Master.ShowDialogOK("When Relationship is Owner, first and last name must be entered.");
                     return;
                 }
             }
@@ -72,17 +74,30 @@ namespace BRBPortal_CSharp.Account
             {
                 if (string.IsNullOrEmpty(AgencyName.Text))
                 {
-                    ShowDialogOK("When Relationship is Agent, agency name must be entered.");
+                    Master.ShowDialogOK("When Relationship is Agent, agency name must be entered.");
                     return;
                 }
             }
 
             if (StState.SelectedIndex > -1)
             {
-                Master.User.StateCode = StState.Text;
+                user.StateCode = StState.Text;
             }
 
-            var user = Master.User;
+            user.FirstName = FirstName.Text.ToUpper();
+            user.MiddleName = MidName.Text.ToUpper();
+            user.LastName = LastName.Text.ToUpper();
+            user.Suffix = Suffix.Text;
+            user.StreetNumber = StNum.Text.ToUpper();
+            user.StreetName = StName.Text.ToUpper();
+            user.UnitNumber = StUnit.Text.ToUpper();
+            user.City = StCity.Text.ToUpper();
+            user.StateCode = StState.Text;
+            user.ZipCode = StZip.Text.ToUpper();
+            user.Country = StCountry.Text.ToUpper();
+            user.Email = EmailAddress.Text.ToUpper();
+            user.PhoneNumber = PhoneNo.Text;
+            user.AgencyName = AgencyName.Text;
 
             if (BRBFunctions_CSharp.UpdateProfile(ref user))
             {
@@ -92,20 +107,13 @@ namespace BRBPortal_CSharp.Account
             }
             else
             {
-                ShowDialogOK("Error: Problem updating user profile.", "Profile Update");
+                Master.ShowDialogOK("Error: Problem updating user profile.", "Profile Update");
             }
         }
 
         protected void CancelEdit_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Account/ProfileList.aspx", false);
-        }
-
-        private void ShowDialogOK(string message, string title = "Status")
-        {
-            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
-
-            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
     }
 }

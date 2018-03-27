@@ -51,7 +51,7 @@ namespace BRBPortal_CSharp.MyProperties
                     BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
                 }
 
-                ShowDialogOK("Error retrieving Tenants: " + BRBFunctions_CSharp.iErrMsg, "View Tenants");
+                Master.ShowDialogOK("Error retrieving Tenants: " + BRBFunctions_CSharp.iErrMsg, "View Tenants");
                 return;
             }
 
@@ -101,13 +101,6 @@ namespace BRBPortal_CSharp.MyProperties
             gvTenants.PageIndex = e.NewPageIndex;
             gvTenants.DataSource = Session["PropertyTbl"];
             gvTenants.DataBind();
-        }
-
-        private void ShowDialogOK(string message, string title = "Status")
-        {
-            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
-
-            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
     }
 }

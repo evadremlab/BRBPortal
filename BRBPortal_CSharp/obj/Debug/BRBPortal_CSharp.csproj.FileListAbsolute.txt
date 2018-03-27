@@ -48,6 +48,11 @@ C:\Projects\BRBPortal\BRBPortal_CSharp\bin\roslyn\vbc.exe.config
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\roslyn\vbc.rsp
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\roslyn\VBCSCompiler.exe
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\roslyn\VBCSCompiler.exe.config
+C:\Projects\BRBPortal\BRBPortal_CSharp\bin\StaticData\AuthenticateUser_Response.xml
+C:\Projects\BRBPortal\BRBPortal_CSharp\bin\StaticData\ConfirmProfileInformation_Response.xml
+C:\Projects\BRBPortal\BRBPortal_CSharp\bin\StaticData\GetProfileDetails_Response.xml
+C:\Projects\BRBPortal\BRBPortal_CSharp\bin\StaticData\GetPropertyAndUnitDetails_Response.xml
+C:\Projects\BRBPortal\BRBPortal_CSharp\bin\StaticData\GetUserProperties_Response.xml
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\BRBPortal_CSharp.dll.config
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\BRBPortal_CSharp.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\BRBPortal_CSharp.pdb
@@ -56,6 +61,7 @@ C:\Projects\BRBPortal\BRBPortal_CSharp\bin\AspNet.ScriptManager.bootstrap.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\AspNet.ScriptManager.jQuery.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\EntityFramework.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\EntityFramework.SqlServer.dll
+C:\Projects\BRBPortal\BRBPortal_CSharp\bin\log4net.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\Microsoft.AI.DependencyCollector.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -86,6 +92,7 @@ C:\Projects\BRBPortal\BRBPortal_CSharp\bin\Owin.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\System.Web.Optimization.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\System.Web.Providers.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\WebGrease.dll
+C:\Projects\BRBPortal\BRBPortal_CSharp\bin\log4net.xml
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\System.Web.Optimization.xml
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\Antlr3.Runtime.pdb
@@ -113,10 +120,3 @@ C:\Projects\BRBPortal\BRBPortal_CSharp\bin\Microsoft.AI.WindowsServer.xml
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\Microsoft.AI.Web.xml
 C:\Projects\BRBPortal\BRBPortal_CSharp\obj\Debug\BRBPortal_CSharp.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\obj\Debug\BRBPortal_CSharp.pdb
-C:\Projects\BRBPortal\BRBPortal_CSharp\bin\StaticData\AuthenticateUser_Response.xml
-C:\Projects\BRBPortal\BRBPortal_CSharp\bin\StaticData\ConfirmProfileInformation_Response.xml
-C:\Projects\BRBPortal\BRBPortal_CSharp\bin\StaticData\GetProfileDetails_Response.xml
-C:\Projects\BRBPortal\BRBPortal_CSharp\bin\StaticData\GetPropertyAndUnitDetails_Response.xml
-C:\Projects\BRBPortal\BRBPortal_CSharp\bin\log4net.dll
-C:\Projects\BRBPortal\BRBPortal_CSharp\bin\log4net.xml
-C:\Projects\BRBPortal\BRBPortal_CSharp\obj\Debug\BRBPortal_CSharp.csprojResolveAssemblyReference.cache

@@ -13,22 +13,22 @@ namespace BRBPortal_CSharp {
     public partial class Cart {
         
         /// <summary>
-        /// ErrorMessage control.
+        /// EmptyCartHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder ErrorMessage;
+        protected global::System.Web.UI.WebControls.PlaceHolder EmptyCartHeader;
         
         /// <summary>
-        /// FailureText control.
+        /// EmptyCartMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal FailureText;
+        protected global::System.Web.UI.WebControls.Literal EmptyCartMessage;
         
         /// <summary>
         /// gvCart control.

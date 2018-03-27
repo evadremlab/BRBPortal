@@ -4,8 +4,10 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 using Microsoft.AspNet.Identity;
+
 using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp
@@ -82,10 +84,7 @@ namespace BRBPortal_CSharp
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
                 }
             }
-        }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
             this.User = (BRBUser)Session["User"];
 
             if (this.User == null)
@@ -93,27 +92,23 @@ namespace BRBPortal_CSharp
                 UpdateSession(new BRBUser());
             }
 
-            if (!IsPostBack)
+            if (PageNeedsUserObject())
             {
-                if (!Regex.IsMatch(Path.GetFileName(Request.Url.AbsolutePath), "Default|Login|Register", RegexOptions.IgnoreCase))
-                {
-                    // must be authenticated and have either UserCode or BillingCode
+                // must be authenticated and have either UserCode or BillingCode
 
-                    if (!Context.User.Identity.IsAuthenticated)
-                    {
-                        Response.Redirect("~/Account/Login");
-                    }
-                    else if (string.IsNullOrEmpty(this.User.UserCode) && string.IsNullOrEmpty(this.User.BillingCode))
-                    {
-                        Response.Redirect("~/Account/Login");
-                    }
+                if (!Context.User.Identity.IsAuthenticated)
+                {
+                    Response.Redirect("~/Account/Login", true);
+                }
+                else if (this.User == null)
+                {
+                    Response.Redirect("~/Account/Login", true);
+                }
+                else if (string.IsNullOrEmpty(this.User.UserCode) && string.IsNullOrEmpty(this.User.BillingCode))
+                {
+                    Response.Redirect("~/Account/Login", true);
                 }
             }
-        }
-
-        public void UpdateSession(BRBUser user)
-        {
-            this.User = user;
         }
 
         protected void Logoff(object sender, EventArgs e)
@@ -123,6 +118,23 @@ namespace BRBPortal_CSharp
             Session.RemoveAll();
 
             Response.Redirect("~/Default");
+        }
+
+        public void UpdateSession(BRBUser user)
+        {
+            this.User = user;
+        }
+
+        public void ShowDialogOK(string message, string title = "Status")
+        {
+            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
+
+            Page.ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
+        }
+
+        private bool PageNeedsUserObject()
+        {
+            return !Regex.IsMatch(Path.GetFileName(Request.Url.AbsolutePath), "Default|Login|Register", RegexOptions.IgnoreCase);
         }
     }
 }

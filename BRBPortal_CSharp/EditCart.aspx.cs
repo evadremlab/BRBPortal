@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BRBPortal_CSharp.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -17,56 +18,23 @@ namespace BRBPortal_CSharp
         {
             try
             {
-                if (Session["Cart"] == null)
-                {
-                    iCartTbl = new DataTable();
-                    Session["Cart"] = iCartTbl;
-                }
-                else
-                {
-                    iCartTbl = (DataTable)Session["Cart"];
-                }
+                var user = Master.User;
 
-                if (iCartTbl.Columns.Count < 1)
-                {
-                    iCartTbl.Columns.Add("PropertyID", typeof(String));
-                    iCartTbl.Columns.Add("MainAddr", typeof(String));
-                    iCartTbl.Columns.Add("CurrFees", typeof(Decimal));
-                    iCartTbl.Columns.Add("PriorFees", typeof(Decimal));
-                    iCartTbl.Columns.Add("CurrPenalty", typeof(Decimal));
-                    iCartTbl.Columns.Add("PriorPenalty", typeof(Decimal));
-                    iCartTbl.Columns.Add("Credits", typeof(Decimal));
-                    iCartTbl.Columns.Add("Balance", typeof(Decimal));
-                }
-
-                if (iCartTbl.Rows.Count == 0)
-                {
-                    Response.Redirect("~/Cart.aspx", true);
-                    return;
-                }
-
-                if (!IsPostBack)
-                {
-                    gvCart.DataSource = iCartTbl;
-                    gvCart.DataBind();
-                    gvCart.Columns[0].Visible = false; // Hide the PropertyID column
-                }
+                gvCart.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
+                gvCart.DataBind();
             }
             catch (Exception ex)
             {
-                ShowDialogOK(ex.Message, "Edit Cart View");
+                Master.ShowDialogOK(ex.Message, "Edit Cart View");
             }
-        }
-
-        protected void UpdateCart_Click(object sender, EventArgs e)
-        {
-            //Response.Redirect("~/EditCart");
         }
 
         protected void gvCart_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            var user = Master.User;
+
             gvCart.PageIndex = e.NewPageIndex;
-            gvCart.DataSource = Session["CartTbl"];
+            gvCart.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
             gvCart.DataBind();
         }
 
@@ -93,42 +61,22 @@ namespace BRBPortal_CSharp
             {
                 try
                 {
-                    var gridRow = iCartTbl.Rows[rowIndex];
+                    var user = Master.User;
+                    var cartItem = user.Cart.Items[rowIndex];
 
-                    if (gridRow == null)
-                    {
-                        ShowDialogOK("Matching row not found in Session[CartTbl]", "Remove cart item");
-                    }
-                    else
-                    {
-                        gridRow.Delete();
-                        iCartTbl.AcceptChanges();
-                        Session["Cart"] = iCartTbl;
+                    user.Cart.Items.RemoveAll(x => x.PropertyId == cartItem.PropertyId);
 
-                        if (iCartTbl.Rows.Count == 0)
-                        {
-                            Session["ShowFeesAll"] = "All items removed from your cart.";
-                        }
-                        else
-                        {
-                            Session.Remove("ShowFeesAll");
-                        }
+                    user.Cart.WasUpdated = true;
 
-                        Response.Redirect("~/EditCart.aspx", true);
-                    }
+                    Master.UpdateSession(user);
+
+                    Response.Redirect("~/Cart.aspx");
                 }
                 catch (Exception ex)
                 {
-                    ShowDialogOK("Error removing cart item: " + ex.Message, "Remove cart item");
+                    Master.ShowDialogOK("Error removing cart item: " + ex.Message, "Remove cart item");
                 }
             }
-        }
-
-        protected void ShowDialogOK(string message, string title = "Status")
-        {
-            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
-
-            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
     }
 }

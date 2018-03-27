@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileEdit.aspx.cs" Inherits="BRBPortal_CSharp.Account.ProfileEdit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileEdit.aspx.cs" enableEventValidation="false" Inherits="BRBPortal_CSharp.Account.ProfileEdit" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -59,9 +59,9 @@
                 </div>
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="Suffix" CssClass="col-md-2 control-label">Suffix: </asp:Label>
-                    <div class="col-md-10" style="max-width:12.5rem;">
+                    <div class="col-md-10" style="max-width:15.5rem;">
                         <asp:dropdownlist runat="server" ID="Suffix" ToolTip="Select a suffix from the list (optional)." CssClass="form-control selectpicker">
-                            <asp:ListItem enabled="true" text="Select suffix" value="-1"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="Select suffix" value=""></asp:ListItem>
                             <asp:ListItem enabled="true" text="Jr." value="1"></asp:ListItem>
                             <asp:ListItem enabled="true" text="Sr." value="2"></asp:ListItem>
                             <asp:ListItem enabled="true" text="I." value="3"></asp:ListItem>
@@ -113,9 +113,9 @@
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="StState" CssClass="col-md-2 control-label">* State: </asp:Label>
                 <div class="col-md-10">
-                    <span style="display:inline-block; max-width:12.5rem;">
+                    <span style="display:inline-block; max-width:15.5rem;">
                         <asp:dropdownlist runat="server" ID="StState" ToolTip="Select a state from the list." CssClass="form-control selectpicker">
-                            <asp:ListItem enabled="true" text="Select state" value="-1"></asp:ListItem>
+                            <asp:ListItem enabled="true" text="Select state" value=""></asp:ListItem>
                             <asp:ListItem enabled="true" text="AK" value="AK"></asp:ListItem>
                             <asp:ListItem enabled="true" text="AL" value="AL"></asp:ListItem>
                             <asp:ListItem enabled="true" text="AR" value="AR"></asp:ListItem>

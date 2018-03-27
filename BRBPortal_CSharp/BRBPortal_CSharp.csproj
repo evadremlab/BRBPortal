@@ -59,6 +59,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -263,10 +265,15 @@
     </Content>
     <Content Include="StaticData\GetProfileDetails_Response_after_register.xml" />
     <Content Include="StaticData\GetProfileProperties_Request.xml" />
+    <Content Include="StaticData\GetProfileProperties_Response.xml" />
     <Content Include="StaticData\GetPropertyAndUnitDetails_Request.xml" />
     <Content Include="StaticData\GetPropertyAndUnitDetails_Response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="StaticData\GetUserProperties_Response.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="StaticData\SaveCart_Request.xml" />
     <Content Include="StaticData\UpdateUserPassword_Request.xml" />
     <Content Include="StaticData\UpdateUserPassword_Response.xml" />
     <Content Include="StaticData\ValidateRegistration_Request.xml" />
