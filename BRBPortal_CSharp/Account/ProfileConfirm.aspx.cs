@@ -60,13 +60,13 @@ namespace BRBPortal_CSharp.Account
                 else
                 {
                     Logger.Log("ProfileConfirm", BRBFunctions_CSharp.iErrMsg);
-                    Master.ShowDialogOK("Error updating confirmation.", "Confirm Profile");
+                    Master.ShowDialogOK("Error updating confirmation (Error).", "Confirm Profile");
                 }
             }
             catch (Exception ex)
             {
                 Logger.LogException("ProfileConfirm", ex);
-                Master.ShowDialogOK("Error updating confirmation.", "Confirm Profile");
+                Master.ShowDialogOK("Error updating confirmation (Exception).", "Confirm Profile");
             }
         }
 

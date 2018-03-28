@@ -94,11 +94,11 @@ namespace BRBPortal_CSharp.MyProperties
 
             if (e.CommandName.Equals("Tenancy"))
             {
-                Response.Redirect("~/MyProperties/MyTenants");
+                Response.Redirect("~/MyProperties/MyTenants", false);
             }
             else
             {
-                Response.Redirect("~/MyProperties/UpdateUnit");
+                Response.Redirect("~/MyProperties/UpdateUnit", false);
             }
         }
 
@@ -118,7 +118,7 @@ namespace BRBPortal_CSharp.MyProperties
 
                 btnAddCart.Enabled = false;
 
-                Response.Redirect("~/Cart");
+                Response.Redirect("~/Cart", false);
             }
         }
     }

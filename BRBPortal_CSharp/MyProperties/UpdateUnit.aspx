@@ -6,7 +6,7 @@
     <asp:HiddenField ID="hfUnitID" runat="server" />
 
     <style>
-        html, body { height: 101%; } /* always show scrollbar so the controls don't jump when hiding/showing */
+        html, body { min-height: 101%; } /* always show scrollbar so the controls don't jump when hiding/showing */
         .table { margin-bottom: 0; border: none; }
         .table th, .table td {  border-top: none !important; padding: 4px !important; }
         .table .radio { padding-left: 0; }
@@ -17,20 +17,21 @@
     <div class="form-horizontal">
         <section id="updateUnitForm">
             <div class="form-horizontal">
-                <h4>at <asp:Literal ID="litPropertyAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
+                <h4>at <asp:Literal ID="MainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
                 <hr />
+
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="UnitStatus" CssClass="control-label">Unit Status: </asp:Label>
-                    <asp:Literal ID="litUnitStatus" runat="server" ></asp:Literal>
+                    <asp:Literal ID="UnitStatus" runat="server" ></asp:Literal>
                     <br />
-                    <asp:Label runat="server" AssociatedControlID="litExemptionReason" CssClass="control-label">Exemption Reason: </asp:Label>
-                    <asp:Literal ID="litExemptReason" runat="server" ></asp:Literal>
+                    <asp:Label runat="server" AssociatedControlID="ExemptReas" CssClass="control-label">Exemption Reason: </asp:Label>
+                    <asp:Literal ID="ExemptReas" runat="server" ></asp:Literal>
                     <br />
                     <asp:Label runat="server" AssociatedControlID="UnitStartDt" CssClass="control-label">Date Started: </asp:Label>
-                    <asp:Literal ID="litUnitStartDate" runat="server"></asp:Literal>
+                    <asp:Literal ID="UnitStartDt" runat="server"></asp:Literal>
                     <br />
                     <asp:Label runat="server" AssociatedControlID="UnitOccBy" CssClass="control-label">Occupied By: </asp:Label>
-                    <asp:Literal ID="litUnitOccupiedBy" runat="server"></asp:Literal>
+                    <asp:Literal ID="UnitOccBy" runat="server"></asp:Literal>
                 </div>
 
                 <div id="InitalEditButtons" runat="server" class="form-group">
@@ -38,11 +39,11 @@
                     <button id="btnEdit" type="button" class="btn btn-primary" style="margin-left:1rem;">Edit Unit Status</button>
                 </div>
 
-                <div id="EditUnitStatusPanel" runat="server">
+                <div id="EditUnitStatusPanel" runat="server" style="display:none;">
                     <div class="table table-responsive">
                         <div style="display:table-cell; min-width:20rem;">
                             <div class="form-group">
-                                <asp:Label runat="server" AssociatedControlID="NewUnitStatus" CssClass="control-label">New Unit Status: </asp:Label>
+                                <asp:Label runat="server" AssociatedControlID="NewUnit" CssClass="control-label">New Unit Status: </asp:Label>
                                 <div class="radio radiobuttonlist">
                                     <asp:RadioButtonList runat="server" ID="NewUnit" RepeatDirection="Horizontal" ToolTip="Select unit status." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
                                         <asp:ListItem Enabled="true" Text="Rented" Value="Rented"></asp:ListItem>
@@ -55,7 +56,7 @@
                             <div class="form-group" id="ExemptGroup" runat="server">
                                 <asp:Label runat="server" AssociatedControlID="ExemptReason" CssClass="control-label">Exemption Reason: </asp:Label>
                                 <div class="radio radiobuttonlist">
-                                    <asp:RadioButtonList runat="server" ID="ExemptionReason" RepeatDirection="Vertical" ToolTip="Select exemption reason.">
+                                    <asp:RadioButtonList runat="server" ID="ExemptReason" RepeatDirection="Vertical" ToolTip="Select exemption reason.">
                                         <asp:ListItem Enabled="true" Text="Vacant and not available for rent" Value="NAR"></asp:ListItem>
                                         <asp:ListItem Enabled="true" Text="Owner-Occupied" Value="OOCC"></asp:ListItem>
                                         <asp:ListItem Enabled="true" Text="Section 8" Value="SEC8"></asp:ListItem>
@@ -63,8 +64,8 @@
                                         <asp:ListItem Enabled="true" Text="Other" Value="OTHER"></asp:ListItem>
                                     </asp:RadioButtonList>
                                     <div runat="server" id="OtherListContainer">
-                                        <asp:dropdownlist runat="server" ID="ExemptionOtherReason" RepeatDirection="Vertical" ToolTip="Select a reason from the list (optional)." CssClass="form-control selectpicker" style="width:auto;">
-                                            <%--<asp:ListItem enabled="true" text="" value=""></asp:ListItem>--%>
+                                        <asp:dropdownlist runat="server" ID="OtherList" RepeatDirection="Vertical" ToolTip="Select a reason from the list (optional)." CssClass="form-control selectpicker" style="width:auto;">
+                                            <%--<asp:ListItem enabled="true" text="" value="-1"></asp:ListItem>--%>
                                             <asp:ListItem enabled="true" text="Commercial Use" value="COMM"></asp:ListItem>
                                             <asp:ListItem enabled="true" text="Property Manager's Unit" value="MISC"></asp:ListItem>
                                             <asp:ListItem enabled="true" text="Owner shares kitchen & bath with tenant" value="SHARED"></asp:ListItem>
@@ -73,6 +74,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -80,7 +82,6 @@
                         <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="UnitAsOfDt" CssClass="control-label" style="min-width:10rem; text-align:left;">As of Date: </asp:Label>
                             <asp:TextBox runat="server" ID="UnitAsOfDt" TextMode="Date" CssClass="form-control" ToolTip="Enter the as of date for this change."  />
-                            <asp:CustomValidator runat="server" ID="AsOfDateRequired" ClientValidationFunction="AsOfDate_ClientValidate" CssClass="text-danger">required</asp:CustomValidator>
                         </div>
                     </div>
 
@@ -191,8 +192,8 @@
                             </div>
 
                             <div class="form-group">
-                                <asp:Button runat="server" id="btnCancel" PostBackUrl="~/MyProperties/MyUnits.aspx" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Returns to list of units." TabIndex="-1" />
-                                <asp:Button runat="server" ID="btnConfirm" OnClick="btnConfirm_Click" Text="Confirm" Enabled="false" CssClass="btn btn-primary" ToolTip="Update this unit." style="margin-left:1rem;" />
+                                <asp:Button runat="server" id="btnCancel" OnClick="btnCancel_Click" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Returns to list of units." TabIndex="-1" />
+                                <asp:Button runat="server" ID="btnConfirm" OnClick="btnConfirm_Click" Text="Confirm" CssClass="btn btn-primary" ToolTip="Update this unit." style="margin-left:1rem;" />
                             </div>
                         </div>
                     </div>

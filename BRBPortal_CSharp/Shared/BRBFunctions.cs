@@ -688,8 +688,10 @@ namespace BRBPortal_CSharp
         /// <summary>
         /// DONE
         /// </summary>
-        public static void GetPropertyUnits(ref BRBUser user, string unitID = "")
+        public static bool GetPropertyUnits(ref BRBUser user, string unitID = "")
         {
+            var gotPropertyUnits = true; // later
+
             var soapRequest = new SoapRequest
             {
                 Source = "GetPropertyUnits",
@@ -820,7 +822,7 @@ namespace BRBPortal_CSharp
                             case "OOCC":
                                 myUnit.ExemptionReason = "Owner-Occupied";
                                 break;
-                            case "SEC8":
+                                case "SEC8":
                                 myUnit.ExemptionReason = "Section 8";
                                 break;
                             case "RENTED":
@@ -861,6 +863,8 @@ namespace BRBPortal_CSharp
                 iErrMsg = ex.Message;
                 Logger.LogException("GetPropertyUnits", ex);
             }
+
+            return gotPropertyUnits;
         }
 
         /// <summary>
