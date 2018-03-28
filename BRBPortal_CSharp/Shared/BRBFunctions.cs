@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,6 +16,7 @@ using BRBPortal_CSharp.Models;
 using System.Reflection;
 using BRBPortal_CSharp.Shared;
 using System.ComponentModel;
+using System.Xml.Linq;
 
 namespace BRBPortal_CSharp
 {
@@ -142,7 +144,7 @@ namespace BRBPortal_CSharp
             return xmlDoc;
         }
 
-        private static XmlDocument GetStaticXml(string fileName)
+        public static XmlDocument GetStaticXml(string fileName)
         {
             var xmlDoc = new XmlDocument();
 
@@ -189,7 +191,7 @@ namespace BRBPortal_CSharp
                 soapRequest.Body.Append("</api:authenticateUserLogin>");
 
                 var xmlDoc = GetXmlResponse(soapRequest);
-
+                
                 foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("authenticateUserRes"))
                 {
                     if (detail.ChildNodes[0].InnerText.ToUpper().Equals("SUCCESS"))
@@ -1051,27 +1053,12 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool SaveCart(BRBUser user)
         {
-            if (USE_MOCK_SERVICES)
-            {
-                iErrMsg = "";
-                return true;
-            }
-            else
-            {
-                return SaveCart_Soap(user);
-            }
-        }
-
-        /// <summary>
-        /// DONE
-        /// </summary>
-        public static bool SaveCart_Soap(BRBUser user)
-        {
             var wasSaved = false;
 
             var soapRequest = new SoapRequest
             {
                 Source = "SaveCart",
+                StaticDataFile = "SaveCart_Response.xml",
                 Url = "SavePaymentCartDetails/RTSClientPortalAPI_API_WSD_SavePaymentCartDetails_Port",
                 Action = "RTSClientPortalAPI_API_WSD_SavePaymentCartDetails_Binder_savePaymentCart"
             };
@@ -1147,6 +1134,18 @@ namespace BRBPortal_CSharp
                     if (!wasSaved)
                     {
                         iErrMsg = detail.ChildNodes[1].InnerText;
+                    }
+                }
+
+                if (wasSaved)
+                {
+                    uint cartID;
+                    foreach (XmlElement el in xmlDoc.DocumentElement.GetElementsByTagName("cartId"))
+                    {
+                        if (uint.TryParse(el.InnerText, out cartID))
+                        {
+                            user.Cart.ID = cartID;
+                        }
                     }
                 }
             }

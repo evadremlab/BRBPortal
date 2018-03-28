@@ -202,6 +202,7 @@
     <Content Include="Administration\SearchAccounts.aspx" />
     <Content Include="Administration\UpdateAccount.aspx" />
     <Content Include="Cart.aspx" />
+    <Content Include="ConfirmPayment.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-select.css" />
     <Content Include="Content\bootstrap-select.min.css" />
@@ -274,6 +275,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="StaticData\SaveCart_Request.xml" />
+    <Content Include="StaticData\SaveCart_Response.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="StaticData\UpdateUserPassword_Request.xml" />
     <Content Include="StaticData\UpdateUserPassword_Response.xml" />
     <Content Include="StaticData\ValidateRegistration_Request.xml" />
@@ -615,6 +619,13 @@
     </Compile>
     <Compile Include="Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmPayment.aspx.cs">
+      <DependentUpon>ConfirmPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmPayment.aspx.designer.cs">
+      <DependentUpon>ConfirmPayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="EditCart.aspx.cs">
       <DependentUpon>EditCart.aspx</DependentUpon>

@@ -15,6 +15,7 @@ namespace BRBPortal_CSharp.MyProperties
             {
                 InitalEditButtons.Style.Add("display", "none");
                 EditUnitStatusPanel.Style.Remove("display");
+                btnConfirm.Enabled = true;
             }
             else
             {
@@ -145,34 +146,42 @@ namespace BRBPortal_CSharp.MyProperties
                 {
                     ExemptGroup.Attributes["class"] = "hidden";
                 }
+
                 if (!CommUseGrp_Visible)
                 {
                     CommUseGrp.Attributes["class"] = "hidden";
                 }
+
                 if (!PMUnitGrp_Visible)
                 {
                     PMUnitGrp.Attributes["class"] = "hidden";
                 }
+
                 if (!OwnerShrGrp_Visible)
                 {
                     OwnerShrGrp.Attributes["class"] = "hidden";
                 }
+
                 if (!AsOfDtGrp_Visible)
                 {
                     AsOfDtGrp.Attributes["class"] = "hidden";
                 }
+
                 if (!DtStrtdGrp_Visible)
                 {
                     DtStrtdGrp.Attributes["class"] = "hidden";
                 }
+
                 if (!OccByGrp_Visible)
                 {
                     OccByGrp.Attributes["class"] = "hidden";
                 }
+
                 if (!ContractGrp_Visible)
                 {
                     ContractGrp.Attributes["class"] = "hidden";
                 }
+
                 if (!OtherList_Visible)
                 {
                     OtherListContainer.Attributes["class"] = "hidden";

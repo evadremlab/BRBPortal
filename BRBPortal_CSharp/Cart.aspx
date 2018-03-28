@@ -37,7 +37,7 @@
                             <HeaderStyle HorizontalAlign="Right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Width="75px" Wrap="False" />
                             </asp:BoundField>
-                        <asp:BoundField HeaderText="Credits" DataField="Creditss" SortExpression="Credits" DataFormatString="{0:c}" ReadOnly="True">
+                        <asp:BoundField HeaderText="Credits" DataField="Credits" SortExpression="Credits" DataFormatString="{0:c}" ReadOnly="True">
                             <HeaderStyle HorizontalAlign="Right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Width="75px" Wrap="False" />
                             </asp:BoundField>

@@ -12,7 +12,7 @@ namespace BRBPortal_CSharp
     public partial class EditCart : System.Web.UI.Page
     {
         public DataTable iCartTbl;
-        public Decimal iBalance = 0.0M;
+        public Decimal iBalance;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,10 +42,13 @@ namespace BRBPortal_CSharp
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var value = 0.0M;
+                decimal value;
                 string txtBalance = e.Row.Cells[7].Text.Replace("$", "");
-                Decimal.TryParse(txtBalance, out value);
-                iBalance += value;
+
+                if (Decimal.TryParse(txtBalance, out value))
+                {
+                    iBalance += value;
+                }
             }
             else if (e.Row.RowType == DataControlRowType.Footer)
             {

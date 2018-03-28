@@ -127,7 +127,9 @@ namespace BRBPortal_CSharp
 
         public void ShowDialogOK(string message, string title = "Status")
         {
-            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
+            var safeTitle = HttpContext.Current.Server.HtmlEncode(title);
+            var safeMessage = HttpContext.Current.Server.HtmlEncode(message);
+            var jsFunction = string.Format("showDialogOK('{0}', '{1}');", safeMessage, safeTitle);
 
             Page.ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }

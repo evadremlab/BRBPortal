@@ -191,7 +191,7 @@
 
                             <div class="form-group">
                                 <asp:Button runat="server" id="btnCancel" OnClick="btnCancel_Click" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Returns to list of units." TabIndex="-1" />
-                                <asp:Button runat="server" ID="btnConfirm" OnClick="btnConfirm_Click" Text="Confirm" CssClass="btn btn-primary" ToolTip="Update this unit." style="margin-left:1rem;" />
+                                <asp:Button runat="server" ID="btnConfirm" OnClick="btnConfirm_Click" Text="Confirm" Enabled="false" CssClass="btn btn-primary" ToolTip="Update this unit." style="margin-left:1rem;" />
                             </div>
                         </div>
                     </div>
@@ -327,6 +327,12 @@
                 }
             }
 
+            function _enableConfirmButton() {
+                var isChecked = $('#MainContent_chkDeclare').is(':checked');
+                var hasInitials = $('#MainContent_DeclareInits').val().length;
+                $('#MainContent_btnConfirm').attr('disabled', (isChecked && hasInitials) ? false : true);
+            }
+
             $(".selectpicker").selectpicker();
 
             $('#btnEdit').click(function () {
@@ -338,14 +344,8 @@
             $('#MainContent_ExemptReason').change(_setExemptReasonFields);
             $('#MainContent_OtherList').change(_otherListChanged);
             $('#MainContent_RB1').change(_rb1Changed);
-            //$('#MainContent_btnConfirm').click(function (evt) {
-            //    $('#OkModalModal .modal-title').text('title');
-            //    $('#OkModalModal .modal-body').text('message');
-            //    $('#OkModalModal').modal('show');
-
-            //    evt.preventDefault();
-            //    return false;
-            //});
+            $('#MainContent_chkDeclare').change(_enableConfirmButton);
+            $('#MainContent_DeclareInits').change(_enableConfirmButton);
         });
     </script>
 </asp:Content>

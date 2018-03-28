@@ -8,6 +8,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
 using BRBPortal_CSharp.Models;
+using BRBPortal_CSharp.Shared;
+using System.Xml.Linq;
+using System.Xml;
 
 namespace BRBPortal_CSharp.Account
 {

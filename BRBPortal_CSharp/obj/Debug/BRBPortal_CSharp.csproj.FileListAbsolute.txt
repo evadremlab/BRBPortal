@@ -120,3 +120,5 @@ C:\Projects\BRBPortal\BRBPortal_CSharp\bin\Microsoft.AI.WindowsServer.xml
 C:\Projects\BRBPortal\BRBPortal_CSharp\bin\Microsoft.AI.Web.xml
 C:\Projects\BRBPortal\BRBPortal_CSharp\obj\Debug\BRBPortal_CSharp.dll
 C:\Projects\BRBPortal\BRBPortal_CSharp\obj\Debug\BRBPortal_CSharp.pdb
+C:\Projects\BRBPortal\BRBPortal_CSharp\bin\StaticData\SaveCart_Response.xml
+C:\Projects\BRBPortal\BRBPortal_CSharp\obj\Debug\BRBPortal_CSharp.csprojResolveAssemblyReference.cache

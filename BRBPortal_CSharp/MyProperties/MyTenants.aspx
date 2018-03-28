@@ -153,7 +153,7 @@
     
     <script>
         $(document).ready(function () {
-            $('form').submit(function (evt) {
+            $('#aspForm').submit(function (evt) {
                 var form = this;
                 evt.preventDefault();
                 $('#YesNoModal .modal-title').text('Update Tenancy');

@@ -1,6 +1,4 @@
-﻿using BRBPortal_CSharp.Models;
-using BRBPortal_CSharp.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,11 +7,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 
+using BRBPortal_CSharp.Models;
+using BRBPortal_CSharp.Shared;
+
 namespace BRBPortal_CSharp
 {
     public partial class Cart : System.Web.UI.Page
     {
-        public Decimal totalBalance = 0.0M;
+        public Decimal totalBalance;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -82,38 +83,29 @@ namespace BRBPortal_CSharp
             {
                 var user = Master.User;
 
+                // TODO: what if they already have a Cart ID?
+
                 if (BRBFunctions_CSharp.SaveCart(user))
                 {
-                    Logger.Log("SaveCart", "Saved!");
+                    if (user.Cart.ID.HasValue)
+                    {
+                        Master.UpdateSession(user);
+                        Response.Redirect("~/ConfirmPayment.aspx", true);
+                    }
+                    else
+                    {
+                        Master.ShowDialogOK("Error saving cart(1)", "Save Cart");
+                    }
                 }
                 else
                 {
-                    Logger.Log("SaveCart - Error", BRBFunctions_CSharp.iErrMsg);
+                    Master.ShowDialogOK("Error saving cart(2).", "Save Cart");
                 }
             }
             catch (Exception ex)
             {
                 Logger.LogException("PayCart", ex);
             }
-            //    sbCart.Append("<properties>");
-
-            //    foreach (DataRow dataRow in iCartTbl.Rows)
-            //    {
-            //        sbCart.Append("<property>");
-            //        sbCart.AppendFormat("<propno>{0}</propno>", dataRow.Field<string>("PropertyID"));
-            //        sbCart.AppendFormat("<addr>{0}</addr>", dataRow.Field<string>("MainAddr"));
-            //        sbCart.AppendFormat("<cfees>{0}</cfees>", dataRow.Field<decimal>("CurrFees"));
-            //        sbCart.AppendFormat("<pfees>{0}</pfees>", dataRow.Field<decimal>("PriorFees"));
-            //        sbCart.AppendFormat("<cpen>{0}</cpen>", dataRow.Field<decimal>("CurrPenalty"));
-            //        sbCart.AppendFormat("<ppen>{0}</ppen>", dataRow.Field<decimal>("PriorPenalty"));
-            //        sbCart.AppendFormat("<creds>{0}</creds>", dataRow.Field<decimal>("Credits"));
-            //        sbCart.AppendFormat("<bal>{0}</bal>", dataRow.Field<decimal>("Balance"));
-            //        sbCart.Append("</property>");
-            //    }
-
-            //    sbCart.Append("</properties>");
-
-            // TODO: Build XML to send to ACI Universal Payment
         }
 
         protected void EditCart_Click(object sender, EventArgs e)
@@ -134,11 +126,14 @@ namespace BRBPortal_CSharp
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                var value = 0.0M;
+                decimal value;
                 var colIndex = e.Row.GetColumnIndexByName("Balance");
                 string txtBalance = e.Row.Cells[colIndex].Text.Replace("$", "");
-                Decimal.TryParse(txtBalance, out value);
-                totalBalance += value;
+
+                if (Decimal.TryParse(txtBalance, out value))
+                {
+                    totalBalance += value;
+                }
             }
             else if (e.Row.RowType == DataControlRowType.Footer)
             {
