@@ -535,22 +535,6 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool Register(UserProfile profile)
         {
-            if (USE_MOCK_SERVICES)
-            {
-                iErrMsg = "";
-                return true;
-            }
-            else
-            {
-                return Register_Soap(profile);
-            }
-        }
-
-        /// <summary>
-        /// DONE
-        /// </summary>
-        public static bool Register_Soap(UserProfile profile)
-        {
             bool wasRegistered = false;
 
             var soapRequest = new SoapRequest
@@ -573,7 +557,7 @@ namespace BRBPortal_CSharp
                 var state = profile.State;
                 var zip = profile.Zip;
                 var phone = profile.PhoneNo;
-                var agentName = profile.AgencyName;
+                var agencyName = profile.AgencyName;
                 var relationship = profile.Relationship;
                 var ownerLastName = profile.PropertyOwnerLastName;
                 var propertyAddress = profile.PropertyAddress;
@@ -581,19 +565,19 @@ namespace BRBPortal_CSharp
                 soapRequest.Body.Append("<api:validateRegistrationRequest>");
                 soapRequest.Body.Append("<registrationRequestReq>");
                 soapRequest.Body.Append("<profileDetails>");
-                soapRequest.Body.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.Length == 0 ? "" : userCode.EscapeXMLChars());
-                soapRequest.Body.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.Length == 0 ? "" : billCode.EscapeXMLChars());
+                soapRequest.Body.AppendFormat("<!--Optional:--><userId>{0}</userId>", userCode.EscapeXMLChars());
+                soapRequest.Body.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", billCode.EscapeXMLChars());
                 soapRequest.Body.Append("<name>");
-                soapRequest.Body.AppendFormat("<first>{0}</first>", firstName.EscapeXMLChars());
+                soapRequest.Body.Append("<!--Optional:--><first></first>");
                 soapRequest.Body.Append("<!--Optional:--><middle></middle>");
                 soapRequest.Body.AppendFormat("<last>{0}</last>", lastName.EscapeXMLChars());
                 soapRequest.Body.Append("<suffix></suffix>");
                 soapRequest.Body.Append("<!--Optional:--><nameLastFirstDisplay></nameLastFirstDisplay>");
-                soapRequest.Body.AppendFormat("<!--Optional:--><agencyName>{0}</agencyName>", agentName.Length == 0 ? "" : agentName.EscapeXMLChars());
+                soapRequest.Body.AppendFormat("<!--Optional:--><agencyName>{0}</agencyName>", agencyName.Length == 0 ? "" : agencyName.EscapeXMLChars());
                 soapRequest.Body.Append("</name>");
                 soapRequest.Body.Append("<mailingAddress>");
-                soapRequest.Body.AppendFormat("<!--Optional:--><streetNumber>{0}</streetNumber>", streetNum.Length == 0 ? "" : streetNum);
-                soapRequest.Body.AppendFormat("<!--Optional:--><streetName>{0}</streetName>", streetName.Length == 0 ? "" : streetName.EscapeXMLChars());
+                soapRequest.Body.AppendFormat("<!--Optional:--><streetNumber>{0}</streetNumber>", streetNum);
+                soapRequest.Body.AppendFormat("<!--Optional:--><streetName>{0}</streetName>", streetName.EscapeXMLChars());
                 soapRequest.Body.Append("<!--Optional:--><unitNumber></unitNumber>");
                 soapRequest.Body.Append("<fullAddress></fullAddress>");
                 soapRequest.Body.AppendFormat("<!--Optional:--><city>{0}</city>", city);
@@ -606,7 +590,7 @@ namespace BRBPortal_CSharp
                 soapRequest.Body.Append("</profileDetails>");
                 soapRequest.Body.Append("<propertyDetails>");
                 soapRequest.Body.AppendFormat("<relationship>{0}</relationship>", relationship);
-                soapRequest.Body.AppendFormat("<ownerLastName>{0}</ownerLastName>", ownerLastName);
+                soapRequest.Body.AppendFormat("<ownerLastName>{0}</ownerLastName>", ownerLastName.Length == 0 ? "" : ownerLastName);
                 soapRequest.Body.AppendFormat("<address>{0}</address>", propertyAddress);
                 soapRequest.Body.Append("<purchaseYear></purchaseYear>");
                 soapRequest.Body.Append("</propertyDetails>");
@@ -1159,25 +1143,9 @@ namespace BRBPortal_CSharp
         }
 
         /// <summary>
-        /// DONE
-        /// </summary>
-        public static bool SaveUnit(string soapString)
-        {
-            if (USE_MOCK_SERVICES)
-            {
-                iErrMsg = "";
-                return true;
-            }
-            else
-            {
-                return SaveUnit_Soap(soapString);
-            }
-        }
-
-        /// <summary>
         /// DONE, need to update MyProperties/UpdateUnit.aspx.cs
         /// </summary>
-        public static bool SaveUnit_Soap(string soapString)
+        public static bool SaveUnit(BRBUser user)
         {
             var wasSaved = false;
 
@@ -1190,11 +1158,6 @@ namespace BRBPortal_CSharp
 
             try
             {
-                var fields = Parse(soapString);
-
-                var userCode = fields.GetStringValue("UserID");
-                var billCode = fields.GetStringValue("BillingCode");
-
                 soapRequest.Body.Append("<api:updateUnitStatusChange>");
                 soapRequest.Body.Append("<unitStatusChangeReq>");
                 soapRequest.Body.AppendFormat("<userId>{0}</userId>", "from session");
@@ -1235,15 +1198,13 @@ namespace BRBPortal_CSharp
 
                 foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("response"))
                 {
-                    iStatus = detail.ChildNodes[0].InnerText;
+                    wasSaved = detail.ChildNodes[0].InnerText.ToUpper().Equals("SUCCESS");
 
-                    if (iStatus.ToUpper() != "SUCCESS")
+                    if (!wasSaved)
                     {
                         iErrMsg = detail.ChildNodes[1].InnerText;
                     }
                 }
-
-                wasSaved = iStatus.ToUpper().Equals("SUCCESS");
             }
             catch (Exception ex)
             {

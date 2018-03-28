@@ -1,6 +1,7 @@
 ﻿using System;
 
 using BRBPortal_CSharp.Models;
+using BRBPortal_CSharp.Shared;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -52,16 +53,18 @@ namespace BRBPortal_CSharp.Account
                         PropertyAddress = PropAddress.Text.ToUpper()
                     };
 
-                    if (BRBFunctions_CSharp.Register(profile) == false)
+                    if (BRBFunctions_CSharp.Register(profile))
+                    {
+                        Response.Redirect("~/Account/Login.aspx", true);
+                    }
+                    else
                     {
                         Master.ShowDialogOK(BRBFunctions_CSharp.iErrMsg, "Registration Error");
-                        return;
                     }
-
-                    Response.Redirect("~/Account/Login.aspx", true);
                 }
                 catch (Exception ex)
                 {
+                    Logger.LogException("Register", ex);
                     Master.ShowDialogOK(ex.Message, "Register");
                 }
             }

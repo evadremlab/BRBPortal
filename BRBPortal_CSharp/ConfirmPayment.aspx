@@ -4,10 +4,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <input type="hidden" name="lockAmount" value="true" />
     <input type="hidden" name="productId" value="24241003506464897434114212714156124" />
-    <input type="hidden" name="returnUrl" value="http://rentportaldev.cityofberkeley.info/PmtPostBack" />
-    <input type="hidden" name="errorUrl" value="http://rentportaldev.cityofberkeley.info/PmtPostBack" />
-    <input type="hidden" name="cancelUrl" value="http://rentportaldev.cityofberkeley.info/PmtPostBack" />
-    <input type="hidden" name="postbackUrl" value="http://rentportaldev.cityofberkeley.info/PmtPostBack" />
+    <input type="hidden" name="returnUrl" value="http://rentportaldev.cityofberkeley.info/PaymentProcessed" />
+    <input type="hidden" name="errorUrl" value="http://rentportaldev.cityofberkeley.info/PaymentError" />
+    <input type="hidden" name="cancelUrl" value="http://rentportaldev.cityofberkeley.info/PaymentCancelled" />
+    <input type="hidden" name="postbackUrl" value="http://clipper.transsight.com/api/Values" />
     <input type="hidden" name="cde-CartID-17" value="" />
     <input type="hidden" name="cde-BillingCode-1" value="" />
     <input type="hidden" name="paymentAmount" value="" />

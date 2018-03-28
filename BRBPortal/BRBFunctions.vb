@@ -59,6 +59,7 @@ Public Module BRBFunctions
             SoapByte = System.Text.Encoding.UTF8.GetBytes(SoapStr)
 
             Request = WebRequest.Create("http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.AuthenticateUser/RTSClientPortalAPI_API_WSD_AuthenticateUser_Port")
+            Request.Timeout = TimeSpan.FromSeconds(10).TotalMilliseconds
             Request.Headers.Add("SOAPAction", "RTSClientPortalAPI_API_WSD_AuthenticateUser_Binder_authenticateUserLogin")
             Request.ContentType = "text/xml; charset=utf-8"
             Request.ContentLength = SoapByte.Length

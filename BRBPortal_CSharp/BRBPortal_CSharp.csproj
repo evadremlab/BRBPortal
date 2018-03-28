@@ -252,6 +252,9 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Default.aspx" />
     <Content Include="EditCart.aspx" />
+    <Content Include="PaymentCancelled.aspx" />
+    <Content Include="PaymentError.aspx" />
+    <Content Include="PaymentProcessed.aspx" />
     <Content Include="StaticData\AuthenticateUser_Request.xml" />
     <Content Include="StaticData\AuthenticateUser_Response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -672,6 +675,27 @@
     </Compile>
     <Compile Include="MyProperties\UpdateUnit.aspx.designer.cs">
       <DependentUpon>UpdateUnit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentCancelled.aspx.cs">
+      <DependentUpon>PaymentCancelled.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentCancelled.aspx.designer.cs">
+      <DependentUpon>PaymentCancelled.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentError.aspx.cs">
+      <DependentUpon>PaymentError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentError.aspx.designer.cs">
+      <DependentUpon>PaymentError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentProcessed.aspx.cs">
+      <DependentUpon>PaymentProcessed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentProcessed.aspx.designer.cs">
+      <DependentUpon>PaymentProcessed.aspx</DependentUpon>
     </Compile>
     <Compile Include="Shared\BRBFunctions.cs" />
     <Compile Include="Contact.aspx.cs">

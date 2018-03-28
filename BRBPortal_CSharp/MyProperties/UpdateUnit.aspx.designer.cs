@@ -31,13 +31,13 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.HiddenField hfUnitID;
         
         /// <summary>
-        /// PropertyAddress control.
+        /// litPropertyAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal PropertyAddress;
+        protected global::System.Web.UI.WebControls.Literal litPropertyAddress;
         
         /// <summary>
         /// UnitNo control.
@@ -49,40 +49,40 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.Literal UnitNo;
         
         /// <summary>
-        /// UnitStatus control.
+        /// litUnitStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal UnitStatus;
+        protected global::System.Web.UI.WebControls.Literal litUnitStatus;
         
         /// <summary>
-        /// ExemptReas control.
+        /// litExemptReason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ExemptReas;
+        protected global::System.Web.UI.WebControls.Literal litExemptReason;
         
         /// <summary>
-        /// UnitStartDt control.
+        /// litUnitStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal UnitStartDt;
+        protected global::System.Web.UI.WebControls.Literal litUnitStartDate;
         
         /// <summary>
-        /// UnitOccBy control.
+        /// litUnitOccupiedBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal UnitOccBy;
+        protected global::System.Web.UI.WebControls.Literal litUnitOccupiedBy;
         
         /// <summary>
         /// InitalEditButtons control.
@@ -130,13 +130,13 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExemptGroup;
         
         /// <summary>
-        /// ExemptReason control.
+        /// ExemptionReason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList ExemptReason;
+        protected global::System.Web.UI.WebControls.RadioButtonList ExemptionReason;
         
         /// <summary>
         /// OtherListContainer control.
@@ -148,13 +148,13 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl OtherListContainer;
         
         /// <summary>
-        /// OtherList control.
+        /// ExemptionOtherReason control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList OtherList;
+        protected global::System.Web.UI.WebControls.DropDownList ExemptionOtherReason;
         
         /// <summary>
         /// AsOfDtGrp control.
@@ -173,6 +173,15 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox UnitAsOfDt;
+        
+        /// <summary>
+        /// AsOfDateRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator AsOfDateRequired;
         
         /// <summary>
         /// DtStrtdGrp control.

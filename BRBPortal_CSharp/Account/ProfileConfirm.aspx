@@ -112,5 +112,6 @@
     <script>
         function CheckBoxRequired_ClientValidate(sender, e) {
             e.IsValid = $("#MainContent_chkDeclare").is(':checked');
+        }
     </script>
 </asp:Content>
