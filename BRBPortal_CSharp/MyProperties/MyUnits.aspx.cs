@@ -118,7 +118,7 @@ namespace BRBPortal_CSharp.MyProperties
 
                 btnAddCart.Enabled = false;
 
-                Response.Redirect("~/Cart.aspx", true);
+                Response.Redirect("~/Cart");
             }
         }
     }

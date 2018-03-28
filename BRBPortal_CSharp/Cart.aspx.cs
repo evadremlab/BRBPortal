@@ -90,7 +90,7 @@ namespace BRBPortal_CSharp
                     if (user.Cart.ID.HasValue)
                     {
                         Master.UpdateSession(user);
-                        Response.Redirect("~/ConfirmPayment.aspx", true);
+                        Response.Redirect("~/ConfirmPayment");
                     }
                     else
                     {

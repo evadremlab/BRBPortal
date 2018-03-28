@@ -91,6 +91,8 @@ namespace BRBPortal_CSharp
 
                     var soapByte = System.Text.Encoding.UTF8.GetBytes(soapMessage.ToString());
 
+                    Logger.Log("SoapRequest URL", urlPrefix + soapRequest.Url);
+
                     request = WebRequest.Create(urlPrefix + soapRequest.Url);
                     request.Timeout = (int)TimeSpan.FromSeconds(10).TotalMilliseconds;
                     request.Headers.Add("SOAPAction", soapRequest.Action);
@@ -226,45 +228,28 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool ConfirmProfile(BRBUser user)
         {
-            if (USE_MOCK_SERVICES)
-            {
-                iStatus = "SUCCESS";
-                iErrMsg = "";
-                return true;
-            }
-            else
-            {
-                return ConfirmProfile_Soap(user);
-            }
-        }
-
-        /// <summary>
-        /// DONE
-        /// </summary>
-        public static bool ConfirmProfile_Soap(BRBUser user)
-        {
             var isConfirmed = false;
 
             var soapRequest = new SoapRequest
             {
                 Source = "ConfirmProfile",
-                Url = "AuthenticateUser/RTSClientPortalAPI_API_WSD_AuthenticateUser_Port",
-                Action = "ConfirmUserProfileByDeclaration/RTSClientPortalAPI_API_WSD_ConfirmUserProfileByDeclaration_Port"
+                Url = "ConfirmUserProfileByDeclaration/RTSClientPortalAPI_API_WSD_ConfirmUserProfileByDeclaration_Port",
+                Action = "RTSClientPortalAPI_API_WSD_ConfirmUserProfileByDeclaration_Binder_confirmProfileInformation"
             };
 
             try
             {
                 soapRequest.Body.Append("<api:confirmProfileInformation>");
                 soapRequest.Body.Append("<profileConfirmationReq>");
-                soapRequest.Body.AppendFormat("<!--Optional:--><userId>{0}</userId>", user.UserCode.Length == 0 ? "" : user.UserCode.EscapeXMLChars());
-                soapRequest.Body.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", user.BillingCode.Length == 0 ? "" : user.BillingCode.EscapeXMLChars());
-                soapRequest.Body.AppendFormat("<securityQuestion1>{0}</securityQuestion1>", user.Question1);
-                soapRequest.Body.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", user.Answer1);
-                soapRequest.Body.AppendFormat("<securityQuestion2>{0}</securityQuestion2>", user.Question2);
-                soapRequest.Body.AppendFormat("<securityAnswer2>{0}</securityAnswer2>", user.Answer2);
+                soapRequest.Body.AppendFormat("<!--Optional:--><userId>{0}</userId>", user.UserCode.EscapeXMLChars());
+                soapRequest.Body.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", user.BillingCode.EscapeXMLChars());
+                soapRequest.Body.AppendFormat("<securityQuestion1>{0}</securityQuestion1>", user.Question1.EscapeXMLChars());
+                soapRequest.Body.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", user.Answer1.EscapeXMLChars());
+                soapRequest.Body.AppendFormat("<securityQuestion2>{0}</securityQuestion2>", user.Question2.EscapeXMLChars());
+                soapRequest.Body.AppendFormat("<securityAnswer2>{0}</securityAnswer2>", user.Answer2.EscapeXMLChars());
                 soapRequest.Body.AppendFormat("<declarationInitial>{0}</declarationInitial>", user.DeclarationInitials.EscapeXMLChars());
                 soapRequest.Body.Append("</profileConfirmationReq>");
-                soapRequest.Body.Append("</api:confirmProfileInformation>");
+                soapRequest.Body.Append("</api:profileConfirmationReq>");
 
                 var xmlDoc = GetXmlResponse(soapRequest);
 

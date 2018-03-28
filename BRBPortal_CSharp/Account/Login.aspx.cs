@@ -25,36 +25,24 @@ namespace BRBPortal_CSharp.Account
 
         protected void LogIn(object sender, EventArgs e)
         {
+            Session.Clear();
+
+            var user = new BRBUser();
+
             if (IsValid)
             {
-                Session.Clear();
-
-                var user = new BRBUser();
-
-                if (UserIDOrBillCode.SelectedValue == "UserID")
+                try
                 {
-                    user.UserCode = UserIDCode.Text ?? "";
-                }
-                else
-                {
-                    user.BillingCode = BillCode.Text ?? "";
-                }
-
-                if (BRBFunctions_CSharp.UserAuth(ref user, Password.Text ?? "") == SignInStatus.Success)
-                {
-                    Master.UpdateSession(user);
-
-                    if (user.IsTemporaryPassword)
+                    if (UserIDOrBillCode.SelectedValue == "UserID")
                     {
-                        Session["NextPage"] = user.IsFirstlogin ? "ProfileConfirm" : "Home";
-                        Response.Redirect("~/Account/ManagePassword.aspx");
-                    }
-                    else if (user.IsFirstlogin)
-                    {
-                        Session["NextPage"] = "Home";
-                        Response.Redirect("~/Account/ProfileConfirm.aspx");
+                        user.UserCode = UserIDCode.Text ?? "";
                     }
                     else
+                    {
+                        user.BillingCode = BillCode.Text ?? "";
+                    }
+
+                    if (BRBFunctions_CSharp.UserAuth(ref user, Password.Text ?? "") == SignInStatus.Success)
                     {
                         if (BRBFunctions_CSharp.GetProfile(ref user))
                         {
@@ -64,19 +52,39 @@ namespace BRBPortal_CSharp.Account
 
                             Master.UpdateSession(user);
 
-                            Response.Redirect("~/Home.aspx", true);
+                            if (user.IsTemporaryPassword)
+                            {
+                                Session["NextPage"] = user.IsFirstlogin ? "ProfileConfirm" : "Home";
+                                Response.Redirect("~/Account/ManagePassword", false);
+                            }
+                            else if (user.IsFirstlogin)
+                            {
+                                Session["NextPage"] = "Home";
+                                Response.Redirect("~/Account/ProfileConfirm", false);
+                            }
+                            else
+                            {
+                                Response.Redirect("~/Home", false);
+                            }
                         }
                         else
                         {
-                            FailureText.Text = "Invalid login attempt";
+                            FailureText.Text = "Invalid login attempt (UserProfile)";
                             ErrorMessage.Visible = true;
                             Session.Clear();
                         }
                     }
+                    else
+                    {
+                        FailureText.Text = "Invalid login attempt (Authentication)";
+                        ErrorMessage.Visible = true;
+                        Session.Clear();
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    FailureText.Text = "Invalid login attempt";
+                    Logger.LogException("Login", ex);
+                    FailureText.Text = "Invalid login attempt (Exception)";
                     ErrorMessage.Visible = true;
                     Session.Clear();
                 }

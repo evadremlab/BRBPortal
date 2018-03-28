@@ -73,7 +73,7 @@ namespace BRBPortal_CSharp
 
                     Master.UpdateSession(user);
 
-                    Response.Redirect("~/Cart.aspx");
+                    Response.Redirect("~/Cart");
                 }
                 catch (Exception ex)
                 {

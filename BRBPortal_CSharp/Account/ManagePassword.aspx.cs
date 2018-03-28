@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using System.Security.Claims;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -49,17 +50,21 @@ namespace BRBPortal_CSharp.Account
 
             Master.UpdateSession(user);
 
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimTypes.Name, user.BillingCode));
+            Request.GetOwinContext().Authentication.SignIn(new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie));
+
             if (Session["NextPage"].ToString() == "ProfileConfirm")
             {
-                Response.Redirect("~/Account/ProfileConfirm.aspx", false);
+                Response.Redirect("~/Account/ProfileConfirm");
             }
             else if (Session["NextPage"].ToString() == "ProfileList")
             {
-                Response.Redirect("~/Account/ProfileList.aspx", false);
+                Response.Redirect("~/Account/ProfileList");
             }
             else
             {
-                Response.Redirect("~/Home.aspx", true);
+                Response.Redirect("~/Home");
             }
         }
     }

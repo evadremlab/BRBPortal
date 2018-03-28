@@ -54,7 +54,7 @@ namespace BRBPortal_CSharp.Account
                 Master.UpdateSession(user);
                 Master.ShowDialogOK("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
 
-                Response.Redirect("~/Account/Login.aspx", true);
+                Response.Redirect("~/Account/Login");
             }
             else
             {

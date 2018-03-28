@@ -1,0 +1,18 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <api:confirmProfileInformation>
+      <profileConfirmationReq>
+        <!--Optional:-->
+        <userId>DAVE04</userId>
+        <!--Optional:-->
+        <billingCode>XIELOU</billingCode>
+        <securityQuestion1>What was your favorite sport in high school?</securityQuestion1>
+        <securityAnswer1>none</securityAnswer1>
+        <securityQuestion2>What is your favorite movie?</securityQuestion2>
+        <securityAnswer2>all</securityAnswer2>
+        <declarationInitial>DBB</declarationInitial>
+      </profileConfirmationReq>
+    </api:confirmProfileInformation>
+  </soapenv:Body>
+</soapenv:Envelope>

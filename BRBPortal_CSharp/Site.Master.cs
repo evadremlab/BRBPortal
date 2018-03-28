@@ -98,15 +98,15 @@ namespace BRBPortal_CSharp
 
                 if (!Context.User.Identity.IsAuthenticated)
                 {
-                    Response.Redirect("~/Account/Login", true);
+                    Response.Redirect("~/Account/Login");
                 }
                 else if (this.User == null)
                 {
-                    Response.Redirect("~/Account/Login", true);
+                    Response.Redirect("~/Account/Login");
                 }
                 else if (string.IsNullOrEmpty(this.User.UserCode) && string.IsNullOrEmpty(this.User.BillingCode))
                 {
-                    Response.Redirect("~/Account/Login", true);
+                    Response.Redirect("~/Account/Login");
                 }
             }
         }

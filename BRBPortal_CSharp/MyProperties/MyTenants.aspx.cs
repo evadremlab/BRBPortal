@@ -32,7 +32,7 @@ namespace BRBPortal_CSharp.MyProperties
 
         private void UpdateData()
         {
-            Response.Redirect("~/MyProperties/UpdateTenancy.aspx");
+            Response.Redirect("~/MyProperties/UpdateTenancy");
         }
 
         private void LoadData()

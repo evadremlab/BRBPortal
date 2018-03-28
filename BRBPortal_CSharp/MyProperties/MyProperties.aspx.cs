@@ -58,7 +58,7 @@ namespace BRBPortal_CSharp.MyProperties
 
             if (e.CommandName.Equals("Select"))
             {
-                Response.Redirect("~/MyProperties/MyUnits", true);
+                Response.Redirect("~/MyProperties/MyUnits");
             }
         }
 

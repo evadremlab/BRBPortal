@@ -55,17 +55,18 @@ namespace BRBPortal_CSharp.Account
 
                     if (BRBFunctions_CSharp.Register(profile))
                     {
-                        Response.Redirect("~/Account/Login.aspx", true);
+                        Response.Redirect("~/Account/Login");
                     }
                     else
                     {
-                        Master.ShowDialogOK(BRBFunctions_CSharp.iErrMsg, "Registration Error");
+                        Logger.Log("Register", BRBFunctions_CSharp.iErrMsg);
+                        Master.ShowDialogOK("Error during registration(1).", "Registration");
                     }
                 }
                 catch (Exception ex)
                 {
                     Logger.LogException("Register", ex);
-                    Master.ShowDialogOK(ex.Message, "Register");
+                    Master.ShowDialogOK("Error during registration(2).", "Registration");
                 }
             }
         }

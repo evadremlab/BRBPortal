@@ -277,6 +277,7 @@
     <Content Include="StaticData\GetUserProperties_Response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="StaticData\ProfileConfirm_Request.xml" />
     <Content Include="StaticData\SaveCart_Request.xml" />
     <Content Include="StaticData\SaveCart_Response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
