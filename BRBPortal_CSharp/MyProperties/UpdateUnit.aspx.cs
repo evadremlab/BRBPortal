@@ -29,13 +29,19 @@ namespace BRBPortal_CSharp.MyProperties
                     UnitNo.Text = unit.UnitNo;
                     UnitStatus.Text = unit.ClientPortalUnitStatusCode;
                     ExemptReas.Text = unit.ExemptionReason;
-                    //UnitStartDt.Text = unit.StartDt.ToString("tbd");
+
+                    if (unit.StartDt.HasValue)
+                    {
+                        StartDt.Text = unit.StartDt.Value.ToString("yyyy-MM-dd");
+                    }
+
                     UnitOccBy.Text = unit.OccupiedBy;
 
-                    //NewUnit.SelectedValue = unit.UnitStatCode ???
+                    // inputs
+                    NewUnit.SelectedValue = unit.ClientPortalUnitStatusCode;
                     OtherList.SelectedValue = unit.ExemptionReason;
                     //UnitAsOfDt.Text = ???
-                    //StartDt.Text = nullable
+
                     OccupiedBy.Text = unit.OccupiedBy;
                     //ContractNo.Text = ???
                     //CommUseDesc.Text = ???
@@ -65,7 +71,7 @@ namespace BRBPortal_CSharp.MyProperties
                         CommUseGrp_Visible = false;
                         PMUnitGrp_Visible = false;
                         OwnerShrGrp_Visible = false;
-                        AsOfDtGrp_Visible = false;
+                        AsOfDtGrp_Visible = true;
                         DtStrtdGrp_Visible = false;
                         OccByGrp_Visible = false;
                         ContractGrp_Visible = false;
@@ -184,6 +190,7 @@ namespace BRBPortal_CSharp.MyProperties
                     {
                         ContractGrp.Attributes["class"] = "hidden";
                     }
+
                     if (!OtherList_Visible)
                     {
                         OtherListContainer.Attributes["class"] = "hidden";

@@ -17,9 +17,6 @@ namespace BRBPortal_CSharp.MyProperties
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            iUnitID = Session["UnitID"] as String ?? "";
-            iUnitNum = Session["UnitNo"] as String ?? "";
-
             if (IsPostBack)
             {
                 UpdateData();
@@ -37,12 +34,9 @@ namespace BRBPortal_CSharp.MyProperties
 
         private void LoadData()
         {
-            var propertyID = Session["PropertyID"] as String ?? "";
-            var propertyAddress = Session["PropAddr"] as String ?? "";
-            var propertyBalance = Session["PropBalance"] as String ?? "";
-
             var user = Master.User;
-            BRBFunctions_CSharp.GetPropertyTenants(ref user, propertyID, iUnitID);
+
+            BRBFunctions_CSharp.GetPropertyTenants(ref user);
 
             if (user.CurrentUnit.Tenants.Count == 0)
             {
@@ -65,8 +59,8 @@ namespace BRBPortal_CSharp.MyProperties
             Master.UpdateSession(user);
 
             MainAddress.Text = user.CurrentProperty.MainStreetAddress;
-            UnitNo.Text = iUnitNum;
-            BalAmt.Text = propertyBalance;
+            UnitNo.Text = user.CurrentUnit.UnitNo;
+            BalAmt.Text = user.CurrentProperty.Balance.ToString("C");
 
             UnitStat.Text = user.CurrentProperty.Units[0].ClientPortalUnitStatusCode;
             HouseServs.Text = user.CurrentUnit.HServices;

@@ -103,7 +103,7 @@ namespace BRBPortal_CSharp.Account
             {
                 Master.UpdateSession(user);
 
-                Response.Redirect("~/Account/ProfileList");
+                Response.Redirect("~/Account/ProfileList", false);
             }
             else
             {
@@ -113,7 +113,7 @@ namespace BRBPortal_CSharp.Account
 
         protected void CancelEdit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Account/ProfileList");
+            Response.Redirect("~/Account/ProfileList", false);
         }
     }
 }

@@ -97,7 +97,7 @@
                 <asp:Label runat="server" AssociatedControlID="DeclareInits" CssClass="col-md-2 control-label">Declaration initials: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="DeclareInits" Width="70px" CssClass="form-control" ToolTip="Enter your initials acknowledging the Declaration above." />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Quest1" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="DeclareInits" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">

@@ -27,12 +27,12 @@ namespace BRBPortal_CSharp.Account
 
         protected void EditProfile_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Account/ProfileEdit");
+            Response.Redirect("~/Account/ProfileEdit", false);
         }
 
         protected void CancelList_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Home");
+            Response.Redirect("~/Home", false);
         }
     }
 }

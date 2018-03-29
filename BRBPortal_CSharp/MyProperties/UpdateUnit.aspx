@@ -119,15 +119,14 @@
                                 <asp:ListItem Enabled="true" Text="No" Value="No"></asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="CommResYN" CssClass="control-label">Is the unit used exclusively for commercial use?</asp:Label>
-                        <div class="radio radiobuttonlist" style="display:inline-block;">
-                            <asp:RadioButtonList runat="server" ID="CommResYN" RepeatDirection="Horizontal" ToolTip="Select Yes or No." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
-                                <asp:ListItem Enabled="true" Text="Yes" Value="Yes"></asp:ListItem>
-                                <asp:ListItem Enabled="true" Text="No" Value="No"></asp:ListItem>
-                            </asp:RadioButtonList>
+                        <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="CommResYN" CssClass="control-label">Is the unit used exclusively for commercial use?</asp:Label>
+                            <div class="radio radiobuttonlist" style="display:inline-block;">
+                                <asp:RadioButtonList runat="server" ID="CommResYN" RepeatDirection="Horizontal" ToolTip="Select Yes or No." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
+                                    <asp:ListItem Enabled="true" Text="Yes" Value="Yes"></asp:ListItem>
+                                    <asp:ListItem Enabled="true" Text="No" Value="No"></asp:ListItem>
+                                </asp:RadioButtonList>
+                            </div>
                         </div>
                     </div>
 
@@ -213,6 +212,7 @@
 
         $(document).ready(function () {
             function _setExemptReasonFields() {
+                debugger;
                 switch ($('#MainContent_ExemptReason input:checked').val()) {
                     case "NAR": // Vacant and not available for rent
                         $('#MainContent_ExemptGroup').removeClass('hidden');

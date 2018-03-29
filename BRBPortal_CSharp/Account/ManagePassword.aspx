@@ -15,7 +15,7 @@
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="CurrentPassword" CssClass="col-md-2 control-label">Current password:</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="CurrentPassword" TextMode="Password" CssClass="form-control" data-lpignore="true" />
+                    <asp:TextBox runat="server" ID="CurrentPassword" TextMode="SingleLine" CssClass="form-control" data-lpignore="true" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="CurrentPassword" CssClass="text-danger" ErrorMessage="required" />
                 </div>
             </div>
@@ -23,7 +23,7 @@
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="NewPWD" CssClass="col-md-2 control-label">New password:</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="NewPWD" TextMode="Password" CssClass="form-control" xxx-pattern="(?=.*[0-9])(?=.*[!@#$%^&_*])[a-zA-Z0-9!@#$%^&_*]{7,20}" title="Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id" data-lpignore="true" />
+                    <asp:TextBox runat="server" ID="NewPWD" TextMode="SingleLine" CssClass="form-control" xxx-pattern="(?=.*[0-9])(?=.*[!@#$%^&_*])[a-zA-Z0-9!@#$%^&_*]{7,20}" title="Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id" data-lpignore="true" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="NewPWD" CssClass="text-danger" ErrorMessage="required" />
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="ConfirmNewPassword" CssClass="col-md-2 control-label">Confirm new password:</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="ConfirmNewPassword" TextMode="Password" CssClass="form-control" xxx-pattern="(?=.*[0-9])(?=.*[!@#$%^&_*])[a-zA-Z0-9!@#$%^&_*]{7,20}" title="Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id" data-lpignore="true" />
+                    <asp:TextBox runat="server" ID="ConfirmNewPassword" TextMode="SingleLine" CssClass="form-control" xxx-pattern="(?=.*[0-9])(?=.*[!@#$%^&_*])[a-zA-Z0-9!@#$%^&_*]{7,20}" title="Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id" data-lpignore="true" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmNewPassword" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                     <asp:CompareValidator runat="server" ControlToCompare="NewPWD" ControlToValidate="ConfirmNewPassword" CssClass="text-danger" Display="Dynamic" ErrorMessage="New and Confirmation Password do not match." />
                 </div>

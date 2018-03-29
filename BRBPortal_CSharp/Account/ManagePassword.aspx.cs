@@ -42,7 +42,7 @@ namespace BRBPortal_CSharp.Account
                 return;
             }
 
-            if (!BRBFunctions_CSharp.UpdatePassword(user, CurrentPassword.Text.EscapeXMLChars(), NewPWD.Text.EscapeXMLChars(), ConfirmNewPassword.Text.EscapeXMLChars()))
+            if (!BRBFunctions_CSharp.UpdatePassword(user, CurrentPassword.Text, NewPWD.Text, ConfirmNewPassword.Text))
             {
                 Master.ShowDialogOK("Error changing password: " + BRBFunctions_CSharp.iErrMsg, "Change Password");
                 return;
@@ -56,15 +56,15 @@ namespace BRBPortal_CSharp.Account
 
             if (Session["NextPage"].ToString() == "ProfileConfirm")
             {
-                Response.Redirect("~/Account/ProfileConfirm");
+                Response.Redirect("~/Account/ProfileConfirm", false);
             }
             else if (Session["NextPage"].ToString() == "ProfileList")
             {
-                Response.Redirect("~/Account/ProfileList");
+                Response.Redirect("~/Account/ProfileList", false);
             }
             else
             {
-                Response.Redirect("~/Home");
+                Response.Redirect("~/Home", false);
             }
         }
     }

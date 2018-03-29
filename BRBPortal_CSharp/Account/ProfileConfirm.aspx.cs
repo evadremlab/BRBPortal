@@ -55,7 +55,7 @@ namespace BRBPortal_CSharp.Account
             {
                 if (BRBFunctions_CSharp.ConfirmProfile(user))
                 {
-                    Response.Redirect("~/Home");
+                    Response.Redirect("~/Home", false);
                 }
                 else
                 {
@@ -78,7 +78,7 @@ namespace BRBPortal_CSharp.Account
 
                 Session.RemoveAll();
 
-                Response.Redirect("~/Account/Login");
+                Response.Redirect("~/Account/Login", false);
             }
             catch (Exception ex)
             {

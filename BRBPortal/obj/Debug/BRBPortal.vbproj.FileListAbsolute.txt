@@ -293,15 +293,12 @@ C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\Microsoft.Win32.Primitives.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.AppContext.dll
-C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Collections.Immutable.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Console.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Diagnostics.Process.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Diagnostics.StackTrace.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.Compression.dll
-C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.FileSystem.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
-C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.Pipes.AccessControl.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.Pipes.dll
 C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Reflection.Metadata.dll

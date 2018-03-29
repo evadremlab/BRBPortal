@@ -74,7 +74,7 @@ namespace BRBPortal_CSharp
         protected void CancelCart_Click(object sender, EventArgs e)
         {
             Session["FeesAll"] = "AllFees";
-            Response.Redirect("~/MyProperties/MyProperties");
+            Response.Redirect("~/MyProperties/MyProperties", false);
         }
 
         protected void PayCart_Click(object sender, EventArgs e)
@@ -90,7 +90,7 @@ namespace BRBPortal_CSharp
                     if (user.Cart.ID.HasValue)
                     {
                         Master.UpdateSession(user);
-                        Response.Redirect("~/ConfirmPayment");
+                        Response.Redirect("~/ConfirmPayment", false);
                     }
                     else
                     {
@@ -110,7 +110,7 @@ namespace BRBPortal_CSharp
 
         protected void EditCart_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/EditCart");
+            Response.Redirect("~/EditCart", false);
         }
 
         protected void gvCart_PageIndexChanging(object sender, GridViewPageEventArgs e)

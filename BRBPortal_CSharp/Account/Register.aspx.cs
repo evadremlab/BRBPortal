@@ -30,32 +30,32 @@ namespace BRBPortal_CSharp.Account
                         }
                     }
 
-                    var profile = new UserProfile
+                    var user = Master.User;
+
+                    user.UserCode = ReqUserID.Text.ToUpper();
+                    user.BillingCode = BillCode.Text.ToUpper();
+                    user.Relationship = PropRelate.Text; // Owner or Agency
+
+                    // Owner fields
+                    user.LastName = LastName.Text.ToUpper();
+
+                    // Agency fields
+                    user.AgencyName = AgencyName.Text.ToUpper();
+                    user.PropertyOwnerLastName = PropOwnLastName.Text.ToUpper();
+
+                    user.StreetNumber = StNum.Text.ToUpper();
+                    user.StreetName = StName.Text.ToUpper();
+                    user.City = StCity.Text.ToUpper();
+                    user.StateCode = StState.Text.ToUpper();
+
+                    user.Email = EmailAddress.Text.ToUpper();
+                    user.PhoneNumber = PhoneNo.Text.ToUpper();
+                    user.PropertyAddress = PropAddress.Text.ToUpper();
+
+                    if (BRBFunctions_CSharp.Register(ref user))
                     {
-                        UserCode = ReqUserID.Text.ToUpper(),
-                        BillingCode = BillCode.Text.ToUpper(),
-                        Relationship = PropRelate.Text, // Owner or Agency
-
-                        // Owner fields
-                        LastName = LastName.Text.ToUpper(),
-
-                        // Agency fields
-                        AgencyName = AgencyName.Text.ToUpper(),
-                        PropertyOwnerLastName = PropOwnLastName.Text.ToUpper(),
-
-                        StreetNumber = StNum.Text.ToUpper(),
-                        StreetName = StName.Text.ToUpper(),
-                        City = StCity.Text.ToUpper(),
-                        State = StState.Text.ToUpper(),
-
-                        Email = EmailAddress.Text.ToUpper(),
-                        PhoneNo = PhoneNo.Text.ToUpper(),
-                        PropertyAddress = PropAddress.Text.ToUpper()
-                    };
-
-                    if (BRBFunctions_CSharp.Register(profile))
-                    {
-                        Response.Redirect("~/Account/Login");
+                        Master.UpdateSession(user);
+                        Response.Redirect("~/Account/ManagePassword", false);
                     }
                     else
                     {
