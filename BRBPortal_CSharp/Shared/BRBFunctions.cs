@@ -238,7 +238,7 @@ namespace BRBPortal_CSharp
                 //soapRequest.Body.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", user.Answer1.EscapeXMLChars());
                 //soapRequest.Body.AppendFormat("<securityQuestion2>{0}</securityQuestion2>", user.Question2.EscapeXMLChars());
                 //soapRequest.Body.AppendFormat("<securityAnswer2>{0}</securityAnswer2>", user.Answer2.EscapeXMLChars());
-                soapRequest.Body.AppendFormat("<declarationInitial>?</declarationInitial>", SafeString(user.DeclarationInitials));
+                soapRequest.Body.AppendFormat("<declarationInitial>{0}</declarationInitial>", SafeString(user.DeclarationInitials));
                 soapRequest.Body.Append("</profileConfirmationReq>");
                 soapRequest.Body.Append("</api:confirmProfileInformation>");
                 var xmlDoc = GetXmlResponse(soapRequest);
@@ -327,8 +327,8 @@ namespace BRBPortal_CSharp
             {
                 soapRequest.Body.Append("<api:getProfileDetails>");
                 soapRequest.Body.Append("<request>");
-                soapRequest.Body.AppendFormat("<!--Optional:--><userId>{0}</userId>", SafeString(user.UserCode));
-                soapRequest.Body.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", SafeString(user.BillingCode));
+                soapRequest.Body.AppendFormat("<!--Optional:--><userId>{0}</userId>", SafeString(user.UserCode, defaultValue: "?"));
+                soapRequest.Body.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", SafeString(user.BillingCode, defaultValue: "?"));
                 soapRequest.Body.Append("</request>");
                 soapRequest.Body.Append("</api:getProfileDetails>");
 
@@ -343,7 +343,7 @@ namespace BRBPortal_CSharp
                             user.BillingCode = detail.SelectSingleNode("billingCode").InnerText;
                             user.Relationship = detail.SelectSingleNode("relationship").InnerText;
 
-                            // Name
+                             // Name
 
                             user.FirstName = detailName.SelectSingleNode("first").InnerText.UnescapeXMLChars();
                             user.LastName = detailName.SelectSingleNode("last").InnerText.UnescapeXMLChars();
@@ -436,7 +436,7 @@ namespace BRBPortal_CSharp
                 soapRequest.Body.AppendFormat("<!--Optional:--><country>{0}</country>", SafeString(user.Country));
                 soapRequest.Body.Append("</mailingAddress>");
                 soapRequest.Body.AppendFormat("<emailAddress>{0}</emailAddress>", SafeString(user.Email));
-                soapRequest.Body.Append("<phone>?</phone>");
+                soapRequest.Body.AppendFormat("<phone>{0}</phone>", user.PhoneNumber);
                 soapRequest.Body.AppendFormat("<securityQuestion1>{0}</securityQuestion1>", SafeString(user.Question1));
                 soapRequest.Body.AppendFormat("<securityAnswer1>{0}</securityAnswer1>", SafeString(user.Answer1));
                 soapRequest.Body.AppendFormat("<securityQuestion2>{0}</securityQuestion2>", SafeString(user.Question2));
@@ -505,7 +505,7 @@ namespace BRBPortal_CSharp
                 soapRequest.Body.Append("<!--Optional:--><country></country>");
                 soapRequest.Body.Append("</mailingAddress>");
                 soapRequest.Body.AppendFormat("<emailAddress>{0}</emailAddress>", SafeString(user.Email));
-                soapRequest.Body.AppendFormat("<phone>?</phone>", SafeString(user.PhoneNumber));
+                soapRequest.Body.AppendFormat("<phone>{0}</phone>", SafeString(user.PhoneNumber));
                 soapRequest.Body.Append("<securityQuestion1></securityQuestion1>");
                 soapRequest.Body.Append("<securityAnswer1></securityAnswer1>");
                 soapRequest.Body.Append("<securityQuestion2></securityQuestion2>");
@@ -1037,13 +1037,38 @@ namespace BRBPortal_CSharp
                 soapRequest.Body.AppendFormat("<userId>{0}</userId>", user.UserCode);
                 soapRequest.Body.AppendFormat("<propertyId>{0}</propertyId>", user.CurrentProperty.PropertyID);
                 soapRequest.Body.AppendFormat("<unitId>{0}</unitId>", user.CurrentTenant.TenantID);
-                soapRequest.Body.AppendFormat("<clientPortalUnitStatusCode>{0}</clientPortalUnitStatusCode>", user.CurrentUnit.ClientPortalUnitStatusCode);
-                soapRequest.Body.AppendFormat("<unitStatus>{0}</unitStatus>", user.CurrentUnit.UnitStatCode); // ???
-                soapRequest.Body.AppendFormat("<!--Optional:--><exemptionReason>{0}</exemptionReason>", user.CurrentUnit.ExemptionReason);
-                soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", user.CurrentUnit.StartDt);
-                soapRequest.Body.AppendFormat("<declarationInitial>{0}</declarationInitial>", ""); // TODO
+                soapRequest.Body.AppendFormat("<clientPortalUnitStatusCode>{0}</clientPortalUnitStatusCode>", ""); // TODO: from NewUnit radio
+                soapRequest.Body.AppendFormat("<unitStatus>{0}</unitStatus>", user.CurrentUnit.UnitStatCode); // TODO: from NewUnit radio
+
+                var exemptionReason = "";
+                if (true) // NewUnit == "Exempt"
+                {
+                    if (user.CurrentUnit.ExemptionReason == "OTHER")
+                    {
+                        exemptionReason = ""; // TODO OtherList.SeletedValue
+                    }
+                    else
+                    {
+                        exemptionReason = user.CurrentUnit.ExemptionReason;
+                    }
+                }
+                soapRequest.Body.AppendFormat("<!--Optional:--><exemptionReason>{0}</exemptionReason>", exemptionReason);
+
+                var asOfDate = "";
+                if (true) // AsOfDate .HasValue
+                {
+                    asOfDate = DateTime.Now.ToString("MM/dd/yyyy");
+                    // user.CurrentUnit.StartDt ??? UnitAsOfDt.Text).ToString("MM/dd/yyyy")
+                }
+                soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", asOfDate);
+
+                soapRequest.Body.AppendFormat("<declarationInitial>{0}</declarationInitial>", ""); // TODO declaration initials
+
                 soapRequest.Body.Append("<questions>");
-                soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", user.CurrentUnit.StartDt);
+
+                // date we got initials ToString("MM/dd/yyyy")
+                soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", ""); // TODO
+
                 soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", "from form");
                 soapRequest.Body.AppendFormat("<!--Optional:--><occupiedBy>{0}</occupiedBy>", user.CurrentUnit.OccupiedBy);
                 soapRequest.Body.AppendFormat("<!--Optional:--><contractNo>{0}</contractNo>", ""); // TODO
@@ -1287,9 +1312,9 @@ namespace BRBPortal_CSharp
             return RetValue;
         }
 
-        private static string SafeString(string str)
+        private static string SafeString(string str, string defaultValue = "")
         {
-            return string.IsNullOrEmpty(str) ? "" : str.EscapeXMLChars();
+            return string.IsNullOrEmpty(str) ? defaultValue : str.EscapeXMLChars();
         }
 
         /// <summary>

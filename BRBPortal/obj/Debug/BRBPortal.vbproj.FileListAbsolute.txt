@@ -396,3 +396,6 @@ C:\Projects\BRBPortal\BRBPortal\obj\Debug\BRBPortal.vbproj.GenerateResource.Cach
 C:\Projects\BRBPortal\BRBPortal\obj\Debug\BRBPortal.dll
 C:\Projects\BRBPortal\BRBPortal\obj\Debug\WebForms_Basic.xml
 C:\Projects\BRBPortal\BRBPortal\obj\Debug\BRBPortal.pdb
+C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.Collections.Immutable.dll
+C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.FileSystem.dll
+C:\Projects\BRBPortal\BRBPortal\bin\roslyn\System.IO.FileSystem.Primitives.dll
