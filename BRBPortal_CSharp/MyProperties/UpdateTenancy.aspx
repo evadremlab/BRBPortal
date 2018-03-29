@@ -7,9 +7,13 @@
     <asp:HiddenField ID="hfOrigTenStDt" runat="server" />
     <asp:HiddenField ID="hfOwnerEmail" runat="server" />
 
-    <div class="form-horizontal" style="width: 809px; height: 1200px; padding-left:30px" >
+    <h2>Update Tenancy</h2>
+    <h4>is under construction</h4>
+    <hr />
+
+    <div class="form-horizontal" style="width: 809px; height: 1200px; padding-left:30px; display:none;" >
         <div class="form-group" style="height:40px; align-items:center">
-            <h4>Update Tenancy</h4>
+
         </div>
 
         <div class="form-group" style="padding-left:10px; height:142px"  >

@@ -50,7 +50,7 @@
                             <ItemStyle Wrap="False" />
                         </asp:BoundField>
                         <asp:BoundField HeaderText="Unit No" DataField="UnitNo" ReadOnly="True" />
-                        <asp:BoundField DataField="CPUnitStatDisp" HeaderText="Unit Status" ReadOnly="True" SortExpression="UnitStatCode">
+                        <asp:BoundField DataField="ClientPortalUnitStatusCode" HeaderText="Unit Status" ReadOnly="True" SortExpression="ClientPortalUnitStatusCode">
                             <ItemStyle Wrap="False" />
                         </asp:BoundField>
                         <asp:BoundField HeaderText="Rent Ceiling" DataField="RentCeiling" SortExpression="RentCeiling" DataFormatString="{0:c}" ReadOnly="True">

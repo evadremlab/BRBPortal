@@ -55,7 +55,21 @@ namespace BRBPortal_CSharp.MyProperties
 
                 AgentSection.Visible = !string.IsNullOrEmpty(MgrName.Text);
 
-                UnitStatusDescription.Text = "Out of 5 units for this property, you have 2 units in Rented and 3 in Exempt";
+                var totalRented = 0;
+                var totalExempt = 0;
+
+                foreach(var unit in user.CurrentProperty.Units)
+                {
+                    if (unit.ClientPortalUnitStatusCode == "Rented")
+                    {
+                        totalRented++;
+                    }
+                    else if (unit.ClientPortalUnitStatusCode == "Rented")
+                    {
+                        totalExempt++;
+                    }
+                }
+                UnitStatusDescription.Text = string.Format("Out of {0} units for this property, you have {1} units in Rented and {2} in Exempt", totalRented + totalExempt, totalRented, totalExempt);
             }
         }
 

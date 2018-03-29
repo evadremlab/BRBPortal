@@ -2,8 +2,11 @@
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-
-
+    <h2>Confirm Payment</h2>
+    <h4>is under construction</h4>
+    <hr />
+    <p>Submit button posts to the payment gateway.</p>
+    <p>This page will be updated to show payment details.</p>
 
     <input type="hidden" name="lockAmount" value="true" />
     <input type="hidden" name="productId" value="24241003506464897434114212714156124" />

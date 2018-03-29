@@ -46,23 +46,22 @@ namespace BRBPortal_CSharp
                 {
                     btnEdCart.Enabled = true;
                     btnPayCart.Enabled = true;
-                    ShowFeesAll.Text = "ShowFeesAll is under construction";
 
-                    //if (user.FeesAll == null)
-                    //{
-                    //    ShowFeesAll.Text = "All Fees and Penalties";
-                    //}
-                    //else
-                    //{
-                    //    if (Session["FeesAll"].ToString() == "AllFees" || Session["FeesAll"].ToString() == "")
-                    //    {
-                    //        ShowFeesAll.Text = "All Fees and Penalties";
-                    //    }
-                    //    else
-                    //    {
-                    //        ShowFeesAll.Text = "Fees Only";
-                    //    }
-                    //}
+                    if (string.IsNullOrEmpty(user.FeesAll))
+                    {
+                        ShowFeesAll.Text = "All Fees and Penalties";
+                    }
+                    else
+                    {
+                        if (user.FeesAll == "AllFees")
+                        {
+                            ShowFeesAll.Text = "All Fees and Penalties";
+                        }
+                        else
+                        {
+                            ShowFeesAll.Text = "Fees Only";
+                        }
+                    }
                 }
             }
             catch (Exception ex)
