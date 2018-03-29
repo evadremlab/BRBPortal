@@ -26,6 +26,12 @@ namespace BRBPortal_CSharp
             {
                 this.CartID = user.Cart.ID.Value;
                 this.BillingCode = user.BillingCode;
+                this.PaymentAmount = user.Cart.PaymentAmount;
+
+                if (this.PaymentAmount == 0)
+                {
+                    this.PaymentAmount = 10.0M;
+                }
 
             }
             else

@@ -82,8 +82,6 @@ namespace BRBPortal_CSharp
             {
                 var user = Master.User;
 
-                // TODO: what if they already have a Cart ID?
-
                 if (BRBFunctions_CSharp.SaveCart(user))
                 {
                     if (user.Cart.ID.HasValue)

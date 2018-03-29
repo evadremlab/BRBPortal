@@ -17,19 +17,18 @@
     <input type="hidden" name="cde-CartID-17" value="" />
     <input type="hidden" name="cde-BillingCode-1" value="" />
     <input type="hidden" name="paymentAmount" value="" />
-    <button id="btnSubmit" runat="server" type="submit" class="btn btn-primary">Submit</button>
+    <button id="btnSubmit" runat="server" type="button" class="btn btn-primary">Submit</button>
     <script>
         $(document).ready(function () {
-            $('#btnSubmit').click(function (evt) { // hijack the asp.net form
+            $('#MainContent_btnSubmit').click(function (evt) { // hijack the asp.net form
                 evt.preventDefault();
 
-                $('#aspForm')
-                    .prop('action', 'https://staging.officialpayments.com/pc_entry_cobrand.jsp')
-                    .find('input[name="cde-CartID-17"]').val(<%: CartID %>)
-                    .find('input[cde-BillingCode-1]').val('<%: BillingCode %>')
-                    .find('input[paymentAmount]').val(<%: PaymentAmount %>)
-                    .find('.aspNetHidden').remove() // delete ASP.NET generated fields
-                    .submit();
+                $('#aspForm').prop('action', 'https://staging.officialpayments.com/pc_entry_cobrand.jsp');
+                $('#aspForm').find('input[name="cde-CartID-17"]').val('<%: CartID %>');
+                $('#aspForm').find('input[name="cde-BillingCode-1"]').val('<%: BillingCode %>');
+                $('#aspForm').find('input[name="paymentAmount"]').val('<%: PaymentAmount %>');
+                $('#aspForm').find('.aspNetHidden').remove(); // delete ASP.NET generated fields
+                $('#aspForm').submit();
             });
         });
     </script>
