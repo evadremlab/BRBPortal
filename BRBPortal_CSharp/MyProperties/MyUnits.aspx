@@ -16,6 +16,12 @@
                     <asp:Literal ID="CurrFee" runat="server" ></asp:Literal>
                     <asp:Label runat="server" AssociatedControlID="Balance" CssClass="control-label" style="margin-left:2rem;">Balance:</asp:Label>
                     <asp:Literal ID="Balance" runat="server" ></asp:Literal>
+                    <asp:Button runat="server" id="btnAddCart" OnClick="AddCart_Click"  Text="Add to Cart" CssClass="btn btn-primary" ToolTip="Add to cart." TabIndex="-1" style="margin-left:1rem;" />
+                </div>
+                <div class="form-group">
+                    <b>
+                        <asp:Literal ID="UnitStatusDescription" runat="server"></asp:Literal>
+                    </b>
                 </div>
                 <asp:PlaceHolder ID="AgentSection" runat="server">
                     <div class="form-group">
@@ -24,11 +30,9 @@
                     </div>
                 </asp:PlaceHolder>
                 <div class="form-group">
+                <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="BillingAddress" CssClass="control-label">Billing Address:</asp:Label>
                     <asp:Literal ID="BillingAddress" runat="server" ></asp:Literal>
-                </div>
-                <div class="form-group">
-                    <asp:Button runat="server" id="btnAddCart" OnClick="AddCart_Click"  Text="Add to Cart" CssClass="btn btn-primary" ToolTip="Add to cart." TabIndex="-1" />
                 </div>
             </div>
             <div class="form-group">

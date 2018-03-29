@@ -54,6 +54,8 @@ namespace BRBPortal_CSharp.MyProperties
                 MgrName.Text = user.AgencyName;
 
                 AgentSection.Visible = !string.IsNullOrEmpty(MgrName.Text);
+
+                UnitStatusDescription.Text = "Out of 5 units for this property, you have 2 units in Rented and 3 in Exempt";
             }
         }
 

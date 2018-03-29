@@ -11,11 +11,6 @@
     <section id="loginForm">
         <div class="form-horizontal">
             <hr />
-            <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
-                <div class="alert alert-danger" role="alert">
-                    <asp:Literal runat="server" ID="FailureText" />
-                </div>
-            </asp:PlaceHolder>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <div class="radio radiobuttonlist" style="padding-top:0; padding-left:0;">

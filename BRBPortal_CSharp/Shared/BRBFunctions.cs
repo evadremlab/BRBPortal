@@ -653,6 +653,8 @@ namespace BRBPortal_CSharp
 
                 foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("propertyAndUnitsRes"))
                 {
+                    user.CurrentProperty.BillingAddress = detail.SelectSingleNode("billingDetails").SelectSingleNode("billingAddress").SelectSingleNode("mainStreetAddress").InnerText;
+
                     foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
                     {
                         DateTime startDate = DateTime.MinValue;

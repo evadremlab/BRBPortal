@@ -1,4 +1,6 @@
-﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
+﻿<soapenv:Envelope
+    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
   <soapenv:Header/>
   <soapenv:Body>
     <api:updateUnitStatusChange>
@@ -6,11 +8,11 @@
         <userId>DAVE02</userId>
         <propertyId>1968</propertyId>
         <unitId>7773</unitId>
-        <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
-        <unitStatus>Rented</unitStatus>
+        <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
+        <unitStatus>Exempt</unitStatus>
         <!--Optional:-->
-        <exemptionReason></exemptionReason>
-        <unitStatusAsOfDate>03/29/2018</unitStatusAsOfDate>
+        <exemptionReason>NAR</exemptionReason>
+        <unitStatusAsOfDate>03/31/2018</unitStatusAsOfDate>
         <declarationInitial>DBB</declarationInitial>
         <questions>
           <!--Optional:-->

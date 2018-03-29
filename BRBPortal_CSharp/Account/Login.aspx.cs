@@ -69,24 +69,21 @@ namespace BRBPortal_CSharp.Account
                         }
                         else
                         {
-                            FailureText.Text = "Invalid login attempt (UserProfile)";
-                            ErrorMessage.Visible = true;
                             Session.Clear();
+                            Master.ShowDialogOK(BRBFunctions_CSharp.iErrMsg, "Login Error");
                         }
                     }
                     else
                     {
-                        FailureText.Text = "Invalid login attempt (Authentication)";
-                        ErrorMessage.Visible = true;
                         Session.Clear();
+                        Master.ShowDialogOK(BRBFunctions_CSharp.iErrMsg, "Login Error");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Logger.LogException("Login", ex);
-                    FailureText.Text = "Invalid login attempt (Exception)";
-                    ErrorMessage.Visible = true;
                     Session.Clear();
+                    Logger.LogException("Login", ex);
+                    Master.ShowDialogOK(ex.Message, "Login Error");
                 }
             }
         }
