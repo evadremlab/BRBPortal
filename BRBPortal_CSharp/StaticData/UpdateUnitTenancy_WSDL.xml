@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="UpdateUnitTenancy" targetNamespace="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:tns="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <xsd:element name="updateUnitTenancy" type="tns:updateUnitTenancy"/>
+          <xsd:element name="updateUnitTenancyResponse" type="tns:updateUnitTenancyResponse"/>
+          <xsd:complexType name="updateUnitTenancy">
+            <xsd:sequence>
+              <xsd:element name="unitTenancyUpdateReq" nillable="true" type="tns:UnitTenancyUpdate"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="UnitTenancyUpdate">
+            <xsd:sequence>
+              <xsd:element name="userId" nillable="true" type="xsd:string"/>
+              <xsd:element name="propertyId" nillable="true" type="xsd:string"/>
+              <xsd:element name="unitId" nillable="true" type="xsd:string"/>
+              <xsd:element name="unitStatus" nillable="true" type="xsd:string"/>
+              <xsd:element name="initialRent" nillable="true" type="xsd:string"/>
+              <xsd:element name="tenancyStartDate" nillable="true" type="xsd:string"/>
+              <xsd:element name="priorTenancyEndDate" nillable="true" type="xsd:string"/>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="housingServices" nillable="true" type="tns:housingServices"/>
+              <xsd:element minOccurs="0" name="otherHousingService" nillable="true" type="xsd:string"/>
+              <xsd:element name="noOfTenants" nillable="true" type="xsd:string"/>
+              <xsd:element name="smokingProhibitionInLeaseStatus" nillable="true" type="xsd:string"/>
+              <xsd:element name="smokingProhibitionEffectiveDate" nillable="true" type="xsd:string"/>
+              <xsd:element name="reasonForTermination" nillable="true" type="xsd:string"/>
+              <xsd:element name="otherReasonForTermination" nillable="true" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="explainInvoluntaryTermination" nillable="true" type="xsd:string"/>
+              <xsd:element maxOccurs="unbounded" name="tenants" nillable="true" type="tns:Contact"/>
+              <xsd:element name="declarationInitial" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="housingServices">
+            <xsd:sequence>
+              <xsd:element name="serviceName" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="Contact">
+            <xsd:sequence>
+              <xsd:element name="code" nillable="true" type="xsd:string"/>
+              <xsd:element name="name" nillable="true" type="tns:Name"/>
+              <xsd:element name="phoneNumber" nillable="true" type="xsd:string"/>
+              <xsd:element name="emailAddress" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="Name">
+            <xsd:sequence>
+              <xsd:element name="first" nillable="true" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="middle" nillable="true" type="xsd:string"/>
+              <xsd:element name="last" nillable="true" type="xsd:string"/>
+              <xsd:element name="suffix" nillable="true" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="nameLastFirstDisplay" nillable="true" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="agencyName" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="updateUnitTenancyResponse">
+            <xsd:sequence>
+              <xsd:element name="response" nillable="true" type="tns:Response"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="Response">
+            <xsd:sequence>
+              <xsd:element name="status" nillable="true" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="errorMsg" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        	</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="UpdateUnitTenancy_PortType_updateUnitTenancyResponse">
+    <wsdl:part name="parameters" element="tns:updateUnitTenancyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UpdateUnitTenancy_PortType_updateUnitTenancy">
+    <wsdl:part name="parameters" element="tns:updateUnitTenancy">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UpdateUnitTenancy_PortType">
+    <wsdl:operation name="updateUnitTenancy">
+      <wsdl:input message="tns:UpdateUnitTenancy_PortType_updateUnitTenancy">
+    </wsdl:input>
+      <wsdl:output message="tns:UpdateUnitTenancy_PortType_updateUnitTenancyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Binder" type="tns:UpdateUnitTenancy_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="updateUnitTenancy">
+      <soap:operation soapAction="RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Binder_updateUnitTenancy" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RTSClientPortalAPI.API.WSD.UpdateUnitTenancy">
+    <wsdl:port name="RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Port" binding="tns:RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Binder">
+      <soap:address location="http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.UpdateUnitTenancy/RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -39,19 +40,28 @@ namespace BRBPortal_CSharp.MyProperties
 
                     // inputs
                     NewUnit.SelectedValue = unit.ClientPortalUnitStatusCode;
-                    OtherList.SelectedValue = unit.ExemptionReason;
-                    //UnitAsOfDt.Text = ???
+                    OtherList.SelectedValue = unit.ClientPortalUnitStatusCode; // TODO: see if we get Other back
 
+
+                    // inputs
+
+                    StartDt.Text = unit.StartDt.HasValue ? unit.StartDt.Value.ToString("yyyy-MM-dd") : "";
+                    NewUnit.SelectedValue = unit.ClientPortalUnitStatusCode;
+                    ExemptReason.Text = unit.ExemptionReason;
+                    UnitAsOfDt.Text = unit.UnitAsOfDt.HasValue ? unit.UnitAsOfDt.Value.ToString("yyyy-MM-dd") : "";
                     OccupiedBy.Text = unit.OccupiedBy;
-                    //ContractNo.Text = ???
-                    //CommUseDesc.Text = ???
-                    //CommResYN.SelectedValue = ???
-                    //PropMgrName.Text = ???
-                    //PrincResYN.SelectedValue = ???
-                    //MultiUnitYN.SelectedValue = ???
-                    //OtherUnits.Text = ???
-                    //TenantNames.Text = unit.Tenants; // join
-                    //TenantContacts same
+                    ContractNo.Text = unit.ContractNo;
+                    CommUseDesc.Text = unit.CommUseDesc;
+                    CommResYN.SelectedValue = unit.CommResYN;
+                    CommZoneUse.Text = unit.CommZoneUse;
+                    PropMgrName.Text = unit.PropMgrName;
+                    PMEmailPhone.Text = unit.PMEmailPhone;
+                    PrincResYN.SelectedValue = unit.PrincResYN;
+                    MultiUnitYN.SelectedValue = unit.MultiUnitYN;
+                    OtherUnits.Text = unit.OtherUnits;
+                    TenantNames.Text = unit.TenantNames;
+                    TenantContacts.Text = unit.TenantContacts;
+                    DeclareInits.Text = unit.DeclarationInitials;
 
                     var ExemptGroup_Visible = false;
                     var CommUseGrp_Visible = false;
@@ -203,16 +213,78 @@ namespace BRBPortal_CSharp.MyProperties
             }
         }
 
-        private void ShowDialogOK(string message, string title = "Status")
-        {
-            var jsFunction = string.Format("showOkModalOnPostback('{0}', '{1}');", message, title);
-
-            ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
-        }
-
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
-            ShowDialogOK("Update Unit is under construction", "Update Units");
+            var user = Master.User;
+            var unit = user.CurrentUnit;
+
+            // literals
+            MainAddress.Text = unit.StreetAddress;
+            UnitNo.Text = unit.UnitNo;
+            UnitStatus.Text = unit.ClientPortalUnitStatusCode;
+            ExemptReas.Text = unit.ExemptionReason;
+
+            // inputs
+
+            if (!string.IsNullOrEmpty(StartDt.Text))
+            {
+                DateTime dtStartDate = DateTime.MinValue;
+
+                if (DateTime.TryParse(StartDt.Text, out dtStartDate))
+                {
+                    unit.StartDt = dtStartDate;
+                }
+            }
+
+            unit.OccupiedBy = UnitOccBy.Text;
+            unit.ClientPortalUnitStatusCode = NewUnit.SelectedValue; // Rented or Exempt
+
+            unit.ExemptionReason = ExemptReason.Text;
+            unit.OtherExemptionReason = OtherList.SelectedValue ?? "";
+
+            if (string.IsNullOrEmpty(unit.ExemptionReason) || !Regex.IsMatch(unit.ExemptionReason, "OOCC|FREE"))
+            {
+                unit.OccupiedBy = "";
+            }
+
+            if (!string.IsNullOrEmpty(UnitAsOfDt.Text))
+            {
+                var dtChangeDate = DateTime.MinValue;
+
+                if (DateTime.TryParse(UnitAsOfDt.Text, out dtChangeDate))
+                {
+                    unit.UnitAsOfDt = dtChangeDate;
+                }
+            }
+
+            unit.ContractNo = ContractNo.Text;
+            unit.CommUseDesc = CommUseDesc.Text;
+            unit.CommResYN = CommResYN.SelectedValue ?? "";
+            unit.CommZoneUse = CommZoneUse.Text;
+            unit.PropMgrName = PropMgrName.Text;
+            unit.PMEmailPhone = PMEmailPhone.Text;
+            unit.PrincResYN = PrincResYN.SelectedValue ?? "";
+            unit.MultiUnitYN = MultiUnitYN.SelectedValue ?? "";
+            unit.OtherUnits = OtherUnits.Text;
+            unit.TenantNames = TenantNames.Text;
+            unit.TenantContacts = TenantContacts.Text;
+            unit.DeclarationInitials = DeclareInits.Text;
+
+            user.CurrentUnit = unit;
+
+            if (BRBFunctions_CSharp.SaveUnit(ref user))
+            {
+                Master.ShowDialogOK("Updated Unit Status.", "Update Unit Status");
+            }
+            else
+            {
+                if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
+                {
+                    BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
+                }
+
+                Master.ShowDialogOK("Error updating Unit Status: " + BRBFunctions_CSharp.iErrMsg, "Update Unit Status");
+            }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

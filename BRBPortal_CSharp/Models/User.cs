@@ -71,7 +71,6 @@ namespace BRBPortal_CSharp.Models
         public string Answer2 { get; set; } = "";
 
         public BRBUnit CurrentUnit { get; set; }
-        public BRBTenant CurrentTenant { get; set; }
         public BRBProperty CurrentProperty { get; set; }
 
         public BRBCart Cart { get; set; } = new BRBCart();
@@ -143,6 +142,7 @@ namespace BRBPortal_CSharp.Models
         public string BillingEmail { get; set; } = "";
 
         public List<BRBUnit> Units { get; set; } = new List<BRBUnit>();
+        public List<BRBTenant> Tenants { get; set; } = new List<BRBTenant>();
 
         public BRBCartItem ConvertToCartItem()
         {
@@ -173,8 +173,9 @@ namespace BRBPortal_CSharp.Models
         public string HServices { get; set; } = "";
         public string CPUnitStatDisp { get; set; } = "";
         public string ExemptionReason { get; set; } = "";
+        public string OtherExemptionReason { get; set; } = "";
         public string OccupiedBy { get; set; } = "";
-        public int TennantCount { get; set; }
+        public int TennantCount { get; set; } // readonly
         public int NumberOfTenants { get; set; }
         public string SmokingProhibitionInLeaseStatus { get; set; } = "";
         public DateTime? SmokingProhibitionEffectiveDate { get; set; }
@@ -184,6 +185,19 @@ namespace BRBPortal_CSharp.Models
         public string TerminationReason { get; set; } = "";
         public DateTime? DatePriorTenancyEnded { get; set; }
         public string ReasonPriorTenancyEnded { get; set; }
+        public DateTime? UnitAsOfDt { get; set; }
+        public string ContractNo { get; set; }
+        public string CommUseDesc { get; set; }
+        public string CommResYN { get; set; }
+        public string CommZoneUse { get; set; }
+        public string PropMgrName { get; set; }
+        public string PMEmailPhone { get; set; }
+        public string PrincResYN { get; set; }
+        public string MultiUnitYN { get; set; }
+        public string OtherUnits { get; set; }
+        public string DeclarationInitials { get; set; }
+        public string TenantNames { get; set; }
+        public string TenantContacts { get; set; }
 
         public List<BRBTenant> Tenants { get; set; } = new List<BRBTenant>();
     }

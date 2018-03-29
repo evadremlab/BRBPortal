@@ -120,6 +120,11 @@
                             </asp:RadioButtonList>
                         </div>
                         <div class="form-group">
+                            <asp:Label runat="server" AssociatedControlID="CommZoneUse" CssClass="control-label">Enter commercial zoning description: </asp:Label>
+                            <br />
+                            <asp:TextBox runat="server" ID="CommZoneUse" TextMode="MultiLine" CssClass="form-control" style="width:80rem; height:7.5rem;" ToolTip="Enter commercial zoning description." />
+                        </div>
+                        <div class="form-group">
                             <asp:Label runat="server" AssociatedControlID="CommResYN" CssClass="control-label">Is the unit used exclusively for commercial use?</asp:Label>
                             <div class="radio radiobuttonlist" style="display:inline-block;">
                                 <asp:RadioButtonList runat="server" ID="CommResYN" RepeatDirection="Horizontal" ToolTip="Select Yes or No." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">

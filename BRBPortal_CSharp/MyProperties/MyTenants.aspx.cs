@@ -10,9 +10,6 @@ namespace BRBPortal_CSharp.MyProperties
 {
     public partial class MyTenants : System.Web.UI.Page
     {
-        private string iUnitNum = "";
-        private string iUnitID = "";
-
         private DataTable iTenants = new DataTable();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -70,7 +67,7 @@ namespace BRBPortal_CSharp.MyProperties
                 TenStDt.Text = user.CurrentUnit.StartDt.Value.ToString("MM/dd/yyyy");
             }
 
-            NumTenants.Text = user.CurrentUnit.NumberOfTenants.ToString();
+            //NumTenants.Text = user.CurrentUnit.NumberOfTenants.ToString();
             SmokYN.Text = user.CurrentUnit.SmokingProhibitionInLeaseStatus;
 
             if (user.CurrentUnit.SmokingProhibitionEffectiveDate.HasValue)

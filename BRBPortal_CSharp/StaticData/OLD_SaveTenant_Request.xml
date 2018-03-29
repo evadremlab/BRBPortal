@@ -1,0 +1,59 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API" >
+  <soapenv:Header/>
+  <soapenv:Body>
+    <api:updateUnitTenancy>
+      <unitTenancyUpdateReq>
+        <userId>DAVE02</userId>
+        <propertyId>1968</propertyId>
+        <unitId>7773</unitId>
+        <unitStatus>Rented</unitStatus>
+        <initialRent>1234</initialRent>
+        <tenancyStartDate>03/31/2018</tenancyStartDate>
+        <priorTenancyEndDate>08/05/2017</priorTenancyEndDate>
+        <!--Zero or more repetitions:-->
+        <housingServices>
+          <serviceName>Garbage</serviceName>
+        </housingServices>
+        <housingServices>
+          <serviceName>Parking</serviceName>
+        </housingServices>
+        <housingServices>
+          <serviceName>Laundry Access</serviceName>
+        </housingServices>
+        <housingServices>
+          <serviceName>Heat</serviceName>
+        </housingServices>
+        <housingServices>
+          <serviceName>Appliances</serviceName>
+        </housingServices>
+        <!--Optional:-->
+        <otherHousingService></otherHousingService>
+        <noOfTenants>1</noOfTenants>
+        <smokingProhibitionInLeaseStatus>false</smokingProhibitionInLeaseStatus>
+        <smokingProhibitionEffectiveDate></smokingProhibitionEffectiveDate>
+        <reasonForTermination>Voluntary Vacancy</reasonForTermination>
+        <otherReasonForTermination></otherReasonForTermination>
+        <!--Optional:-->
+        <explainInvoluntaryTermination></explainInvoluntaryTermination>
+        <!--1 or more repetitions:-->
+        <tenants>
+          <code></code>
+          <name>
+            <first>Dave</first>
+            <!--Optional:-->
+            <middle></middle>
+            <last>Balmer</last>
+            <suffix></suffix>
+            <!--Optional:-->
+            <nameLastFirstDisplay></nameLastFirstDisplay>
+            <!--Optional:-->
+            <agencyName></agencyName>
+          </name>
+          <phoneNumber>555-555-5555</phoneNumber>
+          <emailAddress>dave@home.com</emailAddress>
+        </tenants>
+        <declarationInitial>DBB</declarationInitial>
+      </unitTenancyUpdateReq>
+    </api:updateUnitTenancy>
+  </soapenv:Body>
+</soapenv:Envelope>

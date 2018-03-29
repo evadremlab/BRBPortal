@@ -28,6 +28,10 @@ input[type="select"] {
 }
 
 /* Added by david.b.balmer@transsight.com */
+.bg-info {
+    color: #fff;
+    background-color: #3a87ad;
+}
 .navbar-inverse .navbar-nav > li > a {
     font-size: 1.75rem;
 }

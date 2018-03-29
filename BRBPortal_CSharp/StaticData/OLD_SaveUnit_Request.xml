@@ -1,0 +1,53 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <api:updateUnitStatusChange>
+      <unitStatusChangeReq>
+        <userId>DAVE02</userId>
+        <propertyId>1968</propertyId>
+        <unitId>7773</unitId>
+        <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
+        <unitStatus>Rented</unitStatus>
+        <!--Optional:-->
+        <exemptionReason></exemptionReason>
+        <unitStatusAsOfDate>03/29/2018</unitStatusAsOfDate>
+        <declarationInitial>DBB</declarationInitial>
+        <questions>
+          <!--Optional:-->
+          <asOfDate></asOfDate>
+          <!--Optional:-->
+          <dateStarted></dateStarted>
+          <!--Optional:-->
+          <occupiedBy></occupiedBy>
+          <!--Optional:-->
+          <contractNo></contractNo>
+          <!--Optional:-->
+          <commeUseDesc></commeUseDesc>
+          <!--Optional:-->
+          <isCommeUseZoned></isCommeUseZoned>
+          <!--Optional:-->
+          <isExclusivelyForCommeUse></isExclusivelyForCommeUse>
+          <!--Optional:-->
+          <_x0035_0PercentAsOf31Dec1979></_x0035_0PercentAsOf31Dec1979>
+          <!--Optional:-->
+          <ownerOccupantName></ownerOccupantName>
+          <!--Zero or more repetitions:-->
+          <namesOfownersOfRecord></namesOfownersOfRecord>
+          <!--Optional:-->
+          <nameOfPropertyManagerResiding></nameOfPropertyManagerResiding>
+          <!--Optional:-->
+          <emailOfPhoneOfPropertyManagerResiding></emailOfPhoneOfPropertyManagerResiding>
+          <!--Optional:-->
+          <IsOwnersPrinciplePlaceOfResidence></IsOwnersPrinciplePlaceOfResidence>
+          <!--Optional:-->
+          <doesOwnerResideInOtherUnitOfThisUnitProperty></doesOwnerResideInOtherUnitOfThisUnitProperty>
+          <!--Zero or more repetitions:-->
+          <tenantsAndContactInfo>
+            <name></name>
+            <contactInfo></contactInfo>
+          </tenantsAndContactInfo>
+        </questions>
+      </unitStatusChangeReq>
+    </api:updateUnitStatusChange>
+  </soapenv:Body>
+</soapenv:Envelope>

@@ -319,6 +319,7 @@ Public Class UpdateUnit
         SaveXML += "</api:updateUnitStatusChange>"
         SaveXML += "</soapenv:Body>"
         SaveXML += "</soapenv:Envelope>"
+        Return
 
         If SaveUnit_Soap(SaveXML) = False Then
             If iErrMsg.IndexOf("(500) Internal Server Error") > -1 Then iErrMsg = "(500) Internal Server Error."

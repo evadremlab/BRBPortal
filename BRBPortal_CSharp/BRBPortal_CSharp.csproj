@@ -255,6 +255,7 @@
     <Content Include="PaymentCancelled.aspx" />
     <Content Include="PaymentError.aspx" />
     <Content Include="PaymentProcessed.aspx" />
+    <Content Include="StaticData\API EndPoints.txt" />
     <Content Include="StaticData\AuthenticateUser_Request.xml" />
     <Content Include="StaticData\AuthenticateUser_Response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -273,6 +274,7 @@
     <Content Include="StaticData\GetPropertyAndUnitDetails_Request.xml" />
     <Content Include="StaticData\GetPropertyAndUnitDetails_Response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="StaticData\GetUserProperties_Response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -282,6 +284,9 @@
     <Content Include="StaticData\SaveCart_Response.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="StaticData\SaveUnit_Request.xml" />
+    <Content Include="StaticData\SaveUnit_Response.xml" />
+    <Content Include="StaticData\UpdateUnitTenancy_WSDL.xml" />
     <Content Include="StaticData\UpdateUserPassword_Request.xml" />
     <Content Include="StaticData\UpdateUserPassword_Response.xml" />
     <Content Include="StaticData\ValidateRegistration_Request.xml" />
@@ -454,6 +459,12 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="StaticData\OLD_SaveUnit_Request.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="StaticData\OLD_SaveTenant_Request.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Styles\calendar-blue.css" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -640,7 +651,6 @@
     </Compile>
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\SoapRequest.cs" />
-    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="MyProperties\MyProperties.aspx.cs">
       <DependentUpon>MyProperties.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

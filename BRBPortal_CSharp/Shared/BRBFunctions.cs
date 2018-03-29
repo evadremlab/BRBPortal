@@ -653,144 +653,167 @@ namespace BRBPortal_CSharp
 
                 foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("propertyAndUnitsRes"))
                 {
-                    //iPropAddr = "";
-                    //iBillAddr = "";
-                    //iAgentName = "";
-                    //iStatus = "SUCCESS";
-
                     foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
                     {
-                        DateTime startDate;
+                        DateTime startDate = DateTime.MinValue;
                         Decimal rentCeiling = 0;
-                        var myUnit = new BRBUnit();
+                        var exemptionReason = "";
+                        var cpUnitStatDisp = "";
+                        var hServices = "";
+                        var occupiedBy = "";
 
-                        myUnit.UnitID = detailUnits.SelectSingleNode("unitId").InnerText;
-                        myUnit.UnitNo = detailUnits.SelectSingleNode("unitNumber").InnerText;
-                        myUnit.UnitStatID = detailUnits.SelectSingleNode("unitStatusId").InnerText;
-                        myUnit.UnitStatCode = detailUnits.SelectSingleNode("unitStatusCode").InnerText;
-                        myUnit.StreetAddress = detailUnits.SelectSingleNode("unitStreetAddress").InnerText;
-                        myUnit.ClientPortalUnitStatusCode = detailUnits.SelectSingleNode("clientPortalUnitStatusCode").InnerText;
+                        var unit = new BRBUnit();
 
                         if ((detailUnits.SelectSingleNode("rentCeiling").InnerText.Length > 0))
                         {
                             Decimal.TryParse(detailUnits.SelectSingleNode("rentCeiling").InnerText, out rentCeiling);
                         }
 
-                        myUnit.RentCeiling = rentCeiling;
-
                         if (detailUnits.SelectSingleNode("unitStatusAsOfDate") != null)
                         {
                             if (!string.IsNullOrEmpty(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText))
                             {
                                 DateTime.TryParse(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText, out startDate);
-
-                                if (startDate != null)
-                                {
-                                    myUnit.StartDt = startDate;
-                                }
                             }
                         }
 
                         foreach (XmlElement detailService in detailUnits.GetElementsByTagName("housingServices"))
                         {
-                            if (myUnit.HServices.Length > 0)
+                            if (hServices.Length > 0)
                             {
-                                myUnit.HServices += (", " + detailService.SelectSingleNode("serviceName").InnerText);
+                                hServices += (", " + detailService.SelectSingleNode("serviceName").InnerText);
                             }
                             else
                             {
-                                myUnit.HServices = detailService.SelectSingleNode("serviceName").InnerText;
+                                hServices = detailService.SelectSingleNode("serviceName").InnerText;
                             }
                         }
 
-                        switch (myUnit.UnitStatCode.ToUpper())
+                        switch (unit.UnitStatCode.ToUpper())
                         {
                             case "OOCC":
-                                myUnit.CPUnitStatDisp = "Owner-Occupied";
+                                cpUnitStatDisp = "Owner-Occupied";
                                 break;
                             case "SEC8":
-                                myUnit.CPUnitStatDisp = "Section 8";
+                                cpUnitStatDisp = "Section 8";
                                 break;
                             case "RENTED":
-                                myUnit.CPUnitStatDisp = "Rented or Available for Rent";
+                                cpUnitStatDisp = "Rented or Available for Rent";
                                 break;
                             case "FREE":
-                                myUnit.CPUnitStatDisp = "Rent-Free";
+                                cpUnitStatDisp = "Rent-Free";
                                 break;
                             case "NAR":
-                                myUnit.CPUnitStatDisp = "Not Available for Rent";
+                                cpUnitStatDisp = "Not Available for Rent";
                                 break;
                             case "SPLUS":
-                                myUnit.CPUnitStatDisp = "Shelter Plus";
+                                cpUnitStatDisp = "Shelter Plus";
                                 break;
                             case "DUPLEX":
-                                myUnit.CPUnitStatDisp = "Owner-occupied Duplex";
+                                cpUnitStatDisp = "Owner-occupied Duplex";
                                 break;
                             case "COMM":
-                                myUnit.CPUnitStatDisp = "Commercial";
+                                cpUnitStatDisp = "Commercial";
                                 break;
                             case "SHARED":
-                                myUnit.CPUnitStatDisp = "Owner Shares Kit/Bath";
+                                cpUnitStatDisp = "Owner Shares Kit/Bath";
                                 break;
                             case "MISC":
-                                myUnit.CPUnitStatDisp = "Miscellaneous Exempt";
+                                cpUnitStatDisp = "Miscellaneous Exempt";
                                 break;
                         }
 
                         foreach (XmlElement detailOccBy in detailUnits.GetElementsByTagName("occupants"))
                         {
-                            if (myUnit.OccupiedBy.Length > 0)
+                            if (occupiedBy.Length > 0)
                             {
-                                myUnit.OccupiedBy += (", " + detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText);
+                                occupiedBy += (", " + detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText);
                             }
                             else
                             {
-                                myUnit.OccupiedBy = detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText;
+                                occupiedBy = detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText;
                             }
                         }
 
-                        if (!string.IsNullOrEmpty(myUnit.OccupiedBy))
-                        {
-                            myUnit.OccupiedBy = myUnit.OccupiedBy.UnescapeXMLChars();
-                        }
-
-                        switch (myUnit.UnitStatCode.ToUpper())
+                        switch (unit.UnitStatCode.ToUpper())
                         {
                             case "OOCC":
-                                myUnit.ExemptionReason = "Owner-Occupied";
+                                exemptionReason = "Owner-Occupied";
                                 break;
-                                case "SEC8":
-                                myUnit.ExemptionReason = "Section 8";
+                            case "SEC8":
+                                exemptionReason = "Section 8";
                                 break;
                             case "RENTED":
-                                myUnit.ExemptionReason = "Rented or Available for Rent";
+                                exemptionReason = "Rented or Available for Rent";
                                 break;
                             case "FREE":
-                                myUnit.ExemptionReason = "Rent-Free";
+                                exemptionReason = "Rent-Free";
                                 break;
                             case "NAR":
-                                myUnit.ExemptionReason = "Not Available for Rent";
+                                exemptionReason = "Not Available for Rent";
                                 break;
                             case "SPLUS":
-                                myUnit.ExemptionReason = "Shelter Plus";
+                                exemptionReason = "Shelter Plus";
                                 break;
                             case "DUPLEX":
-                                myUnit.ExemptionReason = "Owner-occupied Duplex";
+                                exemptionReason = "Owner-occupied Duplex";
                                 break;
                             case "COMM":
-                                myUnit.ExemptionReason = "Commercial";
+                                exemptionReason = "Commercial";
                                 break;
                             case "SHARED":
-                                myUnit.ExemptionReason = "Owner Shares Kit/Bath";
+                                exemptionReason = "Owner Shares Kit/Bath";
                                 break;
                             case "MISC":
-                                myUnit.ExemptionReason = "Miscellaneous Exempt";
+                                exemptionReason = "Miscellaneous Exempt";
                                 break;
                         }
 
-                        if (string.IsNullOrEmpty(unitID) || unitID == myUnit.UnitID)
+                        unit.ClientPortalUnitStatusCode = detailUnits.SelectSingleNode("clientPortalUnitStatusCode").InnerText;
+                        //unit.CommResYN = "";
+                        //unit.CommUseDesc = "";
+                        //unit.CommZoneUse = "";
+                        //unit.ContractNo = "";
+                        unit.CPUnitStatDisp = cpUnitStatDisp;
+                        //unit.DatePriorTenancyEnded = "";
+                        //unit.DeclarationInitials = "";
+                        unit.ExemptionReason = exemptionReason;
+                        unit.HServices = hServices;
+                        unit.InitialRent = ""; // part of Tenant
+                        unit.MultiUnitYN = "";
+                        //unit.NumberOfTenants = "";
+                        unit.OccupiedBy = occupiedBy;
+                        unit.OtherUnits = "";
+                        unit.PMEmailPhone = "";
+                        unit.PrincResYN = "";
+                        unit.PriorEndDate = "";
+                        unit.PropMgrName = "";
+                        unit.ReasonPriorTenancyEnded = "";
+                        unit.RentCeiling = rentCeiling;
+                        unit.SmokeDetector = "";
+                        //unit.SmokingProhibitionEffectiveDate = "";
+                        unit.SmokingProhibitionInLeaseStatus = "";
+
+                        if (startDate != DateTime.MinValue)
                         {
-                            user.CurrentProperty.Units.Add(myUnit);
+                            unit.StartDt = startDate;
+                        }
+
+                        unit.StreetAddress = detailUnits.SelectSingleNode("unitStreetAddress").InnerText;
+                        unit.TenantContacts = "";
+                        unit.TenantNames = unit.TenantNames;
+                        unit.TenantContacts = unit.TenantContacts;
+                        unit.TennantCount = 0;
+                        unit.TerminationReason = "";
+                        //unit.UnitAsOfDt = "";
+                        unit.UnitID = detailUnits.SelectSingleNode("unitId").InnerText;
+                        unit.UnitNo = detailUnits.SelectSingleNode("unitNumber").InnerText;
+                        unit.UnitStatCode = detailUnits.SelectSingleNode("unitStatusCode").InnerText;
+                        unit.UnitStatID = detailUnits.SelectSingleNode("unitStatusId").InnerText;
+
+                        if (string.IsNullOrEmpty(unitID) || unitID == unit.UnitID)
+                        {
+                            user.CurrentProperty.Units.Add(unit);
                         }
                     }
                 }
@@ -819,6 +842,8 @@ namespace BRBPortal_CSharp
 
             try
             {
+                user.CurrentProperty.Tenants = new List<BRBTenant>();
+
                 soapRequest.Body.Append("<api:getPropertyAndUnitDetails>");
                 soapRequest.Body.AppendFormat("<propertyId>{0}</propertyId>", SafeString(user.CurrentProperty.PropertyID));
                 soapRequest.Body.Append("<request>");
@@ -910,12 +935,16 @@ namespace BRBPortal_CSharp
 
                             foreach (XmlElement detailOccBy in detailUnits.GetElementsByTagName("occupants"))
                             {
-                                user.CurrentTenant.TenantID =  detailOccBy.SelectSingleNode("occupantId").InnerText;
-                                user.CurrentTenant.FirstName = detailOccBy.SelectSingleNode("name").SelectSingleNode("firstName").InnerText;
-                                user.CurrentTenant.LastName = detailOccBy.SelectSingleNode("name").SelectSingleNode("lastName").InnerText;
-                                user.CurrentTenant.DisplayName = detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText;
-                                user.CurrentTenant.PhoneNumber = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("phoneNumber").InnerText;
-                                user.CurrentTenant.Email = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("emailAddress").InnerText;
+                                var tenant = new BRBTenant();
+
+                                tenant.TenantID =  detailOccBy.SelectSingleNode("occupantId").InnerText;
+                                tenant.FirstName = detailOccBy.SelectSingleNode("name").SelectSingleNode("firstName").InnerText;
+                                tenant.LastName = detailOccBy.SelectSingleNode("name").SelectSingleNode("lastName").InnerText;
+                                tenant.DisplayName = detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText;
+                                tenant.PhoneNumber = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("phoneNumber").InnerText;
+                                tenant.Email = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("emailAddress").InnerText;
+
+                                user.CurrentProperty.Tenants.Add(tenant);
                             }
 
                             //fields.Add("NumTenants", TenCnt.ToString());
@@ -1019,77 +1048,96 @@ namespace BRBPortal_CSharp
         /// <summary>
         /// DONE, need to update MyProperties/UpdateUnit.aspx.cs
         /// </summary>
-        public static bool SaveUnit(BRBUser user)
+        public static bool SaveUnit(ref BRBUser user)
         {
             var wasSaved = false;
 
             var soapRequest = new SoapRequest
             {
                 Source = "SaveUnit",
-                Url = "UpdateUnitTenancy/RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Port",
-                Action = "RTSClientPortalAPI_API_WSD_UpdateUnitTenancy_Binder_updateUnitTenancy"
+                Url = "UpdateUnitStatusChange/RTSClientPortalAPI_API_WSD_UpdateUnitStatusChange_Port",
+                Action = "RTSClientPortalAPI_API_WSD_UpdateUnitStatusChange_Binder_updateUnitStatusChange"
             };
 
             try
             {
+                var unit = user.CurrentUnit;
+
                 soapRequest.Body.Append("<api:updateUnitStatusChange>");
                 soapRequest.Body.Append("<unitStatusChangeReq>");
                 soapRequest.Body.AppendFormat("<userId>{0}</userId>", user.UserCode);
                 soapRequest.Body.AppendFormat("<propertyId>{0}</propertyId>", user.CurrentProperty.PropertyID);
-                soapRequest.Body.AppendFormat("<unitId>{0}</unitId>", user.CurrentTenant.TenantID);
-                soapRequest.Body.AppendFormat("<clientPortalUnitStatusCode>{0}</clientPortalUnitStatusCode>", ""); // TODO: from NewUnit radio
-                soapRequest.Body.AppendFormat("<unitStatus>{0}</unitStatus>", user.CurrentUnit.UnitStatCode); // TODO: from NewUnit radio
+                soapRequest.Body.AppendFormat("<unitId>{0}</unitId>", user.CurrentUnit.UnitID);
+                soapRequest.Body.AppendFormat("<clientPortalUnitStatusCode>{0}</clientPortalUnitStatusCode>", unit.ClientPortalUnitStatusCode);
+                soapRequest.Body.AppendFormat("<unitStatus>{0}</unitStatus>", unit.ClientPortalUnitStatusCode);
 
                 var exemptionReason = "";
-                if (true) // NewUnit == "Exempt"
+                if (unit.ClientPortalUnitStatusCode == "Exempt")
                 {
-                    if (user.CurrentUnit.ExemptionReason == "OTHER")
+                    if (user.CurrentUnit.ExemptionReason.ToUpper() == "OTHER")
                     {
-                        exemptionReason = ""; // TODO OtherList.SeletedValue
+                        exemptionReason = unit.OtherExemptionReason;
                     }
                     else
                     {
-                        exemptionReason = user.CurrentUnit.ExemptionReason;
+                        exemptionReason = unit.ExemptionReason;
                     }
                 }
                 soapRequest.Body.AppendFormat("<!--Optional:--><exemptionReason>{0}</exemptionReason>", exemptionReason);
 
                 var asOfDate = "";
-                if (true) // AsOfDate .HasValue
+                if (unit.UnitAsOfDt.HasValue)
+                {
+                    asOfDate = unit.UnitAsOfDt.Value.ToString("MM/dd/yyyy");
+                } else
                 {
                     asOfDate = DateTime.Now.ToString("MM/dd/yyyy");
-                    // user.CurrentUnit.StartDt ??? UnitAsOfDt.Text).ToString("MM/dd/yyyy")
                 }
                 soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", asOfDate);
 
-                soapRequest.Body.AppendFormat("<declarationInitial>{0}</declarationInitial>", ""); // TODO declaration initials
+                soapRequest.Body.AppendFormat("<declarationInitial>{0}</declarationInitial>", unit.DeclarationInitials);
 
                 soapRequest.Body.Append("<questions>");
 
-                // date we got initials ToString("MM/dd/yyyy")
-                soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", ""); // TODO
+                if (string.IsNullOrEmpty(unit.ExemptionReason) || !Regex.IsMatch(unit.ExemptionReason, "OOCC|FREE"))
+                {
+                    soapRequest.Body.Append("<!--Optional:--><asOfDate></asOfDate>");
+                }
+                else
+                {
+                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", asOfDate);
+                }
 
-                soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", "from form");
-                soapRequest.Body.AppendFormat("<!--Optional:--><occupiedBy>{0}</occupiedBy>", user.CurrentUnit.OccupiedBy);
-                soapRequest.Body.AppendFormat("<!--Optional:--><contractNo>{0}</contractNo>", ""); // TODO
-                soapRequest.Body.AppendFormat("<!--Optional:--><commeUseDesc>{0}</commeUseDesc>", ""); // TODO
-                soapRequest.Body.AppendFormat("<!--Optional:--><isCommeUseZoned>{0}</isCommeUseZoned>", ""); // TODO
-                soapRequest.Body.AppendFormat("<!--Optional:--><isExclusivelyForCommeUse>{0}</isExclusivelyForCommeUse>", ""); // TODO
+                DateTime dtDateStarted = DateTime.MinValue;
+                if (DateTime.TryParse("", out dtDateStarted))
+                {
+                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", dtDateStarted.ToString("MM/dd/yyyy"));
+                }
+                else
+                {
+                    soapRequest.Body.Append("<!--Optional:--><dateStarted></dateStarted>");
+                }
+
+                soapRequest.Body.AppendFormat("<!--Optional:--><occupiedBy>{0}</occupiedBy>", unit.OccupiedBy);
+                soapRequest.Body.AppendFormat("<!--Optional:--><contractNo>{0}</contractNo>", unit.ContractNo);
+                soapRequest.Body.AppendFormat("<!--Optional:--><commeUseDesc>{0}</commeUseDesc>", unit.CommUseDesc);
+                soapRequest.Body.AppendFormat("<!--Optional:--><isCommeUseZoned>{0}</isCommeUseZoned>", unit.CommZoneUse);
+                soapRequest.Body.AppendFormat("<!--Optional:--><isExclusivelyForCommeUse>{0}</isExclusivelyForCommeUse>", unit.CommResYN);
 
                 // Next 3 removed  when Owner Occupied Exempt Duplex was removed from the Other dropdown
                 soapRequest.Body.Append("<!--Optional:--><_x0035_0PercentAsOf31Dec1979></_x0035_0PercentAsOf31Dec1979>");
-                soapRequest.Body.Append("<!--Optional:--><ownerOccupantName></ownerOccupantName>");
+                soapRequest.Body.Append("<!--Optional:--><ownerOccupantName></ownerOccupantName>"); // OK: vb.net is same
                 soapRequest.Body.Append("<!--Zero or more repetitions:--><namesOfownersOfRecord></namesOfownersOfRecord>");
 
-                soapRequest.Body.AppendFormat("<!--Optional:--><nameOfPropertyManagerResiding>{0}</nameOfPropertyManagerResiding>", ""); // TODO
-                soapRequest.Body.AppendFormat("<!--Optional:--><emailOfPhoneOfPropertyManagerResiding>{0}</emailOfPhoneOfPropertyManagerResiding>", ""); // TODO
-                soapRequest.Body.AppendFormat("<!--Optional:--><IsOwnersPrinciplePlaceOfResidence>{0}</IsOwnersPrinciplePlaceOfResidence>", ""); // TODO
-                soapRequest.Body.AppendFormat("<!--Optional:--><doesOwnerResideInOtherUnitOfThisUnitProperty>{0}</doesOwnerResideInOtherUnitOfThisUnitProperty>", ""); // TODO
-                soapRequest.Body.Append("<!--Zero or more repetitions:--><tenantsAndContactInfo>");
-                soapRequest.Body.AppendFormat("<name>{0}</name>", ""); // TODO
-                soapRequest.Body.AppendFormat("<contactInfo>{0}</contactInfo>", ""); // TODO
+                soapRequest.Body.AppendFormat("<!--Optional:--><nameOfPropertyManagerResiding>{0}</nameOfPropertyManagerResiding>", unit.PropMgrName);
+                soapRequest.Body.AppendFormat("<!--Optional:--><emailOfPhoneOfPropertyManagerResiding>{0}</emailOfPhoneOfPropertyManagerResiding>", unit.PMEmailPhone);
+                soapRequest.Body.AppendFormat("<!--Optional:--><IsOwnersPrinciplePlaceOfResidence>{0}</IsOwnersPrinciplePlaceOfResidence>", unit.PrincResYN);
+                soapRequest.Body.AppendFormat("<!--Optional:--><doesOwnerResideInOtherUnitOfThisUnitProperty>{0}</doesOwnerResideInOtherUnitOfThisUnitProperty>", unit.MultiUnitYN);
+                soapRequest.Body.Append("<!--Zero or more repetitions:--><tenantsAndContactInfo>"); // OK: vb.net is same
+                soapRequest.Body.AppendFormat("<name>{0}</name>", unit.TenantNames);
+                soapRequest.Body.AppendFormat("<contactInfo>{0}</contactInfo>", unit.TenantContacts);
                 soapRequest.Body.Append("</tenantsAndContactInfo>");
-                soapRequest.Body.Append("<questions>");
+                soapRequest.Body.Append("</questions>");
                 soapRequest.Body.Append("</unitStatusChangeReq>");
                 soapRequest.Body.Append("</api:updateUnitStatusChange>");
 

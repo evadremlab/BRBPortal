@@ -1146,17 +1146,32 @@ Public Module BRBFunctions
                     iBillEmail = detail.SelectSingleNode("billingDetails").SelectSingleNode("contact").SelectSingleNode("emailAddress").InnerText
                 End If
 
-                If detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName") IsNot Nothing Then
-                    iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName").SelectSingleNode("nameLastFirstDisplay").InnerText
-                    iAgentName = StripXMLChars(iAgentName)
-                End If
-
-                If iAgentName.Length < 1 Then
-                    If detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName") IsNot Nothing Then
-                        iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName").InnerText
+                If detail.SelectSingleNode("agentDetails") IsNot Nothing Then
+                    If detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName") IsNot Nothing Then
+                        iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName").SelectSingleNode("nameLastFirstDisplay").InnerText
                         iAgentName = StripXMLChars(iAgentName)
                     End If
                 End If
+                'If detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName") IsNot Nothing Then
+                '    iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agentContactName").SelectSingleNode("nameLastFirstDisplay").InnerText
+                '    iAgentName = StripXMLChars(iAgentName)
+                'End If
+
+                If iAgentName.Length < 1 Then
+                    If detail.SelectSingleNode("agentDetails") IsNot Nothing Then
+                        If detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName") IsNot Nothing Then
+                            iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName").InnerText
+                            iAgentName = StripXMLChars(iAgentName)
+                        End If
+
+                    End If
+                End If
+                'If iAgentName.Length < 1 Then
+                '    If detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName") IsNot Nothing Then
+                '        iAgentName = detail.SelectSingleNode("agentDetails").SelectSingleNode("agencyName").InnerText
+                '        iAgentName = StripXMLChars(iAgentName)
+                '    End If
+                'End If
 
                 tUnitInfo = ""
                 TenCnt = 0
