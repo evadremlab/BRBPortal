@@ -9,7 +9,7 @@
     <div class="form-horizontal">
         <section id="updatePropertiesForm">
             <div class="form-horizontal">
-                <h4>at <asp:Literal ID="MainAddress" runat="server" ></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server"></asp:Literal></h4>
+                <h4>at <asp:Literal ID="MainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
                 <hr />
                 <div class="row hidden">
                     <div class="form-group">
@@ -116,16 +116,16 @@
                                 ForeColor="#333333" GridLines="None" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvTenants_PageIndexChanging">
                                 <AlternatingRowStyle BackColor="White" />
                                 <Columns>
-                                    <asp:BoundField DataField="TenantID" HeaderText="Tenant ID" Visible="False" />
-                                    <asp:BoundField DataField="FirstName" HeaderText="First Name" Visible="False" />
-                                    <asp:BoundField DataField="LastName" HeaderText="Last Name" Visible="False" />
-                                    <asp:BoundField HeaderText="Tenant Name" DataField="DispName" SortExpression="DispName">
+                                    <asp:BoundField HeaderText="Tenant ID" DataField="TenantID" Visible="False" />
+                                    <asp:BoundField HeaderText="First Name" DataField="FirstName" Visible="False" />
+                                    <asp:BoundField HeaderText="Last Name" DataField="LastName" Visible="False" />
+                                    <asp:BoundField HeaderText="Tenant Name" DataField="DisplayName" SortExpression="DisplayName">
                                         <ItemStyle HorizontalAlign="Left" />
                                     </asp:BoundField>
-                                    <asp:BoundField HeaderText="Phone Number" DataField="PhoneNo" SortExpression="PhoneNo">
+                                    <asp:BoundField HeaderText="Phone Number" DataField="PhoneNumber" SortExpression="PhoneNumber">
                                         <ItemStyle HorizontalAlign="Left" />
                                     </asp:BoundField>
-                                    <asp:BoundField HeaderText="Email Address" DataField="EmailAddr" SortExpression="EmailAddr">
+                                    <asp:BoundField HeaderText="Email Address" DataField="Email" SortExpression="Email">
                                         <ItemStyle HorizontalAlign="Left" />
                                     </asp:BoundField>
                                 </Columns>

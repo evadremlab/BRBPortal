@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BRBPortal_CSharp.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace BRBPortal_CSharp.MyProperties
 
             BRBFunctions_CSharp.GetPropertyTenants(ref user);
 
-            if (user.CurrentUnit.Tenants.Count == 0)
+            if (user.CurrentProperty.Tenants.Count == 0)
             {
                 if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
                 {
@@ -46,16 +47,13 @@ namespace BRBPortal_CSharp.MyProperties
                 return;
             }
 
-            //BRBFunctions_CSharp.iTenantsTbl.DefaultView.Sort = "LastName, FirstName ASC";
-            //BRBFunctions_CSharp.iTenantsTbl = BRBFunctions_CSharp.iTenantsTbl.DefaultView.ToTable();
+            var dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBTenant>(user.CurrentProperty.Tenants);
+            gvTenants.DataSource = dataTable;
+            gvTenants.DataBind();
 
-            //gvTenants.DataSource = BRBFunctions_CSharp.iTenantsTbl;
-            //gvTenants.DataBind();
-
-            //Session["TenantsTbl"] = BRBFunctions_CSharp.iTenantsTbl;
             Master.UpdateSession(user);
 
-            MainAddress.Text = user.CurrentProperty.MainStreetAddress;
+            MainAddress.Text = user.CurrentProperty.PropertyAddress;
             UnitNo.Text = user.CurrentUnit.UnitNo;
             BalAmt.Text = user.CurrentProperty.Balance.ToString("C");
 

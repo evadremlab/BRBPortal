@@ -1,7 +1,4 @@
-﻿C#		
-VB.NET	6852
-
-"AuthenticateUser/RTSClientPortalAPI_API_WSD_AuthenticateUser_Port"
+﻿"AuthenticateUser/RTSClientPortalAPI_API_WSD_AuthenticateUser_Port"
 "ConfirmUserProfileByDeclaration/RTSClientPortalAPI_API_WSD_ConfirmUserProfileByDeclaration_Port"
 "UpdatePassword/RTSClientPortalAPI_API_WSD_UpdatePassword_Port"
 "GetUserProfile/RTSClientPortalAPI_API_WSD_GetUserProfile_Port"

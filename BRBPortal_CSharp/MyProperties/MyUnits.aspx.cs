@@ -20,7 +20,6 @@ namespace BRBPortal_CSharp.MyProperties
             if (!IsPostBack)
             {
                 var user = Master.User;
-                var dataTable = new DataTable();
 
                 BRBFunctions_CSharp.GetPropertyUnits(ref user);
 
@@ -43,9 +42,9 @@ namespace BRBPortal_CSharp.MyProperties
                     return;
                 }
 
-                dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBUnit>(user.CurrentProperty.Units);
+                var dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBUnit>(user.CurrentProperty.Units);
                 dataTable.DefaultView.Sort = "UnitNo ASC";
-                gvUnits.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBUnit>(user.CurrentProperty.Units);
+                gvUnits.DataSource = dataTable;
                 gvUnits.DataBind();
 
                 CurrFee.Text = user.CurrentProperty.CurrentFee.ToString("C");

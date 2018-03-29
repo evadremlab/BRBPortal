@@ -872,8 +872,11 @@ namespace BRBPortal_CSharp
                         }
                     }
 
+                    user.CurrentUnit.HServices = ""; // so we don't add on to those passed in
+
                     foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
                     {
+                        var unitID = detailUnits.SelectSingleNode("unitId").InnerText;
                         if (user.CurrentUnit.UnitID == detailUnits.SelectSingleNode("unitId").InnerText)
                         {
                             if (detailUnits.SelectSingleNode("tenancyStartDate") != null)
