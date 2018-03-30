@@ -58,13 +58,13 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.Literal UnitStatus;
         
         /// <summary>
-        /// ExemptReas control.
+        /// CurrentRental control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ExemptReas;
+        protected global::System.Web.UI.WebControls.PlaceHolder CurrentRental;
         
         /// <summary>
         /// UnitStartDt control.
@@ -83,6 +83,24 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal UnitOccBy;
+        
+        /// <summary>
+        /// CurrentExemption control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder CurrentExemption;
+        
+        /// <summary>
+        /// ExemptReas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ExemptReas;
         
         /// <summary>
         /// InitalEditButtons control.
@@ -353,6 +371,15 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TenantContacts;
+        
+        /// <summary>
+        /// DeclareAndSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DeclareAndSubmit;
         
         /// <summary>
         /// chkDeclare control.

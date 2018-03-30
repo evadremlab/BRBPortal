@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileEdit.aspx.cs" enableEventValidation="false" Inherits="BRBPortal_CSharp.Account.ProfileEdit" %>
+﻿<%@ Page Title="Edit Account Profile" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileEdit.aspx.cs" enableEventValidation="false" Inherits="BRBPortal_CSharp.Account.ProfileEdit" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -9,11 +9,11 @@
 
     <asp:HiddenField ID="hfDialogID" runat="server" />
 
-    <h2>Edit Account Profile</h2>
+    <h2><%: Title %></h2>
+    <hr />
 
     <section id="profileEditForm">
         <div class="form-horizontal">
-            <hr />
             <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                 <p class="text-danger">
                     <asp:Literal runat="server" ID="FailureText" />

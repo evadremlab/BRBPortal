@@ -4,14 +4,18 @@
 <%--data-lpignore="true" tells LastPass not to show ellipsis on form fields--%>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2><%: Title %></h2>
-    <section id="managePasswordForm">
+    <style>
+        .navbar-nav, .navbar-right { display: none; }
+    </style>
 
+    <h2><%: Title %></h2>
+    <hr />
+
+    <section id="managePasswordForm">
         <asp:HiddenField ID="hfDialogID" runat="server" />
         <asp:HiddenField ID="hfNextPage" runat="server" ValidateRequestMode="Disabled" />
 
         <div class="form-horizontal">
-            <hr />
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="CurrentPassword" CssClass="col-md-2 control-label">Current password:</asp:Label>
                 <div class="col-md-10">

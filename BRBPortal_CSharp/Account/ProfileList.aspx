@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileList.aspx.cs" Inherits="BRBPortal_CSharp.Account.ProfileList" %>
+﻿<%@ Page Title="My Profile" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileList.aspx.cs" Inherits="BRBPortal_CSharp.Account.ProfileList" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>My Profile</h2>
+    <h2><%: Title %></h2>
+    <hr />
     <section id="profileListForm">
         <div class="form-horizontal">
-            <hr />
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="UserIDCode1" CssClass="col-md-2 control-label">User ID: </asp:Label>
                 <div class="col-md-10 literal">

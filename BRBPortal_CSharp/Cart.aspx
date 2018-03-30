@@ -1,16 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="BRBPortal_CSharp.Cart" %>
+﻿<%@ Page Title="Payment Cart" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="BRBPortal_CSharp.Cart" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Payment Cart</h2>
-
+    <h2><%: Title %></h2>
+    <asp:PlaceHolder runat="server" ID="EmptyCartHeader" Visible="false">
+        <h4><asp:Literal runat="server" ID="EmptyCartMessage" /></h4>
+    </asp:PlaceHolder>
+    <hr />
     <section id="cartForm">
         <div class="form-horizontal">
-            <asp:PlaceHolder runat="server" ID="EmptyCartHeader" Visible="false">
-                <h4><asp:Literal runat="server" ID="EmptyCartMessage" /></h4>
-            </asp:PlaceHolder>
-            <hr />
-
             <div class="form-group">
                 <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False" CellPadding="4" 
                     ForeColor="#333333" GridLines="None" AllowPaging="True" ShowFooter="True" 

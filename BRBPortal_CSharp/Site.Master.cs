@@ -136,7 +136,7 @@ namespace BRBPortal_CSharp
 
         private bool PageNeedsUserObject()
         {
-            return !Regex.IsMatch(Path.GetFileName(Request.Url.AbsolutePath), "Default|Login|Register|ManagePassword|ResetPassword|PaymentProcessed|PaymentCancelled|PaymentError", RegexOptions.IgnoreCase);
+            return !Regex.IsMatch(Path.GetFileName(Request.Url.AbsolutePath), "Default|Login|Register|ManagePassword|PaymentProcessed|PaymentCancelled|PaymentError", RegexOptions.IgnoreCase);
         }
     }
 }

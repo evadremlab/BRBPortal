@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdateTenancy.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.UpdateTenancy" %>
+﻿<%@ Page Title="Update Tenancy" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdateTenancy.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.UpdateTenancy" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -7,7 +7,7 @@
     <asp:HiddenField ID="hfOrigTenStDt" runat="server" />
     <asp:HiddenField ID="hfOwnerEmail" runat="server" />
 
-    <h2>Update Tenancy</h2>
+    <h2><%: Title %></h2>
     <h4>is under construction</h4>
     <hr />
 

@@ -13,15 +13,6 @@ namespace BRBPortal_CSharp.MyProperties {
     public partial class MyTenants {
         
         /// <summary>
-        /// hfDialogID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfDialogID;
-        
-        /// <summary>
         /// MainAddress control.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal UnitNo;
+        
+        /// <summary>
+        /// hfDialogID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfDialogID;
         
         /// <summary>
         /// OwnerName control.

@@ -1,15 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyTenants.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.MyTenants" %>
+﻿<%@ Page Title="List of Tenants" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyTenants.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.MyTenants" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>List of Tenants</h2>
-    
+    <h2><%: Title %></h2>
+    <h4>at <asp:Literal ID="MainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
+    <hr />
+
     <asp:HiddenField ID="hfDialogID" runat="server" />
 
     <div class="form-horizontal">
         <section id="updatePropertiesForm">
             <div class="form-horizontal">
-                <h4>at <asp:Literal ID="MainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
                 <hr />
                 <div class="row hidden">
                     <div class="form-group">

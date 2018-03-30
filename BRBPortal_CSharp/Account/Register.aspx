@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" EnableEventValidation="false" Inherits="BRBPortal_CSharp.Account.Register" %>
+﻿<%@ Page Title="Request Online Account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" EnableEventValidation="false" Inherits="BRBPortal_CSharp.Account.Register" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <%@ Import Namespace="Microsoft.AspNet.Identity" %>
@@ -17,11 +17,11 @@
 
     <asp:HiddenField ID="hfDialogID" runat="server" />
 
-    <h2>Request Online Account</h2>
+    <h2><%: Title %></h2>
+    <hr />
 
     <section id="registerForm">
         <div class="form-horizontal">
-        <hr />
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="ReqUserID" CssClass="col-md-2 control-label">* User ID:</asp:Label>
             <div class="col-md-10">

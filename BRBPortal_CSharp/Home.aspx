@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="BRBPortal_CSharp.Home" %>
+﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="BRBPortal_CSharp.Home" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -21,10 +21,12 @@
             text-align: center;
         }
     </style>
-    <h2>Home</h2>
+
+    <h2><%: Title %></h2>
+    <h4>Select an option:</h4>
+    <hr />
+
     <section id="homeForm">
-        <h4>Select an option:</h4>
-        <hr />
         <div class="form-horizontal offset-col-md-2 col-md-10">
             <div class="row">
                 <div class="col-md-3">

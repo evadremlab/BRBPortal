@@ -23,31 +23,41 @@ namespace BRBPortal_CSharp.Account
 
         protected void UserIDCode_Or_BillingCode_TextChanged(object sender, EventArgs e)
         {
-            var user = new BRBUser
-            {
-                UserCode = UserIDCode.Text,
-                BillingCode = BillingCode.Text
-            };
+            Master.ShowDialogOK("API to return Security Questions is TBD", "Reset Password");
 
-            if (BRBFunctions_CSharp.GetProfile(ref user))
-            {
-                Master.UpdateSession(user);
+            //var user = new BRBUser
+            //{
+            //    UserCode = UserIDCode.Text,
+            //    BillingCode = BillingCode.Text
+            //};
 
-                Quest1.Text = Master.User.Question1;
-                Quest2.Text = Master.User.Question2;
-                Answer1.Focus();
-            }
-            else
-            {
-                Master.ShowDialogOK("Error: Invalid User ID or Billing Code.", "Reset Password");
-                UserIDCode.Focus();
-                return;
-            }
+            //if (BRBFunctions_CSharp.GetProfile(ref user))
+            //{
+            //    Master.UpdateSession(user);
+
+            //    Quest1.Text = Master.User.Question1;
+            //    Quest2.Text = Master.User.Question2;
+            //    Answer1.Focus();
+            //}
+            //else
+            //{
+            //    Master.ShowDialogOK("Error: Invalid User ID or Billing Code.", "Reset Password");
+            //    UserIDCode.Focus();
+            //}
         }
 
         protected void Reset_Click(object sender, EventArgs e)
         {
             var user = Master.User;
+
+            if (UserIDOrBillCode.SelectedValue == "UserID")
+            {
+                user.UserCode = UserIDCode.Text ?? "";
+            }
+            else
+            {
+                user.BillingCode = BillingCode.Text ?? "";
+            }
 
             if (BRBFunctions_CSharp.ValidateReset(ref user))
             {

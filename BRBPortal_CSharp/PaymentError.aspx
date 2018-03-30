@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PaymentError.aspx.cs" Inherits="BRBPortal_CSharp.PaymentError" %>
+﻿<%@ Page Title="Payment Error" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PaymentError.aspx.cs" Inherits="BRBPortal_CSharp.PaymentError" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Payment Error</h2>
+    <h2><%: Title %></h2>
     <h4>is under construction</h4>
     <hr />
     <p>Called by the Payment Gateway when an error occurred.</p>

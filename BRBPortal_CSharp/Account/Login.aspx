@@ -8,9 +8,9 @@
         .navbar-nav, .navbar-right { display: none; }
     </style>
     <h2><%: Title %></h2>
+    <hr />
     <section id="loginForm">
         <div class="form-horizontal">
-            <hr />
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <div class="radio radiobuttonlist" style="padding-top:0; padding-left:0;">

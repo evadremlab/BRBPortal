@@ -1,33 +1,32 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<soapenv:Envelope
-    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Body>
-    <ser-root:getProfileDetailsResponse
-        xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ser-root:getProfileDetailsResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <profileDetails>
-        <userId>DAVE07</userId>
-        <billingCode>LEEDAN</billingCode>
+        <userId>DAVE02</userId>
+        <billingCode>LIUHEL</billingCode>
         <name>
-          <first></first>
+          <first>HELLEN</first>
           <middle></middle>
-          <last>LEE</last>
+          <last>LIU</last>
           <suffix></suffix>
-          <agencyName></agencyName>
+          <agencyName xsi:nil="true" />
         </name>
         <mailingAddress>
-          <streetNumber>2928</streetNumber>
-          <streetName>FULTON ST</streetName>
+          <streetNumber>465B</streetNumber>
+          <streetName>14TH STREET</streetName>
           <unitNumber></unitNumber>
-          <fullAddress>2928 FULTON ST</fullAddress>
+          <fullAddress>465B 14TH STREET</fullAddress>
           <city>SAN FRANCISCO</city>
           <state>CA</state>
-          <zip>94118</zip>
+          <zip>94103</zip>
           <country>USA</country>
         </mailingAddress>
-        <emailAddress>DANLEE00@YAHOO.COM</emailAddress>
-        <phone>415-238-1246</phone>
+        <emailAddress>HELLENMCLIN@GMAIL.COM</emailAddress>
+        <phone>415-370-0006</phone>
         <relationship>Owner</relationship>
+        <securityQuestion1 xsi:nil="true" />
+        <securityQuestion2 xsi:nil="true" />
       </profileDetails>
     </ser-root:getProfileDetailsResponse>
   </soapenv:Body>

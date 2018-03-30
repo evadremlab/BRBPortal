@@ -1,14 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileConfirm.aspx.cs" EnableEventValidation="false" Inherits="BRBPortal_CSharp.Account.ProfileConfirm" %>
+﻿<%@ Page Title="Account Profile Confirmation" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileConfirm.aspx.cs" EnableEventValidation="false" Inherits="BRBPortal_CSharp.Account.ProfileConfirm" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <%-- data-lpignore="true" tells LastPass not to show ellipsis on form fields --%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:HiddenField ID="hfDialogID" runat="server" />
-    <h2>Account Profile Confirmation</h2>
+    <h2><%: Title %></h2>
+    <hr />
     <section id="profileConfirmForm">
         <div class="form-horizontal">
-            <hr />
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="UserIDCode0" CssClass="col-md-2 control-label">User ID: </asp:Label>
                 <div class="col-md-10 literal">

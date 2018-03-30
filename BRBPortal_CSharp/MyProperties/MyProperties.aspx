@@ -1,12 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyProperties.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.MyProperties" %>
+﻿<%@ Page Title="List of Properties" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyProperties.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.MyProperties" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>List of Properties</h2>
+    <h2><%: Title %></h2>
+    <hr />
     <div class="form-horizontal">
         <section id="propertiesForm">
             <div class="form-horizontal">
-                <hr />
                 <div class="form-group">
                     <p><b>You can can select a property to:</b></p>
                     <p>

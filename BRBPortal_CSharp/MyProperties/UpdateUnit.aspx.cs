@@ -31,6 +31,19 @@ namespace BRBPortal_CSharp.MyProperties
                     UnitStatus.Text = unit.ClientPortalUnitStatusCode;
                     ExemptReas.Text = unit.ExemptionReason;
 
+                    if (unit.ClientPortalUnitStatusCode == "Rented")
+                    {
+                        CurrentExemption.Visible = false;
+                        if (unit.UnitAsOfDt.HasValue)
+                        {
+                            UnitStartDt.Text = unit.UnitAsOfDt.Value.ToString("yyyy-MM-dd");
+                        }
+                    }
+                    else
+                    {
+                        CurrentRental.Visible = false;
+                    }
+
                     if (unit.StartDt.HasValue)
                     {
                         StartDt.Text = unit.StartDt.Value.ToString("yyyy-MM-dd");
@@ -39,7 +52,7 @@ namespace BRBPortal_CSharp.MyProperties
                     UnitOccBy.Text = unit.OccupiedBy;
 
                     // inputs
-                    NewUnit.SelectedValue = unit.ClientPortalUnitStatusCode;
+                    //NewUnit.SelectedValue = unit.ClientPortalUnitStatusCode; // don't pre-select
                     OtherList.SelectedValue = unit.ClientPortalUnitStatusCode; // TODO: see if we get Other back
 
 
@@ -67,7 +80,7 @@ namespace BRBPortal_CSharp.MyProperties
                     var CommUseGrp_Visible = false;
                     var PMUnitGrp_Visible = false;
                     var OwnerShrGrp_Visible = false;
-                    var AsOfDtGrp_Visible = false;
+                    var AsOfDtGrp_Visible = false; // hide until editing
                     var DtStrtdGrp_Visible = false;
                     var OccByGrp_Visible = false;
                     var ContractGrp_Visible = false;
@@ -81,7 +94,7 @@ namespace BRBPortal_CSharp.MyProperties
                         CommUseGrp_Visible = false;
                         PMUnitGrp_Visible = false;
                         OwnerShrGrp_Visible = false;
-                        AsOfDtGrp_Visible = true;
+                        AsOfDtGrp_Visible = false; // hide until editing
                         DtStrtdGrp_Visible = false;
                         OccByGrp_Visible = false;
                         ContractGrp_Visible = false;

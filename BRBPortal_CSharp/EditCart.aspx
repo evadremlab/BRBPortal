@@ -1,12 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EditCart.aspx.cs" Inherits="BRBPortal_CSharp.EditCart" %>
+﻿<%@ Page Title="Edit Payment Cart" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="EditCart.aspx.cs" Inherits="BRBPortal_CSharp.EditCart" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Edit Payment Cart</h2>
+    <h2><%: Title %></h2>
+    <hr />
 
     <section id="cartForm">
         <div class="form-horizontal">
-            <hr />
             <div class="form-group">
                 <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False" CellPadding="4" 
                     ForeColor="#333333" GridLines="None" AllowPaging="True" ShowFooter="True" 

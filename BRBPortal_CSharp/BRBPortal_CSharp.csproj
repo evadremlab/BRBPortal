@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Account\ManageSecurityQuestions.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\UNUSED\AddPhoneNumber.aspx" />
     <Content Include="Account\UNUSED\Confirm.aspx" />
@@ -472,6 +473,13 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\ManageSecurityQuestions.aspx.cs">
+      <DependentUpon>ManageSecurityQuestions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ManageSecurityQuestions.aspx.designer.cs">
+      <DependentUpon>ManageSecurityQuestions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

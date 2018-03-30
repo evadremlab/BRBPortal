@@ -30,7 +30,13 @@ input[type="select"] {
 /* Added by david.b.balmer@transsight.com */
 .bg-info {
     color: #fff;
-    background-color: #3a87ad;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+.bg-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
 }
 .navbar-inverse .navbar-nav > li > a {
     font-size: 1.75rem;

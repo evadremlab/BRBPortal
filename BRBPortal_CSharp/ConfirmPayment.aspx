@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ConfirmPayment.aspx.cs" Inherits="BRBPortal_CSharp.ConfirmPayment" %>
+﻿<%@ Page Title="Confirm Payment" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ConfirmPayment.aspx.cs" Inherits="BRBPortal_CSharp.ConfirmPayment" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Confirm Payment</h2>
+    <h2><%: Title %></h2>
     <h4>is under construction</h4>
     <hr />
     <p>Submit button posts to the payment gateway.</p>

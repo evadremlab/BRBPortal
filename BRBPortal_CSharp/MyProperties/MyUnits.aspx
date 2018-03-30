@@ -1,16 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyUnits.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.MyUnits" %>
+﻿<%@ Page Title="List of Units" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MyUnits.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.MyUnits" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:HiddenField ID="hfDialogID" runat="server" />
 
-    <h2>List of Units</h2>
+    <h2><%: Title %></h2>
+    <h4>at <asp:Literal ID="PropertyAddress" runat="server" ></asp:Literal></h4>
+    <hr />
 
     <div class="form-horizontal">
         <section id="propertiesForm">
             <div class="form-horizontal">
-                <h4>at <asp:Literal ID="PropertyAddress" runat="server" ></asp:Literal></h4>
-                <hr />
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="CurrFee" CssClass="control-label">Current Fee:</asp:Label>
                     <asp:Literal ID="CurrFee" runat="server" ></asp:Literal>
@@ -19,9 +19,7 @@
                     <asp:Button runat="server" id="btnAddCart" OnClick="AddCart_Click"  Text="Add to Cart" CssClass="btn btn-primary" ToolTip="Add to cart." TabIndex="-1" style="margin-left:1rem;" />
                 </div>
                 <div class="form-group">
-                    <b>
-                        <asp:Literal ID="UnitStatusDescription" runat="server"></asp:Literal>
-                    </b>
+                    <asp:Literal ID="UnitStatusDescription" runat="server"></asp:Literal>
                 </div>
                 <asp:PlaceHolder ID="AgentSection" runat="server">
                     <div class="form-group">

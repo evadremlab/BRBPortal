@@ -77,8 +77,7 @@ namespace BRBPortal_CSharp.Account
                     else
                     {
                         Session.Clear();
-                        Logger.Log("Login", BRBFunctions_CSharp.iErrMsg);
-                        Master.ShowDialogOK("Please contact your system administrator.", "Login Error");
+                        Master.ShowDialogOK(BRBFunctions_CSharp.iErrMsg, "Login Error");
                     }
                 }
                 catch (Exception ex)

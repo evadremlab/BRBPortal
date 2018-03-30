@@ -6,6 +6,14 @@
     });
 }
 
+function showValidationErrorDialog(message, title) {
+    $(document).ready(function () {
+        $('#ValidationModal .modal-title').html(title);
+        $('#ValidationModal .modal-body').html(message);
+        $('#ValidationModal').modal('show');
+    });
+}
+
 function submitPaymentForm(billingCode, cartID, paymentAmount) {
     $('#btnSubmit').click(function (evt) { // hijack the asp.net form
         evt.preventDefault();
