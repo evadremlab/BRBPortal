@@ -43,7 +43,7 @@ namespace BRBPortal_CSharp.MyProperties
                     BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
                 }
 
-                Master.ShowDialogOK("Error retrieving Tenants: " + BRBFunctions_CSharp.iErrMsg, "View Tenants");
+                Master.ShowErrorModal("Error retrieving Tenants: " + BRBFunctions_CSharp.iErrMsg, "View Tenants");
                 return;
             }
 

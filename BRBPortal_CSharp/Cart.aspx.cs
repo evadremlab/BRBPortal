@@ -66,7 +66,7 @@ namespace BRBPortal_CSharp
             }
             catch (Exception ex)
             {
-                Master.ShowDialogOK(ex.Message, "Cart");
+                Master.ShowErrorModal(ex.Message, "Cart");
             }
         }
 
@@ -91,12 +91,12 @@ namespace BRBPortal_CSharp
                     }
                     else
                     {
-                        Master.ShowDialogOK("Error saving cart(1)", "Save Cart");
+                        Master.ShowErrorModal("Error saving cart(1)", "Save Cart");
                     }
                 }
                 else
                 {
-                    Master.ShowDialogOK("Error saving cart(2).", "Save Cart");
+                    Master.ShowErrorModal("Error saving cart(2).", "Save Cart");
                 }
             }
             catch (Exception ex)

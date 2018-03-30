@@ -1,4 +1,4 @@
-﻿function showDialogOK(message, title) {
+﻿function showOKModal(message, title) {
     $(document).ready(function () {
         $('#OkModal .modal-title').html(title);
         $('#OkModal .modal-body').html(message);
@@ -6,11 +6,11 @@
     });
 }
 
-function showValidationErrorDialog(message, title) {
+function showErrorModal(message, title) {
     $(document).ready(function () {
-        $('#ValidationModal .modal-title').html(title);
-        $('#ValidationModal .modal-body').html(message);
-        $('#ValidationModal').modal('show');
+        $('#ErrorModal .modal-title').html(title);
+        $('#ErrorModal .modal-body').html(message);
+        $('#ErrorModal').modal('show');
     });
 }
 

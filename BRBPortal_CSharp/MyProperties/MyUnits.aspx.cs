@@ -30,7 +30,7 @@ namespace BRBPortal_CSharp.MyProperties
                         BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
                     }
 
-                    Master.ShowDialogOK("Error retrieving Units: " + BRBFunctions_CSharp.iErrMsg, "Units");
+                    Master.ShowErrorModal("Error retrieving Units: " + BRBFunctions_CSharp.iErrMsg, "Units");
                     return;
                 }
 
@@ -38,7 +38,7 @@ namespace BRBPortal_CSharp.MyProperties
 
                 if (user.CurrentProperty.Units.Count == 0)
                 {
-                    Master.ShowDialogOK("No Units found for this property.", "View Units");
+                    Master.ShowErrorModal("No Units found for this property.", "View Units");
                     return;
                 }
 

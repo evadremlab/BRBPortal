@@ -66,7 +66,7 @@ namespace BRBPortal_CSharp.Account
             {
                 if (string.IsNullOrEmpty(FirstName.Text) || string.IsNullOrEmpty(LastName.Text))
                 {
-                    Master.ShowDialogOK("When Relationship is Owner, first and last name must be entered.");
+                    Master.ShowErrorModal("When Relationship is Owner, first and last name must be entered.", "Edit Profile");
                     return;
                 }
             }
@@ -74,7 +74,7 @@ namespace BRBPortal_CSharp.Account
             {
                 if (string.IsNullOrEmpty(AgencyName.Text))
                 {
-                    Master.ShowDialogOK("When Relationship is Agent, agency name must be entered.");
+                    Master.ShowOKModal("When Relationship is Agent, agency name must be entered.", "Edit Profile");
                     return;
                 }
             }
@@ -107,7 +107,7 @@ namespace BRBPortal_CSharp.Account
             }
             else
             {
-                Master.ShowDialogOK("Error: Problem updating user profile.", "Profile Update");
+                Master.ShowErrorModal("Error: Problem updating user profile.", "Profile Update");
             }
         }
 

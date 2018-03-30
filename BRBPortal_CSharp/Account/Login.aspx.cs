@@ -71,20 +71,20 @@ namespace BRBPortal_CSharp.Account
                         {
                             Session.Clear();
                             Logger.Log("Login", BRBFunctions_CSharp.iErrMsg);
-                            Master.ShowDialogOK("Please contact your system administrator.", "Login Error");
+                            Master.ShowErrorModal("Error getting User Profile.", "Login Error");
                         }
                     }
                     else
                     {
                         Session.Clear();
-                        Master.ShowDialogOK(BRBFunctions_CSharp.iErrMsg, "Login Error");
+                        Master.ShowErrorModal("Authentication Error.", "Login Error");
                     }
                 }
                 catch (Exception ex)
                 {
                     Session.Clear();
                     Logger.LogException("Login", ex);
-                    Master.ShowDialogOK("Please contact your system administrator.", "Login Error");
+                    Master.ShowErrorModal("Please contact your system administrator.", "System Error");
                 }
             }
         }

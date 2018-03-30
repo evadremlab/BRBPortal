@@ -39,7 +39,7 @@ namespace BRBPortal_CSharp.MyProperties
                             BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
                         }
 
-                        Master.ShowDialogOK("Error retrieving Properties: " + BRBFunctions_CSharp.iErrMsg, "Properties");
+                        Master.ShowErrorModal("Error retrieving Properties: " + BRBFunctions_CSharp.iErrMsg, "Properties");
                         return;
                     }
                 }

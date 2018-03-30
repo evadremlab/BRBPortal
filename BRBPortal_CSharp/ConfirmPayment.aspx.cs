@@ -36,7 +36,7 @@ namespace BRBPortal_CSharp
             }
             else
             {
-                Master.ShowDialogOK("Cart has no ID", "Error");
+                Master.ShowErrorModal("Cart has no ID", "Error");
             }
         }
     }

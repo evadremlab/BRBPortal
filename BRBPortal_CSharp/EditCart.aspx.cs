@@ -25,7 +25,7 @@ namespace BRBPortal_CSharp
             }
             catch (Exception ex)
             {
-                Master.ShowDialogOK(ex.Message, "Edit Cart View");
+                Master.ShowErrorModal(ex.Message, "Edit Cart View");
             }
         }
 
@@ -77,7 +77,7 @@ namespace BRBPortal_CSharp
                 }
                 catch (Exception ex)
                 {
-                    Master.ShowDialogOK("Error removing cart item: " + ex.Message, "Remove cart item");
+                    Master.ShowErrorModal("Error removing cart item: " + ex.Message, "Remove cart item");
                 }
             }
         }

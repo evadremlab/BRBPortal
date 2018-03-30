@@ -36,7 +36,7 @@ namespace BRBPortal_CSharp.Account
                 catch (Exception ex)
                 {
                     Logger.LogException("ProfileConfirm", ex);
-                    Master.ShowDialogOK("Error getting User profile.", "ProfileConfirm");
+                    Master.ShowErrorModal("Error getting User profile.", "ProfileConfirm");
                 }
             }
         }
@@ -60,13 +60,13 @@ namespace BRBPortal_CSharp.Account
                 else
                 {
                     Logger.Log("ProfileConfirm", BRBFunctions_CSharp.iErrMsg);
-                    Master.ShowDialogOK("Error updating confirmation (Error).", "Confirm Profile");
+                    Master.ShowErrorModal("Error updating confirmation (Error).", "Confirm Profile");
                 }
             }
             catch (Exception ex)
             {
                 Logger.LogException("ProfileConfirm", ex);
-                Master.ShowDialogOK("Error updating confirmation (Exception).", "Confirm Profile");
+                Master.ShowErrorModal("Error updating confirmation (Exception).", "Confirm Profile");
             }
         }
 
@@ -83,7 +83,7 @@ namespace BRBPortal_CSharp.Account
             catch (Exception ex)
             {
                 Logger.LogException("ProfileConfirm", ex);
-                Master.ShowDialogOK("Error when cancelling profile confirmation.", "Confirm Profile");
+                Master.ShowErrorModal("Error when cancelling profile confirmation.", "Confirm Profile");
             }
         }
     }

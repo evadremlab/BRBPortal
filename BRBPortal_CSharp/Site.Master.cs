@@ -125,11 +125,20 @@ namespace BRBPortal_CSharp
             this.User = user;
         }
 
-        public void ShowDialogOK(string message, string title = "Status")
+        public void ShowOKModal(string message, string title = "Status")
         {
             var safeTitle = HttpContext.Current.Server.HtmlEncode(title);
             var safeMessage = HttpContext.Current.Server.HtmlEncode(message);
-            var jsFunction = string.Format("showDialogOK('{0}', '{1}');", safeMessage, safeTitle);
+            var jsFunction = string.Format("showOKModal('{0}', '{1}');", safeMessage, safeTitle);
+
+            Page.ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
+        }
+
+        public void ShowErrorModal(string message, string title = "System Error")
+        {
+            var safeTitle = HttpContext.Current.Server.HtmlEncode(title);
+            var safeMessage = HttpContext.Current.Server.HtmlEncode(message);
+            var jsFunction = string.Format("showErrorModal('{0}', '{1}');", safeMessage, safeTitle);
 
             Page.ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }

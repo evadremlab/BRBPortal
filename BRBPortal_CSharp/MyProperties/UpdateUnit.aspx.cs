@@ -221,7 +221,7 @@ namespace BRBPortal_CSharp.MyProperties
                 }
                 else
                 {
-                    Master.ShowDialogOK("Error retrieving Unit details", "UpdateUnit");
+                    Master.ShowErrorModal("Error retrieving Unit details", "UpdateUnit");
                 }
             }
         }
@@ -287,7 +287,7 @@ namespace BRBPortal_CSharp.MyProperties
 
             if (BRBFunctions_CSharp.SaveUnit(ref user))
             {
-                Master.ShowDialogOK("Updated Unit Status.", "Update Unit Status");
+                Master.ShowOKModal("Updated Unit Status.", "Update Unit Status");
             }
             else
             {
@@ -296,7 +296,7 @@ namespace BRBPortal_CSharp.MyProperties
                     BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
                 }
 
-                Master.ShowDialogOK("Error updating Unit Status: " + BRBFunctions_CSharp.iErrMsg, "Update Unit Status");
+                Master.ShowErrorModal("Error updating Unit Status: " + BRBFunctions_CSharp.iErrMsg, "Update Unit Status");
             }
         }
 

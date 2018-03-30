@@ -112,12 +112,12 @@
             </div>
         </div>
     </div>
-    <div id="ValidationModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="ValidationModalLabel">
+    <div id="ErrorModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="ErrorModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:#fff;">&times;</span></button>
-                    <h4 class="modal-title" id="ValidationModalLabel"></h4>
+                    <h4 class="modal-title" id="ErrorModalLabel"></h4>
                 </div>
                 <div class="modal-body"></div>
                 <div class="modal-footer">

@@ -17,7 +17,7 @@ namespace BRBPortal_CSharp.Account
                     {
                         if (string.IsNullOrEmpty(LastName.Text))
                         {
-                            Master.ShowDialogOK("Last name must be entered when property relationship is Owner.");
+                            Master.ShowErrorModal("Last name must be entered when property relationship is Owner.");
                             return;
                         }
                     }
@@ -25,7 +25,7 @@ namespace BRBPortal_CSharp.Account
                     {
                         if (AgencyName.Text == "")
                         {
-                            Master.ShowDialogOK("Agency name must be entered when property relationship is Agent.");
+                            Master.ShowErrorModal("Agency name must be entered when property relationship is Agent.");
                             return;
                         }
                     }
@@ -60,13 +60,13 @@ namespace BRBPortal_CSharp.Account
                     else
                     {
                         Logger.Log("Register", BRBFunctions_CSharp.iErrMsg);
-                        Master.ShowDialogOK("Error during registration(1).", "Registration");
+                        Master.ShowErrorModal("Error during registration(1).", "Registration");
                     }
                 }
                 catch (Exception ex)
                 {
                     Logger.LogException("Register", ex);
-                    Master.ShowDialogOK("Error during registration(2).", "Registration");
+                    Master.ShowErrorModal("Error during registration(2).", "Registration");
                 }
             }
         }

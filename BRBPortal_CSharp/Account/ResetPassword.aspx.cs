@@ -23,7 +23,7 @@ namespace BRBPortal_CSharp.Account
 
         protected void UserIDCode_Or_BillingCode_TextChanged(object sender, EventArgs e)
         {
-            Master.ShowDialogOK("API to return Security Questions is TBD", "Reset Password");
+            Master.ShowOKModal("API to return Security Questions is TBD", "Reset Password");
 
             //var user = new BRBUser
             //{
@@ -41,7 +41,7 @@ namespace BRBPortal_CSharp.Account
             //}
             //else
             //{
-            //    Master.ShowDialogOK("Error: Invalid User ID or Billing Code.", "Reset Password");
+            //    Master.ShowErrorModal("Error: Invalid User ID or Billing Code.", "Reset Password");
             //    UserIDCode.Focus();
             //}
         }
@@ -62,13 +62,13 @@ namespace BRBPortal_CSharp.Account
             if (BRBFunctions_CSharp.ValidateReset(ref user))
             {
                 Master.UpdateSession(user);
-                Master.ShowDialogOK("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
+                Master.ShowOKModal("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
 
                 Response.Redirect("~/Account/Login", false);
             }
             else
             {
-                Master.ShowDialogOK("Security answer(s) did not match.", "Reset Password");
+                Master.ShowErrorModal("Security answer(s) did not match.", "Reset Password");
             }
         }
     }

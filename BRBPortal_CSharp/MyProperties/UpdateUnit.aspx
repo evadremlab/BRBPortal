@@ -223,8 +223,8 @@
                         </div>
 
                         <div class="form-group">
-                            <asp:Button runat="server" id="btnCancel" OnClick="btnCancel_Click" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Returns to list of units." TabIndex="-1" />
-                            <asp:Button runat="server" ID="btnConfirm" Text="Confirm" OnClientClick="return validate();" CssClass="btn btn-primary" ToolTip="Update this unit." style="margin-left:1rem;"/>
+                            <asp:Button runat="server" id="btnCancel" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-sm btn-default" ToolTip="Returns to list of units." TabIndex="-1" />
+                            <asp:Button runat="server" ID="btnConfirm" Text="Confirm" OnClick="btnConfirm_Click" OnClientClick="return validate();" CssClass="btn btn-primary" ToolTip="Update this unit." style="margin-left:1rem;"/>
                         </div>
                     </div>
                 </div>
@@ -266,18 +266,16 @@
                         addValError('As of Date must be entered.');
                     }
                 }
-
                 if (valErrors.length) {
-                    showValidationErrorDialog(('<ul>' + valErrors.join('') + '</ul>'), "Validation Errors");
+                    showErrorDialog(('<ul>' + valErrors.join('') + '</ul>'), "Validation Errors");
                     return false;
-                } else {
-                    showDialogOK('No errors', "Validation Errors");
                 }
             } catch (ex) {
-                showValidationErrorDialog(ex.message, "Validation Errors");
+                showErrorDialog(ex.message, "Validation Errors");
+                return false;
             }
 
-            return false;
+            return true;
         }
 
         function validateExemptions(el$) {
