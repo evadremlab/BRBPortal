@@ -7,8 +7,6 @@
         input[type="text"] { text-transform:uppercase; }
     </style>
 
-    <asp:HiddenField ID="hfDialogID" runat="server" />
-
     <h2><%: Title %></h2>
     <hr />
 
@@ -60,7 +58,7 @@
                 <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="Suffix" CssClass="col-md-2 control-label">Suffix: </asp:Label>
                     <div class="col-md-10" style="max-width:15.5rem;">
-                        <asp:dropdownlist runat="server" ID="Suffix" ToolTip="Select a suffix from the list (optional)." CssClass="form-control selectpicker">
+                        <asp:DropDownlist runat="server" ID="Suffix" ToolTip="Select a suffix from the list (optional)." CssClass="form-control selectpicker">
                             <asp:ListItem enabled="true" text="Select suffix" value=""></asp:ListItem>
                             <asp:ListItem enabled="true" text="Jr." value="1"></asp:ListItem>
                             <asp:ListItem enabled="true" text="Sr." value="2"></asp:ListItem>
@@ -69,7 +67,7 @@
                             <asp:ListItem enabled="true" text="III" value="5"></asp:ListItem>
                             <asp:ListItem enabled="true" text="IV" value="6"></asp:ListItem>
                             <asp:ListItem enabled="true" text="V" value="7"></asp:ListItem>
-                        </asp:DropDownList>
+                        </asp:DropDownlist>
                     </div>
                 </div>
             </div>
@@ -114,7 +112,7 @@
                 <asp:Label runat="server" AssociatedControlID="StState" CssClass="col-md-2 control-label">* State: </asp:Label>
                 <div class="col-md-10">
                     <span style="display:inline-block; max-width:15.5rem;">
-                        <asp:dropdownlist runat="server" ID="StState" ToolTip="Select a state from the list." CssClass="form-control selectpicker">
+                        <asp:DropDownlist runat="server" ID="StState" ToolTip="Select a state from the list." CssClass="form-control selectpicker">
                             <asp:ListItem enabled="true" text="Select state" value=""></asp:ListItem>
                             <asp:ListItem enabled="true" text="AK" value="AK"></asp:ListItem>
                             <asp:ListItem enabled="true" text="AL" value="AL"></asp:ListItem>
@@ -165,7 +163,7 @@
                             <asp:ListItem enabled="true" text="WI" value="WI"></asp:ListItem>
                             <asp:ListItem enabled="true" text="WV" value="WV"></asp:ListItem>
                             <asp:ListItem enabled="true" text="WY" value="WY"></asp:ListItem>
-                        </asp:DropDownList>
+                        </asp:DropDownlist>
                     </span>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="StState" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>

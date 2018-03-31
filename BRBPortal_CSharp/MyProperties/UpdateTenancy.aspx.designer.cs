@@ -13,49 +13,22 @@ namespace BRBPortal_CSharp.MyProperties {
     public partial class UpdateTenancy {
         
         /// <summary>
-        /// hfDialogID control.
+        /// Literal1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfDialogID;
+        protected global::System.Web.UI.WebControls.Literal Literal1;
         
         /// <summary>
-        /// hfUnitID control.
+        /// Literal2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfUnitID;
-        
-        /// <summary>
-        /// hfOrigTenStDt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfOrigTenStDt;
-        
-        /// <summary>
-        /// hfOwnerEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfOwnerEmail;
-        
-        /// <summary>
-        /// MainAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal MainAddress;
+        protected global::System.Web.UI.WebControls.Literal Literal2;
         
         /// <summary>
         /// OwnerName control.
@@ -83,15 +56,6 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal BalAmt;
-        
-        /// <summary>
-        /// UnitNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal UnitNo;
         
         /// <summary>
         /// UnitStatus control.
@@ -130,15 +94,6 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.CheckBoxList HServs;
         
         /// <summary>
-        /// HServsOthr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox HServsOthr;
-        
-        /// <summary>
         /// HServOthrBox control.
         /// </summary>
         /// <remarks>
@@ -157,22 +112,13 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.TextBox NumTenants;
         
         /// <summary>
-        /// RB1Y control.
+        /// RB1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton RB1Y;
-        
-        /// <summary>
-        /// RB1N control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton RB1N;
+        protected global::System.Web.UI.WebControls.RadioButtonList RB1;
         
         /// <summary>
         /// SmokeDt control.
@@ -209,87 +155,6 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TermDescr;
-        
-        /// <summary>
-        /// gvTenants control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvTenants;
-        
-        /// <summary>
-        /// btnAddTenant control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddTenant;
-        
-        /// <summary>
-        /// AddTenant control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddTenant;
-        
-        /// <summary>
-        /// NewFirst control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NewFirst;
-        
-        /// <summary>
-        /// NewLast control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NewLast;
-        
-        /// <summary>
-        /// NewPhon control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NewPhon;
-        
-        /// <summary>
-        /// NewEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NewEmail;
-        
-        /// <summary>
-        /// SaveNewTen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SaveNewTen;
-        
-        /// <summary>
-        /// CancelNewTen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button CancelNewTen;
         
         /// <summary>
         /// chkDeclare control.

@@ -11,6 +11,10 @@
     <hr />
     <section id="loginForm">
         <div class="form-horizontal">
+            <div id="TemporaryPasswordMsg" runat="server" class="alert alert-info alert-dismissible" role="alert" style="width:62rem;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                A temporary new password has been sent to your email address registered with this account. Please access your account with your UserId and new temporary password.
+            </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <div class="radio radiobuttonlist" style="padding-top:0; padding-left:0;">

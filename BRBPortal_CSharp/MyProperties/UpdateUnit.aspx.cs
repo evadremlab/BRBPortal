@@ -12,13 +12,7 @@ namespace BRBPortal_CSharp.MyProperties
     {
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            if (IsPostBack)
-            {
-                InitalEditButtons.Style.Add("display", "none");
-                EditUnitStatusPanel.Style.Remove("display");
-                btnConfirm.Enabled = true;
-            }
-            else
+            if (!IsPostBack)
             {
                 var user = Master.User;
                 var unit = user.CurrentUnit;
@@ -30,6 +24,37 @@ namespace BRBPortal_CSharp.MyProperties
                     UnitNo.Text = unit.UnitNo;
                     UnitStatus.Text = unit.ClientPortalUnitStatusCode;
                     ExemptReas.Text = unit.ExemptionReason;
+
+                    if (string.IsNullOrEmpty(unit.ExemptionReason))
+                    {
+                        switch (unit.UnitStatCode)
+                        {
+                            case "NAR":
+                                ExemptReas.Text = "Vacant and not available for rent";
+                                break;
+                            case "OOCC":
+                                ExemptReas.Text = "Owner-Occupied";
+                                break;
+                            case "SEC8":
+                                ExemptReas.Text = "Section 8";
+                                break;
+                            case "FREE":
+                                ExemptReas.Text = "Occupied Rent Free";
+                                break;
+                            case "COMM":
+                                ExemptReas.Text = "Commercial Use";
+                                break;
+                            case "MISC":
+                                ExemptReas.Text = "Property Manager's Unit";
+                                break;
+                            case "SHARED":
+                                ExemptReas.Text = "Owner shares kitchen & bath with tenant";
+                                break;
+                            case "SPLUS":
+                                ExemptReas.Text = "Shelter Plus Care";
+                                break;
+                        }
+                    }
 
                     if (unit.ClientPortalUnitStatusCode == "Rented")
                     {
@@ -231,45 +256,13 @@ namespace BRBPortal_CSharp.MyProperties
             var user = Master.User;
             var unit = user.CurrentUnit;
 
-            // literals
-            MainAddress.Text = unit.StreetAddress;
-            UnitNo.Text = unit.UnitNo;
-            UnitStatus.Text = unit.ClientPortalUnitStatusCode;
-            ExemptReas.Text = unit.ExemptionReason;
+            InitalEditButtons.Style.Add("display", "none");
+            EditUnitStatusPanel.Style.Remove("display");
+            btnConfirm.Enabled = true;
 
-            // inputs
-
-            if (!string.IsNullOrEmpty(StartDt.Text))
-            {
-                DateTime dtStartDate = DateTime.MinValue;
-
-                if (DateTime.TryParse(StartDt.Text, out dtStartDate))
-                {
-                    unit.StartDt = dtStartDate;
-                }
-            }
-
-            unit.OccupiedBy = UnitOccBy.Text;
             unit.ClientPortalUnitStatusCode = NewUnit.SelectedValue; // Rented or Exempt
-
-            unit.ExemptionReason = ExemptReason.Text;
             unit.OtherExemptionReason = OtherList.SelectedValue ?? "";
-
-            if (string.IsNullOrEmpty(unit.ExemptionReason) || !Regex.IsMatch(unit.ExemptionReason, "OOCC|FREE"))
-            {
-                unit.OccupiedBy = "";
-            }
-
-            if (!string.IsNullOrEmpty(UnitAsOfDt.Text))
-            {
-                var dtChangeDate = DateTime.MinValue;
-
-                if (DateTime.TryParse(UnitAsOfDt.Text, out dtChangeDate))
-                {
-                    unit.UnitAsOfDt = dtChangeDate;
-                }
-            }
-
+            unit.OccupiedBy = UnitOccBy.Text;
             unit.ContractNo = ContractNo.Text;
             unit.CommUseDesc = CommUseDesc.Text;
             unit.CommResYN = CommResYN.SelectedValue ?? "";
@@ -282,11 +275,26 @@ namespace BRBPortal_CSharp.MyProperties
             unit.TenantNames = TenantNames.Text;
             unit.TenantContacts = TenantContacts.Text;
             unit.DeclarationInitials = DeclareInits.Text;
+            unit.StartDt = BRBFunctions_CSharp.GetOptionalDate(StartDt.Text);
+            unit.UnitAsOfDt = BRBFunctions_CSharp.GetOptionalDate(UnitAsOfDt.Text);
+
+            if (unit.ClientPortalUnitStatusCode.ToUpper() == "EXEMPT")
+            {
+                if (unit.ExemptionReason.ToUpper() == "OTHER")
+                {
+                    unit.ExemptionReason = unit.OtherExemptionReason;
+                }
+                else
+                {
+                    unit.ExemptionReason = ExemptReason.Text;
+                }
+            }
 
             user.CurrentUnit = unit;
 
             if (BRBFunctions_CSharp.SaveUnit(ref user))
             {
+                Master.UpdateSession(user);
                 Master.ShowOKModal("Updated Unit Status.", "Update Unit Status");
             }
             else
@@ -296,7 +304,7 @@ namespace BRBPortal_CSharp.MyProperties
                     BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
                 }
 
-                Master.ShowErrorModal("Error updating Unit Status: " + BRBFunctions_CSharp.iErrMsg, "Update Unit Status");
+                Master.ShowErrorModal(BRBFunctions_CSharp.iErrMsg, "Update Unit Status");
             }
         }
 

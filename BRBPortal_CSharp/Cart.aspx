@@ -11,8 +11,8 @@
         <div class="form-horizontal">
             <div class="form-group">
                 <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False" CellPadding="4" 
-                    ForeColor="#333333" GridLines="None" AllowPaging="True" ShowFooter="True" 
-                    OnRowDataBound="gvCart_RowDataBound" >
+                    ForeColor="#333333" GridLines="None" ShowFooter="True" 
+                    OnRowDataBound="gvCart_RowDataBound">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField HeaderText="PropertyID" DataField="PropertyID" ReadOnly="True" Visible="false"></asp:BoundField>
@@ -48,7 +48,7 @@
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                     <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" CssClass="grid-pager" />
                     <RowStyle BackColor="#EFF3FB" />
                     <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
                     <SortedAscendingCellStyle BackColor="#F5F7FB" />

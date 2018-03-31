@@ -21,6 +21,17 @@ namespace BRBPortal_CSharp.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var showTempPasswordMsg = Session["ShowTemporaryPasswordMsg"] as String ?? "";
+
+            if (showTempPasswordMsg == "TRUE")
+            {
+                TemporaryPasswordMsg.Visible = true;
+                Session.Remove("ShowTemporaryPasswordMsg");
+            }
+            else
+            {
+                TemporaryPasswordMsg.Visible = false;
+            }
         }
 
         protected void LogIn(object sender, EventArgs e)

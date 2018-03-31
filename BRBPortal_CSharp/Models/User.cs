@@ -176,8 +176,7 @@ namespace BRBPortal_CSharp.Models
         public string ExemptionReason { get; set; } = "";
         public string OtherExemptionReason { get; set; } = "";
         public string OccupiedBy { get; set; } = "";
-        public int TennantCount { get; set; } // readonly
-        public int NumberOfTenants { get; set; }
+        public int TenantCount { get; set; } // readonly
         public string SmokingProhibitionInLeaseStatus { get; set; } = "";
         public DateTime? SmokingProhibitionEffectiveDate { get; set; }
         public string SmokeDetector { get; set; } = "";

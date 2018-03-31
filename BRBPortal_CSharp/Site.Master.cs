@@ -109,6 +109,24 @@ namespace BRBPortal_CSharp
                     Response.Redirect("~/Account/Login");
                 }
             }
+
+            // see if we have any messages to display
+            // will look like: "Your password has been updated.|Update Password" ie: "msg|title"
+
+            var infoMessage = Session["ShowAfterRedirect"] as String ?? "";
+
+            if (!string.IsNullOrEmpty(infoMessage))
+            {
+                var parts = infoMessage.Split('|');
+                var message = parts[0];
+                var defaultTitle = "Status Message";
+                var title = parts.Length > 1 ? parts[1] ?? defaultTitle : defaultTitle;
+
+                ShowOKModal(message, title, 500);
+            }
+
+            Session.Remove("InfoMessage");
+            Session.Remove("ShowAfterRedirect");
         }
 
         protected void Logoff(object sender, EventArgs e)
@@ -125,27 +143,27 @@ namespace BRBPortal_CSharp
             this.User = user;
         }
 
-        public void ShowOKModal(string message, string title = "Status")
+        public void ShowOKModal(string message, string title = "Status Message", int? delay = 0)
         {
             var safeTitle = HttpContext.Current.Server.HtmlEncode(title);
             var safeMessage = HttpContext.Current.Server.HtmlEncode(message);
-            var jsFunction = string.Format("showOKModal('{0}', '{1}');", safeMessage, safeTitle);
+            var jsFunction = string.Format("showOKModal('{0}', '{1}', {2});", safeMessage, safeTitle, delay);
 
             Page.ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
 
-        public void ShowErrorModal(string message, string title = "System Error")
+        public void ShowErrorModal(string message, string title = "System Error", int? delay = 0)
         {
             var safeTitle = HttpContext.Current.Server.HtmlEncode(title);
             var safeMessage = HttpContext.Current.Server.HtmlEncode(message);
-            var jsFunction = string.Format("showErrorModal('{0}', '{1}');", safeMessage, safeTitle);
+            var jsFunction = string.Format("showErrorModal('{0}', '{1}', {2});", safeMessage, safeTitle, delay);
 
             Page.ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
 
         private bool PageNeedsUserObject()
         {
-            return !Regex.IsMatch(Path.GetFileName(Request.Url.AbsolutePath), "Default|Login|Register|ManagePassword|PaymentProcessed|PaymentCancelled|PaymentError", RegexOptions.IgnoreCase);
+            return !Regex.IsMatch(Path.GetFileName(Request.Url.AbsolutePath), "Default|Login|Register|ManagePassword|ResetPassword|PaymentProcessed|PaymentCancelled|PaymentError", RegexOptions.IgnoreCase);
         }
     }
 }

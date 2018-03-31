@@ -28,6 +28,13 @@ input[type="select"] {
 }
 
 /* Added by david.b.balmer@transsight.com */
+.grid-pager table td {
+    padding: 0 0.5rem;
+}
+
+.grid-pager table td span {
+    font-weight: bold;
+}
 .bg-info {
     color: #fff;
     background-color: #5bc0de;

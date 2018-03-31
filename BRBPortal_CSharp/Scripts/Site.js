@@ -1,16 +1,20 @@
-﻿function showOKModal(message, title) {
+﻿function showOKModal(message, title, delay) {
     $(document).ready(function () {
-        $('#OkModal .modal-title').html(title);
-        $('#OkModal .modal-body').html(message);
-        $('#OkModal').modal('show');
+        setTimeout(function () {
+            $('#OkModal .modal-title').html(title);
+            $('#OkModal .modal-body').html(message);
+            $('#OkModal').modal('show');
+        }, delay || 100);
     });
 }
 
-function showErrorModal(message, title) {
+function showErrorModal(message, title, delay) {
     $(document).ready(function () {
-        $('#ErrorModal .modal-title').html(title);
-        $('#ErrorModal .modal-body').html(message);
-        $('#ErrorModal').modal('show');
+        setTimeout(function () {
+            $('#ErrorModal .modal-title').html(title);
+            $('#ErrorModal .modal-body').html(message);
+            $('#ErrorModal').modal('show');
+        }, delay || 100);
     });
 }
 

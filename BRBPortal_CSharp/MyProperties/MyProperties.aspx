@@ -19,7 +19,8 @@
                 <div class="form-group">
                     <asp:GridView ID="gvProperties" runat="server" AutoGenerateColumns="False" CellPadding="4"
                         ForeColor="#333333" GridLines="None" PageSize="10" AllowPaging="true" 
-                        onRowCommand="gvProperties_RowCommand" OnPageIndexChanging="gvProperties_PageIndexChanging">
+                        onRowCommand="gvProperties_RowCommand" 
+                        OnPageIndexChanging="gvProperties_PageIndexChanging">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:TemplateField>
@@ -27,7 +28,7 @@
                                  <asp:HiddenField runat="server" ID="hfPropID" Value='<%#Eval("PropertyID")%>' />
                                </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField HeaderText="PropertyID" DataField="PropertyID" ReadOnly="True"></asp:BoundField>
+                            <asp:BoundField HeaderText="PropertyID" DataField="PropertyID" ReadOnly="True" Visible="false"></asp:BoundField>
                             <asp:BoundField HeaderText="Address" DataField="PropertyAddress" SortExpression="PropertyAddress">
                                 <HeaderStyle Wrap="False" />
                                 <ItemStyle HorizontalAlign="Left" Wrap="False" />
@@ -63,7 +64,7 @@
                         <EditRowStyle BackColor="#2461BF" />
                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                         <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                        <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Left" CssClass="grid-pager" />
                         <RowStyle BackColor="#EFF3FB" />
                         <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
                         <SortedAscendingCellStyle BackColor="#F5F7FB" />

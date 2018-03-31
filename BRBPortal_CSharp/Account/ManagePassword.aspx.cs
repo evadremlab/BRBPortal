@@ -54,6 +54,8 @@ namespace BRBPortal_CSharp.Account
             claims.Add(new Claim(ClaimTypes.Name, user.BillingCode));
             Request.GetOwinContext().Authentication.SignIn(new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie));
 
+            Session["ShowAfterRedirect"] = "Your password has been reset.|Password Reset";
+
             if (Session["NextPage"].ToString() == "ProfileConfirm")
             {
                 Response.Redirect("~/Account/ProfileConfirm", false);

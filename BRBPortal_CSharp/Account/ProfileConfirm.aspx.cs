@@ -55,6 +55,8 @@ namespace BRBPortal_CSharp.Account
             {
                 if (BRBFunctions_CSharp.ConfirmProfile(user))
                 {
+                    Session["ShowAfterRedirect"] = "Your account profile has been confirmed.|Profile Confirmed";
+
                     Response.Redirect("~/Home", false);
                 }
                 else

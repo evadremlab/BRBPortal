@@ -2,8 +2,6 @@
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:HiddenField ID="hfDialogID" runat="server" />
-
     <h2><%: Title %></h2>
     <h4>at <asp:Literal ID="PropertyAddress" runat="server" ></asp:Literal></h4>
     <hr />
@@ -35,15 +33,15 @@
             </div>
             <div class="form-group">
                 <asp:GridView ID="gvUnits" runat="server" AutoGenerateColumns="False" CellPadding="4" 
-                    ForeColor="#333333" GridLines="None" OnRowDataBound="gvUnits_OnRowDataBound" AllowPaging="True" 
-                    OnRowCommand="gvUnits_RowCommand" OnPageIndexChanging="gvUnits_OnRowDataBound" >
+                    ForeColor="#333333" GridLines="None" PageSize="10" AllowPaging="true" 
+                    OnRowDataBound="gvUnits_OnRowDataBound"
+                    OnRowCommand="gvUnits_RowCommand" 
+                    OnPageIndexChanging="gvUnits_PageIndexChanging">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="UnitID" HeaderText="UnitID (NV)" ReadOnly="True" Visible="false" />
-                        <asp:BoundField HeaderText="UnitStatID (NV)" DataField="UnitStatID" SortExpression="UnitStatID" Visible="false" />
-                        <asp:BoundField DataField="CPUnitStatCode" HeaderText="Unit Status (NV)" ReadOnly="True" SortExpression="UnitStatCode" Visible="false">
-                            <ItemStyle Wrap="False" />
-                        </asp:BoundField>
+                        <asp:BoundField HeaderText="UnitStatID (NV)" DataField="UnitStatID" ReadOnly="true" SortExpression="UnitStatID" Visible="false" />
+                        <asp:BoundField DataField="CPUnitStatCode" HeaderText="Unit Status (NV)" ReadOnly="True" SortExpression="UnitStatCode" Visible="false" />
                         <asp:BoundField DataField="StreetAddress" HeaderText="Address" ReadOnly="True" SortExpression="StreetAddress">
                             <ItemStyle Wrap="False" />
                         </asp:BoundField>
@@ -73,7 +71,7 @@
                     <EditRowStyle BackColor="#2461BF" />
                     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                     <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Left" CssClass="grid-pager" />
                     <RowStyle BackColor="#EFF3FB" />
                     <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
                     <SortedAscendingCellStyle BackColor="#F5F7FB" />

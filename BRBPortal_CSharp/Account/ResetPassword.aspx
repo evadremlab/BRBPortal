@@ -4,8 +4,6 @@
 <%-- data-lpignore="true" tells LastPass not to show ellipsis on form fields --%>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <asp:HiddenField ID="hfDialogID" runat="server" />
-
     <h2><%: Title %></h2>
     <hr />
 

@@ -23,27 +23,30 @@ namespace BRBPortal_CSharp.Account
 
         protected void UserIDCode_Or_BillingCode_TextChanged(object sender, EventArgs e)
         {
-            Master.ShowOKModal("API to return Security Questions is TBD", "Reset Password");
+            var user = new BRBUser
+            {
+                UserCode = UserIDCode.Text,
+                BillingCode = BillingCode.Text
+            };
 
-            //var user = new BRBUser
-            //{
-            //    UserCode = UserIDCode.Text,
-            //    BillingCode = BillingCode.Text
-            //};
+            if (BRBFunctions_CSharp.GetProfile(ref user))
+            {
+                Master.UpdateSession(user);
 
-            //if (BRBFunctions_CSharp.GetProfile(ref user))
-            //{
-            //    Master.UpdateSession(user);
+                if (string.IsNullOrEmpty(Master.User.Question1) || string.IsNullOrEmpty(Master.User.Question2))
+                {
+                    Master.ShowErrorModal("Your profile does not have security questions assigned. Please contact the system administrator.", "Profile Error", 250);
+                }
 
-            //    Quest1.Text = Master.User.Question1;
-            //    Quest2.Text = Master.User.Question2;
-            //    Answer1.Focus();
-            //}
-            //else
-            //{
-            //    Master.ShowErrorModal("Error: Invalid User ID or Billing Code.", "Reset Password");
-            //    UserIDCode.Focus();
-            //}
+                Quest1.Text = Master.User.Question1;
+                Quest2.Text = Master.User.Question2;
+                Answer1.Focus();
+            }
+            else
+            {
+                Master.ShowErrorModal("Error: Invalid User ID or Billing Code.", "Reset Password");
+                UserIDCode.Focus();
+            }
         }
 
         protected void Reset_Click(object sender, EventArgs e)
@@ -62,8 +65,8 @@ namespace BRBPortal_CSharp.Account
             if (BRBFunctions_CSharp.ValidateReset(ref user))
             {
                 Master.UpdateSession(user);
-                Master.ShowOKModal("Temporary password has been sent. Please login using temporary password.", "Forgot Password");
 
+                Session["ShowTemporaryPasswordMsg"] = "TRUE";
                 Response.Redirect("~/Account/Login", false);
             }
             else

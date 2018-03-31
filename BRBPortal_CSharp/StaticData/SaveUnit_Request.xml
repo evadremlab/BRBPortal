@@ -1,6 +1,4 @@
-﻿<soapenv:Envelope
-    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-    xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
   <soapenv:Header/>
   <soapenv:Body>
     <api:updateUnitStatusChange>
@@ -12,15 +10,15 @@
         <unitStatus>Exempt</unitStatus>
         <!--Optional:-->
         <exemptionReason>NAR</exemptionReason>
-        <unitStatusAsOfDate>03/31/2018</unitStatusAsOfDate>
+        <unitStatusAsOfDate>03/30/2018</unitStatusAsOfDate>
         <declarationInitial>DBB</declarationInitial>
         <questions>
           <!--Optional:-->
-          <asOfDate></asOfDate>
+          <asOfDate>03/30/2018</asOfDate>
           <!--Optional:-->
-          <dateStarted></dateStarted>
+          <dateStarted>02/27/2013</dateStarted>
           <!--Optional:-->
-          <occupiedBy></occupiedBy>
+          <occupiedBy>CARRASCO, ANA, CARRASCO, KELLEY</occupiedBy>
           <!--Optional:-->
           <contractNo></contractNo>
           <!--Optional:-->

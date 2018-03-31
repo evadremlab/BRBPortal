@@ -6,12 +6,9 @@
     <h4>at <asp:Literal ID="MainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
     <hr />
 
-    <asp:HiddenField ID="hfDialogID" runat="server" />
-
     <div class="form-horizontal">
         <section id="updatePropertiesForm">
             <div class="form-horizontal">
-                <hr />
                 <div class="row hidden">
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="OwnerName" CssClass="col-md-2 control-label">Owner Name:</asp:Label>
@@ -114,7 +111,8 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <asp:GridView ID="gvTenants" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="100%"
-                                ForeColor="#333333" GridLines="None" AllowPaging="True" PageSize="10" OnPageIndexChanging="gvTenants_PageIndexChanging">
+                                ForeColor="#333333" GridLines="None" AllowPaging="True" PageSize="10" 
+                                OnPageIndexChanging="gvTenants_PageIndexChanging">
                                 <AlternatingRowStyle BackColor="White" />
                                 <Columns>
                                     <asp:BoundField HeaderText="Tenant ID" DataField="TenantID" Visible="False" />
@@ -133,7 +131,7 @@
                                 <EditRowStyle BackColor="#2461BF" />
                                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
                                 <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Left" CssClass="grid-pager" />
                                 <RowStyle BackColor="#EFF3FB" />
                                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
                                 <SortedAscendingCellStyle BackColor="#F5F7FB" />
@@ -144,7 +142,7 @@
                         </div>    
                         <div class="form-group">
                             <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyUnits" Text="Back" CssClass="btn btn-sm btn-default" ToolTip="Return to the list of Units." TabIndex="-1" />
-                            <asp:Button runat="server" Text="Update Tenancy" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Tenants." />
+                            <asp:Button runat="server" Text="Update Tenancy" PostBackUrl="~/MyProperties/UpdateTenancy.aspx" CssClass="btn btn-primary" style="margin-left:1rem;" ToolTip="Proceed to Update Tenants." />
                         </div>
                     </div>
                 </div>

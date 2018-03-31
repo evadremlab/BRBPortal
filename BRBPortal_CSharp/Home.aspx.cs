@@ -6,10 +6,6 @@ namespace BRBPortal_CSharp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var user = Master.User;
-
-            var foo = user.BillingCode;
-
         }
     }
 }

@@ -22,13 +22,25 @@ namespace BRBPortal_CSharp
 {
     public static class BRBFunctions_CSharp
     {
-        private const bool USE_MOCK_SERVICES = false;
+        private const bool USE_MOCK_SERVICES = true;
 
         public static string iStatus = "";
         public static string iErrMsg = "";
 
         const string soapNamespace = "http://cityofberkeley.info/RTS/ClientPortal/API";
         const string urlPrefix = "http://cobwmisdv2.berkeley.root:5555/ws/RTSClientPortalAPI.API.WSD.";
+
+        public static DateTime? GetOptionalDate(string dateString)
+        {
+            DateTime dt = DateTime.MinValue;
+
+            if (DateTime.TryParse(dateString, out dt))
+            {
+                return dt;
+            }
+
+            return null;
+        }
 
         private static StringBuilder NewSoapMessage()
         {
@@ -637,7 +649,7 @@ namespace BRBPortal_CSharp
         /// </summary>
         public static bool GetPropertyUnits(ref BRBUser user, string unitID = "")
         {
-            var gotPropertyUnits = true; // later
+            var gotPropertyUnits = false;
 
             var soapRequest = new SoapRequest
             {
@@ -815,7 +827,16 @@ namespace BRBPortal_CSharp
                         unit.TenantContacts = "";
                         unit.TenantNames = unit.TenantNames;
                         unit.TenantContacts = unit.TenantContacts;
-                        unit.TennantCount = 0;
+                        unit.TenantCount = 0;
+
+                        if (detailUnits.SelectNodes("occupancy").Count > 0)
+                        {
+                            if (detailUnits.GetElementsByTagName("noOfOccupants").Item(0) != null)
+                            {
+                                unit.TenantCount = int.Parse(detailUnits.GetElementsByTagName("noOfOccupants").Item(0).InnerText);
+                            }
+                        }
+
                         unit.TerminationReason = "";
                         //unit.UnitAsOfDt = "";
                         unit.UnitID = detailUnits.SelectSingleNode("unitId").InnerText;
@@ -829,6 +850,8 @@ namespace BRBPortal_CSharp
                         }
                     }
                 }
+
+                gotPropertyUnits = true;
             }
             catch (Exception ex)
             {
@@ -842,8 +865,10 @@ namespace BRBPortal_CSharp
         /// <summary>
         /// DONE
         /// </summary>
-        public static void GetPropertyTenants(ref BRBUser user)
+        public static bool GetPropertyTenants(ref BRBUser user)
         {
+            var gotTenants = false;
+
             var soapRequest = new SoapRequest
             {
                 Source = "GetPropertyTenants",
@@ -866,6 +891,8 @@ namespace BRBPortal_CSharp
 
                 var xmlDoc = GetXmlResponse(soapRequest);
 
+                user.CurrentUnit.HServices = ""; // so we don't add on to those passed in
+
                 foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("propertyAndUnitsRes"))
                 {
                     if (detail.SelectSingleNode("agentDetails") != null)
@@ -884,13 +911,15 @@ namespace BRBPortal_CSharp
                         }
                     }
 
-                    user.CurrentUnit.HServices = ""; // so we don't add on to those passed in
-
                     foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
                     {
                         var unitID = detailUnits.SelectSingleNode("unitId").InnerText;
                         if (user.CurrentUnit.UnitID == detailUnits.SelectSingleNode("unitId").InnerText)
                         {
+                            //
+                            // UNIT
+                            //
+
                             if (detailUnits.SelectSingleNode("tenancyStartDate") != null)
                             {
                                 if (!string.IsNullOrEmpty(detailUnits.SelectSingleNode("tenancyStartDate").InnerText))
@@ -911,76 +940,80 @@ namespace BRBPortal_CSharp
                                 }
                             }
 
-                            if (detailUnits.GetElementsByTagName("noOfOccupants").Item(0) != null)
-                            {
-                                user.CurrentUnit.TennantCount = int.Parse(detailUnits.GetElementsByTagName("noOfOccupants").Item(0).InnerText);
-                            }
-
-                            if (detailUnits.GetElementsByTagName("initialRent").Item(0) != null)
-                            {
-                                user.CurrentUnit.InitialRent = detailUnits.GetElementsByTagName("initialRent").Item(0).InnerText;
-                            }
-
-                            if (detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item(0) != null)
-                            {
-                                user.CurrentUnit.DatePriorTenancyEnded = DateTime.Parse(detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item(0).InnerText);
-                            }
-
-                            if (detailUnits.GetElementsByTagName("reasonPriorTenancyEnded").Item(0) != null)
-                            {
-                                user.CurrentUnit.ReasonPriorTenancyEnded = detailUnits.GetElementsByTagName("reasonPriorTenancyEnded").Item(0).InnerText;
-                            }
-
-                            if (detailUnits.GetElementsByTagName("smokingProhibitionInLeaseStatus").Item(0) != null)
-                            {
-                                user.CurrentUnit.SmokingProhibitionInLeaseStatus = detailUnits.GetElementsByTagName("smokingProhibitionInLeaseStatus").Item(0).InnerText;
-                            }
-
-                            if (detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item(0) != null)
-                            {
-                                DateTime dtSmokingProhibitionEffectiveDate = DateTime.MinValue;
-
-                                if (DateTime.TryParse(detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item(0).InnerText, out dtSmokingProhibitionEffectiveDate))
-                                {
-                                    user.CurrentUnit.SmokingProhibitionEffectiveDate = dtSmokingProhibitionEffectiveDate;
-                                }
-                            }
-
                             user.CurrentUnit.ClientPortalUnitStatusCode = detailUnits.SelectSingleNode("clientPortalUnitStatusCode").InnerText;
 
-                            foreach (XmlElement detailOccBy in detailUnits.GetElementsByTagName("occupants"))
+                            //
+                            // OCCUPANCY
+                            //
+
+                            if (detailUnits.SelectNodes("occupancy").Count > 0) // some Rented Units have no Occupants -- bad data?
                             {
-                                var tenant = new BRBTenant();
+                                if (detailUnits.GetElementsByTagName("noOfOccupants").Item(0) != null)
+                                {
+                                    user.CurrentUnit.TenantCount = int.Parse(detailUnits.GetElementsByTagName("noOfOccupants").Item(0).InnerText);
+                                }
 
-                                tenant.TenantID =  detailOccBy.SelectSingleNode("occupantId").InnerText;
-                                tenant.FirstName = detailOccBy.SelectSingleNode("name").SelectSingleNode("firstName").InnerText;
-                                tenant.LastName = detailOccBy.SelectSingleNode("name").SelectSingleNode("lastName").InnerText;
-                                tenant.DisplayName = detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText;
-                                tenant.PhoneNumber = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("phoneNumber").InnerText;
-                                tenant.Email = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("emailAddress").InnerText;
+                                if (detailUnits.GetElementsByTagName("initialRent").Item(0) != null)
+                                {
+                                    user.CurrentUnit.InitialRent = detailUnits.GetElementsByTagName("initialRent").Item(0).InnerText;
+                                }
 
-                                user.CurrentProperty.Tenants.Add(tenant);
+                                if (detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item(0) != null)
+                                {
+                                    user.CurrentUnit.DatePriorTenancyEnded = DateTime.Parse(detailUnits.GetElementsByTagName("datePriorTenancyEnded").Item(0).InnerText);
+                                }
+
+                                if (detailUnits.GetElementsByTagName("reasonPriorTenancyEnded").Item(0) != null)
+                                {
+                                    user.CurrentUnit.ReasonPriorTenancyEnded = detailUnits.GetElementsByTagName("reasonPriorTenancyEnded").Item(0).InnerText;
+                                }
+
+                                if (detailUnits.GetElementsByTagName("smokingProhibitionInLeaseStatus").Item(0) != null)
+                                {
+                                    user.CurrentUnit.SmokingProhibitionInLeaseStatus = detailUnits.GetElementsByTagName("smokingProhibitionInLeaseStatus").Item(0).InnerText;
+                                }
+
+                                if (detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item(0) != null)
+                                {
+                                    DateTime dtSmokingProhibitionEffectiveDate = DateTime.MinValue;
+
+                                    if (DateTime.TryParse(detailUnits.GetElementsByTagName("smokingProhibitionEffectiveDate").Item(0).InnerText, out dtSmokingProhibitionEffectiveDate))
+                                    {
+                                        user.CurrentUnit.SmokingProhibitionEffectiveDate = dtSmokingProhibitionEffectiveDate;
+                                    }
+                                }
+
+                                //
+                                // TENANTS
+                                //
+
+                                foreach (XmlElement detailOccBy in detailUnits.GetElementsByTagName("occupants"))
+                                {
+                                    var tenant = new BRBTenant();
+
+                                    tenant.TenantID = detailOccBy.SelectSingleNode("occupantId").InnerText;
+                                    tenant.FirstName = detailOccBy.SelectSingleNode("name").SelectSingleNode("firstName").InnerText;
+                                    tenant.LastName = detailOccBy.SelectSingleNode("name").SelectSingleNode("lastName").InnerText;
+                                    tenant.DisplayName = detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText;
+                                    tenant.PhoneNumber = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("phoneNumber").InnerText;
+                                    tenant.Email = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("emailAddress").InnerText;
+
+                                    user.CurrentProperty.Tenants.Add(tenant);
+                                }
                             }
-
-                            //fields.Add("NumTenants", TenCnt.ToString());
-                            //fields.Add("SmokeYN", tSmokYN);
-                            //fields.Add("SmokeDt", tSmokDt);
-                            //fields.Add("InitRent", tInitRent);
-                            //fields.Add("PriorEndDt", tPriorDt);
-                            //fields.Add("TermReason", tPriorReas);
-                            //fields.Add("OwnerName", iBillContact);
-                            //fields.Add("AgenntName", iAgentName);
-                            //fields.Add("UnitID", detailUnits.SelectSingleNode("unitId").InnerText);
-                            //fields.Add("OwnerEmail", iBillEmail);
                         }
                     }
                 }
+
+                gotTenants = true;
             }
             catch (Exception ex)
             {
                 iErrMsg = ex.Message;
                 Logger.LogException("GetPropertyTenants", ex);
             }
+
+            return gotTenants;
         }
 
         /// <summary>
@@ -1086,47 +1119,33 @@ namespace BRBPortal_CSharp
                 soapRequest.Body.AppendFormat("<clientPortalUnitStatusCode>{0}</clientPortalUnitStatusCode>", unit.ClientPortalUnitStatusCode);
                 soapRequest.Body.AppendFormat("<unitStatus>{0}</unitStatus>", unit.ClientPortalUnitStatusCode);
 
-                var exemptionReason = "";
-                if (unit.ClientPortalUnitStatusCode == "Exempt")
-                {
-                    if (user.CurrentUnit.ExemptionReason.ToUpper() == "OTHER")
-                    {
-                        exemptionReason = unit.OtherExemptionReason;
-                    }
-                    else
-                    {
-                        exemptionReason = unit.ExemptionReason;
-                    }
-                }
-                soapRequest.Body.AppendFormat("<!--Optional:--><exemptionReason>{0}</exemptionReason>", exemptionReason);
+                soapRequest.Body.AppendFormat("<!--Optional:--><exemptionReason>{0}</exemptionReason>", unit.ExemptionReason);
 
-                var asOfDate = "";
                 if (unit.UnitAsOfDt.HasValue)
                 {
-                    asOfDate = unit.UnitAsOfDt.Value.ToString("MM/dd/yyyy");
-                } else
-                {
-                    asOfDate = DateTime.Now.ToString("MM/dd/yyyy");
+                    soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", unit.UnitAsOfDt.Value.ToString("MM/dd/yyyy"));
                 }
-                soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", asOfDate);
+                else
+                {
+                    soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", DateTime.Now.ToString("MM/dd/yyyy"));
+                }
 
                 soapRequest.Body.AppendFormat("<declarationInitial>{0}</declarationInitial>", unit.DeclarationInitials);
 
                 soapRequest.Body.Append("<questions>");
 
-                if (string.IsNullOrEmpty(unit.ExemptionReason) || !Regex.IsMatch(unit.ExemptionReason, "OOCC|FREE"))
+                if (unit.UnitAsOfDt.HasValue)
                 {
-                    soapRequest.Body.Append("<!--Optional:--><asOfDate></asOfDate>");
+                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", unit.UnitAsOfDt.Value.ToString("MM/dd/yyyy"));
                 }
                 else
                 {
-                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", asOfDate);
+                    soapRequest.Body.Append("<!--Optional:--><asOfDate></asOfDate>");
                 }
 
-                DateTime dtDateStarted = DateTime.MinValue;
-                if (DateTime.TryParse("", out dtDateStarted))
+                if (unit.StartDt.HasValue)
                 {
-                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", dtDateStarted.ToString("MM/dd/yyyy"));
+                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", unit.StartDt.Value.ToString("MM/dd/yyyy"));
                 }
                 else
                 {
@@ -1338,41 +1357,18 @@ namespace BRBPortal_CSharp
 
         public static bool CheckPswdRules(BRBUser user, string password)
         {
-            bool RetValue = false;
-            bool tResult = true;
-            bool testB;
-            Regex RegexObj = new Regex("[a-zA-Z0-9!@#$%^&_*]");
+            var isValid = true;
 
-            // Test Length
-            if ((password.Length < 7 || password.Length > 20))
+            if (password.Length < 7 || password.Length > 20)
             {
-                tResult = false;
+                isValid = false;
+            }
+            else if (!Regex.IsMatch(password, "[a-zA-Z0-9!@#$%^&_*]"))
+            {
+                isValid = false;
             }
 
-            testB = false;
-            if (RegexObj.IsMatch(password))
-            {
-                testB = true;
-            }
-
-            if ((testB == false))
-            {
-                tResult = false;
-            }
-
-            testB = false;
-            if (password.IndexOf(user.UserCode) > -1)
-            {
-                testB = true;
-            }
-
-            if ((testB == true))
-            {
-                tResult = false;
-            }
-
-            RetValue = tResult;
-            return RetValue;
+            return isValid;
         }
 
         private static string SafeString(string str, string defaultValue = "")

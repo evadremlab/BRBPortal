@@ -13,24 +13,6 @@ namespace BRBPortal_CSharp.MyProperties {
     public partial class UpdateUnit {
         
         /// <summary>
-        /// hfDialogID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfDialogID;
-        
-        /// <summary>
-        /// hfUnitID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfUnitID;
-        
-        /// <summary>
         /// MainAddress control.
         /// </summary>
         /// <remarks>

@@ -4,7 +4,6 @@
 <%-- data-lpignore="true" tells LastPass not to show ellipsis on form fields --%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:HiddenField ID="hfDialogID" runat="server" />
     <h2><%: Title %></h2>
     <hr />
     <section id="profileConfirmForm">

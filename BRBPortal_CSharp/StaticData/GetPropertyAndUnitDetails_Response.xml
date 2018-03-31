@@ -1,10 +1,7 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<soapenv:Envelope
-    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Body>
-    <ser-root:getPropertyAndUnitDetailsResponse
-        xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ser-root:getPropertyAndUnitDetailsResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <propertyAndUnitsRes>
         <propertyId>1968</propertyId>
         <address>
@@ -44,66 +41,12 @@
           <unitId>7773</unitId>
           <unitNumber>A</unitNumber>
           <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
-          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
-          <unitStatusId>1</unitStatusId>
-          <unitStatusCode>RENTED</unitStatusCode>
+          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
+          <unitStatusId>16</unitStatusId>
+          <unitStatusCode>NAR</unitStatusCode>
           <rentCeiling>2100.00</rentCeiling>
-          <tenancyStartDate>2017-08-06</tenancyStartDate>
-          <unitStatusAsOfDate>2013-02-27</unitStatusAsOfDate>
-          <housingServices>
-            <serviceId>8</serviceId>
-            <serviceName>Appliances</serviceName>
-          </housingServices>
-          <housingServices>
-            <serviceId>10</serviceId>
-            <serviceName>Garbage</serviceName>
-          </housingServices>
-          <housingServices>
-            <serviceId>7</serviceId>
-            <serviceName>Heat</serviceName>
-          </housingServices>
-          <housingServices>
-            <serviceId>9</serviceId>
-            <serviceName>Laundry Access</serviceName>
-          </housingServices>
-          <housingServices>
-            <serviceId>11</serviceId>
-            <serviceName>Parking</serviceName>
-          </housingServices>
-          <occupancy>
-            <initialRent xsi:nil="true" />
-            <noOfOccupants>2</noOfOccupants>
-            <occupancyId>138835</occupancyId>
-            <dateTenancyStarted>2017-08-06</dateTenancyStarted>
-            <datePriorTenancyEnded>2017-08-05</datePriorTenancyEnded>
-            <reasonPriorTenancyEnded></reasonPriorTenancyEnded>
-            <smokingProhibitionInLeaseStatus>Yes</smokingProhibitionInLeaseStatus>
-            <smokingProhibitionEffectiveDate>2017-08-06</smokingProhibitionEffectiveDate>
-            <occupants>
-              <occupantId>213834</occupantId>
-              <name>
-                <lastName>CARRASCO</lastName>
-                <firstName>ANA</firstName>
-                <nameLastFirstDisplay>CARRASCO, ANA</nameLastFirstDisplay>
-              </name>
-              <contactInfo>
-                <phoneNumber>916-213-8182</phoneNumber>
-                <emailAddress>carrasco.m.ana@gmail.com</emailAddress>
-              </contactInfo>
-            </occupants>
-            <occupants>
-              <occupantId>213835</occupantId>
-              <name>
-                <lastName>CARRASCO</lastName>
-                <firstName>KELLEY</firstName>
-                <nameLastFirstDisplay>CARRASCO, KELLEY</nameLastFirstDisplay>
-              </name>
-              <contactInfo>
-                <phoneNumber>508-320-7928</phoneNumber>
-                <emailAddress>kelleyagandner@gmail.com</emailAddress>
-              </contactInfo>
-            </occupants>
-          </occupancy>
+          <unitStatusAsOfDate>2018-03-30</unitStatusAsOfDate>
+          <occupancy xsi:nil="true" />
         </units>
         <units>
           <unitId>7774</unitId>

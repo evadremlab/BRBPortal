@@ -18,17 +18,25 @@ namespace BRBPortal_CSharp.MyProperties
             if (!IsPostBack)
             {
                 var user = Master.User;
-                var dataTable = new DataTable();
 
                 if (BRBFunctions_CSharp.GetUserProperties(ref user))
                 {
-                    dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBProperty>(user.Properties);
+                    var properties = user.Properties;
+
+                    Master.UpdateSession(user);
+
+                    if (properties.Count == 0)
+                    {
+                        properties.Add(new BRBProperty
+                        {
+                            PropertyAddress = "no properties"
+                        });
+                    }
+
+                    var dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBProperty>(properties);
                     dataTable.DefaultView.Sort = "PropertyAddress ASC";
                     gvProperties.DataSource = dataTable;
                     gvProperties.DataBind();
-                    gvProperties.Columns[1].Visible = false;
-
-                    Master.UpdateSession(user);
                 }
                 else
                 {
@@ -73,9 +81,14 @@ namespace BRBPortal_CSharp.MyProperties
 
         protected void gvProperties_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            var user = Master.User;
+            var dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBProperty>(user.Properties);
+
             gvProperties.PageIndex = e.NewPageIndex;
-            gvProperties.DataSource = Session["PropertyTbl"];
+            dataTable.DefaultView.Sort = "PropertyAddress ASC";
+            gvProperties.DataSource = dataTable;
             gvProperties.DataBind();
+
         }
     }
 }

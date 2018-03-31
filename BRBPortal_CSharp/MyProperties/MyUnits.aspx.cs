@@ -21,55 +21,62 @@ namespace BRBPortal_CSharp.MyProperties
             {
                 var user = Master.User;
 
-                BRBFunctions_CSharp.GetPropertyUnits(ref user);
-
-                if (!string.IsNullOrEmpty(BRBFunctions_CSharp.iErrMsg))
+                if (BRBFunctions_CSharp.GetPropertyUnits(ref user))
                 {
-                    if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
+                    var units = user.CurrentProperty.Units;
+
+                    Master.UpdateSession(user);
+
+                    if (units.Count == 0)
                     {
-                        BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
+                        units.Add(new BRBUnit
+                        {
+                            StreetAddress = "no units"
+                        });
                     }
 
-                    Master.ShowErrorModal("Error retrieving Units: " + BRBFunctions_CSharp.iErrMsg, "Units");
-                    return;
-                }
+                    var dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBUnit>(units);
+                    dataTable.DefaultView.Sort = "UnitNo ASC";
+                    gvUnits.DataSource = dataTable;
+                    gvUnits.DataBind();
 
-                Master.UpdateSession(user);
+                    CurrFee.Text = user.CurrentProperty.CurrentFee.ToString("C");
+                    Balance.Text = user.CurrentProperty.Balance.ToString("C");
+                    PropertyAddress.Text = user.CurrentProperty.PropertyAddress;
+                    BillingAddress.Text = user.CurrentProperty.BillingAddress;
+                    MgrName.Text = user.AgencyName;
 
-                if (user.CurrentProperty.Units.Count == 0)
-                {
-                    Master.ShowErrorModal("No Units found for this property.", "View Units");
-                    return;
-                }
+                    AgentSection.Visible = !string.IsNullOrEmpty(MgrName.Text);
 
-                var dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBUnit>(user.CurrentProperty.Units);
-                dataTable.DefaultView.Sort = "UnitNo ASC";
-                gvUnits.DataSource = dataTable;
-                gvUnits.DataBind();
+                    var totalRented = 0;
+                    var totalExempt = 0;
 
-                CurrFee.Text = user.CurrentProperty.CurrentFee.ToString("C");
-                Balance.Text = user.CurrentProperty.Balance.ToString("C");
-                PropertyAddress.Text = user.CurrentProperty.PropertyAddress;
-                BillingAddress.Text = user.CurrentProperty.BillingAddress;
-                MgrName.Text = user.AgencyName;
-
-                AgentSection.Visible = !string.IsNullOrEmpty(MgrName.Text);
-
-                var totalRented = 0;
-                var totalExempt = 0;
-
-                foreach(var unit in user.CurrentProperty.Units)
-                {
-                    if (unit.ClientPortalUnitStatusCode == "Rented")
+                    foreach (var unit in units)
                     {
-                        totalRented++;
+                        if (unit.ClientPortalUnitStatusCode == "Rented")
+                        {
+                            totalRented++;
+                        }
+                        else if (unit.ClientPortalUnitStatusCode == "Rented")
+                        {
+                            totalExempt++;
+                        }
                     }
-                    else if (unit.ClientPortalUnitStatusCode == "Rented")
+                    UnitStatusDescription.Text = string.Format("Out of {0} units for this property, you have {1} units in Rented and {2} in Exempt", totalRented + totalExempt, totalRented, totalExempt);
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(BRBFunctions_CSharp.iErrMsg))
                     {
-                        totalExempt++;
+                        if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
+                        {
+                            BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
+                        }
+
+                        Master.ShowErrorModal("Error retrieving Units: " + BRBFunctions_CSharp.iErrMsg, "Units");
+                        return;
                     }
                 }
-                UnitStatusDescription.Text = string.Format("Out of {0} units for this property, you have {1} units in Rented and {2} in Exempt", totalRented + totalExempt, totalRented, totalExempt);
             }
         }
 
@@ -78,20 +85,18 @@ namespace BRBPortal_CSharp.MyProperties
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 var updateTenancyButton = e.Row.Cells[10];
+                var unitStatus = e.Row.Cells[e.Row.GetColumnIndexByName("ClientPortalUnitStatusCode")].Text;
 
-                var canUpdateTenancy = Regex.IsMatch(e.Row.Cells[2].Text, "Not Available for Rent", RegexOptions.IgnoreCase);
-
-                if (canUpdateTenancy)
-                {
-                    updateTenancyButton.Enabled = false;
-                }
+                updateTenancyButton.Enabled = Regex.IsMatch(unitStatus, "Rented", RegexOptions.IgnoreCase);
             }
         }
 
-        protected void gvUnits_OnRowDataBound(object sender, GridViewPageEventArgs e)
+        protected void gvUnits_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            var user = Master.User;
+
             gvUnits.PageIndex = e.NewPageIndex;
-            gvUnits.DataSource = Session["PropertyTbl"];
+            gvUnits.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBUnit>(user.CurrentProperty.Units);
             gvUnits.DataBind();
 
             gvUnits.Columns[2].Visible = false; // Do this so it stores the value in the GV but doesn't show it

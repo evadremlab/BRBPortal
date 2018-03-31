@@ -102,6 +102,7 @@ namespace BRBPortal_CSharp.Account
             if (BRBFunctions_CSharp.UpdateProfile(ref user))
             {
                 Master.UpdateSession(user);
+                Session["ShowAfterRedirect"] = "Your account profile has been updated.|Edit Account Profile";
 
                 Response.Redirect("~/Account/ProfileList", false);
             }
