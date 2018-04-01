@@ -201,6 +201,7 @@
 
         function validate() {
             var tenants = [];
+            var numTenants = $('#<%:NumTenants.ClientID%>').val();
 
             valErrors = [];
 
@@ -232,12 +233,18 @@
                     addValError('Tenancy Start Date is required');
                 }
 
-                if ($('#<%:NumTenants.ClientID%>').val() === '') {
+                if (numTenants === '') {
                     addValError('Number of Tenants is required.');
+                } else if (tenants.length.toString() !== numTenants) {
+                    addValError('Number of Tenants entered must match the number of Tenant entries in the table.');
                 }
 
-                if ($('#<%:PTenDt.ClientID%>').val('Prior Tenancy Date is required.') === '') {
-                    addValError();
+                if ($('#MainContent_RB1_0').is(':checked') && $('#<%:SmokeDt.ClientID%>').val() === '') {
+                    addValError('Effective date of prohibition on smoking must must be entered when Lease Prohibits Smoking.');
+                }
+
+                if ($('#<%:PTenDt.ClientID%>').val() === '') {
+                    addValError('Prior Tenancy Date is required.');
                 }
 
                 if ($('#<%:TermReas.ClientID%>').val() === '') {
@@ -292,6 +299,8 @@
             $('#MainContent_RB1_1').click(function () { // No Smoking Probibition
                 $('#MainContent_SmokeDt').val('');
             });
+
+            $('#MainContent_btnConfirm').attr('disabled', true); // initial state
 
             $('#btnNewTenant').click(function () {
                 $('#noTenants').hide();

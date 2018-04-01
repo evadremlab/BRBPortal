@@ -40,7 +40,7 @@ namespace BRBPortal_CSharp.MyProperties
                 {
                     TenStDt.Text = unit.StartDt.Value.ToString("yyyy-MM-dd");
                 }
-
+                    
                 var otherServices = new List<string>();
                 OtherHousingServices.Style.Add("display", "none");
                 var housingServices = unit.HServices.Split(',').ToList<string>();
