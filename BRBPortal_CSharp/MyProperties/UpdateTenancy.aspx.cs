@@ -123,11 +123,12 @@ namespace BRBPortal_CSharp.MyProperties
                     var tenant = new BRBTenant
                     {
                         TenantID = fields[0],
-                        Email = fields[1],
+                        LastName = fields[1],
                         FirstName = fields[2],
-                        LastName = fields[3],
-                        PhoneNumber = fields[4]
+                        PhoneNumber = fields[3],
+                        Email = fields[4]
                     };
+
                     if (tenant.TenantID == "-1") // new Tenant
                     {
                         unit.Tenants.Add(tenant);
@@ -151,12 +152,12 @@ namespace BRBPortal_CSharp.MyProperties
                     }
                 }
 
+                unit.HServices = string.Join(",", housingServices);
+
                 if (!string.IsNullOrEmpty(HServOthrBox.Text))
                 {
-                    housingServices.Add(HServOthrBox.Text);
+                    unit.OtherHServices = HServOthrBox.Text;
                 }
-
-                unit.HServices = string.Join(", ", housingServices);
 
                 if (!string.IsNullOrEmpty(NumTenants.Text))
                 {

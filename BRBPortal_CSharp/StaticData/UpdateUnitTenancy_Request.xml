@@ -1,0 +1,71 @@
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <api:updateUnitTenancy>
+      <unitTenancyUpdateReq>
+        <userId>DAVE02</userId>
+        <propertyId>1968</propertyId>
+        <unitId>7774</unitId>
+        <unitStatus>Rented</unitStatus>
+        <initialRent>123.45</initialRent>
+        <tenancyStartDate>08/01/2009</tenancyStartDate>
+        <priorTenancyEndDate>12/31/2017</priorTenancyEndDate>
+        <!--Zero or more repetitions:-->
+        <housingServices>
+          <serviceName>Storage</serviceName>
+        </housingServices>
+        <housingServices>
+          <serviceName>Gas</serviceName>
+        </housingServices>
+        <housingServices>
+          <serviceName>Electricity</serviceName>
+        </housingServices>
+        <housingServices>
+          <serviceName>Appliances</serviceName>
+        </housingServices>
+        <!--Optional:-->
+        <otherHousingService>Disco Ball, Pretzels</otherHousingService>
+        <noOfTenants>2</noOfTenants>
+        <smokingProhibitionInLeaseStatus>Yes</smokingProhibitionInLeaseStatus>
+        <smokingProhibitionEffectiveDate>09/22/2014</smokingProhibitionEffectiveDate>
+        <reasonForTermination>4</reasonForTermination>
+        <otherReasonForTermination>Not sure</otherReasonForTermination>
+        <!--Optional:-->
+        <explainInvoluntaryTermination>Not sure</explainInvoluntaryTermination>
+        <!--Zero or more repetitions:-->
+        <tenants>
+          <code></code>
+          <name>
+            <first>BRIDGET</first>
+            <!--Optional:-->
+            <middle></middle>
+            <last>HARRIS</last>
+            <suffix></suffix>
+            <!--Optional:-->
+            <nameLastFirstDisplay></nameLastFirstDisplay>
+            <!--Optional:-->
+            <agencyName></agencyName>
+          </name>
+          <phoneNumber>805-796-9960</phoneNumber>
+          <emailAddress>bridgetharris@gmail.com</emailAddress>
+        </tenants>
+        <tenants>
+          <code></code>
+          <name>
+            <first>BALMER</first>
+            <!--Optional:-->
+            <middle></middle>
+            <last>DAVE</last>
+            <suffix></suffix>
+            <!--Optional:-->
+            <nameLastFirstDisplay></nameLastFirstDisplay>
+            <!--Optional:-->
+            <agencyName></agencyName>
+          </name>
+          <phoneNumber>5107798085</phoneNumber>
+          <emailAddress>david.b.balmer@gmail.com</emailAddress>
+        </tenants>
+      </unitTenancyUpdateReq>
+    </api:updateUnitTenancy>
+  </soapenv:Body>
+</soapenv:Envelope>

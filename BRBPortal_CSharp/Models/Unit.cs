@@ -14,6 +14,7 @@ namespace BRBPortal_CSharp.Models
         public decimal RentCeiling { get; set; }
         public DateTime? StartDt { get; set; }
         public string HServices { get; set; } = "";
+        public string OtherHServices { get; set; } = "";
         public string CPUnitStatDisp { get; set; } = "";
         public string ExemptionReason { get; set; } = "";
         public string OtherExemptionReason { get; set; } = "";
