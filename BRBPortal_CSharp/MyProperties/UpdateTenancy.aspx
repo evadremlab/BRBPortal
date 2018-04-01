@@ -10,6 +10,9 @@
         #MainContent_HServs label { padding-left: 0.5rem; }
     </style>
 
+    <asp:HiddenField ID="RemovedTenantIDs" runat="server" />
+    <asp:HiddenField ID="DelimitedTenants" runat="server" />
+
     <h2><%: Title %></h2>
     <h4>at <asp:Literal ID="Literal1" runat="server"></asp:Literal>, Unit # <asp:Literal ID="Literal2" runat="server" ></asp:Literal></h4>
     <hr />
@@ -144,7 +147,7 @@
                                 <th scope="col"></th>
 		                    </tr>
                         <% foreach (var tenant in Tenants) { %>
-                            <tr data-tenant-id="<%: tenant.TenantID %>" style="background-color:#EFF3FB;">
+                            <tr data-tenant-id="<%: tenant.TenantID %>" class="active" style="background-color:#EFF3FB;">
 			                    <td><%: tenant.FirstName %></td>
                                 <td><%: tenant.LastName %></td>
                                 <td><%: tenant.PhoneNumber %></td>
@@ -152,23 +155,21 @@
                                 <td style="text-align:right;"><button type="button" class="btn btn-sm btn-danger btnRemoveTenant">Remove</button></td>
 		                    </tr>
                         <% } %>
-                        <% if (Tenants.Count == 0) { %>
-                            <tr id="noTenants" style="background-color:#EFF3FB;">
+                            <tr id="noTenants" style="background-color:#EFF3FB;<%: (Tenants.Count == 0 ? "" : "display:none;") %>">
 			                    <td>no tenants</td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
                                 <td>&nbsp;</td>
 		                    </tr>
-                        <% } %>
                             <tr id="addTenant" style="display:none; background-color:#EFF3FB;">
-                                <td><input type="text" name="firstname" data-lpignore="true" /></td>
-                                <td><input type="text" name="lastname" data-lpignore="true" /></td>
+                                <td><input type="text" name="firstname" style="text-transform:uppercase" data-lpignore="true" /></td>
+                                <td><input type="text" name="lastname" style="text-transform:uppercase" data-lpignore="true" /></td>
                                 <td><input type="tel" name="phone" data-lpignore="true" /></td>
-                                <td><input type="text" name="email" data-lpignore="true" /></td>
+                                <td><input type="text" name="email"  data-lpignore="true" /></td>
                                 <td style="text-align:right;">
-                                    <button type="button" id="btnCancelAddTenant" class="btn btn-sm btn-default">Cancel</button>
-                                    <button type="button" id="btnAddNewTenant" class="btn btn-sm btn-primary">Add</button>
+                                    <button id="btnAddNewTenant" type="button" class="btn btn-sm btn-primary">Add</button>
+                                    <button id="btnCancelAddTenant" type="button" class="btn btn-sm btn-default" style="margin-left:0.5rem;">Cancel</button>
                                 </td>
                             </tr>
     	                </tbody>
@@ -176,53 +177,6 @@
                     <button id="btnNewTenant" type="button" class="btn btn-sm btn-primary" style="margin-top:0.5rem;">Add Tenant</button>
                 </div>
             </div>
-
-<%--            <asp:GridView ID="gvTenants" runat="server" CssClass="Margin30" AutoGenerateColumns="False"
-                onpageindexchanging="gvTenants_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" >
-                <AlternatingRowStyle BackColor="White" />
-                <Columns>
-                    <asp:BoundField DataField="TenantID" HeaderText="Tenant ID" Visible="False" />
-                    <asp:BoundField DataField="FirstName" HeaderText="First Name" Visible="False" />
-                    <asp:BoundField DataField="LastName" HeaderText="Last Name" Visible="False" />
-                    <asp:BoundField HeaderText="Tenant Name" DataField="DispName" SortExpression="DispName">
-                    <ItemStyle HorizontalAlign="Left" Width="250px" />
-                    </asp:BoundField>
-                    <asp:BoundField HeaderText="Phone Number" DataField="PhoneNo" SortExpression="PhoneNo">
-                    <ItemStyle HorizontalAlign="Left" Width="100px" />
-                    </asp:BoundField>
-                    <asp:BoundField HeaderText="Email Address" DataField="EmailAddr" SortExpression="EmailAddr">
-                    <ItemStyle HorizontalAlign="Left" Width="220px" />
-                    </asp:BoundField>
-                </Columns>
-                <EditRowStyle BackColor="#2461BF" />
-                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                <RowStyle BackColor="#EFF3FB" />
-                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                <SortedDescendingHeaderStyle BackColor="#4870BE" />
-            </asp:GridView>
-
-            <asp:Button runat="server" ID="btnAddTenant" OnClick="AddTenant_Click" Text="+" Font-Bold="true" CssClass="btn btn-sm btn-default" 
-                    ToolTip="Add tenant." />--%>
-
-<%--            <div class="form-group" style="padding-left:20px; height:70px" id="AddTenant"  runat="server">
-                <asp:Label runat="server" AssociatedControlID="NewFirst" Width="100px" CssClass="control-label">First Name</asp:Label>
-                <asp:Label runat="server" AssociatedControlID="NewLast" Width="100px" CssClass="control-label">Last Name</asp:Label>
-                <asp:Label runat="server" AssociatedControlID="NewPhon" Width="100px" CssClass="control-label">Phone No</asp:Label>
-                <asp:Label runat="server" AssociatedControlID="NewEmail" Width="100px" CssClass="control-label">Email</asp:Label>
-                <br />
-                <asp:TextBox runat="server" Width="100px" ID="NewFirst" TextMode="SingleLine"></asp:TextBox>
-                <asp:TextBox runat="server" Width="100px" ID="NewLast" TextMode="SingleLine"></asp:TextBox>
-                <asp:TextBox runat="server" Width="100px" ID="NewPhon" TextMode="SingleLine"></asp:TextBox>
-                <asp:TextBox runat="server" Width="100px" ID="NewEmail" TextMode="SingleLine"></asp:TextBox>
-                <br />
-                <asp:Button runat="server" ID="SaveNewTen" OnClick="SaveNewTenant_Click" Text="Save Tenant" CssClass="btn btn-sm btn-primary" ToolTip="Save the tenant." />
-                <asp:Button runat="server" id="CancelNewTen" OnClick="CancelNewTenant_Click" Text="Cancel Tenant" CssClass="btn btn-sm btn-danger" ToolTip="Discard this tenant." />
-            </div>--%>
 
             <div class="col-md-offset-2 col-md-10">
                 <div class="form-group">
@@ -236,7 +190,7 @@
 
                 <div class="form-group">
                     <asp:Button runat="server" id="btnCancel" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyTenants.aspx" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to the list of Tenants." TabIndex="-1" />
-                    <asp:Button runat="server" ID="btnUpdTen" Text="Confirm" OnClick="UpdateTenancy_Click" OnClientClick="return validate();" CssClass="btn btn-primary" ToolTip="Update the tenants." style="margin-left:1rem;" />
+                    <asp:Button runat="server" ID="btnConfirm" Text="Confirm" OnClick="UpdateTenancy_Click" OnClientClick="return validate();" CssClass="btn btn-primary" ToolTip="Update the tenants." style="margin-left:1rem;" />
                 </div>
             </div>
         </div>
@@ -244,34 +198,52 @@
     </section>
     <script>
         var valErrors = [];
+        var removedTenantIDs = [];
 
         function addValError(msg) {
             valErrors.push('<li>' + msg + '</li>');
         }
 
         function validate() {
+            var tenants = [];
+
             valErrors = [];
+
+            $('#tenantsTable tbody tr.active').each(function () {
+                var fields = [];
+                var tenantID = $(this).data('tenantId');
+
+                fields.push(tenantID || -1);
+                fields.push($(this).find('td').eq(0).text().toUpperCase());
+                fields.push($(this).find('td').eq(1).text().toUpperCase());
+                fields.push($(this).find('td').eq(2).text());
+                fields.push($(this).find('td').eq(3).text());
+
+                tenants.push(fields.join('^'));
+            });
+
+            $('#<%:DelimitedTenants.ClientID%>').val(tenants.join('|'));
+            $('#<%:RemovedTenantIDs.ClientID%>').val(removedTenantIDs.join(','));
+
+            console.log('tenants: ' + tenants.join('|'));
+            console.log('removeTenantIDs: ' + removedTenantIDs.join(','))
 
             return true;
         }
 
         function _enableConfirmButton() {
-            var isChecked = $('#MainContent_chkDeclare').is(':checked');
-            var hasInitials = $('#MainContent_DeclareInits').val().length;
-            $('#MainContent_btnConfirm').attr('disabled', (isChecked && hasInitials) ? false : true);
-        }
-
-        function addValError(msg) {
-            valErrors.push('<li>' + msg + '</li>');
+            var isChecked = $('#<%:chkDeclare.ClientID%>').is(':checked');
+            var hasInitials = $('#<%:DeclareInits.ClientID%>').val().length;
+            $('#<%:btnConfirm.ClientID%>').attr('disabled', (isChecked && hasInitials) ? false : true);
         }
 
         $(document).ready(function () {
-            $('#MainContent_btnConfirm').attr('disabled', true); // initial state
-
-            $('#MainContent_chkDeclare').change(_enableConfirmButton);
-            $('#MainContent_DeclareInits').change(_enableConfirmButton);
+            $('#<%:btnConfirm.ClientID%>').attr('disabled', true); // initial state
+            $('#<%:chkDeclare.ClientID%>').change(_enableConfirmButton);
+            $('#<%:DeclareInits.ClientID%>').change(_enableConfirmButton);
 
             $('#btnNewTenant').click(function () {
+                $('#noTenants').hide();
                 $('#addTenant').show();
 
                 setTimeout(function () {
@@ -282,21 +254,32 @@
             $('#btnAddNewTenant').click(function () {
                 var valErrors = [];
                 var $form = $('#addTenant');
-                var firstName = $form.find('input[name="firstname"]').val();
-                var lastName = $form.find('input[name="lastname"]').val();
-                var phone = $form.find('input[name="phone"]').val();
+                var firstName = $form.find('input[name="firstname"]').val().toUpperCase();
+                var lastName = $form.find('input[name="lastname"]').val().toUpperCase();
+                var phone = $form.find('input[name="phone"]').val().toUpperCase();
                 var email = $form.find('input[name="email"]').val();
 
-                if (!firstName) { addValError('First Name is required.'); }
-                if (!lastName) { addValError('Last Name is required.'); }
-                if (!phone) { addValError('Phone Number is required.'); }
-                if (!email) { addValError('Email Address is required.'); }
+                var _addValError = function (msg) {
+                    valErrors.push('<li>' + msg + '</li>');
+                };
+
+                if (!firstName) { _addValError('First Name is required.'); }
+                if (!lastName) { _addValError('Last Name is required.'); }
+                if (!phone) { _addValError('Phone Number is required.'); }
+                if (!email) { _addValError('Email Address is required.'); }
 
                 if (valErrors.length) {
-                    showErrorModal(('<ul>' + valErrors.join('') + '</ul>'), "Validation Errors");
+                    showErrorModal(('<ul>' + valErrors.join('') + '</ul>'), "Add Tenant - Validation Errors");
                 } else {
+                    var fields = ['<tr data-tenant="" class="active">'];
                     $('#noTenants').hide();
-                    $('<tr><td>' + firstName + '</td><td>' + lastName + '</td><td>' + phone + '</td><td>' + email + '</td></tr>').appendTo('#tenantsTable tbody');
+                    fields.push('<td>' + firstName + '</td>');
+                    fields.push('<td>' + lastName + '</td>');
+                    fields.push('<td>' + phone + '</td>');
+                    fields.push('<td>' + email + '</td>');
+                    fields.push('<td style="text-align:right;"><button type="button" class="btn btn-sm btn-danger btnRemoveTenant">Remove</button></td>');
+                    fields.push('</tr>');
+                    $(fields.join('')).appendTo('#tenantsTable tbody');
                     $('#addTenant').hide().find('input').val('');
                 }
 
@@ -304,8 +287,33 @@
             });
 
             $('#btnCancelAddTenant').click(function () {
-                // TODO: check to see if any tenants remaining, if not, show noTenants div
                 $('#addTenant').hide().find('input').val('');
+
+                if ($('#tenantsTable tbody tr.active').length === 0) {
+                    $('#noTenants').show();
+                }
+            });
+
+            $('#tenantsTable').on('click', '.btnRemoveTenant', function () {
+                var $thisRow = $(this).closest('tr');
+
+                var tenantID = $thisRow.data('tenantId');
+
+                if (tenantID) {
+                    removedTenantIDs.push(tenantID);
+                }
+
+                $thisRow.remove();
+
+                $thisRow = null;
+
+                setTimeout(function () {
+                    var remainingRows = $('#tenantsTable tbody tr.active').length;
+
+                    if (remainingRows === 0) {
+                        $('#noTenants').show();
+                    }
+                }, 10);
             });
         });
     </script>

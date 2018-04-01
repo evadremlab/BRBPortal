@@ -95,7 +95,7 @@ namespace BRBPortal_CSharp.Account
             user.StateCode = StState.Text;
             user.ZipCode = StZip.Text.ToUpper();
             user.Country = StCountry.Text.ToUpper();
-            user.Email = EmailAddress.Text.ToUpper();
+            user.Email = EmailAddress.Text;
             user.PhoneNumber = PhoneNo.Text;
             user.AgencyName = AgencyName.Text;
 

@@ -11,6 +11,8 @@ namespace BRBPortal_CSharp.MyProperties
     public partial class UpdateTenancy : System.Web.UI.Page
     {
         public List<BRBTenant> Tenants = null;
+        public string DelimitedTenants = ""; // updated when tenants edited client-side
+        public string RemovedTenantIDs = ""; // updated when existing tenants Removed client-side
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,32 +25,5 @@ namespace BRBPortal_CSharp.MyProperties
         {
 
         }
-
-        //protected void AddTenant_Click(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //protected void SaveNewTenant_Click(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //protected void CancelNewTenant_Click(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //protected void CancelEdit_Click(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //protected void gvTenants_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    gvTenants.PageIndex = e.NewPageIndex;
-        //    gvTenants.DataSource = Session["TenantsTbl"];
-        //    gvTenants.DataBind();
-        //}
     }
 }

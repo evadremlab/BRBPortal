@@ -48,7 +48,7 @@ namespace BRBPortal_CSharp.Account
                     user.City = StCity.Text.ToUpper();
                     user.StateCode = StState.Text.ToUpper();
 
-                    user.Email = EmailAddress.Text.ToUpper();
+                    user.Email = EmailAddress.Text;
                     user.PhoneNumber = PhoneNo.Text.ToUpper();
                     user.PropertyAddress = PropAddress.Text.ToUpper();
 
