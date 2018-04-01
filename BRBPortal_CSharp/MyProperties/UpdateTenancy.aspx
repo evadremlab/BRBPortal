@@ -113,7 +113,6 @@
                 <asp:Label runat="server" AssociatedControlID="TermReas" CssClass="col-md-2 control-label">Reason for Termination:&nbsp;</asp:Label>
                 <div class="col-md-10" style="max-width:24.5rem;">
                     <asp:DropDownList runat="server" ID="TermReas" ToolTip="Select a termination reason." CssClass="form-control selectpicker">
-                        <%--<asp:ListItem enabled="true" text="" value=""></asp:ListItem>--%>
                         <asp:ListItem enabled="true" text="Voluntary Vacancy" value="1"></asp:ListItem>
                         <asp:ListItem enabled="true" text="Landlord move in" value="2"></asp:ListItem>
                         <asp:ListItem enabled="true" text="Non-payment of rent" value="3"></asp:ListItem>
@@ -185,7 +184,7 @@
 
                 <div class="form-group">
                     <asp:Button runat="server" id="btnCancel" Text="Cancel" OnClick="btnCancel_Click" CausesValidation="false" CssClass="btn btn-sm btn-default" ToolTip="Returns to list of units." TabIndex="-1" />
-                    <asp:Button runat="server" ID="btnConfirm" Text="Confirm" OnClick="UpdateTenancy_Click" OnClientClick="return validate();" CssClass="btn btn-primary" ToolTip="Update the tenants." style="margin-left:1rem;" />
+                    <asp:Button runat="server" ID="btnSubmit" Text="Confirm" OnClick="UpdateTenancy_Click" OnClientClick="return validate();" CssClass="btn btn-primary" ToolTip="Update the tenants." style="margin-left:1rem;" />
                 </div>
             </div>
         </div>
@@ -264,10 +263,10 @@
             }
         }
 
-        function _enableConfirmButton() {
+        function _enableSubmitButton() {
             var isChecked = $('#<%:chkDeclare.ClientID%>').is(':checked');
             var hasInitials = $('#<%:DeclareInits.ClientID%>').val().length;
-            $('#<%:btnConfirm.ClientID%>').attr('disabled', (isChecked && hasInitials) ? false : true);
+            $('#<%:btnSubmit.ClientID%>').attr('disabled', (isChecked && hasInitials) ? false : true);
         }
 
         function _setTerminationReason() {
@@ -291,16 +290,17 @@
         }
 
         $(document).ready(function () {
-            $('#<%:btnConfirm.ClientID%>').attr('disabled', true); // initial state
-            $('#<%:chkDeclare.ClientID%>').change(_enableConfirmButton);
-            $('#<%:DeclareInits.ClientID%>').change(_enableConfirmButton);
+            $('#<%:btnSubmit.ClientID%>').attr('disabled', true); // initial state
+
+            $('#<%:chkDeclare.ClientID%>').change(_enableSubmitButton);
+            $('#<%:DeclareInits.ClientID%>').change(_enableSubmitButton);
             $('#<%:TermReas.ClientID%>').change(_setTerminationReason);
             $('#MainContent_HServs_9').change(_setHousingServicesOther);
             $('#MainContent_RB1_1').click(function () { // No Smoking Probibition
                 $('#MainContent_SmokeDt').val('');
             });
 
-            $('#MainContent_btnConfirm').attr('disabled', true); // initial state
+            $('#MainContent_btnSubmit').attr('disabled', true); // initial state
 
             $('#btnNewTenant').click(function () {
                 $('#noTenants').hide();

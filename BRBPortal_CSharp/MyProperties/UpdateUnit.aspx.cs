@@ -247,7 +247,7 @@ namespace BRBPortal_CSharp.MyProperties
             }
         }
 
-        protected void btnConfirm_Click(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
             var user = Master.User;
             var unit = user.CurrentUnit;

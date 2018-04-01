@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Xml;
 using BRBPortal_CSharp.Models;
-using BRBPortal_CSharp.Shared;
 
 namespace BRBPortal_CSharp.DAL
 {

@@ -2,7 +2,6 @@
 using System.Xml;
 using Microsoft.AspNet.Identity.Owin;
 using BRBPortal_CSharp.Models;
-using BRBPortal_CSharp.Shared;
 
 namespace BRBPortal_CSharp.DAL
 {

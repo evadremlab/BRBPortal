@@ -70,7 +70,6 @@
                                 </asp:RadioButtonList>
                                 <div runat="server" id="OtherListContainer">
                                     <asp:dropdownlist runat="server" ID="OtherList" RepeatDirection="Vertical" ToolTip="Select a reason from the list (optional)." CssClass="form-control selectpicker" style="width:auto;">
-                                        <%--<asp:ListItem enabled="true" text="" value="-1"></asp:ListItem>--%>
                                         <asp:ListItem enabled="true" text="Commercial Use" value="COMM"></asp:ListItem>
                                         <asp:ListItem enabled="true" text="Property Manager's Unit" value="MISC"></asp:ListItem>
                                         <asp:ListItem enabled="true" text="Owner shares kitchen & bath with tenant" value="SHARED"></asp:ListItem>
@@ -217,7 +216,7 @@
 
                     <div class="form-group">
                         <asp:Button runat="server" id="btnCancel" Text="Cancel" OnClick="btnCancel_Click" CssClass="btn btn-sm btn-default" ToolTip="Returns to list of units." TabIndex="-1" />
-                        <asp:Button runat="server" ID="btnConfirm" Text="Confirm" OnClick="btnConfirm_Click" OnClientClick="return validate();" CssClass="btn btn-primary" ToolTip="Update this unit." style="margin-left:1rem;"/>
+                        <asp:Button runat="server" ID="btnSubmit" Text="Confirm" OnClick="btnSubmit_Click" OnClientClick="return validate();" CssClass="btn btn-primary" ToolTip="Update this unit." style="margin-left:1rem;"/>
                     </div>
                 </div>
             </div>
@@ -478,14 +477,14 @@
                 }
             }
 
-            function _enableConfirmButton() {
+            function _enableSubmitButton() {
                 var isChecked = $('#MainContent_chkDeclare').is(':checked');
                 var hasInitials = $('#MainContent_DeclareInits').val().length;
-                $('#MainContent_btnConfirm').attr('disabled', (isChecked && hasInitials) ? false : true);
+                $('#MainContent_btnSubmit').attr('disabled', (isChecked && hasInitials) ? false : true);
             }
 
             $(".selectpicker").selectpicker();
-            $('#MainContent_btnConfirm').attr('disabled', true); // initial state
+            $('#MainContent_btnSubmit').attr('disabled', true); // initial state
 
             $('#btnEdit').click(function () {
                 $('#MainContent_InitalEditButtons').hide();
@@ -498,8 +497,8 @@
             $('#MainContent_ExemptReason').change(_setExemptReasonFields);
             $('#MainContent_OtherList').change(_otherListChanged);
             $('#MainContent_RB1').change(_rb1Changed);
-            $('#MainContent_chkDeclare').change(_enableConfirmButton);
-            $('#MainContent_DeclareInits').change(_enableConfirmButton);
+            $('#MainContent_chkDeclare').change(_enableSubmitButton);
+            $('#MainContent_DeclareInits').change(_enableSubmitButton);
 
             // unselect Rented and Exempt -- force selection
             $('#MainContent_NewUnit_0').prop('checked', false);

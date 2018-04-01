@@ -756,6 +756,7 @@
     <Compile Include="Shared\DAL\GetUnitTenants.cs" />
     <Compile Include="Shared\DAL\Register.cs" />
     <Compile Include="Shared\DAL\SaveCart.cs" />
+    <Compile Include="Shared\DAL\UpdateSecurityQuestions.cs" />
     <Compile Include="Shared\DAL\UpdateUnitTenancy.cs" />
     <Compile Include="Shared\DAL\UpdateUnit.cs" />
     <Compile Include="Shared\DAL\UpdateUserPassword.cs" />

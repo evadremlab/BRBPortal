@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml;
 using BRBPortal_CSharp.Models;
-using BRBPortal_CSharp.Shared;
 
 namespace BRBPortal_CSharp.DAL
 {

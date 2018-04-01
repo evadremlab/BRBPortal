@@ -48,13 +48,12 @@
                 <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="required." />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Default" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to Home page." TabIndex="-1" />
-                    <asp:Button runat="server" OnClick="LogIn" Text="Login" CssClass="btn btn-primary" style="margin-left:1rem;" />
+                    <asp:Button runat="server" ID="btnLogin" OnClick="LogIn" Text="Login" CssClass="btn btn-primary" style="margin-left:1rem;" />
                 </div>
             </div>
             <div class="form-group">
@@ -64,21 +63,4 @@
             </div>
         </div>
     </section>
-    <script>
-        $(document).ready(function () {
-            $('input[type="radio"]').change(function () {
-                if ($(this).val() === 'UserID') {
-                    $('#MainContent_UserIDGrp').show();
-                    $('#MainContent_BillCodeGrp').hide();
-                    $('#MainContent_BillCode').val('');
-                    $('#MainContent_UserCode').focus();
-                } else {
-                    $('#MainContent_UserIDGrp').hide();
-                    $('#MainContent_BillCodeGrp').show();
-                    $('#MainContent_UserCode').val('');
-                    $('#MainContent_BillCode').focus();
-                }
-            });
-        });
-    </script>
 </asp:Content>
