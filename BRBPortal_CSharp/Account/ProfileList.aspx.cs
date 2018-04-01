@@ -10,7 +10,7 @@ namespace BRBPortal_CSharp.Account
             if (!IsPostBack)
             {
                 var user = Master.User;
-                var provider = new DataProvider();
+                var provider = Master.DataProvider;
 
                 if (provider.GetUserProfile(ref user))
                 {

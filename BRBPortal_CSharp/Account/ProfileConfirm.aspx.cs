@@ -13,7 +13,7 @@ namespace BRBPortal_CSharp.Account
             if (!IsPostBack)
             {
                 var user = Master.User;
-                var provider = new DataProvider();
+                var provider = Master.DataProvider;
 
                 try
                 {
@@ -46,7 +46,7 @@ namespace BRBPortal_CSharp.Account
         protected void SubmitProfile_Click(object sender, EventArgs e)
         {
             var user = Master.User;
-            var provider = new DataProvider();
+            var provider = Master.DataProvider;
 
             user.Question1 = Quest1.Text;
             user.Answer1 = Answer1.Text;

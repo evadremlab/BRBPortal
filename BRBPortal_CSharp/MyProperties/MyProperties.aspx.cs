@@ -12,7 +12,7 @@ namespace BRBPortal_CSharp.MyProperties
             if (!IsPostBack)
             {
                 var user = Master.User;
-                var provider = new DataProvider();
+                var provider = Master.DataProvider;
 
                 if (provider.GetProperties(ref user))
                 {
@@ -69,7 +69,7 @@ namespace BRBPortal_CSharp.MyProperties
         protected void gvProperties_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             var user = Master.User;
-            var provider = new DataProvider();
+            var provider = Master.DataProvider;
             var dataTable = provider.ConvertToDataTable<BRBProperty>(user.Properties);
 
             gvProperties.PageIndex = e.NewPageIndex;

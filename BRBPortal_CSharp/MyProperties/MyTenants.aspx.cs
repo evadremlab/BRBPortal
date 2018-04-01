@@ -15,7 +15,7 @@ namespace BRBPortal_CSharp.MyProperties
             if (!IsPostBack)
             {
                 var user = Master.User;
-                var provider = new DataProvider();
+                var provider = Master.DataProvider;
 
                 if (provider.GetUnitTenants(ref user))
                 {
@@ -84,7 +84,7 @@ namespace BRBPortal_CSharp.MyProperties
         private void BindTenantsGridView()
         {
             var user = Master.User;
-            var provider = new DataProvider();
+            var provider = Master.DataProvider;
 
             gvTenants.DataSource = provider.ConvertToDataTable<BRBTenant>(user.CurrentUnit.Tenants);
             gvTenants.DataBind();

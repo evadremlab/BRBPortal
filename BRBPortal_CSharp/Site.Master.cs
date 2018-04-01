@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 using Microsoft.AspNet.Identity;
 
+using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp
@@ -33,6 +34,8 @@ namespace BRBPortal_CSharp
                 Session["User"] = value;
             }
         }
+
+        public DataProvider DataProvider { get; private set; }
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -86,6 +89,7 @@ namespace BRBPortal_CSharp
             }
 
             this.User = (BRBUser)Session["User"];
+            this.DataProvider = new DataProvider();
 
             if (this.User == null)
             {

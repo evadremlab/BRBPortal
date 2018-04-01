@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Web;
 using System.Web.UI;
-using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 using BRBPortal_CSharp.Shared;
 
@@ -36,7 +35,7 @@ namespace BRBPortal_CSharp.Account
             Session.Clear();
 
             var user = new BRBUser();
-            var provider = new DataProvider();
+            var provider = Master.DataProvider;
 
             if (IsValid)
             {

@@ -11,7 +11,7 @@ namespace BRBPortal_CSharp.MyProperties
             {
                 var user = Master.User;
                 var unit = user.CurrentUnit;
-                var provider = new DataProvider();
+                var provider = Master.DataProvider;
 
                 if (provider.GetPropertyUnits(ref user, user.CurrentUnit.UnitID))
                 {
@@ -251,7 +251,7 @@ namespace BRBPortal_CSharp.MyProperties
         {
             var user = Master.User;
             var unit = user.CurrentUnit;
-            var provider = new DataProvider();
+            var provider = Master.DataProvider;
 
             InitalEditButtons.Style.Add("display", "none");
             EditUnitStatusPanel.Style.Remove("display");

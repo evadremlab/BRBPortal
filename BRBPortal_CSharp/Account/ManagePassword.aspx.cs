@@ -26,7 +26,7 @@ namespace BRBPortal_CSharp.Account
         protected void ChangePassword()
         {
             var user = Master.User;
-            var provider = new DataProvider();
+            var provider = Master.DataProvider;
 
             if (provider.Authenticate(ref user, CurrentPassword.Text) != SignInStatus.Success)
             {

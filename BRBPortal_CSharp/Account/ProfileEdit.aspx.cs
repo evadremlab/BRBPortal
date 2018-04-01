@@ -16,7 +16,7 @@ namespace BRBPortal_CSharp.Account
             if (!IsPostBack)
             {
                 var user = Master.User;
-                var provider = new DataProvider();
+                var provider = Master.DataProvider;
 
                 if (provider.GetUserProfile(ref user))
                 {
@@ -63,7 +63,7 @@ namespace BRBPortal_CSharp.Account
         protected void UpdateProfile_Click(object sender, EventArgs e)
         {
             var user = Master.User;
-            var provider = new DataProvider();
+            var provider = Master.DataProvider;
 
             if (user.Relationship.ToUpper().Equals("OWNER"))
             {

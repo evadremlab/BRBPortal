@@ -15,7 +15,7 @@ namespace BRBPortal_CSharp
             try
             {
                 var user = Master.User;
-                var provider = new DataProvider();
+                var provider = Master.DataProvider;
 
                 gvCart.DataSource = provider.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
                 gvCart.DataBind();
@@ -76,7 +76,7 @@ namespace BRBPortal_CSharp
             try
             {
                 var user = Master.User;
-                var provider = new DataProvider();
+                var provider = Master.DataProvider;
 
                 if (provider.SaveCart(user))
                 {
@@ -109,7 +109,7 @@ namespace BRBPortal_CSharp
         protected void gvCart_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             var user = Master.User;
-            var provider = new DataProvider();
+            var provider = Master.DataProvider;
 
             gvCart.PageIndex = e.NewPageIndex;
             gvCart.DataSource = provider.ConvertToDataTable<BRBCartItem>(user.Cart.Items);

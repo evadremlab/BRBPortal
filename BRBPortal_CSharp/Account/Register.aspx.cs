@@ -30,7 +30,7 @@ namespace BRBPortal_CSharp.Account
                     }
 
                     var user = Master.User;
-                    var provider = new DataProvider();
+                    var provider = Master.DataProvider;
 
                     user.UserCode = ReqUserID.Text.ToUpper();
                     user.BillingCode = BillCode.Text.ToUpper();

@@ -19,7 +19,7 @@ namespace BRBPortal_CSharp.Account
 
         protected void UserIDCode_Or_BillingCode_TextChanged(object sender, EventArgs e)
         {
-            var provider = new DataProvider();
+            var provider = Master.DataProvider;
 
             var user = new BRBUser
             {
@@ -50,7 +50,7 @@ namespace BRBPortal_CSharp.Account
         protected void Reset_Click(object sender, EventArgs e)
         {
             var user = Master.User;
-            var provider = new DataProvider();
+            var provider = Master.DataProvider;
 
             if (UserIDOrBillCode.SelectedValue == "UserID")
             {
