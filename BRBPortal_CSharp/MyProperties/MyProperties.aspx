@@ -17,10 +17,10 @@
                     <p>You will be able to pay the registration fees after reviewing your units.</p>
                 </div>
                 <div class="form-group">
-                    <asp:GridView ID="gvProperties" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                        ForeColor="#333333" GridLines="None" PageSize="10" AllowPaging="true" 
-                        onRowCommand="gvProperties_RowCommand" 
-                        OnPageIndexChanging="gvProperties_PageIndexChanging">
+                    <asp:GridView ID="gvProperties" runat="server" AutoGenerateColumns="False" 
+                        ForeColor="#333333" GridLines="None" CellPadding="4"
+                        AllowPaging="true" PageSize="10" OnPageIndexChanging="gvProperties_PageIndexChanging"
+                        onRowCommand="gvProperties_RowCommand">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:TemplateField>

@@ -25,6 +25,8 @@ namespace BRBPortal_CSharp.MyProperties
 
                     Master.UpdateSession(user);
 
+                    hdnNumTenants.Value = tenants.Count.ToString();
+
                     if (tenants.Count == 0)
                     {
                         tenants.Add(new BRBTenant

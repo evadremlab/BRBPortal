@@ -32,11 +32,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <asp:GridView ID="gvUnits" runat="server" AutoGenerateColumns="False" CellPadding="4" 
-                    ForeColor="#333333" GridLines="None" PageSize="10" AllowPaging="true" 
+                <asp:GridView ID="gvUnits" runat="server" AutoGenerateColumns="False"
+                    ForeColor="#333333" GridLines="None" CellPadding="4"
+                    AllowPaging="true" PageSize="10" OnPageIndexChanging="gvUnits_PageIndexChanging"
                     OnRowDataBound="gvUnits_OnRowDataBound"
-                    OnRowCommand="gvUnits_RowCommand" 
-                    OnPageIndexChanging="gvUnits_PageIndexChanging">
+                    OnRowCommand="gvUnits_RowCommand">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="UnitID" HeaderText="UnitID (NV)" ReadOnly="True" Visible="false" />

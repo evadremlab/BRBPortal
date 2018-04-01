@@ -10,8 +10,8 @@
     <section id="cartForm">
         <div class="form-horizontal">
             <div class="form-group">
-                <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False" CellPadding="4" 
-                    ForeColor="#333333" GridLines="None" ShowFooter="True" 
+                <asp:GridView ID="gvCart" runat="server" AutoGenerateColumns="False"
+                    ForeColor="#333333" GridLines="None" CellPadding="4" ShowFooter="True" 
                     OnRowDataBound="gvCart_RowDataBound">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>

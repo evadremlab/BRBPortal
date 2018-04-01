@@ -2,6 +2,8 @@
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:HiddenField ID="hdnNumTenants" runat="server" />
+
     <h2><%: Title %></h2>
     <h4>at <asp:Literal ID="MainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
     <hr />
@@ -110,9 +112,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <asp:GridView ID="gvTenants" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="100%"
-                                ForeColor="#333333" GridLines="None" AllowPaging="True" PageSize="10" 
-                                OnPageIndexChanging="gvTenants_PageIndexChanging">
+                            <asp:GridView ID="gvTenants" runat="server" AutoGenerateColumns="False"
+                                ForeColor="#333333" GridLines="None" CellPadding="4" Width="100%"
+                                AllowPaging="True" PageSize="10" OnPageIndexChanging="gvTenants_PageIndexChanging">
                                 <AlternatingRowStyle BackColor="White" />
                                 <Columns>
                                     <asp:BoundField HeaderText="Tenant ID" DataField="TenantID" Visible="False" />
@@ -155,20 +157,25 @@
             $('#aspForm').submit(function (evt) {
                 var form = this;
                 evt.preventDefault();
-                $('#YesNoModal .modal-title').text('Update Tenancy');
-                $('#YesNoModal .modal-body').text('Have all original tenants moved out?');
-                $('#YesNoModal').one('hidden.bs.modal', function () {
-                    if ($(document.activeElement).is('.btn-primary')) { // clicked on Yes button
-                        form.submit();
-                    } else {
-                        setTimeout(function() {
-                            $('#OkModal .modal-title').text('Update Tenancy');
-                            $('#OkModal .modal-body').text('New tenancy cannot be updated until all original tenants have moved out.');
-                            $('#OkModal').modal('show');
-                        }, 10);
-                    }
-                });
-                $('#YesNoModal').modal('show');
+
+                if (parseInt($('#MainContent_hdnNumTenants').val())) {
+                    $('#YesNoModal .modal-title').text('Update Tenancy');
+                    $('#YesNoModal .modal-body').text('Have all original tenants moved out?');
+                    $('#YesNoModal').one('hidden.bs.modal', function () {
+                        if ($(document.activeElement).is('.btn-primary')) { // clicked on Yes button
+                            form.submit();
+                        } else {
+                            setTimeout(function () {
+                                $('#OkModal .modal-title').text('Update Tenancy');
+                                $('#OkModal .modal-body').text('New tenancy cannot be updated until all original tenants have moved out.');
+                                $('#OkModal').modal('show');
+                            }, 10);
+                        }
+                    });
+                    $('#YesNoModal').modal('show');
+                } else {
+                    form.submit();
+                }
             });
         });
     </script>

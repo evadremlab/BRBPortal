@@ -258,7 +258,6 @@ namespace BRBPortal_CSharp.MyProperties
 
             InitalEditButtons.Style.Add("display", "none");
             EditUnitStatusPanel.Style.Remove("display");
-            btnConfirm.Enabled = true;
 
             unit.ClientPortalUnitStatusCode = NewUnit.SelectedValue; // Rented or Exempt
             unit.OtherExemptionReason = OtherList.SelectedValue ?? "";

@@ -49,15 +49,13 @@
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="InitRent" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
-
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="TenStDt" CssClass="col-md-2 control-label">Tenancy Start Date:</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="TenStDt" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="TenStDt" CssClass="form-control" TextMode="Date" style="width:16rem;"></asp:TextBox>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="TenStDt" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
-
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="HServs" CssClass="col-md-2 control-label">Housing Services: </asp:Label>
                 <div class="col-md-10" style="max-width:15.5rem;">
@@ -75,14 +73,12 @@
                     </asp:CheckBoxList>
                 </div>
             </div><!-- do not save "Other" as HServs, take HServOthrBox-->
-
             <div class="form-group">
                 <div class="col-md-2"></div>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="HServOthrBox" CssClass="form-control" data-lpignore="true" style="width:40rem; min-width:40rem;"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="HServOthrBox" CssClass="form-control" placeholder="Other Housing Services" data-lpignore="true" style="width:40rem; min-width:40rem;"></asp:TextBox>
                 </div>
             </div>
-
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="NumTenants" CssClass="col-md-2 control-label"># of Tenants: </asp:Label>
                 <div class="col-md-10">
@@ -90,33 +86,30 @@
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="NumTenants" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
-
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="RB1" CssClass="col-md-2 control-label">Does Lease Prohibit Smoking?</asp:Label>
                 <div class="col-md-10">
                     <div class="radio radiobuttonlist" style="display:inline-block; padding-left:0.25rem;">
                         <asp:RadioButtonList runat="server" ID="RB1" RepeatDirection="Horizontal" ToolTip="Select Yes or No." CellPadding="4" style="position:relative; top:-0.4rem; left:-0.4rem;">
-                        <asp:ListItem Enabled="true" Text="Yes" Value="Yes"></asp:ListItem>
-                        <asp:ListItem Enabled="true" Text="No" Value="No"></asp:ListItem>
-                    </asp:RadioButtonList>
+                            <asp:ListItem Enabled="true" Text="Yes" Value="Yes"></asp:ListItem>
+                            <asp:ListItem Enabled="true" Text="No" Value="No"></asp:ListItem>
+                        </asp:RadioButtonList>
+                    </div>
                 </div>
             </div>
-
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="SmokeDt" CssClass="col-md-2 control-label">Effective date of prohibition on smoking:</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="SmokeDt" TextMode="Date" CssClass="form-control" style="margin-top:1rem;"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="SmokeDt" TextMode="Date" CssClass="form-control" style="width:16rem; margin-top:1rem;"></asp:TextBox>
                 </div>
             </div>
-        
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="PTenDt" CssClass="col-md-2 control-label">Prior Tenancy end date:&nbsp;</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="PTenDt" TextMode="Date" ToolTip="Enter the prior tenency date." CssClass="form-control" />
+                    <asp:TextBox runat="server" ID="PTenDt" TextMode="Date" ToolTip="Enter the prior tenency date." CssClass="form-control" style="width:16rem;" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="PTenDt" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
-        
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="TermReas" CssClass="col-md-2 control-label">Reason for termination:&nbsp;</asp:Label>
                 <div class="col-md-10" style="max-width:24.5rem;">
@@ -130,11 +123,57 @@
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="TermReas" IntialValue="" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
-
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="TermDescr" CssClass="col-md-2 control-label">Explain Involuntary termination:</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="TermDescr" TextMode="MultiLine" MaxLength="200" CssClass="form-control" style="width:80rem; height:5.5rem;"  ToolTip="Enter the termination explaination." />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-md-2"></div>
+                <div class="col-md-10">
+                    <h4>Tenants</h4>
+                    <table id="tenantsTable" cellspacing="0" cellpadding="4" style="color:#333333;border-collapse:collapse;min-width:85rem;">
+		                <tbody>
+                            <tr style="color:White;background-color:#507CD1;font-weight:bold;">
+			                    <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Email Address</th>
+                                <th scope="col"></th>
+		                    </tr>
+                        <% foreach (var tenant in Tenants) { %>
+                            <tr data-tenant-id="<%: tenant.TenantID %>" style="background-color:#EFF3FB;">
+			                    <td><%: tenant.FirstName %></td>
+                                <td><%: tenant.LastName %></td>
+                                <td><%: tenant.PhoneNumber %></td>
+                                <td><%: tenant.Email %></td>
+                                <td style="text-align:right;"><button type="button" class="btn btn-sm btn-danger btnRemoveTenant">Remove</button></td>
+		                    </tr>
+                        <% } %>
+                        <% if (Tenants.Count == 0) { %>
+                            <tr id="noTenants" style="background-color:#EFF3FB;">
+			                    <td>no tenants</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+		                    </tr>
+                        <% } %>
+                            <tr id="addTenant" style="display:none; background-color:#EFF3FB;">
+                                <td><input type="text" name="firstname" data-lpignore="true" /></td>
+                                <td><input type="text" name="lastname" data-lpignore="true" /></td>
+                                <td><input type="tel" name="phone" data-lpignore="true" /></td>
+                                <td><input type="text" name="email" data-lpignore="true" /></td>
+                                <td style="text-align:right;">
+                                    <button type="button" id="btnCancelAddTenant" class="btn btn-sm btn-default">Cancel</button>
+                                    <button type="button" id="btnAddNewTenant" class="btn btn-sm btn-primary">Add</button>
+                                </td>
+                            </tr>
+    	                </tbody>
+                    </table>
+                    <button id="btnNewTenant" type="button" class="btn btn-sm btn-primary" style="margin-top:0.5rem;">Add Tenant</button>
                 </div>
             </div>
 
@@ -215,5 +254,59 @@
 
             return true;
         }
+
+        function _enableConfirmButton() {
+            var isChecked = $('#MainContent_chkDeclare').is(':checked');
+            var hasInitials = $('#MainContent_DeclareInits').val().length;
+            $('#MainContent_btnConfirm').attr('disabled', (isChecked && hasInitials) ? false : true);
+        }
+
+        function addValError(msg) {
+            valErrors.push('<li>' + msg + '</li>');
+        }
+
+        $(document).ready(function () {
+            $('#MainContent_btnConfirm').attr('disabled', true); // initial state
+
+            $('#MainContent_chkDeclare').change(_enableConfirmButton);
+            $('#MainContent_DeclareInits').change(_enableConfirmButton);
+
+            $('#btnNewTenant').click(function () {
+                $('#addTenant').show();
+
+                setTimeout(function () {
+                    $('#addTenant').find('input[name="firstname"]').focus();
+                }, 10);
+            });
+
+            $('#btnAddNewTenant').click(function () {
+                var valErrors = [];
+                var $form = $('#addTenant');
+                var firstName = $form.find('input[name="firstname"]').val();
+                var lastName = $form.find('input[name="lastname"]').val();
+                var phone = $form.find('input[name="phone"]').val();
+                var email = $form.find('input[name="email"]').val();
+
+                if (!firstName) { addValError('First Name is required.'); }
+                if (!lastName) { addValError('Last Name is required.'); }
+                if (!phone) { addValError('Phone Number is required.'); }
+                if (!email) { addValError('Email Address is required.'); }
+
+                if (valErrors.length) {
+                    showErrorModal(('<ul>' + valErrors.join('') + '</ul>'), "Validation Errors");
+                } else {
+                    $('#noTenants').hide();
+                    $('<tr><td>' + firstName + '</td><td>' + lastName + '</td><td>' + phone + '</td><td>' + email + '</td></tr>').appendTo('#tenantsTable tbody');
+                    $('#addTenant').hide().find('input').val('');
+                }
+
+                $form = null;
+            });
+
+            $('#btnCancelAddTenant').click(function () {
+                // TODO: check to see if any tenants remaining, if not, show noTenants div
+                $('#addTenant').hide().find('input').val('');
+            });
+        });
     </script>
 </asp:Content>
