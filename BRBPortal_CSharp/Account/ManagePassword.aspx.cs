@@ -16,11 +16,6 @@ namespace BRBPortal_CSharp.Account
             {
                 Session["NextPage"] = "ProfileList";
             }
-
-            if (IsPostBack)
-            {
-                ChangePassword();
-            }
         }
 
         protected void ChangePassword()
@@ -66,6 +61,11 @@ namespace BRBPortal_CSharp.Account
             {
                 Response.Redirect("~/Home", false);
             }
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            ChangePassword();
         }
     }
 }

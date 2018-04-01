@@ -39,38 +39,56 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Account/ProfileList" CausesValidation="false" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to Home page." TabIndex="-1" />
-                    <asp:Button runat="server" ID="btnSubmit" Text="Submit" CssClass="btn btn-primary" style="margin-left:1rem;" />
+                    <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_Click" OnClientClick="return validate();" CssClass="btn btn-primary" style="margin-left:1rem;" />
                 </div>
             </div>
         </div>
     </section>
     <script>
-        function _enableSubmitButton() {
-            var currentPassword = $('#<%:CurrentPassword.ClientID%>').val();
-            var newPassword = $('#<%:NewPWD.ClientID%>').val();
-            var confirmPassword = $('#<%:ConfirmNewPassword.ClientID%>').val();
+        var valErrors = [];
 
-            var hasCurrentPassword = currentPassword.length;
-            var hasNewPassword = newPassword.length;
-            var hasConfirmPassword = confirmPassword.length;
-
-            if (newPassword.toUpperCase() === confirmPassword.toUpperCase()) {
-                $('#<%:ConfirmNewPassword.ClientID%>').val('');
-                showErrorModal("New and Confirm Passwords cannot be the same.", "Validation Error");
-            } else if (newPassword.toUpperCase() === currentPassword.toUpperCase()) {
-                $('#<%:NewPWD.ClientID%>').val('');
-                showErrorModal("New and Current Passwords cannot be the same.", "Validation Error");
-            } else {
-                $('#<%:btnSubmit.ClientID%>').attr('disabled', (hasQuestion1 && hasAnswer1 && hasQuestion2 && hasAnswer2 && isChecked && hasInitials) ? false : true);
-            }
+        function addValError(msg) {
+            valErrors.push('<li>' + msg + '</li>');
         }
 
-        $(document).ready(function () {
-            $('#<%:btnSubmit.ClientID%>').attr('disabled', true); // initial state
+        function validate() {
+            try {
+                var currentPassword = $('#<%:CurrentPassword.ClientID%>').val();
+                var newPassword = $('#<%:NewPWD.ClientID%>').val();
+                var confirmPassword = $('#<%:ConfirmNewPassword.ClientID%>').val();
 
-            $('#<%:CurrentPassword.ClientID%>').change(_enableSubmitButton);
-            $('#<%:NewPWD.ClientID%>').change(_enableSubmitButton);
-            $('#<%:ConfirmNewPassword.ClientID%>').change(_enableSubmitButton);
-        });
+                var hasCurrentPassword = currentPassword.length;
+                var hasNewPassword = newPassword.length;
+                var hasConfirmPassword = confirmPassword.length;
+
+                if (hasCurrentPassword && hasNewPassword && hasConfirmPassword) {
+                    if (newPassword.toUpperCase() === confirmPassword.toUpperCase()) {
+                        addValError('New and Confirm Passwords cannot be the same.');
+                    } else if (newPassword.toUpperCase() === currentPassword.toUpperCase()) {
+                        addValError('New and Current Passwords cannot be the same.');
+                    }
+                } else {
+                    if (!hasCurrentPassword) {
+                        addValError('Current Password is required.');
+                    }
+                    if (!hasNewPassword) {
+                        addValError('New Password is required.');
+                    }
+                    if (!hasConfirmPassword) {
+                        addValError('Confirm Password is required.');
+                    }
+                }
+
+                if (valErrors.length) {
+                    showErrorModal(('<ul>' + valErrors.join('') + '</ul>'), "Validation Errors");
+                    return false;
+                } else {
+                    return true;
+                }
+            } catch (ex) {
+                showErrorModal(ex.message, "Validation Errors");
+                return false;
+            }
+        }
     </script>
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Update Security Questions" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageSecurityQuestions.aspx.cs" Inherits="BRBPortal_CSharp.Account.ManageSecurityQuestions" %>
+﻿<%@ Page Title="Update Security Questions" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="ManageSecurityQuestions.aspx.cs" Inherits="BRBPortal_CSharp.Account.ManageSecurityQuestions" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -57,40 +57,74 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button runat="server" ID="btnCancel" OnClick="Cancel_Click" Text="Cancel" CssClass="btn btn-sm btn-default" UseSubmitBehavior="false" CausesValidation="false" />
-                    <asp:Button runat="server" ID="btnSubmit" OnClick="Submit_Click" Text="Submit" CssClass="btn btn-primary" ToolTip="Click to confirm this information is correct." style="margin-left:1rem;" />
+                    <asp:Button runat="server" ID="btnCancel" OnClick="Cancel_Click" Text="Cancel" CssClass="btn btn-sm btn-default" UseSubmitBehavior="false" CausesValidation="false" TabIndex="-1" />
+                    <asp:Button runat="server" ID="btnSubmit" OnClick="Submit_Click" OnClientClick="return validate();" Text="Submit" CssClass="btn btn-primary" ToolTip="Click to confirm this information is correct." style="margin-left:1rem;" />
                 </div>
             </div>
         </div>
     </section>
 
     <script>
-        function _enableSubmitButton() {
-            var question1 = $('#<%:Quest1.ClientID%>').val();
-            var question2 = $('#<%:Quest2.ClientID%>').val();
+        var valErrors = [];
 
-            var hasQuestion1 = question1.length;
-            var hasAnswer1 = $('#<%:Answer1.ClientID%>').val().length;
-            var hasQuestion2 = question2.length;
-            var hasAnswer2 = $('#<%:Answer2.ClientID%>').val().length;
+        function addValError(msg) {
+            valErrors.push('<li>' + msg + '</li>');
+        }
+
+        function validate() {
+            try {
+                var question1 = $('#<%:Quest1.ClientID%>').val();
+                var question2 = $('#<%:Quest2.ClientID%>').val();
+
+                var hasQuestion1 = question1.length;
+                var hasAnswer1 = $('#<%:Answer1.ClientID%>').val().length;
+                var hasQuestion2 = question2.length;
+                var hasAnswer2 = $('#<%:Answer2.ClientID%>').val().length;
+
+                if (hasQuestion1 && hasAnswer1 && hasQuestion2 && hasAnswer2) {
+                    if (question1 === question2) {
+                        addValError('Security Questions cannot be the same.');
+                    }
+                } else {
+                    if (!hasQuestion1) {
+                        addValError('Security Question 1 is required.');
+                    }
+
+                    if (!hasAnswer1) {
+                        addValError('Security Answer 1 is required.');
+                    }
+
+                    if (!hasQuestion2) {
+                        addValError('Security Question 2 is required.');
+                    }
+
+                    if (!hasAnswer2) {
+                        addValError('Security Answer 2 is required.');
+                    }
+                }
+
+                if (valErrors.length) {
+                    showErrorModal(('<ul>' + valErrors.join('') + '</ul>'), "Validation Errors");
+                    return false;
+                } else {
+                    return true;
+                }
+            } catch (ex) {
+                showErrorModal(ex.message, "Validation Errors");
+                return false;
+            }
+        }
+
+        function _enableSubmitButton() {
             var isChecked = $('#<%:chkDeclare.ClientID%>').is(':checked');
             var hasInitials = $('#<%:DeclareInits.ClientID%>').val().length;
 
-            if (question1 === question2) {
-                $('#<%:Quest2.ClientID%>').val('');
-                showErrorModal("Security Questions cannot be the same.", "Validation Error");
-            } else {
-                $('#<%:btnSubmit.ClientID%>').attr('disabled', (hasQuestion1 && hasAnswer1 && hasQuestion2 && hasAnswer2 && isChecked && hasInitials) ? false : true);
-            }
+            $('#<%:btnSubmit.ClientID%>').attr('disabled', (isChecked && hasInitials) ? false : true);
         }
 
         $(document).ready(function () {
             $('#<%:btnSubmit.ClientID%>').attr('disabled', true); // initial state
 
-            $('#<%:Quest1.ClientID%>').change(_enableSubmitButton);
-            $('#<%:Answer1.ClientID%>').change(_enableSubmitButton);
-            $('#<%:Quest2.ClientID%>').change(_enableSubmitButton);
-            $('#<%:Answer2.ClientID%>').change(_enableSubmitButton);
             $('#<%:chkDeclare.ClientID%>').change(_enableSubmitButton);
             $('#<%:DeclareInits.ClientID%>').change(_enableSubmitButton);
         });
