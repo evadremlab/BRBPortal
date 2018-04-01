@@ -1,11 +1,8 @@
-﻿using BRBPortal_CSharp.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using BRBPortal_CSharp.DAL;
+using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp
 {
@@ -19,8 +16,9 @@ namespace BRBPortal_CSharp
             try
             {
                 var user = Master.User;
+                var provider = new DataProvider();
 
-                gvCart.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
+                gvCart.DataSource = provider.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
                 gvCart.DataBind();
             }
             catch (Exception ex)
@@ -32,9 +30,10 @@ namespace BRBPortal_CSharp
         protected void gvCart_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             var user = Master.User;
+            var provider = new DataProvider();
 
             gvCart.PageIndex = e.NewPageIndex;
-            gvCart.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
+            gvCart.DataSource = provider.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
             gvCart.DataBind();
         }
 

@@ -717,7 +717,6 @@
     <Compile Include="PaymentProcessed.aspx.designer.cs">
       <DependentUpon>PaymentProcessed.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Shared\BRBFunctions.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -744,6 +743,20 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\DAL\ConfirmUserProfile.cs" />
+    <Compile Include="Shared\DAL\DataProvider.cs" />
+    <Compile Include="Shared\DAL\GetUserProfile.cs" />
+    <Compile Include="Shared\DAL\GetProperties.cs" />
+    <Compile Include="Shared\DAL\GetPropertyUnits.cs" />
+    <Compile Include="Shared\DAL\GetUnitTenants.cs" />
+    <Compile Include="Shared\DAL\Register.cs" />
+    <Compile Include="Shared\DAL\SaveCart.cs" />
+    <Compile Include="Shared\DAL\UpdateUnitTenancy.cs" />
+    <Compile Include="Shared\DAL\UpdateUnit.cs" />
+    <Compile Include="Shared\DAL\UpdateUserPassword.cs" />
+    <Compile Include="Shared\DAL\UpdateUserProfile.cs" />
+    <Compile Include="Shared\DAL\Authenticate.cs" />
+    <Compile Include="Shared\DAL\ResetUserPassword.cs" />
     <Compile Include="Shared\Extensions.cs" />
     <Compile Include="Shared\Logger.cs" />
     <Compile Include="Site.Master.cs">

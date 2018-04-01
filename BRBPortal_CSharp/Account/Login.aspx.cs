@@ -1,16 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Web;
 using System.Web.UI;
-
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-
+using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 using BRBPortal_CSharp.Shared;
-using System.Xml.Linq;
-using System.Xml;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -39,6 +36,7 @@ namespace BRBPortal_CSharp.Account
             Session.Clear();
 
             var user = new BRBUser();
+            var provider = new DataProvider();
 
             if (IsValid)
             {
@@ -53,9 +51,9 @@ namespace BRBPortal_CSharp.Account
                         user.BillingCode = BillCode.Text ?? "";
                     }
 
-                    if (BRBFunctions_CSharp.UserAuth(ref user, Password.Text ?? "") == SignInStatus.Success)
+                    if (provider.Authenticate(ref user, Password.Text ?? "") == SignInStatus.Success)
                     {
-                        if (BRBFunctions_CSharp.GetProfile(ref user))
+                        if (provider.GetUserProfile(ref user))
                         {
                             var claims = new List<Claim>();
                             claims.Add(new Claim(ClaimTypes.Name, user.BillingCode));
@@ -81,13 +79,14 @@ namespace BRBPortal_CSharp.Account
                         else
                         {
                             Session.Clear();
-                            Logger.Log("Login", BRBFunctions_CSharp.iErrMsg);
+                            Logger.Log("Login", provider.ErrorMessage);
                             Master.ShowErrorModal("Error getting User Profile.", "Login Error");
                         }
                     }
                     else
                     {
                         Session.Clear();
+                        Logger.Log("Login", provider.ErrorMessage);
                         Master.ShowErrorModal("Authentication Error.", "Login Error");
                     }
                 }

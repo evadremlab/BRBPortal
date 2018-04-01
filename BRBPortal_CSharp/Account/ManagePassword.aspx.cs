@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using System;
+using System.Collections.Generic;
 using System.Security.Claims;
+using System.Web;
+using BRBPortal_CSharp.DAL;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -29,22 +26,23 @@ namespace BRBPortal_CSharp.Account
         protected void ChangePassword()
         {
             var user = Master.User;
+            var provider = new DataProvider();
 
-            if (BRBFunctions_CSharp.UserAuth(ref user, CurrentPassword.Text) != SignInStatus.Success)
+            if (provider.Authenticate(ref user, CurrentPassword.Text) != SignInStatus.Success)
             {
                 Master.ShowErrorModal("Current password is incorrect.", "Change Password");
                 return;
             }
 
-            if (!BRBFunctions_CSharp.CheckPswdRules(user, NewPWD.Text))
+            if (!provider.CheckPasswordRules(user, NewPWD.Text))
             {
                 Master.ShowErrorModal("Password rules Not met. Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id.", "Change Password");
                 return;
             }
 
-            if (!BRBFunctions_CSharp.UpdatePassword(user, CurrentPassword.Text, NewPWD.Text, ConfirmNewPassword.Text))
+            if (!provider.UpdateUserPassword(user, CurrentPassword.Text, NewPWD.Text, ConfirmNewPassword.Text))
             {
-                Master.ShowErrorModal("Error changing password: " + BRBFunctions_CSharp.iErrMsg, "Change Password");
+                Master.ShowErrorModal("Error changing password: " + provider.ErrorMessage, "Change Password");
                 return;
             }
 

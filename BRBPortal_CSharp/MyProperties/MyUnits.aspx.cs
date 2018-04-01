@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Xml;
-
-using BRBPortal_CSharp.Models;
 using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
+using BRBPortal_CSharp.DAL;
+using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp.MyProperties
 {
@@ -20,8 +13,9 @@ namespace BRBPortal_CSharp.MyProperties
             if (!IsPostBack)
             {
                 var user = Master.User;
+                var provider = new DataProvider();
 
-                if (BRBFunctions_CSharp.GetPropertyUnits(ref user))
+                if (provider.GetPropertyUnits(ref user))
                 {
                     var units = user.CurrentProperty.Units;
 
@@ -35,7 +29,7 @@ namespace BRBPortal_CSharp.MyProperties
                         });
                     }
 
-                    var dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBUnit>(units);
+                    var dataTable = provider.ConvertToDataTable<BRBUnit>(units);
                     dataTable.DefaultView.Sort = "UnitNo ASC";
                     gvUnits.DataSource = dataTable;
                     gvUnits.DataBind();
@@ -66,16 +60,8 @@ namespace BRBPortal_CSharp.MyProperties
                 }
                 else
                 {
-                    if (!string.IsNullOrEmpty(BRBFunctions_CSharp.iErrMsg))
-                    {
-                        if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
-                        {
-                            BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
-                        }
-
-                        Master.ShowErrorModal("Error retrieving Units: " + BRBFunctions_CSharp.iErrMsg, "Units");
-                        return;
-                    }
+                    Master.ShowErrorModal("Error retrieving Units: " + provider.ErrorMessage, "Units");
+                    return;
                 }
             }
         }
@@ -94,9 +80,10 @@ namespace BRBPortal_CSharp.MyProperties
         protected void gvUnits_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             var user = Master.User;
+            var provider = new DataProvider();
 
             gvUnits.PageIndex = e.NewPageIndex;
-            gvUnits.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBUnit>(user.CurrentProperty.Units);
+            gvUnits.DataSource = provider.ConvertToDataTable<BRBUnit>(user.CurrentProperty.Units);
             gvUnits.DataBind();
 
             gvUnits.Columns[2].Visible = false; // Do this so it stores the value in the GV but doesn't show it

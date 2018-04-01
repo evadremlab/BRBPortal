@@ -1,13 +1,7 @@
-﻿using BRBPortal_CSharp.Models;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.UI;
+﻿using System;
 using System.Web.UI.WebControls;
-using System.Xml;
+using BRBPortal_CSharp.DAL;
+using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp.MyProperties
 {
@@ -18,8 +12,9 @@ namespace BRBPortal_CSharp.MyProperties
             if (!IsPostBack)
             {
                 var user = Master.User;
+                var provider = new DataProvider();
 
-                if (BRBFunctions_CSharp.GetUserProperties(ref user))
+                if (provider.GetProperties(ref user))
                 {
                     var properties = user.Properties;
 
@@ -33,23 +28,15 @@ namespace BRBPortal_CSharp.MyProperties
                         });
                     }
 
-                    var dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBProperty>(properties);
+                    var dataTable = provider.ConvertToDataTable<BRBProperty>(properties);
                     dataTable.DefaultView.Sort = "PropertyAddress ASC";
                     gvProperties.DataSource = dataTable;
                     gvProperties.DataBind();
                 }
                 else
                 {
-                    if (!string.IsNullOrEmpty(BRBFunctions_CSharp.iErrMsg))
-                    {
-                        if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
-                        {
-                            BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
-                        }
-
-                        Master.ShowErrorModal("Error retrieving Properties: " + BRBFunctions_CSharp.iErrMsg, "Properties");
-                        return;
-                    }
+                    Master.ShowErrorModal("Error retrieving Properties: " + provider.ErrorMessage, "Properties");
+                    return;
                 }
             }
         }
@@ -82,7 +69,8 @@ namespace BRBPortal_CSharp.MyProperties
         protected void gvProperties_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             var user = Master.User;
-            var dataTable = BRBFunctions_CSharp.ConvertToDataTable<BRBProperty>(user.Properties);
+            var provider = new DataProvider();
+            var dataTable = provider.ConvertToDataTable<BRBProperty>(user.Properties);
 
             gvProperties.PageIndex = e.NewPageIndex;
             dataTable.DefaultView.Sort = "PropertyAddress ASC";

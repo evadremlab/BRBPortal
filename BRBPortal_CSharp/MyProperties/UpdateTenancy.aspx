@@ -14,7 +14,7 @@
     <asp:HiddenField ID="DelimitedTenants" runat="server" />
 
     <h2><%: Title %></h2>
-    <h4>at <asp:Literal ID="Literal1" runat="server"></asp:Literal>, Unit # <asp:Literal ID="Literal2" runat="server" ></asp:Literal></h4>
+    <h4>at <asp:Literal ID="MainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
     <hr />
 
     <section id="updateTenancyForm">
@@ -26,7 +26,7 @@
                     <asp:Literal ID="OwnerName" runat="server"></asp:Literal>
                 </div>
             </div>
-            <div class="row">
+            <div id="AgencyNameSection" runat="server" class="row">
                 <asp:Label runat="server" AssociatedControlID="AgentName" CssClass="col-md-2 control-label">Agent Name:&nbsp;</asp:Label>
                 <div class="col-md-10 literal">
                     <asp:Literal ID="AgentName" runat="server" ></asp:Literal>
@@ -178,7 +178,7 @@
                 </div>
             </div>
 
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-10" style="margin-bottom:5rem;">
                 <div class="form-group">
                     <asp:CheckBox ID="chkDeclare" runat="server" Text="&nbsp;Declaration: I hereby declare under penalty of perjury that the Vacancy Registration Form is true and correct to the best of my knowledge and belief." />
                 </div>
@@ -194,8 +194,8 @@
                 </div>
             </div>
         </div>
-        <div style="height:3rem;">&nbsp;</div><!-- to move buttons off the bottom of the screen -->
     </section>
+
     <script>
         var valErrors = [];
         var removedTenantIDs = [];

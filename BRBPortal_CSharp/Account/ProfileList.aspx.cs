@@ -1,4 +1,5 @@
 ﻿using System;
+using BRBPortal_CSharp.DAL;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -9,8 +10,9 @@ namespace BRBPortal_CSharp.Account
             if (!IsPostBack)
             {
                 var user = Master.User;
+                var provider = new DataProvider();
 
-                if (BRBFunctions_CSharp.GetProfile(ref user))
+                if (provider.GetUserProfile(ref user))
                 {
                     Master.UpdateSession(user);
 

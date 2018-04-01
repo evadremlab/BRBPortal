@@ -1,10 +1,11 @@
-﻿using BRBPortal_CSharp.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BRBPortal_CSharp.DAL;
+using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -15,8 +16,9 @@ namespace BRBPortal_CSharp.Account
             if (!IsPostBack)
             {
                 var user = Master.User;
+                var provider = new DataProvider();
 
-                if (BRBFunctions_CSharp.GetProfile(ref user))
+                if (provider.GetUserProfile(ref user))
                 {
                     Master.UpdateSession(user);
 
@@ -61,12 +63,13 @@ namespace BRBPortal_CSharp.Account
         protected void UpdateProfile_Click(object sender, EventArgs e)
         {
             var user = Master.User;
+            var provider = new DataProvider();
 
             if (user.Relationship.ToUpper().Equals("OWNER"))
             {
                 if (string.IsNullOrEmpty(FirstName.Text) || string.IsNullOrEmpty(LastName.Text))
                 {
-                    Master.ShowErrorModal("When Relationship is Owner, first and last name must be entered.", "Edit Profile");
+                    Master.ShowErrorModal("When Relationship is Owner, first and last name must be entered.", "Edit User Profile");
                     return;
                 }
             }
@@ -74,7 +77,7 @@ namespace BRBPortal_CSharp.Account
             {
                 if (string.IsNullOrEmpty(AgencyName.Text))
                 {
-                    Master.ShowOKModal("When Relationship is Agent, agency name must be entered.", "Edit Profile");
+                    Master.ShowOKModal("When Relationship is Agent, agency name must be entered.", "Edit User Profile");
                     return;
                 }
             }
@@ -99,7 +102,7 @@ namespace BRBPortal_CSharp.Account
             user.PhoneNumber = PhoneNo.Text;
             user.AgencyName = AgencyName.Text;
 
-            if (BRBFunctions_CSharp.UpdateProfile(ref user))
+            if (provider.UpdateUserProfile(ref user))
             {
                 Master.UpdateSession(user);
                 Session["ShowAfterRedirect"] = "Your account profile has been updated.|Edit Account Profile";
@@ -108,7 +111,7 @@ namespace BRBPortal_CSharp.Account
             }
             else
             {
-                Master.ShowErrorModal("Error: Problem updating user profile.", "Profile Update");
+                Master.ShowErrorModal("Error: Problem updating user profile.", "Update User Profile");
             }
         }
 

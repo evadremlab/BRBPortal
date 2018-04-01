@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
-
+using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 using BRBPortal_CSharp.Shared;
 
@@ -21,8 +15,9 @@ namespace BRBPortal_CSharp
             try
             {
                 var user = Master.User;
+                var provider = new DataProvider();
 
-                gvCart.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
+                gvCart.DataSource = provider.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
                 gvCart.DataBind();
 
                 if (user.Cart.Items.Count == 0)
@@ -81,8 +76,9 @@ namespace BRBPortal_CSharp
             try
             {
                 var user = Master.User;
+                var provider = new DataProvider();
 
-                if (BRBFunctions_CSharp.SaveCart(user))
+                if (provider.SaveCart(user))
                 {
                     if (user.Cart.ID.HasValue)
                     {
@@ -113,9 +109,10 @@ namespace BRBPortal_CSharp
         protected void gvCart_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             var user = Master.User;
+            var provider = new DataProvider();
 
             gvCart.PageIndex = e.NewPageIndex;
-            gvCart.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
+            gvCart.DataSource = provider.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
             gvCart.DataBind();
         }
 

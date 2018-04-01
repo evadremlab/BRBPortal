@@ -1,11 +1,8 @@
-﻿using BRBPortal_CSharp.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using BRBPortal_CSharp.DAL;
+using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp.MyProperties
 {
@@ -18,10 +15,13 @@ namespace BRBPortal_CSharp.MyProperties
             if (!IsPostBack)
             {
                 var user = Master.User;
+                var provider = new DataProvider();
 
-                if (BRBFunctions_CSharp.GetPropertyTenants(ref user))
+                if (provider.GetUnitTenants(ref user))
                 {
-                    var tenants = user.CurrentProperty.Tenants;
+                    var property = user.CurrentProperty;
+                    var unit = user.CurrentUnit;
+                    var tenants = unit.Tenants;
 
                     Master.UpdateSession(user);
 
@@ -35,58 +35,58 @@ namespace BRBPortal_CSharp.MyProperties
                         });
                     }
 
-                    gvTenants.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBTenant>(tenants);
-                    gvTenants.DataBind();
+                    MainAddress.Text = property.PropertyAddress;
+                    UnitNo.Text = unit.UnitNo;
+                    BalAmt.Text = property.Balance.ToString("C");
 
-                    MainAddress.Text = user.CurrentProperty.PropertyAddress;
-                    UnitNo.Text = user.CurrentUnit.UnitNo;
-                    BalAmt.Text = user.CurrentProperty.Balance.ToString("C");
+                    UnitStat.Text = unit.ClientPortalUnitStatusCode;
+                    HouseServs.Text = unit.HServices;
 
-                    UnitStat.Text = user.CurrentUnit.ClientPortalUnitStatusCode;
-                    HouseServs.Text = user.CurrentUnit.HServices;
-
-                    if (user.CurrentUnit.StartDt.HasValue)
+                    if (unit.StartDt.HasValue)
                     {
-                        TenStDt.Text = user.CurrentUnit.StartDt.Value.ToString("MM/dd/yyyy");
+                        TenStDt.Text = unit.StartDt.Value.ToString("MM/dd/yyyy");
                     }
 
-                    NumTenants.Text = user.CurrentUnit.TenantCount.ToString();
-                    SmokYN.Text = user.CurrentUnit.SmokingProhibitionInLeaseStatus;
+                    NumTenants.Text = unit.TenantCount.ToString();
+                    SmokYN.Text = unit.SmokingProhibitionInLeaseStatus;
 
-                    if (user.CurrentUnit.SmokingProhibitionEffectiveDate.HasValue)
+                    if (unit.SmokingProhibitionEffectiveDate.HasValue)
                     {
-                        SmokDt.Text = user.CurrentUnit.SmokingProhibitionEffectiveDate.Value.ToString("MM/dd/yyyy");
+                        SmokDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ToString("MM/dd/yyyy");
                     }
 
-                    InitRent.Text = user.CurrentUnit.InitialRent;
+                    InitRent.Text = unit.InitialRent;
 
-                    if (user.CurrentUnit.DatePriorTenancyEnded.HasValue)
+                    if (unit.DatePriorTenancyEnded.HasValue)
                     {
-                        PriorEndDt.Text = user.CurrentUnit.DatePriorTenancyEnded.Value.ToString("MM/dd/yyyy");
+                        PriorEndDt.Text = unit.DatePriorTenancyEnded.Value.ToString("MM/dd/yyyy");
                     }
 
-                    TermReason.Text = user.CurrentUnit.TerminationReason;
-                    OwnerName.Text = user.CurrentProperty.OwnerContactName;
-                    AgentName.Text = user.CurrentProperty.AgencyName;
+                    TermReason.Text = unit.ReasonPriorTenancyEnded;
+                    OwnerName.Text = property.OwnerContactName;
+                    AgentName.Text = property.AgencyName;
+
+                    BindTenantsGridView();
                 }
                 else
                 {
-                    if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
-                    {
-                        BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
-                    }
-
-                    Master.ShowErrorModal("Error retrieving Tenants: " + BRBFunctions_CSharp.iErrMsg, "View Tenants");
+                    Master.ShowErrorModal("Error retrieving Tenants: " + provider.ErrorMessage, "View Tenants");
                 }
             }
         }
 
         protected void gvTenants_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            var user = Master.User;
-
             gvTenants.PageIndex = e.NewPageIndex;
-            gvTenants.DataSource = BRBFunctions_CSharp.ConvertToDataTable<BRBTenant>(user.CurrentProperty.Tenants);
+            BindTenantsGridView();
+        }
+
+        private void BindTenantsGridView()
+        {
+            var user = Master.User;
+            var provider = new DataProvider();
+
+            gvTenants.DataSource = provider.ConvertToDataTable<BRBTenant>(user.CurrentUnit.Tenants);
             gvTenants.DataBind();
         }
     }

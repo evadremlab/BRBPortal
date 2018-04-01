@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Owin;
+using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp.Account
@@ -23,13 +19,15 @@ namespace BRBPortal_CSharp.Account
 
         protected void UserIDCode_Or_BillingCode_TextChanged(object sender, EventArgs e)
         {
+            var provider = new DataProvider();
+
             var user = new BRBUser
             {
                 UserCode = UserIDCode.Text,
                 BillingCode = BillingCode.Text
             };
 
-            if (BRBFunctions_CSharp.GetProfile(ref user))
+            if (provider.GetUserProfile(ref user))
             {
                 Master.UpdateSession(user);
 
@@ -52,6 +50,7 @@ namespace BRBPortal_CSharp.Account
         protected void Reset_Click(object sender, EventArgs e)
         {
             var user = Master.User;
+            var provider = new DataProvider();
 
             if (UserIDOrBillCode.SelectedValue == "UserID")
             {
@@ -62,7 +61,7 @@ namespace BRBPortal_CSharp.Account
                 user.BillingCode = BillingCode.Text ?? "";
             }
 
-            if (BRBFunctions_CSharp.ValidateReset(ref user))
+            if (provider.ResetUserPassword(ref user))
             {
                 Master.UpdateSession(user);
 

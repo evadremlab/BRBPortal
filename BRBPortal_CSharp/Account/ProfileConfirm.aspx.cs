@@ -1,12 +1,8 @@
-﻿using BRBPortal_CSharp.Models;
-using BRBPortal_CSharp.Shared;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using BRBPortal_CSharp.DAL;
+using BRBPortal_CSharp.Shared;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -17,10 +13,11 @@ namespace BRBPortal_CSharp.Account
             if (!IsPostBack)
             {
                 var user = Master.User;
+                var provider = new DataProvider();
 
                 try
                 {
-                    if (BRBFunctions_CSharp.GetProfile(ref user))
+                    if (provider.GetUserProfile(ref user))
                     {
                         Master.UpdateSession(user);
 
@@ -31,6 +28,11 @@ namespace BRBPortal_CSharp.Account
                         EmailAddress0.Text = Master.User.Email;
                         PhoneNo0.Text = Master.User.PhoneNumber;
                         FullName0.Text = Master.User.FullName;
+                    }
+                    else
+                    {
+                        Logger.Log("ProfileConfirm", provider.ErrorMessage);
+                        Master.ShowErrorModal("Error getting User profile.", "ProfileConfirm");
                     }
                 }
                 catch (Exception ex)
@@ -44,6 +46,7 @@ namespace BRBPortal_CSharp.Account
         protected void SubmitProfile_Click(object sender, EventArgs e)
         {
             var user = Master.User;
+            var provider = new DataProvider();
 
             user.Question1 = Quest1.Text;
             user.Answer1 = Answer1.Text;
@@ -53,7 +56,7 @@ namespace BRBPortal_CSharp.Account
 
             try
             {
-                if (BRBFunctions_CSharp.ConfirmProfile(user))
+                if (provider.ConfirmUserProfile(user))
                 {
                     Session["ShowAfterRedirect"] = "Your account profile has been confirmed.|Profile Confirmed";
 
@@ -61,14 +64,14 @@ namespace BRBPortal_CSharp.Account
                 }
                 else
                 {
-                    Logger.Log("ProfileConfirm", BRBFunctions_CSharp.iErrMsg);
-                    Master.ShowErrorModal("Error updating confirmation (Error).", "Confirm Profile");
+                    Logger.Log("ProfileConfirm", provider.ErrorMessage);
+                    Master.ShowErrorModal("Error updating confirmation (Error).", "Confirm User Profile");
                 }
             }
             catch (Exception ex)
             {
                 Logger.LogException("ProfileConfirm", ex);
-                Master.ShowErrorModal("Error updating confirmation (Exception).", "Confirm Profile");
+                Master.ShowErrorModal("Error updating confirmation (Exception).", "Confirm User Profile");
             }
         }
 
@@ -85,7 +88,7 @@ namespace BRBPortal_CSharp.Account
             catch (Exception ex)
             {
                 Logger.LogException("ProfileConfirm", ex);
-                Master.ShowErrorModal("Error when cancelling profile confirmation.", "Confirm Profile");
+                Master.ShowErrorModal("Error when cancelling profile confirmation.", "Confirm User Profile");
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿using System;
-
-using BRBPortal_CSharp.Models;
+using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Shared;
 
 namespace BRBPortal_CSharp.Account
@@ -31,6 +30,7 @@ namespace BRBPortal_CSharp.Account
                     }
 
                     var user = Master.User;
+                    var provider = new DataProvider();
 
                     user.UserCode = ReqUserID.Text.ToUpper();
                     user.BillingCode = BillCode.Text.ToUpper();
@@ -52,14 +52,14 @@ namespace BRBPortal_CSharp.Account
                     user.PhoneNumber = PhoneNo.Text.ToUpper();
                     user.PropertyAddress = PropAddress.Text.ToUpper();
 
-                    if (BRBFunctions_CSharp.Register(ref user))
+                    if (provider.Register(ref user))
                     {
                         Master.UpdateSession(user);
                         Response.Redirect("~/Account/ManagePassword", false);
                     }
                     else
                     {
-                        Logger.Log("Register", BRBFunctions_CSharp.iErrMsg);
+                        Logger.Log("Register", provider.ErrorMessage);
                         Master.ShowErrorModal("Error during registration(1).", "Registration");
                     }
                 }

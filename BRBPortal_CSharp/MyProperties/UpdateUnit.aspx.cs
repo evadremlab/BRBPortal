@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using BRBPortal_CSharp.DAL;
 
 namespace BRBPortal_CSharp.MyProperties
 {
@@ -16,8 +11,9 @@ namespace BRBPortal_CSharp.MyProperties
             {
                 var user = Master.User;
                 var unit = user.CurrentUnit;
+                var provider = new DataProvider();
 
-                if (BRBFunctions_CSharp.GetPropertyUnits(ref user, user.CurrentUnit.UnitID))
+                if (provider.GetPropertyUnits(ref user, user.CurrentUnit.UnitID))
                 {
                     // literals
                     MainAddress.Text = unit.StreetAddress;
@@ -255,6 +251,7 @@ namespace BRBPortal_CSharp.MyProperties
         {
             var user = Master.User;
             var unit = user.CurrentUnit;
+            var provider = new DataProvider();
 
             InitalEditButtons.Style.Add("display", "none");
             EditUnitStatusPanel.Style.Remove("display");
@@ -274,8 +271,8 @@ namespace BRBPortal_CSharp.MyProperties
             unit.TenantNames = TenantNames.Text;
             unit.TenantContacts = TenantContacts.Text;
             unit.DeclarationInitials = DeclareInits.Text;
-            unit.StartDt = BRBFunctions_CSharp.GetOptionalDate(StartDt.Text);
-            unit.UnitAsOfDt = BRBFunctions_CSharp.GetOptionalDate(UnitAsOfDt.Text);
+            unit.StartDt = provider.GetOptionalDate(StartDt.Text);
+            unit.UnitAsOfDt = provider.GetOptionalDate(UnitAsOfDt.Text);
 
             if (unit.ClientPortalUnitStatusCode.ToUpper() == "EXEMPT")
             {
@@ -291,19 +288,14 @@ namespace BRBPortal_CSharp.MyProperties
 
             user.CurrentUnit = unit;
 
-            if (BRBFunctions_CSharp.SaveUnit(ref user))
+            if (provider.UpdateUnit(ref user))
             {
                 Master.UpdateSession(user);
                 Master.ShowOKModal("Updated Unit Status.", "Update Unit Status");
             }
             else
             {
-                if (BRBFunctions_CSharp.iErrMsg.IndexOf("(500) Internal Server Error") > -1)
-                {
-                    BRBFunctions_CSharp.iErrMsg = "(500) Internal Server Error";
-                }
-
-                Master.ShowErrorModal(BRBFunctions_CSharp.iErrMsg, "Update Unit Status");
+                Master.ShowErrorModal(provider.ErrorMessage, "Update Unit Status");
             }
         }
 

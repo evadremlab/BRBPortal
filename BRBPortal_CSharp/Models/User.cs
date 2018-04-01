@@ -143,7 +143,6 @@ namespace BRBPortal_CSharp.Models
         public string BillingEmail { get; set; } = "";
 
         public List<BRBUnit> Units { get; set; } = new List<BRBUnit>();
-        public List<BRBTenant> Tenants { get; set; } = new List<BRBTenant>();
 
         public BRBCartItem ConvertToCartItem()
         {
@@ -181,7 +180,6 @@ namespace BRBPortal_CSharp.Models
         public DateTime? SmokingProhibitionEffectiveDate { get; set; }
         public string SmokeDetector { get; set; } = "";
         public string InitialRent { get; set; } = "";
-        public string PriorEndDate { get; set; } = "";
         public string TerminationReason { get; set; } = "";
         public DateTime? DatePriorTenancyEnded { get; set; }
         public string ReasonPriorTenancyEnded { get; set; }
