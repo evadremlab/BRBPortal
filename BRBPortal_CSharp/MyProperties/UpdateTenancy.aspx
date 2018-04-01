@@ -10,8 +10,8 @@
         #MainContent_HServs label { padding-left: 0.5rem; }
     </style>
 
-    <asp:HiddenField ID="RemovedTenantIDs" runat="server" />
-    <asp:HiddenField ID="DelimitedTenants" runat="server" />
+    <asp:HiddenField ID="hdnRemovedTenantIDs" runat="server" />
+    <asp:HiddenField ID="hdnDelimitedTenants" runat="server" />
 
     <h2><%: Title %></h2>
     <h4>at <asp:Literal ID="MainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
@@ -49,14 +49,12 @@
                 <asp:Label runat="server" AssociatedControlID="InitRent" CssClass="col-md-2 control-label">Initial Rent: $</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="InitRent" CssClass="form-control" TextMode="Number"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="InitRent" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="TenStDt" CssClass="col-md-2 control-label">Tenancy Start Date:</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="TenStDt" CssClass="form-control" TextMode="Date" style="width:16rem;"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="TenStDt" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">
@@ -76,7 +74,7 @@
                     </asp:CheckBoxList>
                 </div>
             </div><!-- do not save "Other" as HServs, take HServOthrBox-->
-            <div class="form-group">
+            <div id="OtherHousingServices" runat="server" class="form-group">
                 <div class="col-md-2"></div>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="HServOthrBox" CssClass="form-control" placeholder="Other Housing Services" data-lpignore="true" style="width:40rem; min-width:40rem;"></asp:TextBox>
@@ -86,7 +84,6 @@
                 <asp:Label runat="server" AssociatedControlID="NumTenants" CssClass="col-md-2 control-label"># of Tenants: </asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="NumTenants" CssClass="form-control" TextMode="Number"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="NumTenants" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
             <div class="form-group">
@@ -107,14 +104,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="PTenDt" CssClass="col-md-2 control-label">Prior Tenancy end date:&nbsp;</asp:Label>
+                <asp:Label runat="server" AssociatedControlID="PTenDt" CssClass="col-md-2 control-label">Prior Tenancy End Date:&nbsp;</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="PTenDt" TextMode="Date" ToolTip="Enter the prior tenency date." CssClass="form-control" style="width:16rem;" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="PTenDt" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
+                    <asp:TextBox runat="server" ID="PTenDt" TextMode="Date" ToolTip="Enter the Prior Tenancy Date." CssClass="form-control" style="width:16rem;" />
                 </div>
             </div>
             <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="TermReas" CssClass="col-md-2 control-label">Reason for termination:&nbsp;</asp:Label>
+                <asp:Label runat="server" AssociatedControlID="TermReas" CssClass="col-md-2 control-label">Reason for Termination:&nbsp;</asp:Label>
                 <div class="col-md-10" style="max-width:24.5rem;">
                     <asp:DropDownList runat="server" ID="TermReas" ToolTip="Select a termination reason." CssClass="form-control selectpicker">
                         <%--<asp:ListItem enabled="true" text="" value=""></asp:ListItem>--%>
@@ -123,10 +119,9 @@
                         <asp:ListItem enabled="true" text="Non-payment of rent" value="3"></asp:ListItem>
                         <asp:ListItem enabled="true" text="Other" value="4"></asp:ListItem>
                     </asp:DropDownList>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="TermReas" IntialValue="" CssClass="text-danger" Display="Dynamic" ErrorMessage="required" />
                 </div>
             </div>
-            <div class="form-group">
+            <div id="ExplainOtherTermination" runat="server" class="form-group">
                 <asp:Label runat="server" AssociatedControlID="TermDescr" CssClass="col-md-2 control-label">Explain Involuntary termination:</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="TermDescr" TextMode="MultiLine" MaxLength="200" CssClass="form-control" style="width:80rem; height:5.5rem;"  ToolTip="Enter the termination explaination." />
@@ -189,7 +184,7 @@
                 </div>
 
                 <div class="form-group">
-                    <asp:Button runat="server" id="btnCancel" UseSubmitBehavior="false" PostBackUrl="~/MyProperties/MyTenants.aspx" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to the list of Tenants." TabIndex="-1" />
+                    <asp:Button runat="server" id="btnCancel" Text="Cancel" OnClick="btnCancel_Click" CausesValidation="false" CssClass="btn btn-sm btn-default" ToolTip="Returns to list of units." TabIndex="-1" />
                     <asp:Button runat="server" ID="btnConfirm" Text="Confirm" OnClick="UpdateTenancy_Click" OnClientClick="return validate();" CssClass="btn btn-primary" ToolTip="Update the tenants." style="margin-left:1rem;" />
                 </div>
             </div>
@@ -209,26 +204,57 @@
 
             valErrors = [];
 
-            $('#tenantsTable tbody tr.active').each(function () {
-                var fields = [];
-                var tenantID = $(this).data('tenantId');
+            try {
+                $('#tenantsTable tbody tr.active').each(function () {
+                    var fields = [];
+                    var tenantID = $(this).data('tenantId');
 
-                fields.push(tenantID || -1);
-                fields.push($(this).find('td').eq(0).text().toUpperCase());
-                fields.push($(this).find('td').eq(1).text().toUpperCase());
-                fields.push($(this).find('td').eq(2).text());
-                fields.push($(this).find('td').eq(3).text());
+                    fields.push(tenantID || -1);
+                    fields.push($(this).find('td').eq(0).text().toUpperCase());
+                    fields.push($(this).find('td').eq(1).text().toUpperCase());
+                    fields.push($(this).find('td').eq(2).text());
+                    fields.push($(this).find('td').eq(3).text());
 
-                tenants.push(fields.join('^'));
-            });
+                    tenants.push(fields.join('^'));
+                });
 
-            $('#<%:DelimitedTenants.ClientID%>').val(tenants.join('|'));
-            $('#<%:RemovedTenantIDs.ClientID%>').val(removedTenantIDs.join(','));
+                $('#<%:hdnDelimitedTenants.ClientID%>').val(tenants.join('|'));
+                $('#<%:hdnRemovedTenantIDs.ClientID%>').val(removedTenantIDs.join(','));
 
-            console.log('tenants: ' + tenants.join('|'));
-            console.log('removeTenantIDs: ' + removedTenantIDs.join(','))
+                console.log('tenants: ' + tenants.join('|'));
+                console.log('removeTenantIDs: ' + removedTenantIDs.join(','))
 
-            return true;
+                if ($('#<%:InitRent.ClientID%>').val() === '') {
+                    addValError('Initial Rent is required.');
+                }
+
+                if ($('#<%:TenStDt.ClientID%>').val() === '') {
+                    addValError('Tenancy Start Date is required');
+                }
+
+                if ($('#<%:NumTenants.ClientID%>').val() === '') {
+                    addValError('Number of Tenants is required.');
+                }
+
+                if ($('#<%:PTenDt.ClientID%>').val('Prior Tenancy Date is required.') === '') {
+                    addValError();
+                }
+
+                if ($('#<%:TermReas.ClientID%>').val() === '') {
+                    addValError('Reason for Termination is required.');
+                }
+
+                if (valErrors.length) {
+                    showErrorModal(('<ul>' + valErrors.join('') + '</ul>'), "Validation Errors");
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            catch (ex) {
+                showErrorModal(ex.message, "Validation Errors");
+                return false;
+            }
         }
 
         function _enableConfirmButton() {
@@ -237,10 +263,35 @@
             $('#<%:btnConfirm.ClientID%>').attr('disabled', (isChecked && hasInitials) ? false : true);
         }
 
+        function _setTerminationReason() {
+            if ($(this).val() === '4') { // Other
+                $('#<%:ExplainOtherTermination.ClientID%>').show();
+                setTimeout(function () {
+                    $('#<%:TermDescr.ClientID%>').focus();
+                }, 10);
+            } else {
+                $('#<%:TermDescr.ClientID%>').val('');
+                $('#<%:ExplainOtherTermination.ClientID%>').hide();
+            }
+        }
+
+        function _setHousingServicesOther() {
+            if ($(this).is(':checked')) {
+                $('#<%:OtherHousingServices.ClientID%>').show();
+            } else {
+                $('#<%:OtherHousingServices.ClientID%>').hide();
+            }
+        }
+
         $(document).ready(function () {
             $('#<%:btnConfirm.ClientID%>').attr('disabled', true); // initial state
             $('#<%:chkDeclare.ClientID%>').change(_enableConfirmButton);
             $('#<%:DeclareInits.ClientID%>').change(_enableConfirmButton);
+            $('#<%:TermReas.ClientID%>').change(_setTerminationReason);
+            $('#MainContent_HServs_9').change(_setHousingServicesOther);
+            $('#MainContent_RB1_1').click(function () { // No Smoking Probibition
+                $('#MainContent_SmokeDt').val('');
+            });
 
             $('#btnNewTenant').click(function () {
                 $('#noTenants').hide();

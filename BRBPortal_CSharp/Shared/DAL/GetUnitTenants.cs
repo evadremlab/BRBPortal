@@ -34,8 +34,6 @@ namespace BRBPortal_CSharp.DAL
 
                 var xmlDoc = GetXmlResponse(soapRequest);
 
-                user.CurrentUnit.HServices = ""; // so we don't add on to those passed in
-
                 foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("propertyAndUnitsRes"))
                 {
                     foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
@@ -96,7 +94,6 @@ namespace BRBPortal_CSharp.DAL
                                     tenant.TenantID = detailOccBy.SelectSingleNode("occupantId").InnerText;
                                     tenant.FirstName = detailOccBy.SelectSingleNode("name").SelectSingleNode("firstName").InnerText;
                                     tenant.LastName = detailOccBy.SelectSingleNode("name").SelectSingleNode("lastName").InnerText;
-                                    tenant.DisplayName = detailOccBy.SelectSingleNode("name").SelectSingleNode("nameLastFirstDisplay").InnerText;
                                     tenant.PhoneNumber = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("phoneNumber").InnerText;
                                     tenant.Email = detailOccBy.SelectSingleNode("contactInfo").SelectSingleNode("emailAddress").InnerText;
 

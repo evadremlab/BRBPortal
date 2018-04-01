@@ -85,9 +85,9 @@
                         </div>
                         <div class="row">
                             <div class="form-group">
-                                <asp:Label runat="server" AssociatedControlID="HouseServs" CssClass="col-md-4 control-label">Housing Services: </asp:Label>
+                                <asp:Label runat="server" AssociatedControlID="HServices" CssClass="col-md-4 control-label">Housing Services: </asp:Label>
                                 <div class="col-md-8 literal">
-                                    <asp:Literal ID="HouseServs" runat="server"></asp:Literal>
+                                    <asp:Literal ID="HServices" runat="server"></asp:Literal>
                                 </div>
                             </div>
                         </div>

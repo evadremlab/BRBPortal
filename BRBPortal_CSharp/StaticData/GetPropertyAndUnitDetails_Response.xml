@@ -64,7 +64,7 @@
           </housingServices>
           <housingServices>
             <serviceId>999</serviceId>
-            <serviceName>Disco Ball</serviceName>
+            <serviceName>Disco Ball,Pretzels</serviceName>
           </housingServices>
           <occupancy>
             <initialRent>123.45</initialRent>

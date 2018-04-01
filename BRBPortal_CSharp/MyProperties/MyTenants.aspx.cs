@@ -31,7 +31,7 @@ namespace BRBPortal_CSharp.MyProperties
                     {
                         tenants.Add(new BRBTenant
                         {
-                            DisplayName = "no tenants"
+                            LastName = "no tenants"
                         });
                     }
 
@@ -40,7 +40,7 @@ namespace BRBPortal_CSharp.MyProperties
                     BalAmt.Text = property.Balance.ToString("C");
 
                     UnitStat.Text = unit.ClientPortalUnitStatusCode;
-                    HouseServs.Text = unit.HServices;
+                    HServices.Text = unit.HServices;
 
                     if (unit.StartDt.HasValue)
                     {

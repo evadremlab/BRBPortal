@@ -13,6 +13,24 @@ namespace BRBPortal_CSharp.MyProperties {
     public partial class UpdateTenancy {
         
         /// <summary>
+        /// hdnRemovedTenantIDs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnRemovedTenantIDs;
+        
+        /// <summary>
+        /// hdnDelimitedTenants control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnDelimitedTenants;
+        
+        /// <summary>
         /// MainAddress control.
         /// </summary>
         /// <remarks>
@@ -103,6 +121,15 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.CheckBoxList HServs;
         
         /// <summary>
+        /// OtherHousingServices control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl OtherHousingServices;
+        
+        /// <summary>
         /// HServOthrBox control.
         /// </summary>
         /// <remarks>
@@ -155,6 +182,15 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList TermReas;
+        
+        /// <summary>
+        /// ExplainOtherTermination control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExplainOtherTermination;
         
         /// <summary>
         /// TermDescr control.

@@ -659,6 +659,10 @@
     <Compile Include="EditCart.aspx.designer.cs">
       <DependentUpon>EditCart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Property.cs" />
+    <Compile Include="Models\Tenant.cs" />
+    <Compile Include="Models\Unit.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\SoapRequest.cs" />
     <Compile Include="MyProperties\MyProperties.aspx.cs">

@@ -1,4 +1,5 @@
 ﻿using BRBPortal_CSharp.Models;
+using BRBPortal_CSharp.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,60 +21,186 @@ namespace BRBPortal_CSharp.MyProperties
             var property = user.CurrentProperty;
             var unit = user.CurrentUnit;
 
-            Tenants = unit.Tenants;
+            this.Tenants = unit.Tenants;
 
-            MainAddress.Text = property.PropertyAddress;
-            UnitNo.Text = unit.UnitNo;
-            OwnerName.Text = property.OwnerContactName;
-            AgentName.Text = property.AgencyName;
-            BalAmt.Text = property.Balance.ToString("C");
-            UnitStatus.Text = unit.ClientPortalUnitStatusCode;
-            InitRent.Text = unit.InitialRent;
-
-            if (unit.StartDt.HasValue)
+            if (!IsPostBack)
             {
-                TenStDt.Text = unit.StartDt.Value.ToString("MM/dd/yyyy");
-            }
+                // Literals
+                MainAddress.Text = property.PropertyAddress;
+                UnitNo.Text = unit.UnitNo;
+                OwnerName.Text = property.OwnerContactName;
+                AgentName.Text = property.AgencyName;
+                BalAmt.Text = property.Balance.ToString("C");
+                UnitStatus.Text = unit.ClientPortalUnitStatusCode;
 
-            //HServs
-            HServOthrBox.Text = "";
-            NumTenants.Text = unit.TenantCount.ToString();
+                // Fields
+                InitRent.Text = unit.InitialRent;
 
-            RB1.SelectedValue = unit.SmokingProhibitionInLeaseStatus;
-
-            if (unit.SmokingProhibitionEffectiveDate.HasValue)
-            {
-                SmokeDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ToString("yyyy-MM-dd");
-            }
-            
-            if (unit.DatePriorTenancyEnded.HasValue)
-            {
-                PTenDt.Text = unit.DatePriorTenancyEnded.Value.ToString("MM/dd/yyyy");
-            }
-
-            if (!string.IsNullOrEmpty(unit.ReasonPriorTenancyEnded))
-            {
-                var item = TermReas.Items.FindByText(unit.ReasonPriorTenancyEnded);
-
-                if (item == null)
+                if (unit.StartDt.HasValue)
                 {
-                    TermReas.SelectedValue = unit.ReasonPriorTenancyEnded;
+                    TenStDt.Text = unit.StartDt.Value.ToString("yyyy-MM-dd");
                 }
-                else
-                {
-                    TermDescr.Text = unit.ReasonPriorTenancyEnded;
-                }
-            }
 
-            if (string.IsNullOrEmpty(AgentName.Text))
-            {
-                AgencyNameSection.Visible = false;
+                var otherServices = new List<string>();
+                OtherHousingServices.Style.Add("display", "none");
+                var housingServices = unit.HServices.Split(',').ToList<string>();
+                foreach (var svc in housingServices)
+                {
+                    var service = svc.Trim();
+                    var item = HServs.Items.FindByText(service);
+
+                    if (item == null)
+                    {
+                        otherServices.Add(service);
+                        OtherHousingServices.Style.Remove("display");
+                        HServs.Items.FindByText("Other").Selected = true;
+                    }
+                    else
+                    {
+                        item.Selected = true;
+                    }
+                }
+                HServOthrBox.Text = string.Join(", ", otherServices);
+
+                NumTenants.Text = unit.TenantCount.ToString();
+
+                RB1.SelectedValue = unit.SmokingProhibitionInLeaseStatus;
+
+                if (unit.SmokingProhibitionEffectiveDate.HasValue)
+                {
+                    SmokeDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ToString("yyyy-MM-dd");
+                }
+
+                if (unit.DatePriorTenancyEnded.HasValue)
+                {
+                    PTenDt.Text = unit.DatePriorTenancyEnded.Value.ToString("yyyy-MM-dd");
+                }
+
+                if (!string.IsNullOrEmpty(unit.ReasonPriorTenancyEnded))
+                {
+                    var item = TermReas.Items.FindByText(unit.ReasonPriorTenancyEnded);
+
+                    if (item == null)
+                    {
+                        TermReas.SelectedValue = "4"; // Other
+                        TermDescr.Text = unit.ReasonPriorTenancyEnded;
+                    }
+                    else
+                    {
+                        ExplainOtherTermination.Style.Add("display", "none");
+                        TermReas.SelectedValue = unit.ReasonPriorTenancyEnded;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(AgentName.Text))
+                {
+                    AgencyNameSection.Visible = false;
+                }
             }
         }
 
         protected void UpdateTenancy_Click(object sender, EventArgs e)
         {
+            var user = Master.User;
+            var unit = user.CurrentUnit;
+            var tenants = unit.Tenants;
 
+            try
+            {
+                foreach (var id in hdnRemovedTenantIDs.Value.Split(','))
+                {
+                    var existingTenant = unit.Tenants.Where(x => x.TenantID == id).SingleOrDefault();
+
+                    if (existingTenant != null)
+                    {
+                        unit.Tenants.Remove(existingTenant);
+                    }
+                }
+
+                foreach (var str in hdnDelimitedTenants.Value.Split('|'))
+                {
+                    var fields = str.Split('^');
+                    var tenant = new BRBTenant
+                    {
+                        TenantID = fields[0],
+                        Email = fields[1],
+                        FirstName = fields[2],
+                        LastName = fields[3],
+                        PhoneNumber = fields[4]
+                    };
+                    if (tenant.TenantID == "-1") // new Tenant
+                    {
+                        unit.Tenants.Add(tenant);
+                    }
+                }
+
+                unit.InitialRent = InitRent.Text;
+
+                if (!string.IsNullOrEmpty(TenStDt.Text))
+                {
+                    unit.StartDt = DateTime.Parse(TenStDt.Text);
+                }
+
+                var housingServices = new List<string>();
+
+                foreach (ListItem item in HServs.Items)
+                {
+                    if (item.Selected && item.Text != "Other")
+                    {
+                        housingServices.Add(item.Text);
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(HServOthrBox.Text))
+                {
+                    housingServices.Add(HServOthrBox.Text);
+                }
+
+                unit.HServices = string.Join(", ", housingServices);
+
+                if (!string.IsNullOrEmpty(NumTenants.Text))
+                {
+                    unit.TenantCount = int.Parse(NumTenants.Text);
+                }
+
+                unit.SmokingProhibitionInLeaseStatus = RB1.SelectedValue;
+
+                if (!string.IsNullOrEmpty(SmokeDt.Text))
+                {
+                    unit.SmokingProhibitionEffectiveDate = DateTime.Parse(SmokeDt.Text);
+                }
+
+                if (!string.IsNullOrEmpty(PTenDt.Text))
+                {
+                    unit.DatePriorTenancyEnded = DateTime.Parse(PTenDt.Text);
+                }
+
+                unit.TerminationReason = TermReas.SelectedValue;
+                unit.OtherTerminationReason = TermDescr.Text;
+
+                unit.DeclarationInitials = DeclareInits.Text;
+
+                if (Master.DataProvider.UpdateUnitTenancy(ref user))
+                {
+                    Session["ShowAfterRedirect"] = "Tenancy has been updated.|Update Tenancy";
+
+                    Response.Redirect("~/MyProperties/MyTenants", false);
+                }
+                else
+                {
+                    Master.ShowErrorModal(Master.DataProvider.ErrorMessage, "Update Tenancy");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException("UpdateTenancy", ex);
+                Master.ShowErrorModal("Error updating Tenancy.");
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/MyProperties/MyTenants");
         }
     }
 }
