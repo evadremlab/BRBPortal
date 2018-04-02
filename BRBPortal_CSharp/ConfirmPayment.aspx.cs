@@ -15,24 +15,24 @@ namespace BRBPortal_CSharp
     public partial class ConfirmPayment : System.Web.UI.Page
     {
         protected string BillingCode;
-        protected uint CartID;
+        protected string CartID;
         protected decimal PaymentAmount;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             var user = Master.User;
 
-            if (user.Cart.ID.HasValue)
+            if (!string.IsNullOrEmpty(user.Cart.ID))
             {
-                this.CartID = user.Cart.ID.Value;
+                this.CartID = user.Cart.ID;
                 this.BillingCode = user.BillingCode;
                 this.PaymentAmount = user.Cart.PaymentAmount;
-
+#if DEBUG
                 if (this.PaymentAmount == 0)
                 {
                     this.PaymentAmount = 10.0M;
                 }
-
+#endif
             }
             else
             {

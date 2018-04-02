@@ -7,7 +7,7 @@ namespace BRBPortal_CSharp.Models
 {
     public class BRBCart
     {
-        public uint? ID { get; set; }
+        public string ID { get; set; }
         public bool WasUpdated { get; set; } = false;
         public decimal PaymentAmount { get; set; }
         public List<BRBCartItem> Items { get; set; } = new List<BRBCartItem>();

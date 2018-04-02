@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.UI.WebControls;
-using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 using BRBPortal_CSharp.Shared;
 
@@ -9,6 +8,7 @@ namespace BRBPortal_CSharp
     public partial class Cart : System.Web.UI.Page
     {
         public Decimal totalBalance;
+        public string backUrl = "~/Home";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -67,8 +67,12 @@ namespace BRBPortal_CSharp
 
         protected void CancelCart_Click(object sender, EventArgs e)
         {
+            var backUrl = Session["BackFromCartUrl"] as string ?? "~/Home";
+
             Session["FeesAll"] = "AllFees";
-            Response.Redirect("~/MyProperties/MyProperties", false);
+            Session.Remove("BackFromCartUrl");
+
+            Response.Redirect(backUrl, false);
         }
 
         protected void PayCart_Click(object sender, EventArgs e)
@@ -80,7 +84,7 @@ namespace BRBPortal_CSharp
 
                 if (provider.SaveCart(user))
                 {
-                    if (user.Cart.ID.HasValue)
+                    if (!string.IsNullOrEmpty(user.Cart.ID))
                     {
                         Master.UpdateSession(user);
                         Response.Redirect("~/ConfirmPayment", false);

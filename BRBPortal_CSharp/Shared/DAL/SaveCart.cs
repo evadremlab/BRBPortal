@@ -61,13 +61,9 @@ namespace BRBPortal_CSharp.DAL
 
                 if (wasSaved)
                 {
-                    uint cartID;
                     foreach (XmlElement el in xmlDoc.DocumentElement.GetElementsByTagName("cartId"))
                     {
-                        if (uint.TryParse(el.InnerText, out cartID))
-                        {
-                            user.Cart.ID = cartID;
-                        }
+                        user.Cart.ID = el.InnerText;
                     }
                 }
             }

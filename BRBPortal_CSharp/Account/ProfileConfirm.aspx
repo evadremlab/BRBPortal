@@ -93,7 +93,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <asp:Button runat="server" ID="btnCancel" OnClick="CancelProfile_Click" Text="Cancel & Logout" CssClass="btn btn-danger" ToolTip="Clicking this button will cause this validation screen to be displayed on your next login." UseSubmitBehavior="false" CausesValidation="false" />
+                    <asp:Button runat="server" ID="btnCancel" OnClick="CancelProfile_Click" Text="Cancel & Logout" CssClass="btn btn-danger" ToolTip="Clicking this button will cause this validation screen to be displayed on your next login." UseSubmitBehavior="false" CausesValidation="false" TabIndex="-1" />
                     <asp:Button runat="server" ID="btnSubmit" OnClick="SubmitProfile_Click" Text="Submit" CssClass="btn btn-primary" ToolTip="Click to confirm this information is correct." style="margin-left:1rem;" />
                 </div>
             </div>

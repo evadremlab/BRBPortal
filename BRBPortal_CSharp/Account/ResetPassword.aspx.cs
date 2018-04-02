@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.UI;
-using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp.Account
@@ -65,7 +64,6 @@ namespace BRBPortal_CSharp.Account
             {
                 Master.UpdateSession(user);
 
-                Session["ShowTemporaryPasswordMsg"] = "TRUE";
                 Response.Redirect("~/Account/Login", false);
             }
             else

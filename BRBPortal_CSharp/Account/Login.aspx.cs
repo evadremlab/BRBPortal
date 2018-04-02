@@ -52,34 +52,36 @@ namespace BRBPortal_CSharp.Account
 
                     if (provider.Authenticate(ref user, Password.Text ?? "") == SignInStatus.Success)
                     {
-                        if (provider.GetUserProfile(ref user))
+                        Master.UpdateSession(user);
+
+                        if (user.IsTemporaryPassword)
+                        {
+                            Session["NextPage"] = user.IsFirstlogin ? "ProfileConfirm" : "Home";
+                            Response.Redirect("~/Account/ManagePassword", false);
+                        }
+                        else
                         {
                             var claims = new List<Claim>();
                             claims.Add(new Claim(ClaimTypes.Name, user.BillingCode));
                             Request.GetOwinContext().Authentication.SignIn(new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie));
 
-                            Master.UpdateSession(user);
-
-                            if (user.IsTemporaryPassword)
-                            {
-                                Session["NextPage"] = user.IsFirstlogin ? "ProfileConfirm" : "Home";
-                                Response.Redirect("~/Account/ManagePassword", false);
-                            }
-                            else if (user.IsFirstlogin)
+                            if (user.IsFirstlogin)
                             {
                                 Session["NextPage"] = "Home";
                                 Response.Redirect("~/Account/ProfileConfirm", false);
                             }
-                            else
+                            else if (provider.GetUserProfile(ref user))
                             {
+
+                                Master.UpdateSession(user);
                                 Response.Redirect("~/Home", false);
                             }
-                        }
-                        else
-                        {
-                            Session.Clear();
-                            Logger.Log("Login", provider.ErrorMessage);
-                            Master.ShowErrorModal("Error getting User Profile.", "Login Error");
+                            else
+                            {
+                                Session.Clear();
+                                Logger.Log("Login", provider.ErrorMessage);
+                                Master.ShowErrorModal("Error getting User Profile.", "Login Error");
+                            }
                         }
                     }
                     else

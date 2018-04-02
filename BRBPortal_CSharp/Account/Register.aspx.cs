@@ -1,5 +1,4 @@
 ﻿using System;
-using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Shared;
 
 namespace BRBPortal_CSharp.Account
@@ -55,7 +54,8 @@ namespace BRBPortal_CSharp.Account
                     if (provider.Register(ref user))
                     {
                         Master.UpdateSession(user);
-                        Response.Redirect("~/Account/ManagePassword", false);
+                        Session["ShowTemporaryPasswordMsg"] = "TRUE";
+                        Response.Redirect("~/Account/Login", false);
                     }
                     else
                     {

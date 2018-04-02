@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-
-using Microsoft.AspNet.Identity;
-
 using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 

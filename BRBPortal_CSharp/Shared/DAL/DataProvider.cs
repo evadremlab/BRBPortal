@@ -197,22 +197,6 @@ namespace BRBPortal_CSharp.DAL
             return table;
         }
 
-        public bool CheckPasswordRules(BRBUser user, string password)
-        {
-            var isValid = true;
-
-            if (password.Length < 7 || password.Length > 20)
-            {
-                isValid = false;
-            }
-            else if (!Regex.IsMatch(password, "[a-zA-Z0-9!@#$%^&_*]"))
-            {
-                isValid = false;
-            }
-
-            return isValid;
-        }
-
         private string SafeString(string str, string defaultValue = "")
         {
             return string.IsNullOrEmpty(str) ? defaultValue : str.EscapeXMLChars();

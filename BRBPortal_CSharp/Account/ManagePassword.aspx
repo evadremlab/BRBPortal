@@ -61,9 +61,11 @@
                 var hasNewPassword = newPassword.length;
                 var hasConfirmPassword = confirmPassword.length;
 
+                valErrors = [];
+
                 if (hasCurrentPassword && hasNewPassword && hasConfirmPassword) {
-                    if (newPassword.toUpperCase() === confirmPassword.toUpperCase()) {
-                        addValError('New and Confirm Passwords cannot be the same.');
+                    if (newPassword.toUpperCase() !== confirmPassword.toUpperCase()) {
+                        addValError('New and Confirm Passwords must be the same.');
                     } else if (newPassword.toUpperCase() === currentPassword.toUpperCase()) {
                         addValError('New and Current Passwords cannot be the same.');
                     }

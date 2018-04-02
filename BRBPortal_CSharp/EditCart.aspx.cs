@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Web.UI.WebControls;
-using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp

@@ -6,7 +6,7 @@
         .thumbnail {
             background-color: #428bca;
             border-color: #357ebd;
-            min-height: 15rem;
+            min-height: 16rem;
             margin-bottom: 1rem;
         }
         .thumbnail:hover {
@@ -18,6 +18,7 @@
             color: #fff;
         }
         .thumbnail .caption h3 {
+            line-height: 3rem;
             text-align: center;
         }
     </style>
@@ -29,14 +30,14 @@
     <section id="homeForm">
         <div class="form-horizontal offset-col-md-2 col-md-10">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="thumbnail btnProfile">
                         <div class="caption">
                             <h3>Manage<br />Account Profile</h3>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="thumbnail btnProperty">
                         <div class="caption">
                             <h3>Manage<br />Property Registration<br />and Pay a Bill</h3>

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Web;
-using BRBPortal_CSharp.DAL;
 
 namespace BRBPortal_CSharp.Account
 {
@@ -26,12 +25,6 @@ namespace BRBPortal_CSharp.Account
             if (provider.Authenticate(ref user, CurrentPassword.Text) != SignInStatus.Success)
             {
                 Master.ShowErrorModal("Current password is incorrect.", "Change Password");
-                return;
-            }
-
-            if (!provider.CheckPasswordRules(user, NewPWD.Text))
-            {
-                Master.ShowErrorModal("Password rules Not met. Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id.", "Change Password");
                 return;
             }
 

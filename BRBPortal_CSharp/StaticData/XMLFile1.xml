@@ -1,31 +1,33 @@
-﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
-  <soapenv:Header/>
+﻿<?xml version='1.0' encoding='utf-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Body>
-    <api:savePaymentCart>
-      <savePaymentToCart>
-        <cartId></cartId>
-        <!--Optional:-->
-        <paymentConfirmationNo>0</paymentConfirmationNo>
-        <!--Optional:-->
-        <paymentMethod></paymentMethod>
-        <paymentReceivedAmt>0</paymentReceivedAmt>
-        <isFeeOnlyPaid>false</isFeeOnlyPaid>
-        <!--1 or more repetitions:-->
-        <items>
-          <itemId>0</itemId>
-          <propertyId>1968</propertyId>
-          <propertyMainStreetAddress>2336 CURTIS ST</propertyMainStreetAddress>
-          <fee>0.00</fee>
-          <penalties>0.00</penalties>
-          <balance>0.00</balance>
-        </items>
-      </savePaymentToCart>
-      <request>
-        <!--Optional:-->
-        <userId>DAVE02</userId>
-        <!--Optional:-->
-        <billingCode>LIUHEL</billingCode>
-      </request>
-    </api:savePaymentCart>
+    <ser-root:getProfileDetailsResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <profileDetails>
+        <userId>DAVE10</userId>
+        <billingCode>OKEAMY</billingCode>
+        <name>
+          <first></first>
+          <middle></middle>
+          <last>O'KEEFE</last>
+          <suffix></suffix>
+          <agencyName xsi:nil="true" />
+        </name>
+        <mailingAddress>
+          <streetNumber>1068</streetNumber>
+          <streetName>CRAGMONT AVE</streetName>
+          <unitNumber></unitNumber>
+          <fullAddress>1068 CRAGMONT AVE</fullAddress>
+          <city>BERKELEY</city>
+          <state>CA</state>
+          <zip>94708</zip>
+          <country>USA</country>
+        </mailingAddress>
+        <emailAddress>AMYOKEEFELAW@HOTMAIL.COM</emailAddress>
+        <phone>510-282-0298</phone>
+        <relationship>Owner</relationship>
+        <securityQuestion1 xsi:nil="true" />
+        <securityQuestion2 xsi:nil="true" />
+      </profileDetails>
+    </ser-root:getProfileDetailsResponse>
   </soapenv:Body>
 </soapenv:Envelope>

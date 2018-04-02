@@ -63,7 +63,7 @@
             </div>
 
             <div class="form-group">
-                <asp:Button runat="server" id="btnCancelCart" OnClick="CancelCart_Click" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Cancel any changes to this cart." TabIndex="-1" />
+                <asp:Button runat="server" id="btnCancelCart" OnClick="CancelCart_Click" Text="Back" CssClass="btn btn-sm btn-default" ToolTip="Back to your list of properties." TabIndex="-1" />
                 <asp:Button runat="server" ID="btnEdCart" OnClick="EditCart_Click" Text="Edit Cart" CssClass="btn btn-success" ToolTip="Edit your cart." style="margin-left:1rem;" />
                 <asp:Button runat="server" id="btnPayCart" OnClick="PayCart_Click" Text="Pay Now" CssClass="btn btn-primary" ToolTip="Pay for your cart balance." style="margin-left:1rem;" />
             </div>

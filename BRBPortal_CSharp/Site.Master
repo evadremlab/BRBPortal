@@ -59,6 +59,7 @@
                         <li><a runat="server" href="~/Home">Home</a></li>
                         <li><a runat="server" href="~/Contact">Contact</a></li>
                         <li><a runat="server" href="~/Account/ProfileList">My Profile</a></li>
+                        <li><a runat="server" href="~/MyProperties/MyProperties">My Properties</a></li>
                         <li><a runat="server" href="~/Cart">Cart</a></li>
                         <li><a runat="server" href="https://www.cityofberkeley.info/Rent_Stabilization_Board/Home/FAQs_-_Rent_Board_Mailbag.aspx" target="_blank">FAQ</a></li>
                     </ul>

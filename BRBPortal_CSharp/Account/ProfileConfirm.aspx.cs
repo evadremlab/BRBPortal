@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Web;
-using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Shared;
 
 namespace BRBPortal_CSharp.Account

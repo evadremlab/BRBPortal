@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Web.UI.WebControls;
-using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp.MyProperties
@@ -10,6 +9,8 @@ namespace BRBPortal_CSharp.MyProperties
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["BackFromCartUrl"] = "~/MyProperties/MyUnits";
+
             if (!IsPostBack)
             {
                 var user = Master.User;
@@ -56,6 +57,7 @@ namespace BRBPortal_CSharp.MyProperties
                             totalExempt++;
                         }
                     }
+
                     UnitStatusDescription.Text = string.Format("Out of {0} units for this property, you have {1} units in Rented and {2} in Exempt", totalRented + totalExempt, totalRented, totalExempt);
                 }
                 else

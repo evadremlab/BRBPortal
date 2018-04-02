@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.UI.WebControls;
-using BRBPortal_CSharp.DAL;
 using BRBPortal_CSharp.Models;
 
 namespace BRBPortal_CSharp.MyProperties
@@ -76,7 +75,6 @@ namespace BRBPortal_CSharp.MyProperties
             dataTable.DefaultView.Sort = "PropertyAddress ASC";
             gvProperties.DataSource = dataTable;
             gvProperties.DataBind();
-
         }
     }
 }

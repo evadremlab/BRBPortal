@@ -32,14 +32,13 @@ namespace BRBPortal_CSharp.DAL
                 soapRequest.Body.Append("</api:confirmProfileInformation>");
                 var xmlDoc = GetXmlResponse(soapRequest);
 
-                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("profileDetails"))
+                foreach (XmlElement detail in xmlDoc.DocumentElement.GetElementsByTagName("response"))
                 {
-                    // need to check something because this method doesn't return a Status
-                    isConfirmed = string.IsNullOrEmpty(detail.SelectSingleNode("relationship").InnerText);
+                    isConfirmed = detail.ChildNodes[0].InnerText.ToUpper().Equals("SUCCESS");
 
                     if (!isConfirmed)
                     {
-                        ErrorMessage = detail.SelectSingleNode("errorMsg").InnerText;
+                        ErrorMessage = detail.ChildNodes[1].InnerText;
                     }
                 }
             }
