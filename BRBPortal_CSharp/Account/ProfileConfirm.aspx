@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Account Profile Confirmation" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileConfirm.aspx.cs" EnableEventValidation="false" Inherits="BRBPortal_CSharp.Account.ProfileConfirm" %>
+﻿<%@ Page Title="Account Profile Confirmation" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileConfirm.aspx.cs" Inherits="BRBPortal_CSharp.Account.ProfileConfirm" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <%-- data-lpignore="true" tells LastPass not to show ellipsis on form fields --%>
@@ -121,8 +121,6 @@
         }
 
         $(document).ready(function () {
-            $('#<%:btnSubmit.ClientID%>').attr('disabled', true); // initial state
-
             $('#<%:Quest1.ClientID%>').change(_enableSubmitButton);
             $('#<%:Answer1.ClientID%>').change(_enableSubmitButton);
             $('#<%:Quest2.ClientID%>').change(_enableSubmitButton);

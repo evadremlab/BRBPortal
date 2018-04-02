@@ -58,21 +58,13 @@
           <rentCeiling>2100.00</rentCeiling>
           <tenancyStartDate>2018-01-01</tenancyStartDate>
           <unitStatusAsOfDate>2009-08-01</unitStatusAsOfDate>
-          <housingServices>
-            <serviceId>8</serviceId>
-            <serviceName>Appliances</serviceName>
-          </housingServices>
-          <housingServices>
-            <serviceId>999</serviceId>
-            <serviceName>Disco Ball,Pretzels</serviceName>
-          </housingServices>
           <occupancy>
-            <initialRent>123.45</initialRent>
+            <initialRent xsi:nil="true" />
             <noOfOccupants>1</noOfOccupants>
             <occupancyId>141987</occupancyId>
             <dateTenancyStarted>2018-01-01</dateTenancyStarted>
             <datePriorTenancyEnded>2017-12-31</datePriorTenancyEnded>
-            <reasonPriorTenancyEnded>Not sure</reasonPriorTenancyEnded>
+            <reasonPriorTenancyEnded></reasonPriorTenancyEnded>
             <smokingProhibitionInLeaseStatus>Yes</smokingProhibitionInLeaseStatus>
             <smokingProhibitionEffectiveDate>2014-09-22</smokingProhibitionEffectiveDate>
             <occupants>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using BRBPortal_CSharp.Models;
+using BRBPortal_CSharp.Shared;
 
 namespace BRBPortal_CSharp.DAL
 {
@@ -21,68 +22,63 @@ namespace BRBPortal_CSharp.DAL
 
             try
             {
-                var soapMessage = NewSoapMessage();
-                soapMessage.Append("<soapenv:Header/>");
-                soapMessage.Append("<soapenv:Body>");
-                soapMessage.Append("<api:updateUnitTenancy>");
-                soapMessage.Append("<unitTenancyUpdateReq>");
-                soapMessage.AppendFormat("<userId>{0}</userId>", user.UserCode);
-                soapMessage.AppendFormat("<propertyId>{0}</propertyId>", property.PropertyID);
-                soapMessage.AppendFormat("<unitId>{0}</unitId>", unit.UnitID);
-                soapMessage.AppendFormat("<unitStatus>{0}</unitStatus>", unit.ClientPortalUnitStatusCode);
-                soapMessage.AppendFormat("<initialRent>{0}</initialRent>", unit.InitialRent);
-                soapMessage.AppendFormat("<tenancyStartDate>{0}</tenancyStartDate>", unit.StartDt.Value.ToString("MM/dd/yyyy"));
-                soapMessage.AppendFormat("<priorTenancyEndDate>{0}</priorTenancyEndDate>", unit.DatePriorTenancyEnded.Value.ToString("MM/dd/yyyy"));
+                soapRequest.Body.Append("<api:updateUnitTenancy>");
+                soapRequest.Body.Append("<unitTenancyUpdateReq>");
+                soapRequest.Body.AppendFormat("<userId>{0}</userId>", user.UserCode);
+                soapRequest.Body.AppendFormat("<propertyId>{0}</propertyId>", property.PropertyID);
+                soapRequest.Body.AppendFormat("<unitId>{0}</unitId>", unit.UnitID);
+                soapRequest.Body.AppendFormat("<unitStatus>{0}</unitStatus>", unit.ClientPortalUnitStatusCode);
+                soapRequest.Body.AppendFormat("<initialRent>{0}</initialRent>", unit.InitialRent);
+                soapRequest.Body.AppendFormat("<tenancyStartDate>{0}</tenancyStartDate>", unit.StartDt.Value.ToString("MM/dd/yyyy"));
+                soapRequest.Body.AppendFormat("<priorTenancyEndDate>{0}</priorTenancyEndDate>", unit.DatePriorTenancyEnded.Value.ToString("MM/dd/yyyy"));
 
-                soapMessage.Append("<!--Zero or more repetitions:-->");
+                soapRequest.Body.Append("<!--Zero or more repetitions:-->");
                 foreach (var service in unit.HServices.Split(','))
                 {
-                    soapMessage.Append("<housingServices>");
-                    soapMessage.AppendFormat("<serviceName>{0}</serviceName>", service);
-                    soapMessage.Append("</housingServices>");
+                    soapRequest.Body.Append("<housingServices>");
+                    soapRequest.Body.AppendFormat("<serviceName>{0}</serviceName>", service);
+                    soapRequest.Body.Append("</housingServices>");
                 }
 
-                soapMessage.AppendFormat("<!--Optional:--><otherHousingService>{0}</otherHousingService>", unit.OtherHServices);
-                soapMessage.AppendFormat("<noOfTenants>{0}</noOfTenants>", unit.TenantCount);
-                soapMessage.AppendFormat("<smokingProhibitionInLeaseStatus>{0}</smokingProhibitionInLeaseStatus>", unit.SmokingProhibitionInLeaseStatus);
+                soapRequest.Body.AppendFormat("<!--Optional:--><otherHousingService>{0}</otherHousingService>", unit.OtherHServices);
+                soapRequest.Body.AppendFormat("<noOfTenants>{0}</noOfTenants>", unit.Tenants.Count);
+                soapRequest.Body.AppendFormat("<smokingProhibitionInLeaseStatus>{0}</smokingProhibitionInLeaseStatus>", unit.SmokingProhibitionInLeaseStatus);
 
                 if (unit.SmokingProhibitionEffectiveDate.HasValue)
                 {
-                    soapMessage.AppendFormat("<smokingProhibitionEffectiveDate>{0}</smokingProhibitionEffectiveDate>", unit.SmokingProhibitionEffectiveDate.Value.ToString("MM/dd/yyyy"));
+                    soapRequest.Body.AppendFormat("<smokingProhibitionEffectiveDate>{0}</smokingProhibitionEffectiveDate>", unit.SmokingProhibitionEffectiveDate.Value.ToString("MM/dd/yyyy"));
                 }
                 else
                 {
-                    soapMessage.Append("<smokingProhibitionEffectiveDate></smokingProhibitionEffectiveDate>");
+                    soapRequest.Body.Append("<smokingProhibitionEffectiveDate></smokingProhibitionEffectiveDate>");
                 }
 
-                soapMessage.AppendFormat("<reasonForTermination>{0}</reasonForTermination>", unit.TerminationReason);
-                soapMessage.AppendFormat("<otherReasonForTermination>{0}</otherReasonForTermination>", unit.OtherTerminationReason);
-                soapMessage.AppendFormat("<!--Optional:--><explainInvoluntaryTermination>{0}</explainInvoluntaryTermination>", unit.OtherTerminationReason);
+                soapRequest.Body.AppendFormat("<reasonForTermination>{0}</reasonForTermination>", unit.TerminationReason);
+                soapRequest.Body.AppendFormat("<otherReasonForTermination>{0}</otherReasonForTermination>", unit.OtherTerminationReason);
+                soapRequest.Body.AppendFormat("<!--Optional:--><explainInvoluntaryTermination>{0}</explainInvoluntaryTermination>", unit.OtherTerminationReason);
 
-                soapMessage.Append("<!--Zero or more repetitions:-->");
+                soapRequest.Body.Append("<!--Zero or more repetitions:-->");
                 foreach (var tenant in unit.Tenants)
                 {
-                    soapMessage.Append("<tenants>");
-                    soapMessage.Append("<code></code>");
-                    soapMessage.Append("<name>");
-                    soapMessage.AppendFormat("<first>{0}</first>", tenant.FirstName);
-                    soapMessage.Append("<!--Optional:--><middle></middle>");
-                    soapMessage.AppendFormat("<last>{0}</last>", tenant.LastName);
-                    soapMessage.Append("<suffix></suffix>");
-                    soapMessage.Append("<!--Optional:--><nameLastFirstDisplay></nameLastFirstDisplay>");
-                    soapMessage.Append("<!--Optional:--><agencyName></agencyName>");
-                    soapMessage.Append("</name>");
-                    soapMessage.AppendFormat("<phoneNumber>{0}</phoneNumber>", tenant.PhoneNumber);
-                    soapMessage.AppendFormat("<emailAddress>{0}</emailAddress>", tenant.Email);
-                    soapMessage.Append("</tenants>");
+                    soapRequest.Body.Append("<tenants>");
+                    soapRequest.Body.Append("<code></code>");
+                    soapRequest.Body.Append("<name>");
+                    soapRequest.Body.AppendFormat("<first>{0}</first>", tenant.FirstName);
+                    soapRequest.Body.Append("<!--Optional:--><middle></middle>");
+                    soapRequest.Body.AppendFormat("<last>{0}</last>", tenant.LastName);
+                    soapRequest.Body.Append("<suffix></suffix>");
+                    soapRequest.Body.Append("<!--Optional:--><nameLastFirstDisplay></nameLastFirstDisplay>");
+                    soapRequest.Body.Append("<!--Optional:--><agencyName></agencyName>");
+                    soapRequest.Body.Append("</name>");
+                    soapRequest.Body.AppendFormat("<phoneNumber>{0}</phoneNumber>", tenant.PhoneNumber);
+                    soapRequest.Body.AppendFormat("<emailAddress>{0}</emailAddress>", tenant.Email);
+                    soapRequest.Body.Append("</tenants>");
                 }
 
-                soapMessage.AppendFormat("<declarationInitial>{0}</declarationInitial>", unit.DeclarationInitials);
+                soapRequest.Body.AppendFormat("<declarationInitial>{0}</declarationInitial>", unit.DeclarationInitials);
 
-                soapMessage.Append("</unitTenancyUpdateReq>");
-                soapMessage.Append("</api:updateUnitTenancy>");
-                soapMessage.Append("</soapenv:Body>");
-                soapMessage.Append("</soapenv:Envelope>");
+                soapRequest.Body.Append("</unitTenancyUpdateReq>");
+                soapRequest.Body.Append("</api:updateUnitTenancy>");
 
                 var xmlDoc = GetXmlResponse(soapRequest);
 
@@ -92,7 +88,7 @@ namespace BRBPortal_CSharp.DAL
 
                     if (!wasSaved)
                     {
-                        Status = detail.ChildNodes[1].InnerText;
+                        ErrorMessage = detail.ChildNodes[1].InnerText;
                     }
                 }
             }

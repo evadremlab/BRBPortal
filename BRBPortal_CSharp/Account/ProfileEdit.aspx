@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Edit Account Profile" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileEdit.aspx.cs" enableEventValidation="false" Inherits="BRBPortal_CSharp.Account.ProfileEdit" %>
+﻿<%@ Page Title="Edit Account Profile" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProfileEdit.aspx.cs" Inherits="BRBPortal_CSharp.Account.ProfileEdit" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">

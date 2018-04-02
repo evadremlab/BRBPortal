@@ -13,7 +13,14 @@ namespace BRBPortal_CSharp.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (IsPostBack)
+            {
+                btnSubmit.Attributes.Remove("disabled");
+            }
+            else
+            {
+                btnSubmit.Attributes.Add("disabled", "disabled");
+            }
         }
 
         protected void Submit_Click(object sender, EventArgs e)
@@ -29,8 +36,10 @@ namespace BRBPortal_CSharp.Account
 
             try
             {
-                if (provider.ConfirmUserProfile(user))
+                if (provider.UpdateSecurityQuestions(ref user))
                 {
+                    Master.UpdateSession(user);
+
                     Session["ShowAfterRedirect"] = "Your account profile has been confirmed.|Profile Confirmed";
 
                     Response.Redirect("~/Home", false);

@@ -8,7 +8,7 @@
         <unitId>7774</unitId>
         <unitStatus>Rented</unitStatus>
         <initialRent>123.45</initialRent>
-        <tenancyStartDate>08/01/2009</tenancyStartDate>
+        <tenancyStartDate>04/02/2018</tenancyStartDate>
         <priorTenancyEndDate>12/31/2017</priorTenancyEndDate>
         <!--Zero or more repetitions:-->
         <housingServices>
@@ -18,20 +18,17 @@
           <serviceName>Gas</serviceName>
         </housingServices>
         <housingServices>
-          <serviceName>Electricity</serviceName>
-        </housingServices>
-        <housingServices>
-          <serviceName>Appliances</serviceName>
+          <serviceName>Water</serviceName>
         </housingServices>
         <!--Optional:-->
-        <otherHousingService>Disco Ball, Pretzels</otherHousingService>
+        <otherHousingService></otherHousingService>
         <noOfTenants>2</noOfTenants>
         <smokingProhibitionInLeaseStatus>Yes</smokingProhibitionInLeaseStatus>
         <smokingProhibitionEffectiveDate>09/22/2014</smokingProhibitionEffectiveDate>
-        <reasonForTermination>4</reasonForTermination>
-        <otherReasonForTermination>Not sure</otherReasonForTermination>
+        <reasonForTermination>1</reasonForTermination>
+        <otherReasonForTermination></otherReasonForTermination>
         <!--Optional:-->
-        <explainInvoluntaryTermination>Not sure</explainInvoluntaryTermination>
+        <explainInvoluntaryTermination></explainInvoluntaryTermination>
         <!--Zero or more repetitions:-->
         <tenants>
           <code></code>
@@ -62,9 +59,10 @@
             <!--Optional:-->
             <agencyName></agencyName>
           </name>
-          <phoneNumber>5107798085</phoneNumber>
-          <emailAddress>david.b.balmer@gmail.com</emailAddress>
+          <phoneNumber>555-555-5555</phoneNumber>
+          <emailAddress>me@home.com</emailAddress>
         </tenants>
+        <declarationInitial>dbb</declarationInitial>
       </unitTenancyUpdateReq>
     </api:updateUnitTenancy>
   </soapenv:Body>

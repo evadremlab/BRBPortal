@@ -1,0 +1,11 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <ser-root:updateUnitTenancyResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <response>
+        <status>FAILURE</status>
+        <errorMsg>Unit status change date cannot be same or before current status date. Please select appropriate date and try again.</errorMsg>
+      </response>
+    </ser-root:updateUnitTenancyResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

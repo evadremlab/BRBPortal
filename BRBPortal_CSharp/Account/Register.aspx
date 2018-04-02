@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Request Online Account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" EnableEventValidation="false" Inherits="BRBPortal_CSharp.Account.Register" %>
+﻿<%@ Page Title="Request Online Account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="BRBPortal_CSharp.Account.Register" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <%@ Import Namespace="Microsoft.AspNet.Identity" %>

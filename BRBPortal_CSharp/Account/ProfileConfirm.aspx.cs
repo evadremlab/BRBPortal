@@ -10,36 +10,41 @@ namespace BRBPortal_CSharp.Account
     {
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            if (!IsPostBack)
+            if (IsPostBack)
             {
-                var user = Master.User;
-                var provider = Master.DataProvider;
+                btnSubmit.Attributes.Remove("disabled");
+                return;
+            }
 
-                try
+            btnSubmit.Attributes.Add("disabled", "disabled");
+
+            var user = Master.User;
+            var provider = Master.DataProvider;
+
+            try
+            {
+                if (provider.GetUserProfile(ref user))
                 {
-                    if (provider.GetUserProfile(ref user))
-                    {
-                        Master.UpdateSession(user);
+                    Master.UpdateSession(user);
 
-                        UserIDCode0.Text = Master.User.UserCode;
-                        BillCode0.Text = Master.User.BillingCode;
-                        FullName0.Text = Master.User.FullName;
-                        MailAddress0.Text = Master.User.MailAddress;
-                        EmailAddress0.Text = Master.User.Email;
-                        PhoneNo0.Text = Master.User.PhoneNumber;
-                        FullName0.Text = Master.User.FullName;
-                    }
-                    else
-                    {
-                        Logger.Log("ProfileConfirm", provider.ErrorMessage);
-                        Master.ShowErrorModal("Error getting User profile.", "ProfileConfirm");
-                    }
+                    UserIDCode0.Text = Master.User.UserCode;
+                    BillCode0.Text = Master.User.BillingCode;
+                    FullName0.Text = Master.User.FullName;
+                    MailAddress0.Text = Master.User.MailAddress;
+                    EmailAddress0.Text = Master.User.Email;
+                    PhoneNo0.Text = Master.User.PhoneNumber;
+                    FullName0.Text = Master.User.FullName;
                 }
-                catch (Exception ex)
+                else
                 {
-                    Logger.LogException("ProfileConfirm", ex);
+                    Logger.Log("ProfileConfirm", provider.ErrorMessage);
                     Master.ShowErrorModal("Error getting User profile.", "ProfileConfirm");
                 }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException("ProfileConfirm", ex);
+                Master.ShowErrorModal("Error getting User profile.", "ProfileConfirm");
             }
         }
 

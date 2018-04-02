@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Update Security Questions" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="ManageSecurityQuestions.aspx.cs" Inherits="BRBPortal_CSharp.Account.ManageSecurityQuestions" %>
+﻿<%@ Page Title="Update Security Questions" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageSecurityQuestions.aspx.cs" Inherits="BRBPortal_CSharp.Account.ManageSecurityQuestions" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -123,8 +123,6 @@
         }
 
         $(document).ready(function () {
-            $('#<%:btnSubmit.ClientID%>').attr('disabled', true); // initial state
-
             $('#<%:chkDeclare.ClientID%>').change(_enableSubmitButton);
             $('#<%:DeclareInits.ClientID%>').change(_enableSubmitButton);
         });

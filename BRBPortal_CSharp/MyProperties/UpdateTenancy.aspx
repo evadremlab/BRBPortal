@@ -48,7 +48,7 @@
             <div class="form-group" style="margin-top:1rem;">
                 <asp:Label runat="server" AssociatedControlID="InitRent" CssClass="col-md-2 control-label">Initial Rent: $</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="InitRent" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="InitRent" CssClass="form-control" TextMode="SingleLine" data-lpignore="true"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group">
@@ -78,12 +78,6 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="HServOthrBox" CssClass="form-control" placeholder="Other Housing Services" data-lpignore="true" style="width:40rem; min-width:40rem;"></asp:TextBox>
-                </div>
-            </div>
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="NumTenants" CssClass="col-md-2 control-label"># of Tenants: </asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="NumTenants" CssClass="form-control" TextMode="Number"></asp:TextBox>
                 </div>
             </div>
             <div class="form-group">
@@ -157,13 +151,13 @@
                                 <td>&nbsp;</td>
 		                    </tr>
                             <tr id="addTenant" style="display:none; background-color:#EFF3FB;">
-                                <td><input type="text" name="firstname" style="text-transform:uppercase" data-lpignore="true" /></td>
-                                <td><input type="text" name="lastname" style="text-transform:uppercase" data-lpignore="true" /></td>
-                                <td><input type="tel" name="phone" data-lpignore="true" /></td>
-                                <td><input type="text" name="email"  data-lpignore="true" /></td>
+                                <td><input type="text" name="firstname" style="text-transform:uppercase" autocomplete="off" data-lpignore="true" /></td>
+                                <td><input type="text" name="lastname" style="text-transform:uppercase" autocomplete="off" data-lpignore="true" /></td>
+                                <td><input type="tel" name="phone" autocomplete="off" data-lpignore="true" /></td>
+                                <td><input type="text" name="email" autocomplete="off" data-lpignore="true" /></td>
                                 <td style="text-align:right;">
                                     <button id="btnAddNewTenant" type="button" class="btn btn-sm btn-primary">Add</button>
-                                    <button id="btnCancelAddTenant" type="button" class="btn btn-sm btn-default" style="margin-left:0.5rem;">Cancel</button>
+                                    <button id="btnCancelAddTenant" type="button" class="btn btn-sm btn-default" style="margin-left:0.5rem;" tabindex="-1">Cancel</button>
                                 </td>
                             </tr>
     	                </tbody>
@@ -200,7 +194,6 @@
 
         function validate() {
             var tenants = [];
-            var numTenants = $('#<%:NumTenants.ClientID%>').val();
 
             valErrors = [];
 
@@ -221,21 +214,12 @@
                 $('#<%:hdnDelimitedTenants.ClientID%>').val(tenants.join('|'));
                 $('#<%:hdnRemovedTenantIDs.ClientID%>').val(removedTenantIDs.join(','));
 
-                console.log('tenants: ' + tenants.join('|'));
-                console.log('removeTenantIDs: ' + removedTenantIDs.join(','))
-
                 if ($('#<%:InitRent.ClientID%>').val() === '') {
                     addValError('Initial Rent is required.');
                 }
 
                 if ($('#<%:TenStDt.ClientID%>').val() === '') {
                     addValError('Tenancy Start Date is required');
-                }
-
-                if (numTenants === '') {
-                    addValError('Number of Tenants is required.');
-                } else if (tenants.length.toString() !== numTenants) {
-                    addValError('Number of Tenants entered must match the number of Tenant entries in the table.');
                 }
 
                 if ($('#MainContent_RB1_0').is(':checked') && $('#<%:SmokeDt.ClientID%>').val() === '') {
@@ -290,8 +274,6 @@
         }
 
         $(document).ready(function () {
-            $('#<%:btnSubmit.ClientID%>').attr('disabled', true); // initial state
-
             $('#<%:chkDeclare.ClientID%>').change(_enableSubmitButton);
             $('#<%:DeclareInits.ClientID%>').change(_enableSubmitButton);
             $('#<%:TermReas.ClientID%>').change(_setTerminationReason);
@@ -299,8 +281,6 @@
             $('#MainContent_RB1_1').click(function () { // No Smoking Probibition
                 $('#MainContent_SmokeDt').val('');
             });
-
-            $('#MainContent_btnSubmit').attr('disabled', true); // initial state
 
             $('#btnNewTenant').click(function () {
                 $('#noTenants').hide();

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Unit Status" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="UpdateUnit.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.UpdateUnit" %>
+﻿<%@ Page Title="Unit Status" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdateUnit.aspx.cs" Inherits="BRBPortal_CSharp.MyProperties.UpdateUnit" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -483,8 +483,11 @@
                 $('#MainContent_btnSubmit').attr('disabled', (isChecked && hasInitials) ? false : true);
             }
 
+            //
+            // BINDINGS
+            //
+
             $(".selectpicker").selectpicker();
-            $('#MainContent_btnSubmit').attr('disabled', true); // initial state
 
             $('#btnEdit').click(function () {
                 $('#MainContent_InitalEditButtons').hide();

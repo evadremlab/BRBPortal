@@ -12,7 +12,7 @@ namespace BRBPortal_CSharp.DAL
 
             var soapRequest = new SoapRequest
             {
-                Source = "ConfirmProfile",
+                Source = "UpdateSecurityQuestions",
                 Url = "UpdateUserProfileSecurityQA/RTSClientPortalAPI_API_WSD_UpdateUserProfileSecurityQA_Port",
                 Action = "RTSClientPortalAPI_API_WSD_UpdateUserProfileSecurityQA_Binder_updateUserProfileSecurityQA"
             };

@@ -287,8 +287,8 @@
     </Content>
     <Content Include="StaticData\SaveUnit_Request.xml" />
     <Content Include="StaticData\SaveUnit_Response.xml" />
+    <Content Include="StaticData\UpdateUnitTenancy_Response.xml" />
     <Content Include="StaticData\UpdateUnitTenancy_Request.xml" />
-    <Content Include="StaticData\UpdateUnitTenancy_WSDL.xml" />
     <Content Include="StaticData\UpdateUserPassword_Request.xml" />
     <Content Include="StaticData\UpdateUserPassword_Response.xml" />
     <Content Include="StaticData\ValidateRegistration_Request.xml" />
@@ -469,6 +469,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="StaticData\XMLFile1.xml" />
+    <Content Include="StaticData\XMLFile2.xml" />
     <Content Include="Styles\calendar-blue.css" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />

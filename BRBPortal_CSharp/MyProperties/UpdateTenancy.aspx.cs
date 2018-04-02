@@ -23,79 +23,83 @@ namespace BRBPortal_CSharp.MyProperties
 
             this.Tenants = unit.Tenants;
 
-            if (!IsPostBack)
+            if (IsPostBack)
             {
-                // Literals
-                MainAddress.Text = property.PropertyAddress;
-                UnitNo.Text = unit.UnitNo;
-                OwnerName.Text = property.OwnerContactName;
-                AgentName.Text = property.AgencyName;
-                BalAmt.Text = property.Balance.ToString("C");
-                UnitStatus.Text = unit.ClientPortalUnitStatusCode;
+                btnSubmit.Attributes.Remove("disabled"); // enable button after postback, in case of errors
+                return;
+            }
 
-                // Fields
-                InitRent.Text = unit.InitialRent;
+            btnSubmit.Attributes.Add("disabled", "disabled");
+            ExplainOtherTermination.Style.Add("display", "none");
 
-                if (unit.StartDt.HasValue)
-                {
-                    TenStDt.Text = unit.StartDt.Value.ToString("yyyy-MM-dd");
-                }
+            // Literals
+            MainAddress.Text = property.PropertyAddress;
+            UnitNo.Text = unit.UnitNo;
+            OwnerName.Text = property.OwnerContactName;
+            AgentName.Text = property.AgencyName;
+            BalAmt.Text = property.Balance.ToString("C");
+            UnitStatus.Text = unit.ClientPortalUnitStatusCode;
+
+            // Fields
+            InitRent.Text = unit.InitialRent;
+
+            if (unit.StartDt.HasValue)
+            {
+                TenStDt.Text = unit.StartDt.Value.ToString("yyyy-MM-dd");
+            }
                     
-                var otherServices = new List<string>();
-                OtherHousingServices.Style.Add("display", "none");
-                var housingServices = unit.HServices.Split(',').ToList<string>();
-                foreach (var svc in housingServices)
+            var otherServices = new List<string>();
+            OtherHousingServices.Style.Add("display", "none");
+            var housingServices = unit.HServices.Split(',').ToList<string>();
+            foreach (var svc in housingServices)
+            {
+                var service = svc.Trim();
+                var item = HServs.Items.FindByText(service);
+
+                if (item == null)
                 {
-                    var service = svc.Trim();
-                    var item = HServs.Items.FindByText(service);
-
-                    if (item == null)
-                    {
-                        otherServices.Add(service);
-                        OtherHousingServices.Style.Remove("display");
-                        HServs.Items.FindByText("Other").Selected = true;
-                    }
-                    else
-                    {
-                        item.Selected = true;
-                    }
+                    otherServices.Add(service);
+                    OtherHousingServices.Style.Remove("display");
+                    HServs.Items.FindByText("Other").Selected = true;
                 }
-                HServOthrBox.Text = string.Join(", ", otherServices);
-
-                NumTenants.Text = unit.TenantCount.ToString();
-
-                RB1.SelectedValue = unit.SmokingProhibitionInLeaseStatus;
-
-                if (unit.SmokingProhibitionEffectiveDate.HasValue)
+                else
                 {
-                    SmokeDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ToString("yyyy-MM-dd");
+                    item.Selected = true;
                 }
+            }
+            HServOthrBox.Text = string.Join(", ", otherServices);
 
-                if (unit.DatePriorTenancyEnded.HasValue)
+            RB1.SelectedValue = unit.SmokingProhibitionInLeaseStatus;
+
+            if (unit.SmokingProhibitionEffectiveDate.HasValue)
+            {
+                SmokeDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ToString("yyyy-MM-dd");
+            }
+
+            if (unit.DatePriorTenancyEnded.HasValue)
+            {
+                PTenDt.Text = unit.DatePriorTenancyEnded.Value.ToString("yyyy-MM-dd");
+            }
+
+            if (!string.IsNullOrEmpty(unit.ReasonPriorTenancyEnded))
+            {
+                var item = TermReas.Items.FindByText(unit.ReasonPriorTenancyEnded);
+
+                if (item == null)
                 {
-                    PTenDt.Text = unit.DatePriorTenancyEnded.Value.ToString("yyyy-MM-dd");
+                    TermReas.SelectedValue = "4"; // Other
+                    TermDescr.Text = unit.ReasonPriorTenancyEnded;
                 }
-
-                if (!string.IsNullOrEmpty(unit.ReasonPriorTenancyEnded))
+                else
                 {
-                    var item = TermReas.Items.FindByText(unit.ReasonPriorTenancyEnded);
-
-                    if (item == null)
-                    {
-                        TermReas.SelectedValue = "4"; // Other
-                        TermDescr.Text = unit.ReasonPriorTenancyEnded;
-                    }
-                    else
-                    {
-                        ExplainOtherTermination.Style.Add("display", "none");
-                        TermReas.SelectedValue = unit.ReasonPriorTenancyEnded;
-                    }
+                    ExplainOtherTermination.Style.Add("display", "none");
+                    TermReas.SelectedValue = unit.ReasonPriorTenancyEnded;
                 }
+            }
 
-                if (string.IsNullOrEmpty(AgentName.Text))
-                {
-                    AgencyNameSection.Visible = false;
-                }
+            if (string.IsNullOrEmpty(AgentName.Text))
+            {
+                AgencyNameSection.Visible = false;
             }
         }
 
@@ -123,8 +127,8 @@ namespace BRBPortal_CSharp.MyProperties
                     var tenant = new BRBTenant
                     {
                         TenantID = fields[0],
-                        LastName = fields[1],
-                        FirstName = fields[2],
+                        FirstName = fields[1],
+                        LastName = fields[2],
                         PhoneNumber = fields[3],
                         Email = fields[4]
                     };
@@ -157,11 +161,6 @@ namespace BRBPortal_CSharp.MyProperties
                 if (!string.IsNullOrEmpty(HServOthrBox.Text))
                 {
                     unit.OtherHServices = HServOthrBox.Text;
-                }
-
-                if (!string.IsNullOrEmpty(NumTenants.Text))
-                {
-                    unit.TenantCount = int.Parse(NumTenants.Text);
                 }
 
                 unit.SmokingProhibitionInLeaseStatus = RB1.SelectedValue;
