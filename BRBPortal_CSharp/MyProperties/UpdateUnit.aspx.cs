@@ -7,14 +7,14 @@ namespace BRBPortal_CSharp.MyProperties
     {
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            if (IsPostBack)
+            var user = Master.User;
+            var unit = user.CurrentUnit;
+
+            hdnUnitStatus.Value = unit.ClientPortalUnitStatusCode;
+            hdnExemptReas.Value = unit.UnitStatCode;
+
+            if (!IsPostBack)
             {
-                ConfigureUIAfterPostback();
-            }
-            else
-            {
-                var user = Master.User;
-                var unit = user.CurrentUnit;
                 var provider = Master.DataProvider;
 
                 btnSubmit.Attributes.Add("disabled", "disabled");
@@ -25,59 +25,62 @@ namespace BRBPortal_CSharp.MyProperties
                     // literals
                     MainAddress.Text = unit.StreetAddress;
                     UnitNo.Text = unit.UnitNo;
-                    UnitStatus.Text = unit.ClientPortalUnitStatusCode;
-                    ExemptReas.Text = unit.ExemptionReason;
+                    litUnitStatus.Text = unit.ClientPortalUnitStatusCode;
+                    litExemptReas.Text = unit.ExemptionReason;
 
                     if (string.IsNullOrEmpty(unit.ExemptionReason))
                     {
                         switch (unit.UnitStatCode)
                         {
                             case "NAR":
-                                ExemptReas.Text = "Vacant and not available for rent";
+                                litExemptReas.Text = "Vacant and not available for rent";
                                 break;
                             case "OOCC":
-                                ExemptReas.Text = "Owner-Occupied";
+                                litExemptReas.Text = "Owner-Occupied";
                                 break;
                             case "SEC8":
-                                ExemptReas.Text = "Section 8";
+                                litExemptReas.Text = "Section 8";
                                 break;
                             case "FREE":
-                                ExemptReas.Text = "Occupied Rent Free";
+                                litExemptReas.Text = "Occupied Rent Free";
                                 break;
                             case "COMM":
-                                ExemptReas.Text = "Commercial Use";
+                                litExemptReas.Text = "Commercial Use";
                                 break;
                             case "MISC":
-                                ExemptReas.Text = "Property Manager's Unit";
+                                litExemptReas.Text = "Property Manager's Unit";
                                 break;
                             case "SHARED":
-                                ExemptReas.Text = "Owner shares kitchen & bath with tenant";
+                                litExemptReas.Text = "Owner shares kitchen & bath with tenant";
                                 break;
                             case "SPLUS":
-                                ExemptReas.Text = "Shelter Plus Care";
+                                litExemptReas.Text = "Shelter Plus Care";
                                 break;
                         }
                     }
 
-                    if (unit.ClientPortalUnitStatusCode == "Rented")
+                    if (unit.IsRented)
                     {
                         CurrentExemption.Visible = false;
-                        if (unit.UnitAsOfDt.HasValue)
+
+                        if (unit.TenancyStartDate.HasValue)
                         {
-                            UnitStartDt.Text = unit.UnitAsOfDt.Value.ToString("yyyy-MM-dd");
+                            litTenancyStartDate.Text = unit.TenancyStartDate.Value.ConvertForLiteral();
+                            UnitAsOfDt.Text = unit.TenancyStartDate.HasValue ? unit.TenancyStartDate.Value.ConvertForDatePicker() : "";
                         }
+
+                        litUnitOccBy.Text = unit.OccupiedBy;
                     }
                     else
                     {
                         CurrentRental.Visible = false;
-                    }
 
-                    if (unit.StartDt.HasValue)
-                    {
-                        StartDt.Text = unit.StartDt.Value.ToString("yyyy-MM-dd");
+                        if (unit.UnitStatusAsOfDate.HasValue)
+                        {
+                            litUnitStatusAsOfDate.Text = unit.UnitStatusAsOfDate.Value.ConvertForLiteral();
+                            UnitAsOfDt.Text = unit.UnitStatusAsOfDate.HasValue ? unit.UnitStatusAsOfDate.Value.ConvertForDatePicker() : "";
+                        }
                     }
-
-                    UnitOccBy.Text = unit.OccupiedBy;
 
                     // inputs
                     //NewUnit.SelectedValue = unit.ClientPortalUnitStatusCode; // don't pre-select
@@ -85,10 +88,9 @@ namespace BRBPortal_CSharp.MyProperties
 
                     // inputs
 
-                    StartDt.Text = unit.StartDt.HasValue ? unit.StartDt.Value.ToString("yyyy-MM-dd") : "";
                     NewUnit.SelectedValue = unit.ClientPortalUnitStatusCode;
                     ExemptReason.Text = unit.ExemptionReason;
-                    UnitAsOfDt.Text = unit.UnitAsOfDt.HasValue ? unit.UnitAsOfDt.Value.ToString("yyyy-MM-dd") : "";
+
                     OccupiedBy.Text = unit.OccupiedBy;
                     ContractNo.Text = unit.ContractNo;
                     CommUseDesc.Text = unit.CommUseDesc;
@@ -110,143 +112,6 @@ namespace BRBPortal_CSharp.MyProperties
             }
         }
 
-        private void ConfigureUIAfterPostback()
-        {
-            var ExemptGroup_Visible = false;
-            var CommUseGrp_Visible = false;
-            var PMUnitGrp_Visible = false;
-            var OwnerShrGrp_Visible = false;
-            var DtStrtdGrp_Visible = false;
-            var OccByGrp_Visible = false;
-            var ContractGrp_Visible = false;
-            var OtherList_Visible = false;
-
-            if (NewUnit.Text == "Rented")
-            {
-                ExemptGroup_Visible = false;
-                CommUseGrp_Visible = false;
-                PMUnitGrp_Visible = false;
-                OwnerShrGrp_Visible = false;
-                DtStrtdGrp_Visible = false;
-                OccByGrp_Visible = false;
-                ContractGrp_Visible = false;
-            }
-            else
-            {
-                ExemptGroup_Visible = true;
-                CommUseGrp_Visible = false;
-                PMUnitGrp_Visible = false;
-                OwnerShrGrp_Visible = false;
-                DtStrtdGrp_Visible = false;
-                OccByGrp_Visible = false;
-                ContractGrp_Visible = false;
-
-                switch (ExemptReason.SelectedValue.ToString().ToUpper())
-                {
-                    case "NAR": // Vacant and not available for rent
-                        ExemptGroup_Visible = true;
-                        CommUseGrp_Visible = false;
-                        PMUnitGrp_Visible = false;
-                        OwnerShrGrp_Visible = false;
-                        DtStrtdGrp_Visible = false;
-                        OccByGrp_Visible = false;
-                        ContractGrp_Visible = false;
-                        OtherList_Visible = false;
-                        OtherList.Text = "";
-                        OtherList.SelectedIndex = -1;
-                        break;
-                    case "OOCC": // Owner-Occupied
-                        ExemptGroup_Visible = true;
-                        CommUseGrp_Visible = false;
-                        PMUnitGrp_Visible = false;
-                        OwnerShrGrp_Visible = false;
-                        DtStrtdGrp_Visible = true;
-                        OccByGrp_Visible = true;
-                        ContractGrp_Visible = false;
-                        OtherList_Visible = false;
-                        OtherList.Text = "";
-                        OtherList.SelectedIndex = -1;
-                        break;
-                    case "SEC8": // Section 8
-                        ExemptGroup_Visible = true;
-                        CommUseGrp_Visible = false;
-                        PMUnitGrp_Visible = false;
-                        OwnerShrGrp_Visible = false;
-                        DtStrtdGrp_Visible = true;
-                        OccByGrp_Visible = false;
-                        ContractGrp_Visible = true;
-                        OtherList_Visible = false;
-                        OtherList.Text = "";
-                        OtherList.SelectedIndex = -1;
-                        break;
-                    case "FREE": // Occupied Rent Free
-                        ExemptGroup_Visible = true;
-                        CommUseGrp_Visible = false;
-                        PMUnitGrp_Visible = false;
-                        OwnerShrGrp_Visible = false;
-                        DtStrtdGrp_Visible = true;
-                        OccByGrp_Visible = true;
-                        ContractGrp_Visible = false;
-                        OtherList_Visible = false;
-                        OtherList.Text = "";
-                        OtherList.SelectedIndex = -1;
-                        break;
-                    case "OTHER":
-                        ExemptGroup_Visible = true;
-                        CommUseGrp_Visible = false;
-                        PMUnitGrp_Visible = false;
-                        OwnerShrGrp_Visible = false;
-                        DtStrtdGrp_Visible = false;
-                        OccByGrp_Visible = false;
-                        ContractGrp_Visible = false;
-                        OtherList_Visible = true;
-                        OtherList.Text = "";
-                        OtherList.SelectedIndex = -1;
-                        break;
-                }
-            }
-
-            if (!ExemptGroup_Visible)
-            {
-                ExemptGroup.Attributes.Add("class", "hidden");
-            }
-            if (!CommUseGrp_Visible)
-            {
-                CommUseGrp.Attributes.Add("class", "hidden");
-            }
-            if (!PMUnitGrp_Visible)
-            {
-                PMUnitGrp.Attributes.Add("class", "hidden");
-            }
-            if (!OwnerShrGrp_Visible)
-            {
-                OwnerShrGrp.Attributes.Add("class", "hidden");
-            }
-            if (!DtStrtdGrp_Visible)
-            {
-                DtStrtdGrp.Attributes.Add("class", "hidden");
-            }
-            if (!OccByGrp_Visible)
-            {
-                OccByGrp.Attributes.Add("class", "hidden");
-            }
-            if (!ContractGrp_Visible)
-            {
-                ContractGrp.Attributes.Add("class", "hidden");
-            }
-            if (!OtherList_Visible)
-            {
-                OtherListContainer.Attributes.Add("class", "hidden");
-            }
-
-            if (!string.IsNullOrEmpty(UnitAsOfDt.Text))
-            {
-                AsOfDtGrp.Attributes.Add("class", "hidden");
-            }
-
-            InitalEditButtons.Attributes.Add("class", "hidden");
-        }
-
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             var user = Master.User;
@@ -255,12 +120,13 @@ namespace BRBPortal_CSharp.MyProperties
 
             try
             {
-                InitalEditButtons.Style.Add("display", "none");
-                EditUnitStatusPanel.Style.Remove("display");
+                hdnPostback.Value = "true";
+                //InitalEditButtons.Style.Add("display", "none");
+                //EditUnitStatusPanel.Style.Remove("display");
 
                 unit.ClientPortalUnitStatusCode = NewUnit.SelectedValue; // Rented or Exempt
                 unit.OtherExemptionReason = OtherList.SelectedValue ?? "";
-                unit.OccupiedBy = UnitOccBy.Text;
+                unit.OccupiedBy = litUnitOccBy.Text;
                 unit.ContractNo = ContractNo.Text;
                 unit.CommUseDesc = CommUseDesc.Text;
                 unit.CommResYN = CommResYN.SelectedValue ?? "";
@@ -273,11 +139,16 @@ namespace BRBPortal_CSharp.MyProperties
                 unit.TenantNames = TenantNames.Text;
                 unit.TenantContacts = TenantContacts.Text;
                 unit.DeclarationInitials = DeclareInits.Text;
-                unit.StartDt = provider.GetOptionalDate(StartDt.Text);
-                unit.UnitAsOfDt = provider.GetOptionalDate(UnitAsOfDt.Text);
+                //unit.UnitStatusAsOfDate = provider.GetOptionalDate(UnitStatusAsOfDate.Text);
 
-                if (unit.ClientPortalUnitStatusCode.ToUpper() == "EXEMPT")
+                if (unit.IsRented)
                 {
+                    unit.TenancyStartDate = provider.GetOptionalDate(UnitAsOfDt.Text);
+                }
+                else
+                {
+                    unit.UnitStatusAsOfDate = provider.GetOptionalDate(StartDt.Text);
+
                     if (unit.ExemptionReason.ToUpper() == "OTHER")
                     {
                         unit.ExemptionReason = unit.OtherExemptionReason;
@@ -309,6 +180,9 @@ namespace BRBPortal_CSharp.MyProperties
                 }
                 else
                 {
+                    btnSubmit.Attributes.Remove("disabled");
+                    UpdateUnitForm.Attributes.Remove("class");
+
                     Master.ShowErrorModal(provider.ErrorMessage, "Update Unit Status");
                 }
             }

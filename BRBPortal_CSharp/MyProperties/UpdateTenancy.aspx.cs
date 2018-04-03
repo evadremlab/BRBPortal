@@ -43,9 +43,9 @@ namespace BRBPortal_CSharp.MyProperties
             // Fields
             InitRent.Text = unit.InitialRent;
 
-            if (unit.StartDt.HasValue)
+            if (unit.TenancyStartDate.HasValue)
             {
-                TenStDt.Text = unit.StartDt.Value.ToString("yyyy-MM-dd");
+                TenStDt.Text = unit.TenancyStartDate.Value.ConvertForDatePicker();
             }
                     
             var otherServices = new List<string>();
@@ -73,12 +73,12 @@ namespace BRBPortal_CSharp.MyProperties
 
             if (unit.SmokingProhibitionEffectiveDate.HasValue)
             {
-                SmokeDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ToString("yyyy-MM-dd");
+                SmokeDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ConvertForDatePicker();
             }
 
             if (unit.DatePriorTenancyEnded.HasValue)
             {
-                PTenDt.Text = unit.DatePriorTenancyEnded.Value.ToString("yyyy-MM-dd");
+                PTenDt.Text = unit.DatePriorTenancyEnded.Value.ConvertForDatePicker();
             }
 
             if (!string.IsNullOrEmpty(unit.ReasonPriorTenancyEnded))
@@ -124,18 +124,22 @@ namespace BRBPortal_CSharp.MyProperties
                 foreach (var str in hdnDelimitedTenants.Value.Split('|'))
                 {
                     var fields = str.Split('^');
-                    var tenant = new BRBTenant
-                    {
-                        TenantID = fields[0],
-                        FirstName = fields[1],
-                        LastName = fields[2],
-                        PhoneNumber = fields[3],
-                        Email = fields[4]
-                    };
 
-                    if (tenant.TenantID == "-1") // new Tenant
+                    if (fields.Length > 1) // ignore "no tenants" entry
                     {
-                        unit.Tenants.Add(tenant);
+                        var tenant = new BRBTenant
+                        {
+                            TenantID = fields[0],
+                            FirstName = fields[1],
+                            LastName = fields[2],
+                            PhoneNumber = fields[3],
+                            Email = fields[4]
+                        };
+
+                        if (tenant.TenantID == "-1") // new Tenant
+                        {
+                            unit.Tenants.Add(tenant);
+                        }
                     }
                 }
 
@@ -143,7 +147,7 @@ namespace BRBPortal_CSharp.MyProperties
 
                 if (!string.IsNullOrEmpty(TenStDt.Text))
                 {
-                    unit.StartDt = DateTime.Parse(TenStDt.Text);
+                    unit.TenancyStartDate = DateTime.Parse(TenStDt.Text);
                 }
 
                 var housingServices = new List<string>();
@@ -184,7 +188,7 @@ namespace BRBPortal_CSharp.MyProperties
                 {
                     Session["ShowAfterRedirect"] = "Tenancy has been updated.|Update Tenancy";
 
-                    Response.Redirect("~/MyProperties/MyTenants", false);
+                    Response.Redirect("~/MyProperties/My", false);
                 }
                 else
                 {
@@ -200,7 +204,7 @@ namespace BRBPortal_CSharp.MyProperties
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/MyProperties/MyTenants");
+            Response.Redirect("~/MyProperties/MyUnits");
         }
     }
 }

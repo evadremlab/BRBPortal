@@ -13,6 +13,33 @@ namespace BRBPortal_CSharp.MyProperties {
     public partial class UpdateUnit {
         
         /// <summary>
+        /// hdnPostback control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnPostback;
+        
+        /// <summary>
+        /// hdnUnitStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnUnitStatus;
+        
+        /// <summary>
+        /// hdnExemptReas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnExemptReas;
+        
+        /// <summary>
         /// MainAddress control.
         /// </summary>
         /// <remarks>
@@ -31,13 +58,13 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.Literal UnitNo;
         
         /// <summary>
-        /// UnitStatus control.
+        /// litUnitStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal UnitStatus;
+        protected global::System.Web.UI.WebControls.Literal litUnitStatus;
         
         /// <summary>
         /// CurrentRental control.
@@ -46,25 +73,25 @@ namespace BRBPortal_CSharp.MyProperties {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder CurrentRental;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CurrentRental;
         
         /// <summary>
-        /// UnitStartDt control.
+        /// litTenancyStartDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal UnitStartDt;
+        protected global::System.Web.UI.WebControls.Literal litTenancyStartDate;
         
         /// <summary>
-        /// UnitOccBy control.
+        /// litUnitOccBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal UnitOccBy;
+        protected global::System.Web.UI.WebControls.Literal litUnitOccBy;
         
         /// <summary>
         /// CurrentExemption control.
@@ -73,16 +100,25 @@ namespace BRBPortal_CSharp.MyProperties {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder CurrentExemption;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CurrentExemption;
         
         /// <summary>
-        /// ExemptReas control.
+        /// litUnitStatusAsOfDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ExemptReas;
+        protected global::System.Web.UI.WebControls.Literal litUnitStatusAsOfDate;
+        
+        /// <summary>
+        /// litExemptReas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litExemptReas;
         
         /// <summary>
         /// InitalEditButtons control.

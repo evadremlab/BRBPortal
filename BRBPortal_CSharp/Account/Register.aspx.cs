@@ -60,13 +60,13 @@ namespace BRBPortal_CSharp.Account
                     else
                     {
                         Logger.Log("Register", provider.ErrorMessage);
-                        Master.ShowErrorModal("Error during registration(1).", "Registration");
+                        Master.ShowErrorModal(provider.ErrorMessage, "Registration");
                     }
                 }
                 catch (Exception ex)
                 {
                     Logger.LogException("Register", ex);
-                    Master.ShowErrorModal("Error during registration(2).", "Registration");
+                    Master.ShowErrorModal("Error during registration.");
                 }
             }
         }

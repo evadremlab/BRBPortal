@@ -260,16 +260,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="StaticData\GetProfileDetails_Response_after_register.xml" />
-    <Content Include="StaticData\GetProfileProperties_Request.xml" />
-    <Content Include="StaticData\GetProfileProperties_Response.xml" />
-    <Content Include="StaticData\GetPropertyAndUnitDetails_Request.xml" />
-    <Content Include="StaticData\GetPropertyAndUnitDetails_Response.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="StaticData\GetUserProperties_Response.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="StaticData\GetPropertyUnits_Request.xml" />
+    <Content Include="StaticData\GetPropertyUnits_Response.xml" />
+    <Content Include="StaticData\GetUserProperties_Request.xml" />
+    <Content Include="StaticData\GetUserProperties_Response.xml" />
     <Content Include="StaticData\ProfileConfirm_Request.xml" />
     <Content Include="StaticData\SaveCart_Request.xml" />
     <Content Include="StaticData\SaveCart_Response.xml">

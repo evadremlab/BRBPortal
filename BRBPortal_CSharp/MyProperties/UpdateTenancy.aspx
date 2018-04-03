@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div id="SmokingDateSection" runat="server" class="form-group hidden">
                 <asp:Label runat="server" AssociatedControlID="SmokeDt" CssClass="col-md-2 control-label">Effective date of prohibition on smoking:</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="SmokeDt" TextMode="Date" CssClass="form-control" style="width:16rem; margin-top:1rem;"></asp:TextBox>
@@ -274,11 +274,20 @@
         }
 
         $(document).ready(function () {
+            if ($('#MainContent_SmokeDt').val()) {
+                $('#MainContent_RB1_0').prop('checked', true);
+                $('#MainContent_SmokingDateSection').removeClass('hidden');
+            }
+
             $('#<%:chkDeclare.ClientID%>').change(_enableSubmitButton);
             $('#<%:DeclareInits.ClientID%>').change(_enableSubmitButton);
             $('#<%:TermReas.ClientID%>').change(_setTerminationReason);
             $('#MainContent_HServs_9').change(_setHousingServicesOther);
-            $('#MainContent_RB1_1').click(function () { // No Smoking Probibition
+            $('#MainContent_RB1_0').click(function () { // Smoking Probibition = Yes
+                $('#MainContent_SmokingDateSection').removeClass('hidden');
+            });
+            $('#MainContent_RB1_1').click(function () { // Smoking Probibition = No
+                $('#MainContent_SmokingDateSection').addClass('hidden');
                 $('#MainContent_SmokeDt').val('');
             });
 

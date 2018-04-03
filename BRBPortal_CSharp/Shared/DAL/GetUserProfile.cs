@@ -66,8 +66,15 @@ namespace BRBPortal_CSharp.DAL
                             user.ZipCode = detailAddr.SelectSingleNode("zip").InnerText;
                             user.Country = detailAddr.SelectSingleNode("country").InnerText;
 
-                            user.Question1 = detail.SelectSingleNode("securityQuestion1").InnerText;
-                            user.Question2 = detail.SelectSingleNode("securityQuestion2").InnerText;
+                            if (detail.SelectSingleNode("securityQuestion1") != null) // not returned until confirmed
+                            {
+                                user.Question1 = detail.SelectSingleNode("securityQuestion1").InnerText;
+                            }
+
+                            if (detail.SelectSingleNode("securityQuestion2") != null)
+                            {
+                                user.Question2 = detail.SelectSingleNode("securityQuestion2").InnerText;
+                            }
 
                             if ((detailName.SelectSingleNode("agencyName").InnerText.Length > 0))
                             {

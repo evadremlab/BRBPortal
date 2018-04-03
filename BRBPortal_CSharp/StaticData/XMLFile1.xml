@@ -1,47 +1,11 @@
-﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
-  <soapenv:Header/>
-  <soapenv:Body>
-    <api:getProfileDetails>
-      <request>
-        <!--Optional:-->
-        <userId>DAVE10</userId>
-        <!--Optional:-->
-        <billingCode>?</billingCode>
-      </request>
-    </api:getProfileDetails>
-  </soapenv:Body>
-</soapenv:Envelope>
-
-<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version='1.0' encoding='utf-8'?>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Body>
-    <ser-root:getProfileDetailsResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <profileDetails>
-        <userId>DAVE10</userId>
-        <billingCode>OKEAMY</billingCode>
-        <name>
-          <first></first>
-          <middle></middle>
-          <last>O'KEEFE</last>
-          <suffix></suffix>
-          <agencyName xsi:nil="true" />
-        </name>
-        <mailingAddress>
-          <streetNumber>1068</streetNumber>
-          <streetName>CRAGMONT AVE</streetName>
-          <unitNumber></unitNumber>
-          <fullAddress>1068 CRAGMONT AVE</fullAddress>
-          <city>BERKELEY</city>
-          <state>CA</state>
-          <zip>94708</zip>
-          <country>USA</country>
-        </mailingAddress>
-        <emailAddress>AMYOKEEFELAW@HOTMAIL.COM</emailAddress>
-        <phone>510-282-0298</phone>
-        <relationship>Owner</relationship>
-        <securityQuestion1>What was your favorite food as a child?</securityQuestion1>
-        <securityQuestion2>What was the make and model of your first car?</securityQuestion2>
-      </profileDetails>
-    </ser-root:getProfileDetailsResponse>
+    <ser-root:updateUnitStatusChangeResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <response>
+        <status>FAILURE</status>
+        <errorMsg>Failed to Update Unit Status</errorMsg>
+      </response>
+    </ser-root:updateUnitStatusChangeResponse>
   </soapenv:Body>
 </soapenv:Envelope>

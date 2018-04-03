@@ -12,7 +12,7 @@ namespace BRBPortal_CSharp.Models
         public string StreetAddress { get; set; } = "";
         public string ClientPortalUnitStatusCode { get; set; } = "";
         public decimal RentCeiling { get; set; }
-        public DateTime? StartDt { get; set; }
+        public DateTime? UnitStatusAsOfDate { get; set; }
         public string HServices { get; set; } = "";
         public string OtherHServices { get; set; } = "";
         public string CPUnitStatDisp { get; set; } = "";
@@ -28,7 +28,6 @@ namespace BRBPortal_CSharp.Models
         public string OtherTerminationReason { get; set; } = "";
         public DateTime? DatePriorTenancyEnded { get; set; }
         public string ReasonPriorTenancyEnded { get; set; }
-        public DateTime? UnitAsOfDt { get; set; }
         public string ContractNo { get; set; }
         public string CommUseDesc { get; set; }
         public string CommResYN { get; set; }
@@ -41,7 +40,16 @@ namespace BRBPortal_CSharp.Models
         public string DeclarationInitials { get; set; }
         public string TenantNames { get; set; }
         public string TenantContacts { get; set; }
+        public DateTime? TenancyStartDate { get; set; }
 
         public List<BRBTenant> Tenants { get; set; } = new List<BRBTenant>();
+
+        public bool IsRented
+        {
+            get
+            {
+                return this.ClientPortalUnitStatusCode.ToUpper() == "RENTED";
+            }
+        }
     }
 }

@@ -148,6 +148,15 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.RadioButtonList RB1;
         
         /// <summary>
+        /// SmokingDateSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SmokingDateSection;
+        
+        /// <summary>
         /// SmokeDt control.
         /// </summary>
         /// <remarks>

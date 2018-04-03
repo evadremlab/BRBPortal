@@ -61,12 +61,27 @@ namespace BRBPortal_CSharp
     #region DateTime
     public static class DateTimeExtensions
     {
-        public static long ConvertDateTimeToUnix(this DateTime datetime)
+        public static long ConvertToUnix(this DateTime datetime)
         {
             DateTime origin = new DateTime(1970, 1, 1);
             TimeSpan diff = datetime - origin;
 
             return (long)Math.Floor(diff.TotalSeconds);
+        }
+
+        public static string ConvertForAPI(this DateTime datetime)
+        {
+            return datetime.ToString("MM/dd/yyyy");
+        }
+
+        public static string ConvertForLiteral(this DateTime datetime)
+        {
+            return datetime.ToString("MM/dd/yyyy");
+        }
+
+        public static string ConvertForDatePicker(this DateTime datetime)
+        {
+            return datetime.ToString("yyyy-MM-dd");
         }
     }
     #endregion

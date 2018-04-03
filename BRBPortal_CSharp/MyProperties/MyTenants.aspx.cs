@@ -26,13 +26,13 @@ namespace BRBPortal_CSharp.MyProperties
 
                     hdnNumTenants.Value = tenants.Count.ToString();
 
-                    if (tenants.Count == 0)
-                    {
-                        tenants.Add(new BRBTenant
-                        {
-                            LastName = "no tenants"
-                        });
-                    }
+                    //if (tenants.Count == 0)
+                    //{
+                    //    tenants.Add(new BRBTenant
+                    //    {
+                    //        FirstName = "no tenants"
+                    //    });
+                    //}
 
                     MainAddress.Text = property.PropertyAddress;
                     UnitNo.Text = unit.UnitNo;
@@ -41,9 +41,9 @@ namespace BRBPortal_CSharp.MyProperties
                     UnitStat.Text = unit.ClientPortalUnitStatusCode;
                     HServices.Text = unit.HServices;
 
-                    if (unit.StartDt.HasValue)
+                    if (unit.TenancyStartDate.HasValue)
                     {
-                        TenStDt.Text = unit.StartDt.Value.ToString("MM/dd/yyyy");
+                        TenStDt.Text = unit.TenancyStartDate.Value.ConvertForLiteral();
                     }
 
                     NumTenants.Text = unit.TenantCount.ToString();
@@ -51,14 +51,14 @@ namespace BRBPortal_CSharp.MyProperties
 
                     if (unit.SmokingProhibitionEffectiveDate.HasValue)
                     {
-                        SmokDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ToString("MM/dd/yyyy");
+                        SmokDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ConvertForLiteral();
                     }
 
                     InitRent.Text = unit.InitialRent;
 
                     if (unit.DatePriorTenancyEnded.HasValue)
                     {
-                        PriorEndDt.Text = unit.DatePriorTenancyEnded.Value.ToString("MM/dd/yyyy");
+                        PriorEndDt.Text = unit.DatePriorTenancyEnded.Value.ConvertForLiteral();
                     }
 
                     TermReason.Text = unit.ReasonPriorTenancyEnded;

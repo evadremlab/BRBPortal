@@ -54,9 +54,45 @@ namespace BRBPortal_CSharp.DAL
                         }
                     }
 
+                    // Needed so we can get update amounts after any Unit/Tenancy updates
+
+                    foreach (XmlElement balanceAmounts in detail.GetElementsByTagName("balanceAmounts"))
+                    {
+                        decimal currentFees = 0;
+                        decimal priorFees = 0;
+                        decimal currentPenalty = 0;
+                        decimal priorPenalty = 0;
+                        decimal credit = 0;
+                        decimal totalBalance = 0;
+
+                        Decimal.TryParse(balanceAmounts.SelectSingleNode("currentFees").InnerText, out currentFees);
+                        Decimal.TryParse(balanceAmounts.SelectSingleNode("priorFees").InnerText, out priorFees);
+                        Decimal.TryParse(balanceAmounts.SelectSingleNode("currentPenalty").InnerText, out currentPenalty);
+                        Decimal.TryParse(balanceAmounts.SelectSingleNode("priorPenalties").InnerText, out priorPenalty);
+                        Decimal.TryParse(balanceAmounts.SelectSingleNode("credit").InnerText, out credit);
+                        Decimal.TryParse(balanceAmounts.SelectSingleNode("totalBalance").InnerText, out totalBalance);
+#if DEBUG
+                        if (totalBalance == 0)
+                        {
+                            totalBalance = 10.0M;
+
+                            if (currentFees == 0)
+                            {
+                                currentFees = 10.0M;
+                            }
+                        }
+#endif
+                        user.CurrentProperty.CurrentFee = currentFees;
+                        user.CurrentProperty.PriorFee = priorFees;
+                        user.CurrentProperty.CurrentPenalty = currentPenalty;
+                        user.CurrentProperty.PriorPenalty = priorPenalty;
+                        user.CurrentProperty.Credits = credit;
+                        user.CurrentProperty.Balance = totalBalance;
+                    }
+
                     foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
                     {
-                        DateTime startDate = DateTime.MinValue;
+                        DateTime unitStatusAsOfDate = DateTime.MinValue;
                         Decimal rentCeiling = 0;
                         var exemptionReason = "";
                         var cpUnitStatDisp = "";
@@ -65,25 +101,17 @@ namespace BRBPortal_CSharp.DAL
 
                         var unit = new BRBUnit();
 
-                        if (detailUnits.SelectSingleNode("tenancyStartDate") != null)
+                        if (detailUnits.SelectSingleNode("unitStatusAsOfDate") != null)
                         {
-                            if (!string.IsNullOrEmpty(detailUnits.SelectSingleNode("tenancyStartDate").InnerText))
+                            if (!string.IsNullOrEmpty(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText))
                             {
-                                unit.StartDt = DateTime.Parse(detailUnits.SelectSingleNode("tenancyStartDate").InnerText);
+                                DateTime.TryParse(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText, out unitStatusAsOfDate);
                             }
                         }
 
                         if ((detailUnits.SelectSingleNode("rentCeiling").InnerText.Length > 0))
                         {
                             Decimal.TryParse(detailUnits.SelectSingleNode("rentCeiling").InnerText, out rentCeiling);
-                        }
-
-                        if (detailUnits.SelectSingleNode("unitStatusAsOfDate") != null)
-                        {
-                            if (!string.IsNullOrEmpty(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText))
-                            {
-                                DateTime.TryParse(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText, out startDate);
-                            }
                         }
 
                         foreach (XmlElement detailService in detailUnits.GetElementsByTagName("housingServices"))
@@ -202,9 +230,21 @@ namespace BRBPortal_CSharp.DAL
                         //unit.SmokingProhibitionEffectiveDate = "";
                         unit.SmokingProhibitionInLeaseStatus = "";
 
-                        if (startDate != DateTime.MinValue)
+                        unit.UnitID = detailUnits.SelectSingleNode("unitId").InnerText;
+                        unit.UnitNo = detailUnits.SelectSingleNode("unitNumber").InnerText;
+                        unit.UnitStatCode = detailUnits.SelectSingleNode("unitStatusCode").InnerText;
+                        unit.UnitStatID = detailUnits.SelectSingleNode("unitStatusId").InnerText;
+
+                        if (unitStatusAsOfDate != DateTime.MinValue)
                         {
-                            unit.StartDt = startDate;
+                            if (unit.IsRented)
+                            {
+                                unit.TenancyStartDate = unitStatusAsOfDate;
+                            }
+                            else
+                            {
+                                unit.UnitStatusAsOfDate = unitStatusAsOfDate;
+                            }
                         }
 
                         unit.StreetAddress = detailUnits.SelectSingleNode("unitStreetAddress").InnerText;
@@ -222,11 +262,6 @@ namespace BRBPortal_CSharp.DAL
                         }
 
                         unit.TerminationReason = "";
-                        //unit.UnitAsOfDt = "";
-                        unit.UnitID = detailUnits.SelectSingleNode("unitId").InnerText;
-                        unit.UnitNo = detailUnits.SelectSingleNode("unitNumber").InnerText;
-                        unit.UnitStatCode = detailUnits.SelectSingleNode("unitStatusCode").InnerText;
-                        unit.UnitStatID = detailUnits.SelectSingleNode("unitStatusId").InnerText;
 
                         if (string.IsNullOrEmpty(unitID) || unitID == unit.UnitID)
                         {

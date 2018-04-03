@@ -1,10 +1,7 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<soapenv:Envelope
-    xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Body>
-    <ser-root:getProfilePropertiesResponse
-        xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <ser-root:getProfilePropertiesResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <response>
         <status>SUCCESS</status>
         <profileProperty>
@@ -13,12 +10,12 @@
             <mainStreetAddress>2336 CURTIS ST</mainStreetAddress>
           </address>
           <balanceAmounts>
-            <currentFees>1.11</currentFees>
-            <priorFees>2.22</priorFees>
-            <currentPenalty>3.33</currentPenalty>
-            <priorPenalties>4.44</priorPenalties>
-            <credit>5.55</credit>
-            <totalBalance>6.66</totalBalance>
+            <currentFees>242.00</currentFees>
+            <priorFees>0.00</priorFees>
+            <currentPenalty>0.00</currentPenalty>
+            <priorPenalties>0.00</priorPenalties>
+            <credit>0.00</credit>
+            <totalBalance>242.00</totalBalance>
           </balanceAmounts>
         </profileProperty>
       </response>

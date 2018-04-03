@@ -3,26 +3,26 @@
   <soapenv:Body>
     <api:updateUnitStatusChange>
       <unitStatusChangeReq>
-        <userId>DAVE02</userId>
-        <propertyId>1968</propertyId>
-        <unitId>7773</unitId>
+        <userId>DAVE10</userId>
+        <propertyId>300</propertyId>
+        <unitId>823</unitId>
         <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
         <unitStatus>Exempt</unitStatus>
         <!--Optional:-->
-        <exemptionReason>NAR</exemptionReason>
-        <unitStatusAsOfDate>03/30/2018</unitStatusAsOfDate>
-        <declarationInitial>DBB</declarationInitial>
+        <exemptionReason>COMM</exemptionReason>
+        <unitStatusAsOfDate>04/04/2018</unitStatusAsOfDate>
+        <declarationInitial>dbb</declarationInitial>
         <questions>
           <!--Optional:-->
-          <asOfDate>03/30/2018</asOfDate>
+          <dateStarted>04/04/2018</dateStarted>
           <!--Optional:-->
-          <dateStarted>02/27/2013</dateStarted>
+          <asOfDate>04/04/2018</asOfDate>
           <!--Optional:-->
-          <occupiedBy>CARRASCO, ANA, CARRASCO, KELLEY</occupiedBy>
+          <occupiedBy></occupiedBy>
           <!--Optional:-->
           <contractNo></contractNo>
           <!--Optional:-->
-          <commeUseDesc></commeUseDesc>
+          <commeUseDesc>something</commeUseDesc>
           <!--Optional:-->
           <isCommeUseZoned></isCommeUseZoned>
           <!--Optional:-->

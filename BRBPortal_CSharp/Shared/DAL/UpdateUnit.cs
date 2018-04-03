@@ -20,6 +20,7 @@ namespace BRBPortal_CSharp.DAL
             try
             {
                 var unit = user.CurrentUnit;
+                DateTime? asOfDate = unit.IsRented ? unit.TenancyStartDate : unit.UnitStatusAsOfDate;
 
                 soapRequest.Body.Append("<api:updateUnitStatusChange>");
                 soapRequest.Body.Append("<unitStatusChangeReq>");
@@ -31,35 +32,28 @@ namespace BRBPortal_CSharp.DAL
 
                 soapRequest.Body.AppendFormat("<!--Optional:--><exemptionReason>{0}</exemptionReason>", unit.ExemptionReason);
 
-                if (unit.UnitAsOfDt.HasValue)
+                if (asOfDate.HasValue)
                 {
-                    soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", unit.UnitAsOfDt.Value.ToString("MM/dd/yyyy"));
+                    soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", asOfDate.Value.ConvertForAPI());
                 }
                 else
                 {
-                    soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", DateTime.Now.ToString("MM/dd/yyyy"));
+                    soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", DateTime.Now.ConvertForAPI());
                 }
 
                 soapRequest.Body.AppendFormat("<declarationInitial>{0}</declarationInitial>", unit.DeclarationInitials);
 
                 soapRequest.Body.Append("<questions>");
 
-                if (unit.UnitAsOfDt.HasValue)
+                if (asOfDate.HasValue)
                 {
-                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", unit.UnitAsOfDt.Value.ToString("MM/dd/yyyy"));
-                }
-                else
-                {
-                    soapRequest.Body.Append("<!--Optional:--><asOfDate></asOfDate>");
-                }
-
-                if (unit.StartDt.HasValue)
-                {
-                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", unit.StartDt.Value.ToString("MM/dd/yyyy"));
+                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", asOfDate.Value.ConvertForAPI());
+                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", asOfDate.Value.ConvertForAPI());
                 }
                 else
                 {
                     soapRequest.Body.Append("<!--Optional:--><dateStarted></dateStarted>");
+                    soapRequest.Body.Append("<!--Optional:--><asOfDate></asOfDate>");
                 }
 
                 soapRequest.Body.AppendFormat("<!--Optional:--><occupiedBy>{0}</occupiedBy>", unit.OccupiedBy);

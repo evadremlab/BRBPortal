@@ -48,11 +48,11 @@ namespace BRBPortal_CSharp.MyProperties
 
                     foreach (var unit in units)
                     {
-                        if (unit.ClientPortalUnitStatusCode == "Rented")
+                        if (unit.IsRented)
                         {
                             totalRented++;
                         }
-                        else if (unit.ClientPortalUnitStatusCode == "Rented")
+                        else
                         {
                             totalExempt++;
                         }

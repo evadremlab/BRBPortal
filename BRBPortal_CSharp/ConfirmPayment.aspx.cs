@@ -75,6 +75,9 @@ namespace BRBPortal_CSharp
 
                 if (provider.SaveCart(user))
                 {
+#if DEBUG
+                    user.Cart.ID = "1234";
+#endif
                     if (!string.IsNullOrEmpty(user.Cart.ID))
                     {
                         this.CartID = user.Cart.ID;

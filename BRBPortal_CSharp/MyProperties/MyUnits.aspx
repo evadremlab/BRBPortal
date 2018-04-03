@@ -53,7 +53,7 @@
                             <HeaderStyle CssClass="text-right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Wrap="False" />
                             </asp:BoundField>
-                        <asp:BoundField HeaderText="Tenancy Start Date" DataField="StartDt" SortExpression="StartDt" DataFormatString="{0:MM/dd/yyyy}" ReadOnly="True">
+                        <asp:BoundField HeaderText="Tenancy Start Date" DataField="TenancyStartDate" SortExpression="TenancyStartDate" DataFormatString="{0:MM/dd/yyyy}" ReadOnly="True">
                             <HeaderStyle CssClass="text-right" Wrap="False" />
                             <ItemStyle HorizontalAlign="Right" Wrap="False" />
                             </asp:BoundField>
