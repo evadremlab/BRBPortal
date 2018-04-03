@@ -60,10 +60,13 @@ namespace BRBPortal_CSharp.Account
                 user.BillingCode = BillingCode.Text ?? "";
             }
 
+            user.Answer1 = Answer1.Text;
+            user.Answer2 = Answer2.Text;
+
             if (provider.ResetUserPassword(ref user))
             {
                 Master.UpdateSession(user);
-
+                Session["ShowTemporaryPasswordMsg"] = "TRUE";
                 Response.Redirect("~/Account/Login", false);
             }
             else

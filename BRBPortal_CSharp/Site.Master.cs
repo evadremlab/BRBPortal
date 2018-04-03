@@ -146,18 +146,14 @@ namespace BRBPortal_CSharp
 
         public void ShowOKModal(string message, string title = "Status Message", int? delay = 0)
         {
-            var safeTitle = HttpContext.Current.Server.HtmlEncode(title);
-            var safeMessage = HttpContext.Current.Server.HtmlEncode(message);
-            var jsFunction = string.Format("showOKModal('{0}', '{1}', {2});", safeMessage, safeTitle, delay);
+            var jsFunction = string.Format("showOKModal('{0}', '{1}', {2});", message, title, delay);
 
             Page.ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
 
         public void ShowErrorModal(string message, string title = "System Error", int? delay = 0)
         {
-            var safeTitle = HttpContext.Current.Server.HtmlEncode(title);
-            var safeMessage = HttpContext.Current.Server.HtmlEncode(message);
-            var jsFunction = string.Format("showErrorModal('{0}', '{1}', {2});", safeMessage, safeTitle, delay);
+            var jsFunction = string.Format("showErrorModal('{0}', '{1}', {2});", message, title, delay);
 
             Page.ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }

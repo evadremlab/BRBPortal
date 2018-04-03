@@ -11,10 +11,14 @@ namespace BRBPortal_CSharp.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var user = Master.User;
+
             if (Session["NextPage"] == null)
             {
                 Session["NextPage"] = "ProfileList";
             }
+
+            hdnPassword.Value = user.Password;
         }
 
         protected void ChangePassword()
@@ -22,15 +26,22 @@ namespace BRBPortal_CSharp.Account
             var user = Master.User;
             var provider = Master.DataProvider;
 
-            if (provider.Authenticate(ref user, CurrentPassword.Text) != SignInStatus.Success)
+            if (provider.Authenticate(ref user, user.Password) != SignInStatus.Success)
             {
                 Master.ShowErrorModal("Current password is incorrect.", "Change Password");
                 return;
             }
 
-            if (!provider.UpdateUserPassword(user, CurrentPassword.Text, NewPWD.Text, ConfirmNewPassword.Text))
+            if (!provider.UpdateUserPassword(user, user.Password, NewPWD.Text, ConfirmNewPassword.Text))
             {
-                Master.ShowErrorModal("Error changing password: " + provider.ErrorMessage, "Change Password");
+                var errorMessage = provider.ErrorMessage;
+
+                if (errorMessage.IndexOf("password policy") != -1)
+                {
+                    errorMessage = "Your new password must contain at least 8 characters, have both upper and lower case letters, and not contain your user id.";
+                }
+
+                Master.ShowErrorModal("Error changing password: " + errorMessage, "Change Password");
                 return;
             }
 

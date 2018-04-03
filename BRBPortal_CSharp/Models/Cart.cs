@@ -49,7 +49,7 @@ namespace BRBPortal_CSharp.Models
 
         public decimal SumBalance(bool isFeeOnlyPaid)
         {
-            return this.SumCurrentFees() + this.SumPenalties(isFeeOnlyPaid);
+            return (this.SumCurrentFees() + this.SumPenalties(isFeeOnlyPaid)) - this.Credits;
         }
     }
 }

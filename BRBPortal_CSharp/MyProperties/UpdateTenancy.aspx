@@ -151,10 +151,10 @@
                                 <td>&nbsp;</td>
 		                    </tr>
                             <tr id="addTenant" style="display:none; background-color:#EFF3FB;">
-                                <td><input type="text" name="firstname" style="text-transform:uppercase" autocomplete="off" data-lpignore="true" /></td>
-                                <td><input type="text" name="lastname" style="text-transform:uppercase" autocomplete="off" data-lpignore="true" /></td>
-                                <td><input type="tel" name="phone" autocomplete="off" data-lpignore="true" /></td>
-                                <td><input type="text" name="email" autocomplete="off" data-lpignore="true" /></td>
+                                <td><input type="text" name="firstname" style="text-transform:uppercase" data-lpignore="true" /></td>
+                                <td><input type="text" name="lastname" style="text-transform:uppercase" data-lpignore="true" /></td>
+                                <td><input type="tel" name="phone" data-lpignore="true" /></td>
+                                <td><input type="text" name="email" data-lpignore="true" /></td>
                                 <td style="text-align:right;">
                                     <button id="btnAddNewTenant" type="button" class="btn btn-sm btn-primary">Add</button>
                                     <button id="btnCancelAddTenant" type="button" class="btn btn-sm btn-default" style="margin-left:0.5rem;" tabindex="-1">Cancel</button>

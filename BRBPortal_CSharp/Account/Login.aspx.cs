@@ -52,6 +52,8 @@ namespace BRBPortal_CSharp.Account
 
                     if (provider.Authenticate(ref user, Password.Text ?? "") == SignInStatus.Success)
                     {
+                        user.Password = Password.Text;
+
                         Master.UpdateSession(user);
 
                         if (user.IsTemporaryPassword)

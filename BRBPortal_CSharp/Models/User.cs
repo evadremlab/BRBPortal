@@ -7,6 +7,7 @@ namespace BRBPortal_CSharp.Models
     {
         public string UserCode { get; set; } = "";
         public string BillingCode { get; set; } = "";
+        public string Password { get; set; } = "";
         public string Relationship { get; set; } = "";
         public bool IsFirstlogin { get; set; } = false;
         public bool IsTemporaryPassword { get; set; } = false;

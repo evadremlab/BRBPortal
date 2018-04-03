@@ -13,29 +13,21 @@
 
     <section id="managePasswordForm">
         <asp:HiddenField ID="hfNextPage" runat="server" ValidateRequestMode="Disabled" />
+        <asp:HiddenField ID="hdnPassword" runat="server" ValidateRequestMode="Disabled" />
 
         <div class="form-horizontal">
             <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="CurrentPassword" CssClass="col-md-2 control-label">Current password:</asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="CurrentPassword" TextMode="SingleLine" CssClass="form-control" data-lpignore="true" />
-                </div>
-            </div>
-
-            <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="NewPWD" CssClass="col-md-2 control-label">New password:</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="NewPWD" TextMode="SingleLine" CssClass="form-control" xxx-pattern="(?=.*[0-9])(?=.*[!@#$%^&_*])[a-zA-Z0-9!@#$%^&_*]{7,20}" title="Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id" data-lpignore="true" />
+                    <asp:TextBox runat="server" ID="NewPWD" TextMode="Password" CssClass="form-control" data-lpignore="true" />
                 </div>
             </div>
-        
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="ConfirmNewPassword" CssClass="col-md-2 control-label">Confirm new password:</asp:Label>
                 <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="ConfirmNewPassword" TextMode="SingleLine" CssClass="form-control" xxx-pattern="(?=.*[0-9])(?=.*[!@#$%^&_*])[a-zA-Z0-9!@#$%^&_*]{7,20}" title="Must contain at least one number, one letter, one symbol (!@#$%^&_*) and be 7-20 characters and not contain part of you user id" data-lpignore="true" />
+                    <asp:TextBox runat="server" ID="ConfirmNewPassword" TextMode="Password" CssClass="form-control" data-lpignore="true" />
                 </div>
             </div>
-        
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <asp:Button runat="server" id="btnBack" UseSubmitBehavior="false" PostBackUrl="~/Account/ProfileList" CausesValidation="false" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Return to Home page." TabIndex="-1" />
@@ -53,7 +45,7 @@
 
         function validate() {
             try {
-                var currentPassword = $('#<%:CurrentPassword.ClientID%>').val();
+                var currentPassword = $('#<%:hdnPassword.ClientID%>').val();
                 var newPassword = $('#<%:NewPWD.ClientID%>').val();
                 var confirmPassword = $('#<%:ConfirmNewPassword.ClientID%>').val();
 

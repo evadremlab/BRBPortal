@@ -212,7 +212,16 @@
 
         $(document).ready(function () {
             $(".selectpicker").selectpicker();
+
             //$('#MainContent_PhoneNo').inputmask({ mask: '000-000-0000' });
+
+            $('#MainContent_StState').on('loaded.bs.select', function (e) {
+                var stateCodeSelected = $('#MainContent_StState').val();
+
+                if (!stateCodeSelected) {
+                    $('#MainContent_StState').selectpicker('val', 'CA');
+                }
+            });
 
             $('input[type="radio"]').change(function () {
                 if ($(this).val() === 'Owner') {

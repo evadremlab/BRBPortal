@@ -14,7 +14,7 @@
     <input type="hidden" name="errorUrl" value="http://rentportaldev.cityofberkeley.info/PaymentError" />
     <input type="hidden" name="cancelUrl" value="http://rentportaldev.cityofberkeley.info/PaymentCancelled" />
     <input type="hidden" name="postbackUrl" value="http://clipper.transsight.com/api/Values" />
-    <input type="hidden" name="cde-CartID-17" value="" />
+    <input type="hidden" name="cde-Cart-17" value="" />
     <input type="hidden" name="cde-BillingCode-1" value="" />
     <input type="hidden" name="paymentAmount" value="" />
     <button id="btnSubmit" runat="server" type="button" class="btn btn-primary">Submit</button>
@@ -24,7 +24,7 @@
                 evt.preventDefault();
 
                 $('#aspForm').prop('action', 'https://staging.officialpayments.com/pc_entry_cobrand.jsp');
-                $('#aspForm').find('input[name="cde-CartID-17"]').val('<%: CartID %>');
+                $('#aspForm').find('input[name="cde-Cart-17"]').val('<%: CartID %>');
                 $('#aspForm').find('input[name="cde-BillingCode-1"]').val('<%: BillingCode %>');
                 $('#aspForm').find('input[name="paymentAmount"]').val('<%: PaymentAmount %>');
                 $('#aspForm').find('.aspNetHidden').remove(); // delete ASP.NET generated fields

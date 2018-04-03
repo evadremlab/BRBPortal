@@ -22,8 +22,16 @@ namespace BRBPortal_CSharp.DAL
             {
                 soapRequest.Body.Append("<api:getProfileDetails>");
                 soapRequest.Body.Append("<request>");
-                soapRequest.Body.AppendFormat("<!--Optional:--><userId>{0}</userId>", SafeString(user.UserCode, defaultValue: "?"));
-                soapRequest.Body.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", SafeString(user.BillingCode, defaultValue: "?"));
+
+                if (string.IsNullOrEmpty(user.BillingCode))
+                {
+                    soapRequest.Body.AppendFormat("<!--Optional:--><userId>{0}</userId>", SafeString(user.UserCode));
+                }
+                else
+                {
+                    soapRequest.Body.AppendFormat("<!--Optional:--><billingCode>{0}</billingCode>", SafeString(user.BillingCode));
+                }
+
                 soapRequest.Body.Append("</request>");
                 soapRequest.Body.Append("</api:getProfileDetails>");
 
@@ -58,26 +66,13 @@ namespace BRBPortal_CSharp.DAL
                             user.ZipCode = detailAddr.SelectSingleNode("zip").InnerText;
                             user.Country = detailAddr.SelectSingleNode("country").InnerText;
 
-                            //var securityAnswer1Node = detail.SelectSingleNode("securityAnswer1");
-                            //var securityAnswer2Node = detail.SelectSingleNode("securityAnswer2");
+                            user.Question1 = detail.SelectSingleNode("securityQuestion1").InnerText;
+                            user.Question2 = detail.SelectSingleNode("securityQuestion2").InnerText;
 
-                            //user.Question1 = detail.SelectSingleNode("securityQuestion1").InnerText;
-                            //user.Question2 = detail.SelectSingleNode("securityQuestion2").InnerText;
-
-                            //if (securityAnswer1Node != null)
-                            //{
-                            //    user.Answer1 = securityAnswer1Node.InnerText.UnescapeXMLChars();
-                            //}
-
-                            //if (securityAnswer2Node != null)
-                            //{
-                            //    user.Answer2 = securityAnswer2Node.InnerText.UnescapeXMLChars();
-                            //}
-
-                            //if ((detailName.SelectSingleNode("agencyName").InnerText.Length > 0))
-                            //{
-                            //    user.AgencyName = detailName.SelectSingleNode("agencyName").InnerText.UnescapeXMLChars();
-                            //}
+                            if ((detailName.SelectSingleNode("agencyName").InnerText.Length > 0))
+                            {
+                                user.AgencyName = detailName.SelectSingleNode("agencyName").InnerText.UnescapeXMLChars();
+                            }
 
                             gotProfile = true;
                         }

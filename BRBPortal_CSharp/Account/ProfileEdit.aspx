@@ -207,6 +207,14 @@
     <script>
         $(document).ready(function () {
             $(".selectpicker").selectpicker();
+
+            $('#MainContent_StState').on('loaded.bs.select', function (e) {
+                var stateCodeSelected = $('#MainContent_StState').val();
+
+                if (!stateCodeSelected) {
+                    $('#MainContent_StState').selectpicker('val', 'CA');
+                }
+            });
         });
     </script>
 </asp:Content>

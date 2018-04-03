@@ -61,13 +61,14 @@ namespace BRBPortal_CSharp.DAL
                             else
                             {
 #if DEBUG
-                                if (currentFees == 0)
-                                {
-                                    currentFees = 10.0M;
-                                }
                                 if (totalBalance == 0)
                                 {
                                     totalBalance = 10.0M;
+
+                                    if (currentFees == 0)
+                                    {
+                                        currentFees = 10.0M;
+                                    }
                                 }
 #endif
                                 myProperty.PropertyID = detailProperty.SelectSingleNode("propertyId").InnerText;

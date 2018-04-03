@@ -1,4 +1,5 @@
-﻿function showOKModal(message, title, delay) {
+﻿
+function showOKModal(message, title, delay) {
     $(document).ready(function () {
         setTimeout(function () {
             $('#OkModal .modal-title').html(title);
