@@ -158,6 +158,13 @@ namespace BRBPortal_CSharp
             Page.ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
         }
 
+        public void SubmitPaymentForm(string cartID)
+        {
+            var jsFunction = string.Format("submitPaymentForm('{0}');", cartID);
+
+            Page.ClientScript.RegisterStartupScript(GetType(), "Javascript", "javascript:" + jsFunction, true);
+        }
+
         private bool PageNeedsUserObject()
         {
             return !Regex.IsMatch(Path.GetFileName(Request.Url.AbsolutePath), "Default|Login|Register|ManagePassword|ResetPassword|PaymentProcessed|PaymentCancelled|PaymentError", RegexOptions.IgnoreCase);

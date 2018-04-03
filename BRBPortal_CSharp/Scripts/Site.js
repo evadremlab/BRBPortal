@@ -19,16 +19,15 @@ function showErrorModal(message, title, delay) {
     });
 }
 
-function submitPaymentForm(billingCode, cartID, paymentAmount) {
-    $('#btnSubmit').click(function (evt) { // hijack the asp.net form
-        evt.preventDefault();
-
-        $('#aspForm')
+function submitPaymentForm(cartID) {
+    $(document).ready(function () {
+        $('#aspForm') // hijack the asp.net form
             .prop('action', 'https://staging.officialpayments.com/pc_entry_cobrand.jsp')
-            .find('input[name="cde-CartID-17"]').val(cartID)
-            .find('input[cde-BillingCode-1]').val(billingCode)
-            .find('input[paymentAmount]').val(paymentAmount)
-            .find('.aspNetHidden').remove() // delete ASP.NET generated fields
-            .submit();
+            .find('input[name="cde-Cart-17"]').val(cartID)
+            .find('.aspNetHidden').remove(); // delete ASP.NET generated fields
+
+        setTimeout(function () {
+            $('#aspForm').submit();
+        }, 0);
     });
 }

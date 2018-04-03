@@ -77,32 +77,7 @@ namespace BRBPortal_CSharp
 
         protected void PayCart_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var user = Master.User;
-                var provider = Master.DataProvider;
-
-                if (provider.SaveCart(user))
-                {
-                    if (!string.IsNullOrEmpty(user.Cart.ID))
-                    {
-                        Master.UpdateSession(user);
-                        Response.Redirect("~/ConfirmPayment", false);
-                    }
-                    else
-                    {
-                        Master.ShowErrorModal("Error saving cart(1)", "Save Cart");
-                    }
-                }
-                else
-                {
-                    Master.ShowErrorModal("Error saving cart(2).", "Save Cart");
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogException("PayCart", ex);
-            }
+            Response.Redirect("~/ConfirmPayment");
         }
 
         protected void EditCart_Click(object sender, EventArgs e)
