@@ -40,6 +40,15 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.HiddenField hdnExemptReas;
         
         /// <summary>
+        /// HiddenField1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+        
+        /// <summary>
         /// litMainAddress control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.Literal litUnitStatus;
         
         /// <summary>
+        /// litUnitStatusAsOfDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litUnitStatusAsOfDate;
+        
+        /// <summary>
         /// CurrentRental control.
         /// </summary>
         /// <remarks>
@@ -74,15 +92,6 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CurrentRental;
-        
-        /// <summary>
-        /// litTenancyStartDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTenancyStartDate;
         
         /// <summary>
         /// litUnitOccBy control.
@@ -101,15 +110,6 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CurrentExemption;
-        
-        /// <summary>
-        /// litUnitStatusAsOfDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litUnitStatusAsOfDate;
         
         /// <summary>
         /// litExemptReas control.

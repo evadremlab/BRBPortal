@@ -9,6 +9,7 @@
     <asp:HiddenField ID="hdnPostback" runat="server" />
     <asp:HiddenField ID="hdnUnitStatus" runat="server" />
     <asp:HiddenField ID="hdnExemptReas" runat="server" />
+    <asp:HiddenField ID="HiddenField1" runat="server" />
 
     <h2><%: Title %></h2>
     <h4>at <asp:Literal ID="litMainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="litUnitNo" runat="server" ></asp:Literal></h4>
@@ -23,17 +24,13 @@
                         <asp:Label runat="server" AssociatedControlID="litUnitStatus" CssClass="control-label">Unit Status:&nbsp;</asp:Label>
                         <asp:Literal ID="litUnitStatus" runat="server"></asp:Literal>
                         <br />
+                        <asp:Label runat="server" AssociatedControlID="litUnitStatusAsOfDate" CssClass="control-label">Current Unit Status Date:&nbsp;</asp:Label>
+                        <asp:Literal ID="litUnitStatusAsOfDate" runat="server"></asp:Literal>
                         <div id="CurrentRental" runat="server">
-                            <asp:Label runat="server" AssociatedControlID="litTenancyStartDate" CssClass="control-label">Current Unit Status Date:&nbsp;</asp:Label>
-                            <asp:Literal ID="litTenancyStartDate" runat="server"></asp:Literal>
-                            <br />
                             <asp:Label runat="server" AssociatedControlID="litUnitOccBy" CssClass="control-label">Occupied By:&nbsp;</asp:Label>
                             <asp:Literal ID="litUnitOccBy" runat="server"></asp:Literal>
                         </div>
                         <div id="CurrentExemption" runat="server">
-                            <asp:Label runat="server" AssociatedControlID="litUnitStatusAsOfDate" CssClass="control-label">Current Unit Status Date:&nbsp;</asp:Label>
-                            <asp:Literal ID="litUnitStatusAsOfDate" runat="server"></asp:Literal>
-                            <br />
                             <asp:Label runat="server" AssociatedControlID="litExemptReas" CssClass="control-label">Exemption Reason:&nbsp;</asp:Label>
                             <asp:Literal ID="litExemptReas" runat="server"></asp:Literal>
                         </div>
@@ -457,6 +454,7 @@
                     $('#MainContent_OtherList').val('');
                 }
                 $('#MainContent_AsOfDtGrp').show();
+                $('#MainContent_DtStrtdGrp').hide();
             } else {
                 $('#MainContent_ExemptGroup').show();
                 $('#MainContent_ExemptReason').show();
@@ -477,6 +475,7 @@
                 case "COMM": // Commercial Use
                     console.log('show(1)')
                     $('#MainContent_CommUseGrp').show();
+                    $('#MainContent_AsOfDtGrp').hide();
                     $('#MainContent_DtStrtdGrp').show();
                     $('#MainContent_ContractGrp').hide();
                     $('#MainContent_PMUnitGrp').hide();
@@ -484,6 +483,7 @@
                     break;
                 case "MISC": // Property Managers Unit
                     $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_AsOfDtGrp').hide();
                     $('#MainContent_DtStrtdGrp').show();
                     $('#MainContent_ContractGrp').hide();
                     $('#MainContent_PMUnitGrp').show();
@@ -491,6 +491,7 @@
                     break;
                 case "SHARED": // Owner share kitchen & bath with tenant
                     $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_AsOfDtGrp').hide();
                     $('#MainContent_DtStrtdGrp').show();
                     $('#MainContent_ContractGrp').hide();
                     $('#MainContent_PMUnitGrp').hide();
@@ -498,18 +499,12 @@
                     break;
                 case "SPLUS": // Shelter plus care
                     $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_AsOfDtGrp').hide();
                     $('#MainContent_DtStrtdGrp').show();
                     $('#MainContent_ContractGrp').show();
                     $('#MainContent_PMUnitGrp').hide();
                     $('#MainContent_OwnerShrGrp').hide();
                     break;
-                //default:
-                //    $('#MainContent_CommUseGrp').hide();
-                //    $('#MainContent_DtStrtdGrp').hide();
-                //    $('#MainContent_ContractGrp').hide();
-                //    $('#MainContent_PMUnitGrp').hide();
-                //    $('#MainContent_OwnerShrGrp').hide();
-                //    break;
             }
         }
 
@@ -539,11 +534,11 @@
             $('#MainContent_CommUseGrp').hide();
             $('#MainContent_PMUnitGrp').hide();
             $('#MainContent_OwnerShrGrp').hide();
+            $('#MainContent_AsOfDtGrp').hide();
             $('#MainContent_DtStrtdGrp').hide();
             $('#MainContent_OccByGrp').hide();
             $('#MainContent_ContractGrp').hide();
             $('#MainContent_OtherList').hide();
-            $('#MainContent_AsOfDtGrp').hide();
 
             setNewUnitfields();
 

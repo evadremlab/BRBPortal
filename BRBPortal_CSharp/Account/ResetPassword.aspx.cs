@@ -29,9 +29,10 @@ namespace BRBPortal_CSharp.Account
             {
                 Master.UpdateSession(user);
 
+                EnableInputFields();
+
                 if (string.IsNullOrEmpty(Master.User.Question1) || string.IsNullOrEmpty(Master.User.Question2))
                 {
-                    EnableInputFields();
                     Master.ShowErrorModal("Your profile does not have security questions assigned. Please contact the system administrator.", "Profile Error", 250);
                     return;
                 }
@@ -83,12 +84,14 @@ namespace BRBPortal_CSharp.Account
                 UserIDCode.Focus();
                 UserIDGrp.Style["display"] = "";
                 BillCodeGrp.Style["display"] = "none";
+                BillingCode.Text = "";
             }
             else
             {
                 BillCodeGrp.Focus();
                 BillCodeGrp.Style["display"] = "";
                 UserIDGrp.Style["display"] = "none";
+                UserIDCode.Text = "";
             }
         }
     }

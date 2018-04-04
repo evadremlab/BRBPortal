@@ -21,33 +21,6 @@ namespace BRBPortal_CSharp.DAL
             try
             {
                 var unit = user.CurrentUnit;
-                DateTime? unitStatusAsOfDate = null;
-                DateTime? dateStarted = null;
-                DateTime? asOfDate = null;
-
-                if (unit.IsRented)
-                {
-                    asOfDate = unit.TenancyStartDate;
-                }
-                else
-                {
-                    if (unit.ExemptionReason == "NAR")
-                    {
-                        if (unit.StartDate.HasValue)
-                        {
-                            asOfDate = unit.StartDate;
-                            unitStatusAsOfDate = unit.StartDate;
-                        }
-                    }
-                    else
-                    {
-                        if (unit.UnitStatusAsOfDate.HasValue)
-                        {
-                            asOfDate = unit.UnitStatusAsOfDate;
-                            dateStarted = unit.UnitStatusAsOfDate;
-                        }
-                    }
-                }
 
                 soapRequest.Body.Append("<api:updateUnitStatusChange>");
                 soapRequest.Body.Append("<unitStatusChangeReq>");
@@ -59,35 +32,22 @@ namespace BRBPortal_CSharp.DAL
 
                 soapRequest.Body.AppendFormat("<!--Optional:--><exemptionReason>{0}</exemptionReason>", unit.ExemptionReason);
 
-                // 1) Unit Status Change Date(As of Date/ Date Started) has to be greater than the current unit status change/ effective date.
-                // 2) Unit Status Change Date(As of Date/ Date Started) cannot be after today’s date.
-                // 3) Unit Status Change Dates cannot be blank / empty(As of Date / Date Started).
-
-                if (unitStatusAsOfDate.HasValue)
-                {
-                    soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", asOfDate.Value.ConvertForAPI());
-                }
-                else
-                {
-                    soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", DateTime.Now.ConvertForAPI());
-                }
-
                 soapRequest.Body.AppendFormat("<declarationInitial>{0}</declarationInitial>", unit.DeclarationInitials);
 
                 soapRequest.Body.Append("<questions>");
 
-                if (dateStarted.HasValue)
+                if (unit.StartDate.HasValue)
                 {
-                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", dateStarted.Value.ConvertForAPI());
+                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", unit.StartDate.Value.ConvertForAPI());
                 }
                 else
                 {
                     soapRequest.Body.Append("<!--Optional:--><dateStarted></dateStarted>");
                 }
 
-                if (asOfDate.HasValue)
+                if (unit.AsOfDate.HasValue)
                 {
-                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", asOfDate.Value.ConvertForAPI());
+                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", unit.AsOfDate.Value.ConvertForAPI());
                 }
                 else
                 {
@@ -116,10 +76,6 @@ namespace BRBPortal_CSharp.DAL
                 soapRequest.Body.Append("</questions>");
                 soapRequest.Body.Append("</unitStatusChangeReq>");
                 soapRequest.Body.Append("</api:updateUnitStatusChange>");
-
-                //Logger.Log("UpdateUnit", soapRequest.Body.ToString());
-                //ErrorMessage = "dave is debugging";
-                //return false;
 
                 var xmlDoc = GetXmlResponse(soapRequest);
 

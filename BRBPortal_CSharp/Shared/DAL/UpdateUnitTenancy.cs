@@ -29,7 +29,7 @@ namespace BRBPortal_CSharp.DAL
                 soapRequest.Body.AppendFormat("<unitId>{0}</unitId>", unit.UnitID);
                 soapRequest.Body.AppendFormat("<unitStatus>{0}</unitStatus>", unit.ClientPortalUnitStatusCode);
                 soapRequest.Body.AppendFormat("<initialRent>{0}</initialRent>", unit.InitialRent);
-                soapRequest.Body.AppendFormat("<tenancyStartDate>{0}</tenancyStartDate>", unit.TenancyStartDate.Value.ToString("MM/dd/yyyy"));
+                //soapRequest.Body.AppendFormat("<tenancyStartDate>{0}</tenancyStartDate>", unit.TenancyStartDate.Value.ToString("MM/dd/yyyy"));
                 soapRequest.Body.AppendFormat("<priorTenancyEndDate>{0}</priorTenancyEndDate>", unit.DatePriorTenancyEnded.Value.ToString("MM/dd/yyyy"));
 
                 soapRequest.Body.Append("<!--Zero or more repetitions:-->");

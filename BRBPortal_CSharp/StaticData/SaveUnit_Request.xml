@@ -5,16 +5,15 @@
       <unitStatusChangeReq>
         <userId>DAVE10</userId>
         <propertyId>300</propertyId>
-        <unitId>823</unitId>
-        <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
-        <unitStatus>Exempt</unitStatus>
+        <unitId>824</unitId>
+        <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
+        <unitStatus>Rented</unitStatus>
         <!--Optional:-->
-        <exemptionReason>COMM</exemptionReason>
-        <unitStatusAsOfDate>04/04/2018</unitStatusAsOfDate>
+        <exemptionReason></exemptionReason>
         <declarationInitial>dbb</declarationInitial>
         <questions>
           <!--Optional:-->
-          <dateStarted>04/04/2018</dateStarted>
+          <dateStarted></dateStarted>
           <!--Optional:-->
           <asOfDate>04/04/2018</asOfDate>
           <!--Optional:-->
@@ -22,7 +21,7 @@
           <!--Optional:-->
           <contractNo></contractNo>
           <!--Optional:-->
-          <commeUseDesc>something</commeUseDesc>
+          <commeUseDesc></commeUseDesc>
           <!--Optional:-->
           <isCommeUseZoned></isCommeUseZoned>
           <!--Optional:-->

@@ -26,14 +26,6 @@ namespace BRBPortal_CSharp.MyProperties
 
                     hdnNumTenants.Value = tenants.Count.ToString();
 
-                    //if (tenants.Count == 0)
-                    //{
-                    //    tenants.Add(new BRBTenant
-                    //    {
-                    //        FirstName = "no tenants"
-                    //    });
-                    //}
-
                     MainAddress.Text = property.PropertyAddress;
                     UnitNo.Text = unit.UnitNo;
                     BalAmt.Text = property.Balance.ToString("C");

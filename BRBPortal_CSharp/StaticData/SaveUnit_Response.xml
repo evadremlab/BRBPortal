@@ -4,7 +4,7 @@
     <ser-root:updateUnitStatusChangeResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <response>
         <status>FAILURE</status>
-        <errorMsg>Unit status cannot be same as current status. Please select appropriate status and try again.</errorMsg>
+        <errorMsg>Unit status change date cannot be future date. Please select appropriate date and try again.</errorMsg>
       </response>
     </ser-root:updateUnitStatusChangeResponse>
   </soapenv:Body>

@@ -3,91 +3,114 @@
   <soapenv:Body>
     <ser-root:getPropertyAndUnitDetailsResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <propertyAndUnitsRes>
-        <propertyId>1968</propertyId>
+        <propertyId>300</propertyId>
         <address>
-          <mainStreetAddress>2336 CURTIS ST</mainStreetAddress>
+          <mainStreetAddress>2428 8TH ST</mainStreetAddress>
         </address>
         <ownerContactName>
-          <first>HELLEN</first>
-          <last>LIU</last>
-          <nameLastFirstDisplay>LIU, HELLEN</nameLastFirstDisplay>
+          <first>AMY &amp; GARET</first>
+          <last>O'KEEFE</last>
+          <nameLastFirstDisplay>O'KEEFE, AMY &amp; GARET</nameLastFirstDisplay>
         </ownerContactName>
         <billingDetails>
           <contact>
-            <code>LIUHEL</code>
+            <code>OKEAMY</code>
             <name>
-              <first>HELLEN</first>
-              <last>LIU</last>
-              <nameLastFirstDisplay>LIU, HELLEN</nameLastFirstDisplay>
+              <first>AMY &amp; GARET</first>
+              <last>O'KEEFE</last>
+              <nameLastFirstDisplay>O'KEEFE, AMY &amp; GARET</nameLastFirstDisplay>
             </name>
-            <phoneNumber>415-370-0006</phoneNumber>
-            <emailAddress>HELLENMCLIN@GMAIL.COM</emailAddress>
+            <phoneNumber>510-282-0298</phoneNumber>
+            <emailAddress>amyokeefelaw@hotmail.com</emailAddress>
           </contact>
           <billingAddress>
-            <mainStreetAddress>465B 14TH STREET, SAN FRANCISCO, CA, USA, 94103</mainStreetAddress>
+            <mainStreetAddress>1068 CRAGMONT AVE, BERKELEY, CA, USA, 94708</mainStreetAddress>
           </billingAddress>
           <balanceAmounts>
-            <currentFees>242.00</currentFees>
+            <currentFees>44.00</currentFees>
             <priorFees>0.00</priorFees>
             <currentPenalty>0.00</currentPenalty>
             <priorPenalties>0.00</priorPenalties>
-            <credit>0.00</credit>
-            <totalBalance>242.00</totalBalance>
+            <credit>-138.00</credit>
+            <totalBalance>-94.00</totalBalance>
           </balanceAmounts>
         </billingDetails>
         <units>
-          <unitId>7773</unitId>
+          <unitId>823</unitId>
           <unitNumber>A</unitNumber>
-          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
-          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
-          <unitStatusId>6</unitStatusId>
-          <unitStatusCode>SEC8</unitStatusCode>
-          <rentCeiling>2100.00</rentCeiling>
-          <unitStatusAsOfDate>2018-04-03</unitStatusAsOfDate>
-          <occupancy xsi:nil="true" />
-        </units>
-        <units>
-          <unitId>7774</unitId>
-          <unitNumber>B</unitNumber>
-          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
+          <unitStreetAddress>2428 8TH ST</unitStreetAddress>
           <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
           <unitStatusId>16</unitStatusId>
           <unitStatusCode>NAR</unitStatusCode>
-          <rentCeiling>1234.56</rentCeiling>
+          <rentCeiling>1622.88</rentCeiling>
+          <unitStatusAsOfDate>2018-04-04</unitStatusAsOfDate>
+          <occupancy xsi:nil="true" />
+        </units>
+        <units>
+          <unitId>824</unitId>
+          <unitNumber>B</unitNumber>
+          <unitStreetAddress>2428 8TH ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
+          <unitStatusId>16</unitStatusId>
+          <unitStatusCode>NAR</unitStatusCode>
+          <rentCeiling>2150.00</rentCeiling>
           <unitStatusAsOfDate>2018-04-03</unitStatusAsOfDate>
           <occupancy xsi:nil="true" />
         </units>
         <units>
-          <unitId>30632</unitId>
+          <unitId>825</unitId>
           <unitNumber>C</unitNumber>
-          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
-          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
-          <unitStatusId>1</unitStatusId>
-          <unitStatusCode>RENTED</unitStatusCode>
-          <rentCeiling>991.92</rentCeiling>
-          <unitStatusAsOfDate>2018-03-02</unitStatusAsOfDate>
+          <unitStreetAddress>2428 8TH ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
+          <unitStatusId>10</unitStatusId>
+          <unitStatusCode>SEC8-V</unitStatusCode>
+          <rentCeiling>1171.73</rentCeiling>
+          <unitStatusAsOfDate>2011-05-19</unitStatusAsOfDate>
+          <housingServices>
+            <serviceId>10</serviceId>
+            <serviceName>Garbage</serviceName>
+          </housingServices>
           <occupancy xsi:nil="true" />
         </units>
         <units>
-          <unitId>30633</unitId>
+          <unitId>826</unitId>
           <unitNumber>D</unitNumber>
-          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
-          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
-          <unitStatusId>1</unitStatusId>
-          <unitStatusCode>RENTED</unitStatusCode>
-          <rentCeiling>969.78</rentCeiling>
-          <unitStatusAsOfDate>2013-05-31</unitStatusAsOfDate>
-          <housingServices>
-            <serviceId>8</serviceId>
-            <serviceName>Appliances</serviceName>
-          </housingServices>
+          <unitStreetAddress>2428 8TH ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
+          <unitStatusId>10</unitStatusId>
+          <unitStatusCode>SEC8-V</unitStatusCode>
+          <rentCeiling>1140.91</rentCeiling>
+          <unitStatusAsOfDate>2011-07-16</unitStatusAsOfDate>
           <housingServices>
             <serviceId>10</serviceId>
             <serviceName>Garbage</serviceName>
           </housingServices>
           <housingServices>
-            <serviceId>9</serviceId>
-            <serviceName>Laundry Access</serviceName>
+            <serviceId>11</serviceId>
+            <serviceName>Parking</serviceName>
+          </housingServices>
+          <occupancy xsi:nil="true" />
+        </units>
+        <units>
+          <unitId>827</unitId>
+          <unitNumber>E</unitNumber>
+          <unitStreetAddress>2428 8TH ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
+          <unitStatusId>1</unitStatusId>
+          <unitStatusCode>RENTED</unitStatusCode>
+          <rentCeiling>844.45</rentCeiling>
+          <unitStatusAsOfDate>1994-09-22</unitStatusAsOfDate>
+          <housingServices>
+            <serviceId>10</serviceId>
+            <serviceName>Garbage</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>11</serviceId>
+            <serviceName>Parking</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>6</serviceId>
+            <serviceName>Storage</serviceName>
           </housingServices>
           <occupancy xsi:nil="true" />
         </units>

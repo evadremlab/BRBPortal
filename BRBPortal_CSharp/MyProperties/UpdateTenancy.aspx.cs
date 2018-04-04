@@ -17,89 +17,97 @@ namespace BRBPortal_CSharp.MyProperties
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var user = Master.User;
-            var property = user.CurrentProperty;
-            var unit = user.CurrentUnit;
-
-            this.Tenants = unit.Tenants;
-
-            if (IsPostBack)
+            try
             {
-                btnSubmit.Attributes.Remove("disabled"); // enable button after postback, in case of errors
-                return;
-            }
+                var user = Master.User;
+                var property = user.CurrentProperty;
+                var unit = user.CurrentUnit;
 
-            btnSubmit.Attributes.Add("disabled", "disabled");
-            ExplainOtherTermination.Style.Add("display", "none");
+                this.Tenants = unit.Tenants;
 
-            // Literals
-            MainAddress.Text = property.PropertyAddress;
-            UnitNo.Text = unit.UnitNo;
-            OwnerName.Text = property.OwnerContactName;
-            AgentName.Text = property.AgencyName;
-            BalAmt.Text = property.Balance.ToString("C");
-            UnitStatus.Text = unit.ClientPortalUnitStatusCode;
-
-            // Fields
-            InitRent.Text = unit.InitialRent;
-
-            if (unit.TenancyStartDate.HasValue)
-            {
-                TenStDt.Text = unit.TenancyStartDate.Value.ConvertForDatePicker();
-            }
-                    
-            var otherServices = new List<string>();
-            OtherHousingServices.Style.Add("display", "none");
-            var housingServices = unit.HServices.Split(',').ToList<string>();
-            foreach (var svc in housingServices)
-            {
-                var service = svc.Trim();
-                var item = HServs.Items.FindByText(service);
-
-                if (item == null)
+                if (IsPostBack)
                 {
-                    otherServices.Add(service);
-                    OtherHousingServices.Style.Remove("display");
-                    HServs.Items.FindByText("Other").Selected = true;
+                    btnSubmit.Attributes.Remove("disabled"); // enable button after postback, in case of errors
+                    return;
                 }
-                else
+
+                btnSubmit.Attributes.Add("disabled", "disabled");
+                ExplainOtherTermination.Style.Add("display", "none");
+
+                // Literals
+                MainAddress.Text = property.PropertyAddress;
+                UnitNo.Text = unit.UnitNo;
+                OwnerName.Text = property.OwnerContactName;
+                AgentName.Text = property.AgencyName;
+                BalAmt.Text = property.Balance.ToString("C");
+                UnitStatus.Text = unit.ClientPortalUnitStatusCode;
+
+                // Fields
+                InitRent.Text = unit.InitialRent;
+
+                if (unit.TenancyStartDate.HasValue)
                 {
-                    item.Selected = true;
+                    TenStDt.Text = unit.TenancyStartDate.Value.ConvertForDatePicker();
                 }
-            }
-            HServOthrBox.Text = string.Join(", ", otherServices);
 
-            RB1.SelectedValue = unit.SmokingProhibitionInLeaseStatus;
-
-            if (unit.SmokingProhibitionEffectiveDate.HasValue)
-            {
-                SmokeDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ConvertForDatePicker();
-            }
-
-            if (unit.DatePriorTenancyEnded.HasValue)
-            {
-                PTenDt.Text = unit.DatePriorTenancyEnded.Value.ConvertForDatePicker();
-            }
-
-            if (!string.IsNullOrEmpty(unit.ReasonPriorTenancyEnded))
-            {
-                var item = TermReas.Items.FindByText(unit.ReasonPriorTenancyEnded);
-
-                if (item == null)
+                var otherServices = new List<string>();
+                OtherHousingServices.Style.Add("display", "none");
+                var housingServices = unit.HServices.Split(',').ToList<string>();
+                foreach (var svc in housingServices)
                 {
-                    TermReas.SelectedValue = "4"; // Other
-                    TermDescr.Text = unit.ReasonPriorTenancyEnded;
+                    var service = svc.Trim();
+                    var item = HServs.Items.FindByText(service);
+
+                    if (item == null)
+                    {
+                        otherServices.Add(service);
+                        OtherHousingServices.Style.Remove("display");
+                        HServs.Items.FindByText("Other").Selected = true;
+                    }
+                    else
+                    {
+                        item.Selected = true;
+                    }
                 }
-                else
+                HServOthrBox.Text = string.Join(", ", otherServices);
+
+                RB1.SelectedValue = unit.SmokingProhibitionInLeaseStatus;
+
+                if (unit.SmokingProhibitionEffectiveDate.HasValue)
                 {
-                    ExplainOtherTermination.Style.Add("display", "none");
-                    TermReas.SelectedValue = unit.ReasonPriorTenancyEnded;
+                    SmokeDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ConvertForDatePicker();
+                }
+
+                if (unit.DatePriorTenancyEnded.HasValue)
+                {
+                    PTenDt.Text = unit.DatePriorTenancyEnded.Value.ConvertForDatePicker();
+                }
+
+                if (!string.IsNullOrEmpty(unit.ReasonPriorTenancyEnded))
+                {
+                    var item = TermReas.Items.FindByText(unit.ReasonPriorTenancyEnded);
+
+                    if (item == null)
+                    {
+                        TermReas.SelectedValue = "4"; // Other
+                        TermDescr.Text = unit.ReasonPriorTenancyEnded;
+                    }
+                    else
+                    {
+                        ExplainOtherTermination.Style.Add("display", "none");
+                        TermReas.SelectedValue = unit.ReasonPriorTenancyEnded;
+                    }
+                }
+
+                if (string.IsNullOrEmpty(AgentName.Text))
+                {
+                    AgencyNameSection.Visible = false;
                 }
             }
-
-            if (string.IsNullOrEmpty(AgentName.Text))
+            catch (Exception ex)
             {
-                AgencyNameSection.Visible = false;
+                Logger.LogException("UpdateTenancy - Page_Load()", ex);
+                Master.ShowErrorModal("Error loading Tenancy details.");
             }
         }
 

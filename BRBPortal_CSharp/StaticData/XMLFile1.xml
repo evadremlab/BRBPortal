@@ -3,14 +3,13 @@
   <soapenv:Body>
     <api:updateUnitStatusChange>
       <unitStatusChangeReq>
-        <userId>DAVE10</userId>
-        <propertyId>300</propertyId>
-        <unitId>823</unitId>
+        <userId>DAVE02</userId>
+        <propertyId>1968</propertyId>
+        <unitId>30633</unitId>
         <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
         <unitStatus>Exempt</unitStatus>
         <!--Optional:-->
-        <exemptionReason>OOCC</exemptionReason>
-        <unitStatusAsOfDate>04/04/2018</unitStatusAsOfDate>
+        <exemptionReason>Commercial Use</exemptionReason>
         <declarationInitial>dbb</declarationInitial>
         <questions>
           <!--Optional:-->
@@ -22,11 +21,11 @@
           <!--Optional:-->
           <contractNo></contractNo>
           <!--Optional:-->
-          <commeUseDesc></commeUseDesc>
+          <commeUseDesc>something</commeUseDesc>
           <!--Optional:-->
           <isCommeUseZoned></isCommeUseZoned>
           <!--Optional:-->
-          <isExclusivelyForCommeUse></isExclusivelyForCommeUse>
+          <isExclusivelyForCommeUse>No</isExclusivelyForCommeUse>
           <!--Optional:-->
           <_x0035_0PercentAsOf31Dec1979></_x0035_0PercentAsOf31Dec1979>
           <!--Optional:-->

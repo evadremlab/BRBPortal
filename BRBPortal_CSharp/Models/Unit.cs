@@ -39,14 +39,12 @@ namespace BRBPortal_CSharp.Models
         public string DeclarationInitials { get; set; }
         public string TenantNames { get; set; }
         public string TenantContacts { get; set; }
+        public DateTime? UnitStatusAsOfDate { get; set; }
 
-        // Rented
+        public DateTime? TenancyStartDate { get; set; } // TODO:
 
-        public DateTime? TenancyStartDate { get; set; } // for display
-
-        // Exempt
-        public DateTime? UnitStatusAsOfDate { get; set; } // Vacant and not available for rent
-        public DateTime? StartDate { get; set; } // Owner-Occupied, Section 8, Occupied Rent Free, Other
+        public DateTime? AsOfDate { get; set; } // Rented, or Exempt and Vacant and not available for rent
+        public DateTime? StartDate { get; set; } // Exempt and Owner-Occupied, Section 8, Occupied Rent Free, Other
 
         public List<BRBTenant> Tenants { get; set; } = new List<BRBTenant>();
 

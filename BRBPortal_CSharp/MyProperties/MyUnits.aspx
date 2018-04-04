@@ -26,7 +26,6 @@
                     </div>
                 </asp:PlaceHolder>
                 <div class="form-group">
-                <div class="form-group">
                     <asp:Label runat="server" AssociatedControlID="BillingAddress" CssClass="control-label">Billing Address:</asp:Label>
                     <asp:Literal ID="BillingAddress" runat="server" ></asp:Literal>
                 </div>

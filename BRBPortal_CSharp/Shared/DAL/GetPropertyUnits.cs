@@ -93,6 +93,7 @@ namespace BRBPortal_CSharp.DAL
                     foreach (XmlElement detailUnits in detail.GetElementsByTagName("units"))
                     {
                         DateTime unitStatusAsOfDate = DateTime.MinValue;
+                        DateTime tenancyStartDate = DateTime.MinValue;
                         Decimal rentCeiling = 0;
                         var exemptionReason = "";
                         var cpUnitStatDisp = "";
@@ -106,6 +107,14 @@ namespace BRBPortal_CSharp.DAL
                             if (!string.IsNullOrEmpty(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText))
                             {
                                 DateTime.TryParse(detailUnits.SelectSingleNode("unitStatusAsOfDate").InnerText, out unitStatusAsOfDate);
+                            }
+                        }
+
+                        if (detailUnits.SelectSingleNode("tenancyStartDate") != null)
+                        {
+                            if (!string.IsNullOrEmpty(detailUnits.SelectSingleNode("tenancyStartDate").InnerText))
+                            {
+                                DateTime.TryParse(detailUnits.SelectSingleNode("tenancyStartDate").InnerText, out tenancyStartDate);
                             }
                         }
 
@@ -237,14 +246,12 @@ namespace BRBPortal_CSharp.DAL
 
                         if (unitStatusAsOfDate != DateTime.MinValue)
                         {
-                            if (unit.IsRented)
-                            {
-                                unit.TenancyStartDate = unitStatusAsOfDate;
-                            }
-                            else
-                            {
-                                unit.UnitStatusAsOfDate = unitStatusAsOfDate;
-                            }
+                            unit.UnitStatusAsOfDate = unitStatusAsOfDate;
+                        }
+
+                        if (tenancyStartDate != DateTime.MinValue)
+                        {
+                            unit.TenancyStartDate = tenancyStartDate;
                         }
 
                         unit.StreetAddress = detailUnits.SelectSingleNode("unitStreetAddress").InnerText;

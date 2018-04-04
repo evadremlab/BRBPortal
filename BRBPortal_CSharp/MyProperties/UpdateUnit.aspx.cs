@@ -64,22 +64,16 @@ namespace BRBPortal_CSharp.MyProperties
                     if (unit.IsRented)
                     {
                         CurrentExemption.Visible = false;
-
-                        if (unit.TenancyStartDate.HasValue)
-                        {
-                            litTenancyStartDate.Text = unit.TenancyStartDate.Value.ConvertForLiteral();
-                        }
-
                         litUnitOccBy.Text = unit.OccupiedBy;
                     }
                     else
                     {
                         CurrentRental.Visible = false;
+                    }
 
-                        if (unit.UnitStatusAsOfDate.HasValue)
-                        {
-                            litUnitStatusAsOfDate.Text = unit.UnitStatusAsOfDate.Value.ConvertForLiteral();
-                        }
+                    if (unit.UnitStatusAsOfDate.HasValue)
+                    {
+                        litUnitStatusAsOfDate.Text = unit.UnitStatusAsOfDate.Value.ConvertForLiteral();
                     }
                 }
                 else
@@ -102,6 +96,7 @@ namespace BRBPortal_CSharp.MyProperties
                 hdnPostback.Value = "true";
 
                 unit.ClientPortalUnitStatusCode = NewUnit.SelectedValue; // Rented or Exempt
+                unit.ExemptionReason = ExemptReason.SelectedValue ?? "";
                 unit.OtherExemptionReason = OtherList.SelectedValue ?? "";
                 unit.OccupiedBy = OccupiedBy.Text;
                 unit.ContractNo = ContractNo.Text;
@@ -117,28 +112,22 @@ namespace BRBPortal_CSharp.MyProperties
                 unit.TenantContacts = TenantContacts.Text;
                 unit.DeclarationInitials = DeclareInits.Text;
 
-                if (unit.IsRented)
+                if (!string.IsNullOrEmpty(UnitAsOfDt.Text))
                 {
-                    unit.TenancyStartDate = provider.GetOptionalDate(UnitAsOfDt.Text);
+                    unit.StartDate = null;
+                    unit.AsOfDate = provider.GetOptionalDate(UnitAsOfDt.Text);
                 }
-                else
+                else if (!string.IsNullOrEmpty(StartDt.Text))
                 {
-                    if (string.IsNullOrEmpty(StartDt.Text))
-                    {
-                        unit.UnitStatusAsOfDate = provider.GetOptionalDate(UnitAsOfDt.Text);
-                    }
-                    else
-                    {
-                        unit.StartDate = provider.GetOptionalDate(StartDt.Text);
-                    }
+                    unit.AsOfDate = null;
+                    unit.StartDate = provider.GetOptionalDate(StartDt.Text);
+                }
 
+                if (unit.IsExempt)
+                {
                     if (unit.ExemptionReason.ToUpper() == "OTHER")
                     {
                         unit.ExemptionReason = unit.OtherExemptionReason;
-                    }
-                    else
-                    {
-                        unit.ExemptionReason = ExemptReason.Text;
                     }
                 }
 

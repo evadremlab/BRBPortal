@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Confirm Payment" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ConfirmPayment.aspx.cs" Inherits="BRBPortal_CSharp.ConfirmPayment" %>
+﻿<%@ Page Title="Confirm Payment" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableViewState="false" CodeBehind="ConfirmPayment.aspx.cs" Inherits="BRBPortal_CSharp.ConfirmPayment" %>
 <%@ MasterType  virtualPath="~/Site.Master"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
