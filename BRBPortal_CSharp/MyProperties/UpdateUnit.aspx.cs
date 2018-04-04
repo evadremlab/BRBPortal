@@ -83,10 +83,6 @@ namespace BRBPortal_CSharp.MyProperties
                     }
 
                     // inputs
-                    //NewUnit.SelectedValue = unit.ClientPortalUnitStatusCode; // don't pre-select
-                    OtherList.SelectedValue = unit.ClientPortalUnitStatusCode; // TODO: see if we get Other back
-
-                    // inputs
 
                     NewUnit.SelectedValue = unit.ClientPortalUnitStatusCode;
                     ExemptReason.Text = unit.ExemptionReason;
@@ -121,8 +117,6 @@ namespace BRBPortal_CSharp.MyProperties
             try
             {
                 hdnPostback.Value = "true";
-                //InitalEditButtons.Style.Add("display", "none");
-                //EditUnitStatusPanel.Style.Remove("display");
 
                 unit.ClientPortalUnitStatusCode = NewUnit.SelectedValue; // Rented or Exempt
                 unit.OtherExemptionReason = OtherList.SelectedValue ?? "";
@@ -139,7 +133,6 @@ namespace BRBPortal_CSharp.MyProperties
                 unit.TenantNames = TenantNames.Text;
                 unit.TenantContacts = TenantContacts.Text;
                 unit.DeclarationInitials = DeclareInits.Text;
-                //unit.UnitStatusAsOfDate = provider.GetOptionalDate(UnitStatusAsOfDate.Text);
 
                 if (unit.IsRented)
                 {

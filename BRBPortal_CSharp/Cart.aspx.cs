@@ -2,6 +2,7 @@
 using System.Web.UI.WebControls;
 using BRBPortal_CSharp.Models;
 using BRBPortal_CSharp.Shared;
+using System.Collections.Generic;
 
 namespace BRBPortal_CSharp
 {
@@ -16,9 +17,35 @@ namespace BRBPortal_CSharp
             {
                 var user = Master.User;
                 var provider = Master.DataProvider;
+                var cartItems = new List<BRBCartItem>();
 
-                gvCart.DataSource = provider.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
-                gvCart.DataBind();
+                user.FeeOption = Session["FeeOption"] as string ?? "All Fees and Penalties";
+
+                Master.UpdateSession(user);
+
+                try
+                {
+                    foreach (var item in user.Cart.Items)
+                    {
+                        if (user.FeeOption == "Fees Only")
+                        {
+                            item.Balance = (item.CurrentFee + item.PriorFee);
+                        }
+                        else
+                        {
+                            item.Balance = (item.CurrentFee + item.PriorFee + item.CurrentPenalty + item.PriorPenalty + item.Credits);
+                        }
+
+                        cartItems.Add(item);
+                    }
+
+                    gvCart.DataSource = provider.ConvertToDataTable<BRBCartItem>(cartItems);
+                    gvCart.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    Master.ShowErrorModal(ex.Message, "Cart View");
+                }
 
                 if (user.Cart.Items.Count == 0)
                 {
@@ -42,21 +69,7 @@ namespace BRBPortal_CSharp
                     btnEdCart.Enabled = true;
                     btnPayCart.Enabled = true;
 
-                    if (string.IsNullOrEmpty(user.FeesAll))
-                    {
-                        ShowFeesAll.Text = "All Fees and Penalties";
-                    }
-                    else
-                    {
-                        if (user.FeesAll == "AllFees")
-                        {
-                            ShowFeesAll.Text = "All Fees and Penalties";
-                        }
-                        else
-                        {
-                            ShowFeesAll.Text = "Fees Only";
-                        }
-                    }
+                    FeeOption.Text = user.FeeOption;
                 }
             }
             catch (Exception ex)
@@ -69,7 +82,7 @@ namespace BRBPortal_CSharp
         {
             var backUrl = Session["BackFromCartUrl"] as string ?? "~/Home";
 
-            Session["FeesAll"] = "AllFees";
+            Session["FeeOption"] = "All Fees and Penalties";
             Session.Remove("BackFromCartUrl");
 
             Response.Redirect(backUrl, false);
@@ -100,8 +113,12 @@ namespace BRBPortal_CSharp
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 decimal value;
-                var colIndex = e.Row.GetColumnIndexByName("Balance");
-                string txtBalance = e.Row.Cells[colIndex].Text.Replace("$", "");
+                string txtBalance = e.Row.Cells[e.Row.GetColumnIndexByName("Balance")].Text.Replace("$", "");
+
+                if (txtBalance.Contains("("))
+                {
+                    txtBalance = txtBalance.Replace("(", "-").Replace(")", "");
+                }
 
                 if (Decimal.TryParse(txtBalance, out value))
                 {

@@ -66,10 +66,18 @@
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>
             </div>
+            
+            <div class="form-group">
+                <asp:Literal ID="FeeOption" runat="server" ></asp:Literal>
+            </div>
+
+            <div class="form-group hidden">
+                Payment Amount: <asp:Literal ID="litPaymentAmount" runat="server" ></asp:Literal>
+            </div>
 
             <div class="form-group">
                 <asp:Button runat="server" id="btnCancelCart" OnClick="CancelCart_Click" Text="Back" CssClass="btn btn-sm btn-default" ToolTip="Back to your list of properties." TabIndex="-1" />
-                <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="PayCart_Click" CssClass="btn btn-primary" style="margin-left:1rem;" />&nbsp;&nbsp;<em>(creates a CartID, and posts to the payment gateway)</em>
+                <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="PayCart_Click" CssClass="btn btn-primary" style="margin-left:1rem;" />
             </div>
         </div>
     </section>

@@ -17,16 +17,25 @@ namespace BRBPortal_CSharp
             var user = Master.User;
             var provider = Master.DataProvider;
 
+            this.PaymentAmount = 0;
             this.BillingCode = user.BillingCode;
-            this.PaymentAmount = user.Cart.PaymentAmount;
+
+            foreach (var item in user.Cart.Items)
+            {
+                this.PaymentAmount += item.Balance;
+            }
+
 #if DEBUG
             if (this.PaymentAmount == 0)
             {
                 this.PaymentAmount = 10.0M;
             }
 #endif
+            litPaymentAmount.Text = this.PaymentAmount.ToString("C");
+
             if (!IsPostBack)
             {
+                FeeOption.Text = user.FeeOption;
                 gvCart.DataSource = provider.ConvertToDataTable<BRBCartItem>(user.Cart.Items);
                 gvCart.DataBind();
             }
@@ -47,8 +56,12 @@ namespace BRBPortal_CSharp
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 decimal value;
-                var colIndex = e.Row.GetColumnIndexByName("Balance");
-                string txtBalance = e.Row.Cells[colIndex].Text.Replace("$", "");
+                string txtBalance = e.Row.Cells[e.Row.GetColumnIndexByName("Balance")].Text.Replace("$", "");
+
+                if (txtBalance.Contains("("))
+                {
+                    txtBalance = txtBalance.Replace("(", "-").Replace(")", "");
+                }
 
                 if (Decimal.TryParse(txtBalance, out value))
                 {
@@ -75,9 +88,6 @@ namespace BRBPortal_CSharp
 
                 if (provider.SaveCart(user))
                 {
-#if DEBUG
-                    user.Cart.ID = "1234";
-#endif
                     if (!string.IsNullOrEmpty(user.Cart.ID))
                     {
                         this.CartID = user.Cart.ID;

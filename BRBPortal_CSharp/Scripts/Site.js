@@ -21,10 +21,11 @@ function showErrorModal(message, title, delay) {
 
 function submitPaymentForm(cartID) {
     $(document).ready(function () {
+        $('.aspNetHidden input').remove();  // delete ASP.NET generated fields
+
         $('#aspForm') // hijack the asp.net form
             .prop('action', 'https://staging.officialpayments.com/pc_entry_cobrand.jsp')
-            .find('input[name="cde-Cart-17"]').val(cartID)
-            .find('.aspNetHidden').remove(); // delete ASP.NET generated fields
+            .find('input[name="cde-Cart-17"]').val(cartID);
 
         setTimeout(function () {
             $('#aspForm').submit();

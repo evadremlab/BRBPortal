@@ -13,6 +13,15 @@ namespace BRBPortal_CSharp {
     public partial class EditCart {
         
         /// <summary>
+        /// hdnFeeOption control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnFeeOption;
+        
+        /// <summary>
         /// gvCart control.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,13 @@ namespace BRBPortal_CSharp {
         protected global::System.Web.UI.WebControls.GridView gvCart;
         
         /// <summary>
-        /// ShowFeesAll control.
+        /// FeeOption control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ShowFeesAll;
+        protected global::System.Web.UI.WebControls.RadioButtonList FeeOption;
         
         /// <summary>
         /// btnBack control.
@@ -38,6 +47,15 @@ namespace BRBPortal_CSharp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
+        
+        /// <summary>
+        /// btnUpdateCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateCart;
         
         /// <summary>
         /// Master property.

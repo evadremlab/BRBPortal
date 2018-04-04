@@ -59,7 +59,7 @@
             </div>
 
             <div class="form-group">
-                <asp:Literal ID="ShowFeesAll" runat="server" ></asp:Literal>
+                <asp:Literal ID="FeeOption" runat="server" ></asp:Literal>
             </div>
 
             <div class="form-group">

@@ -5,6 +5,8 @@
     <h2><%: Title %></h2>
     <hr />
 
+    <asp:HiddenField ID="hdnFeeOption" runat="server" />
+
     <section id="cartForm">
         <div class="form-horizontal">
             <div class="form-group">
@@ -61,15 +63,19 @@
             </div>
 
             <div class="form-group">
-                <asp:Literal ID="ShowFeesAll" runat="server" ></asp:Literal>
+                <div class="radio radiobuttonlist" style="padding-top:0; padding-left:0;">
+                    <asp:Radiobuttonlist ID="FeeOption" runat="server" RepeatDirection="Horizontal" CellPadding="5" 
+                        ToolTip="Check Fees Only for all Current and Prior fees. Check All to include all Fees and Penalties." 
+                        OnSelectedIndexChanged="FeeOption_SelectedIndexChanged" AutoPostBack="true">
+                        <asp:ListItem Enabled="true" Text="Fees Only" Value="Fees Only"></asp:ListItem>
+                        <asp:ListItem Enabled="true" Text="All Fees and Penalties" Value="All Fees and Penalties"></asp:ListItem>
+                    </asp:Radiobuttonlist>
+                </div>
             </div>
 
             <div class="form-group">
-                Save button and Fees radio selections are Under Construction
-            </div>
-
-            <div class="form-group">
-                <asp:Button runat="server" id="btnBack" PostBackUrl="~/Cart.aspx" CausesValidation="false" Text="Back" CssClass="btn btn-sm btn-default" ToolTip="Cancel any changes to this cart." TabIndex="-1" />
+                <asp:Button runat="server" id="btnBack" PostBackUrl="~/Cart.aspx" CausesValidation="false" Text="Cancel" CssClass="btn btn-sm btn-default" ToolTip="Cancel any changes to this cart." TabIndex="-1" />
+                <asp:Button runat="server" id="btnUpdateCart" OnClick="UpdateCart_Click" Text="Save Changes" CssClass="btn btn-sm btn-primary" ToolTip="Save any changes to this cart." style="margin-left:1rem;" />
             </div>
         </div>
     </section>

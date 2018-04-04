@@ -71,7 +71,7 @@ namespace BRBPortal_CSharp.Models
         public BRBUnit CurrentUnit { get; set; }
         public BRBProperty CurrentProperty { get; set; }
 
-        public string FeesAll { get; set; } = "";
+        public string FeeOption { get; set; } = "";
         public BRBCart Cart { get; set; } = new BRBCart();
         public List<BRBProperty> Properties { get; set; } = new List<BRBProperty>();
     }
