@@ -73,7 +73,7 @@ namespace BRBPortal_CSharp.MyProperties
 
                     if (unit.UnitStatusAsOfDate.HasValue)
                     {
-                        litUnitStatusAsOfDate.Text = unit.UnitStatusAsOfDate.Value.ConvertForLiteral();
+                        litUnitStatusAsOfDate.Text = unit.UnitStatusAsOfDate.Value.AsShortDateFormat();
                     }
                 }
                 else

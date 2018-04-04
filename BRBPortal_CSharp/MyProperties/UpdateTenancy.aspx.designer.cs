@@ -103,6 +103,42 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.TextBox InitRent;
         
         /// <summary>
+        /// PTenDt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PTenDt;
+        
+        /// <summary>
+        /// TermReas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TermReas;
+        
+        /// <summary>
+        /// ExplainOtherTermination control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExplainOtherTermination;
+        
+        /// <summary>
+        /// TermDescr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TermDescr;
+        
+        /// <summary>
         /// TenStDt control.
         /// </summary>
         /// <remarks>
@@ -164,42 +200,6 @@ namespace BRBPortal_CSharp.MyProperties {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox SmokeDt;
-        
-        /// <summary>
-        /// PTenDt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PTenDt;
-        
-        /// <summary>
-        /// TermReas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TermReas;
-        
-        /// <summary>
-        /// ExplainOtherTermination control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExplainOtherTermination;
-        
-        /// <summary>
-        /// TermDescr control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TermDescr;
         
         /// <summary>
         /// chkDeclare control.

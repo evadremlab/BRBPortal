@@ -35,7 +35,7 @@ namespace BRBPortal_CSharp.MyProperties
 
                     if (unit.TenancyStartDate.HasValue)
                     {
-                        TenStDt.Text = unit.TenancyStartDate.Value.ConvertForLiteral();
+                        TenStDt.Text = unit.TenancyStartDate.Value.AsShortDateFormat();
                     }
 
                     NumTenants.Text = unit.TenantCount.ToString();
@@ -43,14 +43,14 @@ namespace BRBPortal_CSharp.MyProperties
 
                     if (unit.SmokingProhibitionEffectiveDate.HasValue)
                     {
-                        SmokDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ConvertForLiteral();
+                        SmokDt.Text = unit.SmokingProhibitionEffectiveDate.Value.AsShortDateFormat();
                     }
 
                     InitRent.Text = unit.InitialRent;
 
                     if (unit.DatePriorTenancyEnded.HasValue)
                     {
-                        PriorEndDt.Text = unit.DatePriorTenancyEnded.Value.ConvertForLiteral();
+                        PriorEndDt.Text = unit.DatePriorTenancyEnded.Value.AsShortDateFormat();
                     }
 
                     TermReason.Text = unit.ReasonPriorTenancyEnded;

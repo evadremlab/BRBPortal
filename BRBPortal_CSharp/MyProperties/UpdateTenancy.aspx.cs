@@ -47,7 +47,7 @@ namespace BRBPortal_CSharp.MyProperties
 
                 if (unit.TenancyStartDate.HasValue)
                 {
-                    TenStDt.Text = unit.TenancyStartDate.Value.ConvertForDatePicker();
+                    TenStDt.Text = unit.TenancyStartDate.Value.AsDatePickerFormat();
                 }
 
                 var otherServices = new List<string>();
@@ -75,12 +75,12 @@ namespace BRBPortal_CSharp.MyProperties
 
                 if (unit.SmokingProhibitionEffectiveDate.HasValue)
                 {
-                    SmokeDt.Text = unit.SmokingProhibitionEffectiveDate.Value.ConvertForDatePicker();
+                    SmokeDt.Text = unit.SmokingProhibitionEffectiveDate.Value.AsDatePickerFormat();
                 }
 
                 if (unit.DatePriorTenancyEnded.HasValue)
                 {
-                    PTenDt.Text = unit.DatePriorTenancyEnded.Value.ConvertForDatePicker();
+                    PTenDt.Text = unit.DatePriorTenancyEnded.Value.AsDatePickerFormat();
                 }
 
                 if (!string.IsNullOrEmpty(unit.ReasonPriorTenancyEnded))

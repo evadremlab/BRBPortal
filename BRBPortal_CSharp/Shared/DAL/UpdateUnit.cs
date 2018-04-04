@@ -38,7 +38,7 @@ namespace BRBPortal_CSharp.DAL
 
                 if (unit.StartDate.HasValue)
                 {
-                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", unit.StartDate.Value.ConvertForAPI());
+                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", unit.StartDate.Value.AsShortDateFormat());
                 }
                 else
                 {
@@ -47,11 +47,11 @@ namespace BRBPortal_CSharp.DAL
 
                 if (unit.AsOfDate.HasValue)
                 {
-                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", unit.AsOfDate.Value.ConvertForAPI());
+                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", unit.AsOfDate.Value.AsShortDateFormat());
                 }
                 else
                 {
-                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", DateTime.Now.ConvertForAPI());
+                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", DateTime.Now.AsShortDateFormat());
                 }
 
                 soapRequest.Body.AppendFormat("<!--Optional:--><occupiedBy>{0}</occupiedBy>", unit.OccupiedBy);

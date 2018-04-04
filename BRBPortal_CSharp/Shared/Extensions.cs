@@ -69,17 +69,12 @@ namespace BRBPortal_CSharp
             return (long)Math.Floor(diff.TotalSeconds);
         }
 
-        public static string ConvertForAPI(this DateTime datetime)
+        public static string AsShortDateFormat(this DateTime datetime)
         {
             return datetime.ToString("MM/dd/yyyy");
         }
 
-        public static string ConvertForLiteral(this DateTime datetime)
-        {
-            return datetime.ToString("MM/dd/yyyy");
-        }
-
-        public static string ConvertForDatePicker(this DateTime datetime)
+        public static string AsDatePickerFormat(this DateTime datetime)
         {
             return datetime.ToString("yyyy-MM-dd");
         }

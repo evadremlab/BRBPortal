@@ -5,26 +5,26 @@
       <unitTenancyUpdateReq>
         <userId>DAVE02</userId>
         <propertyId>1968</propertyId>
-        <unitId>7774</unitId>
+        <unitId>7773</unitId>
         <unitStatus>Rented</unitStatus>
-        <initialRent>123.45</initialRent>
-        <tenancyStartDate>04/02/2018</tenancyStartDate>
-        <priorTenancyEndDate>12/31/2017</priorTenancyEndDate>
+        <initialRent>1234.56</initialRent>
+        <tenancyStartDate>04/01/2018</tenancyStartDate>
+        <priorTenancyEndDate>03/31/2018</priorTenancyEndDate>
         <!--Zero or more repetitions:-->
         <housingServices>
           <serviceName>Storage</serviceName>
         </housingServices>
         <housingServices>
-          <serviceName>Gas</serviceName>
+          <serviceName>Garbage</serviceName>
         </housingServices>
         <housingServices>
-          <serviceName>Water</serviceName>
+          <serviceName>Laundry Access</serviceName>
         </housingServices>
         <!--Optional:-->
         <otherHousingService></otherHousingService>
-        <noOfTenants>2</noOfTenants>
+        <noOfTenants>1</noOfTenants>
         <smokingProhibitionInLeaseStatus>Yes</smokingProhibitionInLeaseStatus>
-        <smokingProhibitionEffectiveDate>09/22/2014</smokingProhibitionEffectiveDate>
+        <smokingProhibitionEffectiveDate>04/01/2018</smokingProhibitionEffectiveDate>
         <reasonForTermination>1</reasonForTermination>
         <otherReasonForTermination></otherReasonForTermination>
         <!--Optional:-->
@@ -33,26 +33,10 @@
         <tenants>
           <code></code>
           <name>
-            <first>BRIDGET</first>
+            <first>DAVE</first>
             <!--Optional:-->
             <middle></middle>
-            <last>HARRIS</last>
-            <suffix></suffix>
-            <!--Optional:-->
-            <nameLastFirstDisplay></nameLastFirstDisplay>
-            <!--Optional:-->
-            <agencyName></agencyName>
-          </name>
-          <phoneNumber>805-796-9960</phoneNumber>
-          <emailAddress>bridgetharris@gmail.com</emailAddress>
-        </tenants>
-        <tenants>
-          <code></code>
-          <name>
-            <first>BALMER</first>
-            <!--Optional:-->
-            <middle></middle>
-            <last>DAVE</last>
+            <last>BALMER</last>
             <suffix></suffix>
             <!--Optional:-->
             <nameLastFirstDisplay></nameLastFirstDisplay>
@@ -60,7 +44,7 @@
             <agencyName></agencyName>
           </name>
           <phoneNumber>555-555-5555</phoneNumber>
-          <emailAddress>me@home.com</emailAddress>
+          <emailAddress>david.b.balmer@transsight.com</emailAddress>
         </tenants>
         <declarationInitial>dbb</declarationInitial>
       </unitTenancyUpdateReq>

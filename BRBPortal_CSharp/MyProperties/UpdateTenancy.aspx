@@ -52,6 +52,30 @@
                 </div>
             </div>
             <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="PTenDt" CssClass="col-md-2 control-label">Prior Tenancy End Date:&nbsp;</asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="PTenDt" TextMode="Date" ToolTip="Enter the Prior Tenancy Date." CssClass="form-control" style="width:16rem;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="TermReas" CssClass="col-md-2 control-label">Reason for Termination:&nbsp;</asp:Label>
+                <div class="col-md-10" style="max-width:24.5rem;">
+                    <asp:DropDownList runat="server" ID="TermReas" ToolTip="Select a termination reason." CssClass="form-control selectpicker">
+                        <asp:ListItem Enabled="false" Text="select one" Value=""></asp:ListItem>
+                        <asp:ListItem enabled="true" text="Voluntary Vacancy" value="1"></asp:ListItem>
+                        <asp:ListItem enabled="true" text="Landlord move in" value="2"></asp:ListItem>
+                        <asp:ListItem enabled="true" text="Non-payment of rent" value="3"></asp:ListItem>
+                        <asp:ListItem enabled="true" text="Other" value="4"></asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <div id="ExplainOtherTermination" runat="server" class="form-group">
+                <asp:Label runat="server" AssociatedControlID="TermDescr" CssClass="col-md-2 control-label">Explain Involuntary termination:</asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="TermDescr" TextMode="MultiLine" MaxLength="200" CssClass="form-control" style="width:80rem; height:5.5rem;"  ToolTip="Enter the termination explaination." />
+                </div>
+            </div>
+            <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="TenStDt" CssClass="col-md-2 control-label">Tenancy Start Date:</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="TenStDt" CssClass="form-control" TextMode="Date" style="width:16rem;"></asp:TextBox>
@@ -95,30 +119,6 @@
                 <asp:Label runat="server" AssociatedControlID="SmokeDt" CssClass="col-md-2 control-label">Effective date of prohibition on smoking:</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="SmokeDt" TextMode="Date" CssClass="form-control" style="width:16rem; margin-top:1rem;"></asp:TextBox>
-                </div>
-            </div>
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="PTenDt" CssClass="col-md-2 control-label">Prior Tenancy End Date:&nbsp;</asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="PTenDt" TextMode="Date" ToolTip="Enter the Prior Tenancy Date." CssClass="form-control" style="width:16rem;" />
-                </div>
-            </div>
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="TermReas" CssClass="col-md-2 control-label">Reason for Termination:&nbsp;</asp:Label>
-                <div class="col-md-10" style="max-width:24.5rem;">
-                    <asp:DropDownList runat="server" ID="TermReas" ToolTip="Select a termination reason." CssClass="form-control selectpicker">
-                        <asp:ListItem Enabled="false" Text="select one" Value=""></asp:ListItem>
-                        <asp:ListItem enabled="true" text="Voluntary Vacancy" value="1"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="Landlord move in" value="2"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="Non-payment of rent" value="3"></asp:ListItem>
-                        <asp:ListItem enabled="true" text="Other" value="4"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
-            </div>
-            <div id="ExplainOtherTermination" runat="server" class="form-group">
-                <asp:Label runat="server" AssociatedControlID="TermDescr" CssClass="col-md-2 control-label">Explain Involuntary termination:</asp:Label>
-                <div class="col-md-10">
-                    <asp:TextBox runat="server" ID="TermDescr" TextMode="MultiLine" MaxLength="200" CssClass="form-control" style="width:80rem; height:5.5rem;"  ToolTip="Enter the termination explaination." />
                 </div>
             </div>
             
@@ -216,6 +216,10 @@
                 $('#<%:hdnDelimitedTenants.ClientID%>').val(tenants.join('|'));
                 $('#<%:hdnRemovedTenantIDs.ClientID%>').val(removedTenantIDs.join(','));
 
+                if (tenants.length === 0) {
+                    addValError('At least one tenant is required.');
+                }
+
                 for (var i = 0; i < 10; i++) {
                     if ($('#MainContent_HServs_' + i).is(':checked')) {
                         housingServices++;
@@ -223,7 +227,7 @@
                 }
 
                 if (housingServices === 0) {
-                    addValError('Some Housing Services must be selected');
+                    addValError('Some Housing Services must be selected.');
                 }
 
                 if ($('#<%:InitRent.ClientID%>').val() === '') {

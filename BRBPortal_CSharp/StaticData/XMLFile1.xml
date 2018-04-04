@@ -1,52 +1,101 @@
-﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
-  <soapenv:Header/>
+﻿<?xml version='1.0' encoding='utf-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
   <soapenv:Body>
-    <api:updateUnitStatusChange>
-      <unitStatusChangeReq>
-        <userId>DAVE02</userId>
+    <ser-root:getPropertyAndUnitDetailsResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <propertyAndUnitsRes>
         <propertyId>1968</propertyId>
-        <unitId>30633</unitId>
-        <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
-        <unitStatus>Exempt</unitStatus>
-        <!--Optional:-->
-        <exemptionReason>Commercial Use</exemptionReason>
-        <declarationInitial>dbb</declarationInitial>
-        <questions>
-          <!--Optional:-->
-          <dateStarted>04/04/2018</dateStarted>
-          <!--Optional:-->
-          <asOfDate>04/04/2018</asOfDate>
-          <!--Optional:-->
-          <occupiedBy></occupiedBy>
-          <!--Optional:-->
-          <contractNo></contractNo>
-          <!--Optional:-->
-          <commeUseDesc>something</commeUseDesc>
-          <!--Optional:-->
-          <isCommeUseZoned></isCommeUseZoned>
-          <!--Optional:-->
-          <isExclusivelyForCommeUse>No</isExclusivelyForCommeUse>
-          <!--Optional:-->
-          <_x0035_0PercentAsOf31Dec1979></_x0035_0PercentAsOf31Dec1979>
-          <!--Optional:-->
-          <ownerOccupantName></ownerOccupantName>
-          <!--Zero or more repetitions:-->
-          <namesOfownersOfRecord></namesOfownersOfRecord>
-          <!--Optional:-->
-          <nameOfPropertyManagerResiding></nameOfPropertyManagerResiding>
-          <!--Optional:-->
-          <emailOfPhoneOfPropertyManagerResiding></emailOfPhoneOfPropertyManagerResiding>
-          <!--Optional:-->
-          <IsOwnersPrinciplePlaceOfResidence></IsOwnersPrinciplePlaceOfResidence>
-          <!--Optional:-->
-          <doesOwnerResideInOtherUnitOfThisUnitProperty></doesOwnerResideInOtherUnitOfThisUnitProperty>
-          <!--Zero or more repetitions:-->
-          <tenantsAndContactInfo>
-            <name></name>
-            <contactInfo></contactInfo>
-          </tenantsAndContactInfo>
-        </questions>
-      </unitStatusChangeReq>
-    </api:updateUnitStatusChange>
+        <address>
+          <mainStreetAddress>2336 CURTIS ST</mainStreetAddress>
+        </address>
+        <ownerContactName>
+          <first>ALLISON</first>
+          <last>PRETTO</last>
+          <nameLastFirstDisplay>PRETTO, ALLISON</nameLastFirstDisplay>
+        </ownerContactName>
+        <billingDetails>
+          <contact>
+            <code>LIUHEL</code>
+            <name>
+              <first>ALLISON</first>
+              <last>PRETTO</last>
+              <nameLastFirstDisplay>PRETTO, ALLISON</nameLastFirstDisplay>
+            </name>
+            <phoneNumber>415-370-0006</phoneNumber>
+            <emailAddress>HELLENMCLean@GMAIL.COM</emailAddress>
+          </contact>
+          <billingAddress>
+            <mainStreetAddress>666 MAIN ST, BERKELEY, CA, USA, 94704</mainStreetAddress>
+          </billingAddress>
+          <balanceAmounts>
+            <currentFees>3410.00</currentFees>
+            <priorFees>4917.00</priorFees>
+            <currentPenalty>5940.00</currentPenalty>
+            <priorPenalties>9834.00</priorPenalties>
+            <credit>0.00</credit>
+            <totalBalance>24101.00</totalBalance>
+          </balanceAmounts>
+        </billingDetails>
+        <units>
+          <unitId>7773</unitId>
+          <unitNumber>A</unitNumber>
+          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
+          <unitStatusId>1</unitStatusId>
+          <unitStatusCode>RENTED</unitStatusCode>
+          <rentCeiling>1234.56</rentCeiling>
+          <unitStatusAsOfDate>2018-04-04</unitStatusAsOfDate>
+          <housingServices>
+            <serviceId>10</serviceId>
+            <serviceName>Garbage</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>9</serviceId>
+            <serviceName>Laundry Access</serviceName>
+          </housingServices>
+          <housingServices>
+            <serviceId>6</serviceId>
+            <serviceName>Storage</serviceName>
+          </housingServices>
+          <occupancy xsi:nil="true" />
+        </units>
+        <units>
+          <unitId>7774</unitId>
+          <unitNumber>B</unitNumber>
+          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
+          <unitStatusId>1</unitStatusId>
+          <unitStatusCode>RENTED</unitStatusCode>
+          <rentCeiling>1234.56</rentCeiling>
+          <unitStatusAsOfDate>2018-04-04</unitStatusAsOfDate>
+          <occupancy xsi:nil="true" />
+        </units>
+        <units>
+          <unitId>30632</unitId>
+          <unitNumber>C</unitNumber>
+          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Rented</clientPortalUnitStatusCode>
+          <unitStatusId>1</unitStatusId>
+          <unitStatusCode>RENTED</unitStatusCode>
+          <rentCeiling>991.92</rentCeiling>
+          <unitStatusAsOfDate>2018-04-04</unitStatusAsOfDate>
+          <occupancy xsi:nil="true" />
+        </units>
+        <units>
+          <unitId>30633</unitId>
+          <unitNumber>D</unitNumber>
+          <unitStreetAddress>2336 CURTIS ST</unitStreetAddress>
+          <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
+          <unitStatusId>21</unitStatusId>
+          <unitStatusCode>COMM</unitStatusCode>
+          <rentCeiling>1293.81</rentCeiling>
+          <unitStatusAsOfDate>2018-04-04</unitStatusAsOfDate>
+          <occupancy xsi:nil="true" />
+        </units>
+      </propertyAndUnitsRes>
+      <response>
+        <status>SUCCESS</status>
+        <errorMsg>Property Id matched for the User Id.</errorMsg>
+      </response>
+    </ser-root:getPropertyAndUnitDetailsResponse>
   </soapenv:Body>
 </soapenv:Envelope>
