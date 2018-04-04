@@ -12,7 +12,6 @@ namespace BRBPortal_CSharp.Models
         public string StreetAddress { get; set; } = "";
         public string ClientPortalUnitStatusCode { get; set; } = "";
         public decimal RentCeiling { get; set; }
-        public DateTime? UnitStatusAsOfDate { get; set; }
         public string HServices { get; set; } = "";
         public string OtherHServices { get; set; } = "";
         public string CPUnitStatDisp { get; set; } = "";
@@ -40,7 +39,14 @@ namespace BRBPortal_CSharp.Models
         public string DeclarationInitials { get; set; }
         public string TenantNames { get; set; }
         public string TenantContacts { get; set; }
-        public DateTime? TenancyStartDate { get; set; }
+
+        // Rented
+
+        public DateTime? TenancyStartDate { get; set; } // for display
+
+        // Exempt
+        public DateTime? UnitStatusAsOfDate { get; set; } // Vacant and not available for rent
+        public DateTime? StartDate { get; set; } // Owner-Occupied, Section 8, Occupied Rent Free, Other
 
         public List<BRBTenant> Tenants { get; set; } = new List<BRBTenant>();
 
@@ -49,6 +55,14 @@ namespace BRBPortal_CSharp.Models
             get
             {
                 return this.ClientPortalUnitStatusCode.ToUpper() == "RENTED";
+            }
+        }
+
+        public bool IsExempt
+        {
+            get
+            {
+                return this.IsRented == false;
             }
         }
     }

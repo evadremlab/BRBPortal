@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        html, body { height: 101%; } /* always show scrollbar so the controls don't jump when hiding/showing fields */
+        html, body { height: 101%; } /* always show scrollbar so the controls don't shift when hiding/showing fields */
     </style>
 
     <asp:HiddenField ID="hdnPostback" runat="server" />
@@ -11,7 +11,7 @@
     <asp:HiddenField ID="hdnExemptReas" runat="server" />
 
     <h2><%: Title %></h2>
-    <h4>at <asp:Literal ID="MainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="UnitNo" runat="server" ></asp:Literal></h4>
+    <h4>at <asp:Literal ID="litMainAddress" runat="server"></asp:Literal>, Unit # <asp:Literal ID="litUnitNo" runat="server" ></asp:Literal></h4>
     <hr />
 
     <section id="updateUnitStatus">
@@ -24,14 +24,14 @@
                         <asp:Literal ID="litUnitStatus" runat="server"></asp:Literal>
                         <br />
                         <div id="CurrentRental" runat="server">
-                            <asp:Label runat="server" AssociatedControlID="litTenancyStartDate" CssClass="control-label">As of Date:&nbsp;</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="litTenancyStartDate" CssClass="control-label">Current Unit Status Date:&nbsp;</asp:Label>
                             <asp:Literal ID="litTenancyStartDate" runat="server"></asp:Literal>
                             <br />
                             <asp:Label runat="server" AssociatedControlID="litUnitOccBy" CssClass="control-label">Occupied By:&nbsp;</asp:Label>
                             <asp:Literal ID="litUnitOccBy" runat="server"></asp:Literal>
                         </div>
                         <div id="CurrentExemption" runat="server">
-                            <asp:Label runat="server" AssociatedControlID="litUnitStatusAsOfDate" CssClass="control-label">As of Date:&nbsp;</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="litUnitStatusAsOfDate" CssClass="control-label">Current Unit Status Date:&nbsp;</asp:Label>
                             <asp:Literal ID="litUnitStatusAsOfDate" runat="server"></asp:Literal>
                             <br />
                             <asp:Label runat="server" AssociatedControlID="litExemptReas" CssClass="control-label">Exemption Reason:&nbsp;</asp:Label>
@@ -77,6 +77,7 @@
                                     </asp:RadioButtonList>
                                     <div runat="server" id="OtherListContainer">
                                         <asp:dropdownlist runat="server" ID="OtherList" RepeatDirection="Vertical" ToolTip="Select a reason from the list (optional)." CssClass="form-control selectpicker" style="width:auto;">
+                                            <asp:ListItem Enabled="false" Text="select one" Value=""></asp:ListItem>
                                             <asp:ListItem enabled="true" text="Commercial Use" value="COMM"></asp:ListItem>
                                             <asp:ListItem enabled="true" text="Property Manager's Unit" value="MISC"></asp:ListItem>
                                             <asp:ListItem enabled="true" text="Owner shares kitchen & bath with tenant" value="SHARED"></asp:ListItem>
@@ -363,131 +364,152 @@
         function setExemptReasonFields(evt) {
             switch ($('#MainContent_ExemptReason input:checked').val()) {
                 case "NAR": // Vacant and not available for rent
-                    $('#MainContent_CommUseGrp').addClass('hidden');
-                    $('#MainContent_PMUnitGrp').addClass('hidden');
-                    $('#MainContent_OwnerShrGrp').addClass('hidden');
-                    $('#MainContent_AsOfDtGrp').removeClass('hidden');
-                    $('#MainContent_DtStrtdGrp').addClass('hidden');
-                    $('#MainContent_OccByGrp').addClass('hidden');
-                    $('#MainContent_ContractGrp').addClass('hidden');
-                    $('#MainContent_OtherListContainer').addClass('hidden');
+                    $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_PMUnitGrp').hide();
+                    $('#MainContent_OwnerShrGrp').hide();
+                    $('#MainContent_AsOfDtGrp').show();
+                    $('#MainContent_DtStrtdGrp').hide();
+                    $('#MainContent_OccByGrp').hide();
+                    $('#MainContent_ContractGrp').hide();
+                    $('#MainContent_OtherListContainer').hide();
                     if (evt) {
                         $('#MainContent_OtherList').val('');
                     }
                     break;
                 case "OOCC": // Owner-Occupied
-                    $('#MainContent_CommUseGrp').addClass('hidden');
-                    $('#MainContent_PMUnitGrp').addClass('hidden');
-                    $('#MainContent_OwnerShrGrp').addClass('hidden');
-                    $('#MainContent_AsOfDtGrp').addClass('hidden');
-                    $('#MainContent_DtStrtdGrp').removeClass('hidden');
-                    $('#MainContent_OccByGrp').removeClass('hidden');
-                    $('#MainContent_ContractGrp').addClass('hidden');
-                    $('#MainContent_OtherListContainer').addClass('hidden');
+                    $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_PMUnitGrp').hide();
+                    $('#MainContent_OwnerShrGrp').hide();
+                    $('#MainContent_AsOfDtGrp').hide();
+                    $('#MainContent_DtStrtdGrp').show();
+                    $('#MainContent_OccByGrp').show();
+                    $('#MainContent_ContractGrp').hide();
+                    $('#MainContent_OtherListContainer').hide();
                     if (evt) {
                         $('#MainContent_OtherList').val('');
                     }
                     break;
                 case "SEC8": // Section 8
-                    $('#MainContent_CommUseGrp').addClass('hidden');
-                    $('#MainContent_PMUnitGrp').addClass('hidden');
-                    $('#MainContent_OwnerShrGrp').addClass('hidden');
-                    $('#MainContent_AsOfDtGrp').addClass('hidden');
-                    $('#MainContent_DtStrtdGrp').removeClass('hidden');
-                    $('#MainContent_OccByGrp').addClass('hidden');
-                    $('#MainContent_ContractGrp').removeClass('hidden');
-                    $('#MainContent_OtherListContainer').addClass('hidden');
+                    $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_PMUnitGrp').hide();
+                    $('#MainContent_OwnerShrGrp').hide();
+                    $('#MainContent_AsOfDtGrp').hide();
+                    $('#MainContent_DtStrtdGrp').show();
+                    $('#MainContent_OccByGrp').hide();
+                    $('#MainContent_ContractGrp').show();
+                    $('#MainContent_OtherListContainer').hide();
                     if (evt) {
                         $('#MainContent_OtherList').val('');
                     }
                     break;
                 case "FREE": // Occupied Rent Free
-                    $('#MainContent_CommUseGrp').addClass('hidden');
-                    $('#MainContent_PMUnitGrp').addClass('hidden');
-                    $('#MainContent_OwnerShrGrp').addClass('hidden');
-                    $('#MainContent_AsOfDtGrp').addClass('hidden');
-                    $('#MainContent_DtStrtdGrp').removeClass('hidden');
-                    $('#MainContent_OccByGrp').removeClass('hidden');
-                    $('#MainContent_ContractGrp').addClass('hidden');
-                    $('#MainContent_OtherListContainer').addClass('hidden');
+                    $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_PMUnitGrp').hide();
+                    $('#MainContent_OwnerShrGrp').hide();
+                    $('#MainContent_AsOfDtGrp').hide();
+                    $('#MainContent_DtStrtdGrp').show();
+                    $('#MainContent_OccByGrp').show();
+                    $('#MainContent_ContractGrp').hide();
+                    $('#MainContent_OtherListContainer').hide();
                     if (evt) {
                         $('#MainContent_OtherList').val('');
                     }
                     break;
                 case "OTHER":
-                    $('#MainContent_CommUseGrp').addClass('hidden');
-                    $('#MainContent_PMUnitGrp').addClass('hidden');
-                    $('#MainContent_OwnerShrGrp').addClass('hidden');
-                    $('#MainContent_AsOfDtGrp').addClass('hidden');
-                    $('#MainContent_DtStrtdGrp').addClass('hidden');
-                    $('#MainContent_OccByGrp').addClass('hidden');
-                    $('#MainContent_ContractGrp').addClass('hidden');
-                    $('#MainContent_OtherListContainer').removeClass('hidden');
+                    $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_PMUnitGrp').hide();
+                    $('#MainContent_OwnerShrGrp').hide();
+                    $('#MainContent_AsOfDtGrp').hide();
+                    $('#MainContent_DtStrtdGrp').hide();
+                    $('#MainContent_OccByGrp').hide();
+                    $('#MainContent_ContractGrp').hide();
+                    $('#MainContent_OtherListContainer').show();
                     if (evt) {
                         $('#MainContent_OtherList').val('');
                     }
+                    break;
+                default:
+                    $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_PMUnitGrp').hide();
+                    $('#MainContent_OwnerShrGrp').hide();
+                    $('#MainContent_AsOfDtGrp').hide();
+                    $('#MainContent_DtStrtdGrp').hide();
+                    $('#MainContent_OccByGrp').hide();
+                    $('#MainContent_ContractGrp').hide();
+                    $('#MainContent_OtherListContainer').hide();
                     break;
             }
         }
 
         function setNewUnitfields(evt) {
+            var isRented = $('#MainContent_NewUnit input:checked').val().toUpperCase() === 'RENTED';
+
             if (evt) { // from actual click, not postback
                 $('#MainContent_UnitAsOfDt').val('');
             }
 
-            if ($('#MainContent_NewUnit input:checked').val().toUpperCase() === 'RENTED') {
-                $('#MainContent_ExemptGroup').addClass('hidden');
-                $('#MainContent_ExemptReason').addClass('hidden');
-                $('#MainContent_OtherListContainer').addClass('hidden');
+            if (isRented) {
+                $('#MainContent_ExemptGroup').hide();
+                $('#MainContent_ExemptReason').hide();
+                $('#MainContent_OtherListContainer').hide();
                 if (evt) {
                     $('#MainContent_ExemptReason').val('');
                     $('#MainContent_OtherList').val('');
                 }
-                $('#MainContent_AsOfDtGrp').removeClass('hidden');
+                $('#MainContent_AsOfDtGrp').show();
             } else {
-                $('#MainContent_ExemptGroup').removeClass('hidden');
-                $('#MainContent_ExemptReason').removeClass('hidden');
-                //$('#MainContent_OtherListContainer').removeClass('hidden');
+                $('#MainContent_ExemptGroup').show();
+                $('#MainContent_ExemptReason').show();
                 if (evt) {
                     $('#MainContent_ExemptReason').val('');
                     $('#MainContent_OtherList').val('');
                 }
-                $('#MainContent_AsOfDtGrp').addClass('hidden');
+                $('#MainContent_AsOfDtGrp').hide();
             }
 
-            setExemptReasonFields();
+            if (!isRented) {
+                setTimeout(setExemptReasonFields, 10);
+            }
         }
 
         function otherListChanged() {
             switch ($('#MainContent_OtherList').selectpicker('val')) {
                 case "COMM": // Commercial Use
-                    $('#MainContent_CommUseGrp').removeClass('hidden'); // Visible = True
-                    $('#MainContent_DtStrtdGrp').removeClass('hidden'); // Visible = True
-                    $('#MainContent_ContractGrp').addClass('hidden');   // Visible = False
-                    $('#MainContent_PMUnitGrp').addClass('hidden');     // Visible = False
-                    $('#MainContent_OwnerShrGrp').addClass('hidden');   // Visible = False
+                    console.log('show(1)')
+                    $('#MainContent_CommUseGrp').show();
+                    $('#MainContent_DtStrtdGrp').show();
+                    $('#MainContent_ContractGrp').hide();
+                    $('#MainContent_PMUnitGrp').hide();
+                    $('#MainContent_OwnerShrGrp').hide();
                     break;
                 case "MISC": // Property Managers Unit
-                    $('#MainContent_CommUseGrp').addClass('hidden');    // Visible = False
-                    $('#MainContent_DtStrtdGrp').removeClass('hidden'); // Visible = True
-                    $('#MainContent_ContractGrp').addClass('hidden');   // Visible = False
-                    $('#MainContent_PMUnitGrp').removeClass('hidden');  // Visible = True
-                    $('#MainContent_OwnerShrGrp').addClass('hidden');   // Visible = False
+                    $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_DtStrtdGrp').show();
+                    $('#MainContent_ContractGrp').hide();
+                    $('#MainContent_PMUnitGrp').show();
+                    $('#MainContent_OwnerShrGrp').hide();
                     break;
                 case "SHARED": // Owner share kitchen & bath with tenant
-                    $('#MainContent_CommUseGrp').addClass('hidden');    // Visible = False
-                    $('#MainContent_DtStrtdGrp').removeClass('hidden'); // Visible = True
-                    $('#MainContent_ContractGrp').addClass('hidden');   // Visible = False
-                    $('#MainContent_PMUnitGrp').addClass('hidden');     // Visible = False
-                    $('#MainContent_OwnerShrGrp').removeClass('hidden');// Visible = True
+                    $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_DtStrtdGrp').show();
+                    $('#MainContent_ContractGrp').hide();
+                    $('#MainContent_PMUnitGrp').hide();
+                    $('#MainContent_OwnerShrGrp').show();
                     break;
                 case "SPLUS": // Shelter plus care
-                    $('#MainContent_CommUseGrp').addClass('hidden');    // Visible = False
-                    $('#MainContent_DtStrtdGrp').removeClass('hidden'); // Visible = True
-                    $('#MainContent_ContractGrp').removeClass('hidden');// Visible = True
-                    $('#MainContent_PMUnitGrp').addClass('hidden');     // Visible = False
-                    $('#MainContent_OwnerShrGrp').addClass('hidden');   // Visible = False
+                    $('#MainContent_CommUseGrp').hide();
+                    $('#MainContent_DtStrtdGrp').show();
+                    $('#MainContent_ContractGrp').show();
+                    $('#MainContent_PMUnitGrp').hide();
+                    $('#MainContent_OwnerShrGrp').hide();
                     break;
+                //default:
+                //    $('#MainContent_CommUseGrp').hide();
+                //    $('#MainContent_DtStrtdGrp').hide();
+                //    $('#MainContent_ContractGrp').hide();
+                //    $('#MainContent_PMUnitGrp').hide();
+                //    $('#MainContent_OwnerShrGrp').hide();
+                //    break;
             }
         }
 
@@ -504,15 +526,30 @@
         }
 
         function setPostbackState() {
+            var isRented = $('#MainContent_NewUnit input:checked').val().toUpperCase() === 'RENTED';
+
+            $('#MainContent_InitalEditButtons').hide();
+            $('#MainContent_UpdateUnitForm').show();
+            $('#MainContent_EditUnitStatusPanel').show();
+            $('#MainContent_DeclareAndSubmit').show();
+
+            $('#MainContent_OtherListContainer').hide();
+            $('#MainContent_ExemptReason').hide();
+            $('#MainContent_ExemptGroup').hide();
+            $('#MainContent_CommUseGrp').hide();
+            $('#MainContent_PMUnitGrp').hide();
+            $('#MainContent_OwnerShrGrp').hide();
+            $('#MainContent_DtStrtdGrp').hide();
+            $('#MainContent_OccByGrp').hide();
+            $('#MainContent_ContractGrp').hide();
+            $('#MainContent_OtherList').hide();
+            $('#MainContent_AsOfDtGrp').hide();
+
             setNewUnitfields();
 
-            setTimeout(function () {
-                setExemptReasonFields();
-
-                setTimeout(function () {
-                    otherListChanged();
-                }, 10);
-            }, 10);
+            if (!isRented) {
+                setTimeout(otherListChanged, 10);
+            }
         }
 
         $(document).ready(function () {
@@ -524,21 +561,22 @@
             $(".selectpicker").selectpicker();
 
             $('#btnEdit').click(function () {
-                $('#MainContent_InitalEditButtons').addClass('hidden');
-                $('#MainContent_UpdateUnitForm').removeClass('hidden');
-                $('#MainContent_EditUnitStatusPanel').removeClass('hidden');
-                $('#MainContent_OtherListContainer').addClass('hidden');
-                $('#MainContent_DeclareAndSubmit').removeClass('hidden');
-                $('#MainContent_ExemptReason').addClass('hidden');
-                $('#MainContent_ExemptGroup').addClass('hidden');
-                $('#MainContent_CommUseGrp').addClass('hidden');
-                $('#MainContent_PMUnitGrp').addClass('hidden');
-                $('#MainContent_OwnerShrGrp').addClass('hidden');
-                $('#MainContent_DtStrtdGrp').addClass('hidden');
-                $('#MainContent_OccByGrp').addClass('hidden');
-                $('#MainContent_ContractGrp').addClass('hidden');
-                $('#MainContent_OtherList').addClass('hidden');
-                $('#MainContent_AsOfDtGrp').addClass('hidden');
+                $('#MainContent_InitalEditButtons').hide();
+                $('#MainContent_UpdateUnitForm').show();
+                $('#MainContent_EditUnitStatusPanel').show();
+                $('#MainContent_DeclareAndSubmit').show();
+
+                $('#MainContent_OtherListContainer').hide();
+                $('#MainContent_ExemptReason').hide();
+                $('#MainContent_ExemptGroup').hide();
+                $('#MainContent_CommUseGrp').hide();
+                $('#MainContent_PMUnitGrp').hide();
+                $('#MainContent_OwnerShrGrp').hide();
+                $('#MainContent_DtStrtdGrp').hide();
+                $('#MainContent_OccByGrp').hide();
+                $('#MainContent_ContractGrp').hide();
+                $('#MainContent_OtherList').hide();
+                $('#MainContent_AsOfDtGrp').hide();
             });
 
             $('#MainContent_NewUnit').change(setNewUnitfields);
@@ -551,8 +589,6 @@
             // disable options that are not valid for the current status
             if ($('#MainContent_hdnUnitStatus').val() === 'Rented') {
                 $('#MainContent_NewUnit_0').prop('disabled', 'disabled');
-            } else {
-                $('#MainContent_NewUnit_1').prop('disabled', 'disabled');
             }
 
             if ($('#MainContent_hdnPostback').val() === 'true') {

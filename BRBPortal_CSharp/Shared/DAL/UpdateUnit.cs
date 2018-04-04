@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using BRBPortal_CSharp.Models;
+using BRBPortal_CSharp.Shared;
 
 namespace BRBPortal_CSharp.DAL
 {
@@ -20,7 +21,33 @@ namespace BRBPortal_CSharp.DAL
             try
             {
                 var unit = user.CurrentUnit;
-                DateTime? asOfDate = unit.IsRented ? unit.TenancyStartDate : unit.UnitStatusAsOfDate;
+                DateTime? unitStatusAsOfDate = null;
+                DateTime? dateStarted = null;
+                DateTime? asOfDate = null;
+
+                if (unit.IsRented)
+                {
+                    asOfDate = unit.TenancyStartDate;
+                }
+                else
+                {
+                    if (unit.ExemptionReason == "NAR")
+                    {
+                        if (unit.StartDate.HasValue)
+                        {
+                            asOfDate = unit.StartDate;
+                            unitStatusAsOfDate = unit.StartDate;
+                        }
+                    }
+                    else
+                    {
+                        if (unit.UnitStatusAsOfDate.HasValue)
+                        {
+                            asOfDate = unit.UnitStatusAsOfDate;
+                            dateStarted = unit.UnitStatusAsOfDate;
+                        }
+                    }
+                }
 
                 soapRequest.Body.Append("<api:updateUnitStatusChange>");
                 soapRequest.Body.Append("<unitStatusChangeReq>");
@@ -32,7 +59,11 @@ namespace BRBPortal_CSharp.DAL
 
                 soapRequest.Body.AppendFormat("<!--Optional:--><exemptionReason>{0}</exemptionReason>", unit.ExemptionReason);
 
-                if (asOfDate.HasValue)
+                // 1) Unit Status Change Date(As of Date/ Date Started) has to be greater than the current unit status change/ effective date.
+                // 2) Unit Status Change Date(As of Date/ Date Started) cannot be after today’s date.
+                // 3) Unit Status Change Dates cannot be blank / empty(As of Date / Date Started).
+
+                if (unitStatusAsOfDate.HasValue)
                 {
                     soapRequest.Body.AppendFormat("<unitStatusAsOfDate>{0}</unitStatusAsOfDate>", asOfDate.Value.ConvertForAPI());
                 }
@@ -45,15 +76,22 @@ namespace BRBPortal_CSharp.DAL
 
                 soapRequest.Body.Append("<questions>");
 
-                if (asOfDate.HasValue)
+                if (dateStarted.HasValue)
                 {
-                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", asOfDate.Value.ConvertForAPI());
-                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", asOfDate.Value.ConvertForAPI());
+                    soapRequest.Body.AppendFormat("<!--Optional:--><dateStarted>{0}</dateStarted>", dateStarted.Value.ConvertForAPI());
                 }
                 else
                 {
                     soapRequest.Body.Append("<!--Optional:--><dateStarted></dateStarted>");
-                    soapRequest.Body.Append("<!--Optional:--><asOfDate></asOfDate>");
+                }
+
+                if (asOfDate.HasValue)
+                {
+                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", asOfDate.Value.ConvertForAPI());
+                }
+                else
+                {
+                    soapRequest.Body.AppendFormat("<!--Optional:--><asOfDate>{0}</asOfDate>", DateTime.Now.ConvertForAPI());
                 }
 
                 soapRequest.Body.AppendFormat("<!--Optional:--><occupiedBy>{0}</occupiedBy>", unit.OccupiedBy);
@@ -78,6 +116,10 @@ namespace BRBPortal_CSharp.DAL
                 soapRequest.Body.Append("</questions>");
                 soapRequest.Body.Append("</unitStatusChangeReq>");
                 soapRequest.Body.Append("</api:updateUnitStatusChange>");
+
+                //Logger.Log("UpdateUnit", soapRequest.Body.ToString());
+                //ErrorMessage = "dave is debugging";
+                //return false;
 
                 var xmlDoc = GetXmlResponse(soapRequest);
 

@@ -7,26 +7,28 @@ namespace BRBPortal_CSharp.MyProperties
     {
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            var user = Master.User;
-            var unit = user.CurrentUnit;
-
-            hdnUnitStatus.Value = unit.ClientPortalUnitStatusCode;
-            hdnExemptReas.Value = unit.UnitStatCode;
-
             if (!IsPostBack)
             {
+                var user = Master.User;
+                var unit = user.CurrentUnit;
                 var provider = Master.DataProvider;
 
+                UpdateUnitForm.Style["display"] = "none";
                 btnSubmit.Attributes.Add("disabled", "disabled");
-                UpdateUnitForm.Attributes.Add("class", "hidden");
 
                 if (provider.GetPropertyUnits(ref user, user.CurrentUnit.UnitID))
                 {
-                    // literals
-                    MainAddress.Text = unit.StreetAddress;
-                    UnitNo.Text = unit.UnitNo;
+                    unit = user.CurrentUnit;
+
+                    litMainAddress.Text = unit.StreetAddress;
+                    litUnitNo.Text = unit.UnitNo;
                     litUnitStatus.Text = unit.ClientPortalUnitStatusCode;
                     litExemptReas.Text = unit.ExemptionReason;
+                    // so we can access them client-side
+                    hdnUnitStatus.Value = unit.ClientPortalUnitStatusCode;
+                    hdnExemptReas.Value = unit.UnitStatCode;
+
+                    Master.UpdateSession(user);
 
                     if (string.IsNullOrEmpty(unit.ExemptionReason))
                     {
@@ -66,7 +68,6 @@ namespace BRBPortal_CSharp.MyProperties
                         if (unit.TenancyStartDate.HasValue)
                         {
                             litTenancyStartDate.Text = unit.TenancyStartDate.Value.ConvertForLiteral();
-                            UnitAsOfDt.Text = unit.TenancyStartDate.HasValue ? unit.TenancyStartDate.Value.ConvertForDatePicker() : "";
                         }
 
                         litUnitOccBy.Text = unit.OccupiedBy;
@@ -78,28 +79,8 @@ namespace BRBPortal_CSharp.MyProperties
                         if (unit.UnitStatusAsOfDate.HasValue)
                         {
                             litUnitStatusAsOfDate.Text = unit.UnitStatusAsOfDate.Value.ConvertForLiteral();
-                            UnitAsOfDt.Text = unit.UnitStatusAsOfDate.HasValue ? unit.UnitStatusAsOfDate.Value.ConvertForDatePicker() : "";
                         }
                     }
-
-                    // inputs
-
-                    NewUnit.SelectedValue = unit.ClientPortalUnitStatusCode;
-                    ExemptReason.Text = unit.ExemptionReason;
-
-                    OccupiedBy.Text = unit.OccupiedBy;
-                    ContractNo.Text = unit.ContractNo;
-                    CommUseDesc.Text = unit.CommUseDesc;
-                    CommResYN.SelectedValue = unit.CommResYN;
-                    CommZoneUse.Text = unit.CommZoneUse;
-                    PropMgrName.Text = unit.PropMgrName;
-                    PMEmailPhone.Text = unit.PMEmailPhone;
-                    PrincResYN.SelectedValue = unit.PrincResYN;
-                    MultiUnitYN.SelectedValue = unit.MultiUnitYN;
-                    OtherUnits.Text = unit.OtherUnits;
-                    TenantNames.Text = unit.TenantNames;
-                    TenantContacts.Text = unit.TenantContacts;
-                    DeclareInits.Text = unit.DeclarationInitials;
                 }
                 else
                 {
@@ -107,6 +88,8 @@ namespace BRBPortal_CSharp.MyProperties
                 }
             }
         }
+
+        // Unit status change date cannot be same or before current status date. Please select appropriate date and try again.
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -120,7 +103,7 @@ namespace BRBPortal_CSharp.MyProperties
 
                 unit.ClientPortalUnitStatusCode = NewUnit.SelectedValue; // Rented or Exempt
                 unit.OtherExemptionReason = OtherList.SelectedValue ?? "";
-                unit.OccupiedBy = litUnitOccBy.Text;
+                unit.OccupiedBy = OccupiedBy.Text;
                 unit.ContractNo = ContractNo.Text;
                 unit.CommUseDesc = CommUseDesc.Text;
                 unit.CommResYN = CommResYN.SelectedValue ?? "";
@@ -140,7 +123,14 @@ namespace BRBPortal_CSharp.MyProperties
                 }
                 else
                 {
-                    unit.UnitStatusAsOfDate = provider.GetOptionalDate(StartDt.Text);
+                    if (string.IsNullOrEmpty(StartDt.Text))
+                    {
+                        unit.UnitStatusAsOfDate = provider.GetOptionalDate(UnitAsOfDt.Text);
+                    }
+                    else
+                    {
+                        unit.StartDate = provider.GetOptionalDate(StartDt.Text);
+                    }
 
                     if (unit.ExemptionReason.ToUpper() == "OTHER")
                     {

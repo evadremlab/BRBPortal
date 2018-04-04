@@ -1,11 +1,53 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+﻿<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:api="http://cityofberkeley.info/RTS/ClientPortal/API">
+  <soapenv:Header/>
   <soapenv:Body>
-    <ser-root:updateUnitStatusChangeResponse xmlns:ser-root="http://cityofberkeley.info/RTS/ClientPortal/API" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-      <response>
-        <status>FAILURE</status>
-        <errorMsg>Failed to Update Unit Status</errorMsg>
-      </response>
-    </ser-root:updateUnitStatusChangeResponse>
+    <api:updateUnitStatusChange>
+      <unitStatusChangeReq>
+        <userId>DAVE10</userId>
+        <propertyId>300</propertyId>
+        <unitId>823</unitId>
+        <clientPortalUnitStatusCode>Exempt</clientPortalUnitStatusCode>
+        <unitStatus>Exempt</unitStatus>
+        <!--Optional:-->
+        <exemptionReason>OOCC</exemptionReason>
+        <unitStatusAsOfDate>04/04/2018</unitStatusAsOfDate>
+        <declarationInitial>dbb</declarationInitial>
+        <questions>
+          <!--Optional:-->
+          <dateStarted>04/04/2018</dateStarted>
+          <!--Optional:-->
+          <asOfDate>04/04/2018</asOfDate>
+          <!--Optional:-->
+          <occupiedBy></occupiedBy>
+          <!--Optional:-->
+          <contractNo></contractNo>
+          <!--Optional:-->
+          <commeUseDesc></commeUseDesc>
+          <!--Optional:-->
+          <isCommeUseZoned></isCommeUseZoned>
+          <!--Optional:-->
+          <isExclusivelyForCommeUse></isExclusivelyForCommeUse>
+          <!--Optional:-->
+          <_x0035_0PercentAsOf31Dec1979></_x0035_0PercentAsOf31Dec1979>
+          <!--Optional:-->
+          <ownerOccupantName></ownerOccupantName>
+          <!--Zero or more repetitions:-->
+          <namesOfownersOfRecord></namesOfownersOfRecord>
+          <!--Optional:-->
+          <nameOfPropertyManagerResiding></nameOfPropertyManagerResiding>
+          <!--Optional:-->
+          <emailOfPhoneOfPropertyManagerResiding></emailOfPhoneOfPropertyManagerResiding>
+          <!--Optional:-->
+          <IsOwnersPrinciplePlaceOfResidence></IsOwnersPrinciplePlaceOfResidence>
+          <!--Optional:-->
+          <doesOwnerResideInOtherUnitOfThisUnitProperty></doesOwnerResideInOtherUnitOfThisUnitProperty>
+          <!--Zero or more repetitions:-->
+          <tenantsAndContactInfo>
+            <name></name>
+            <contactInfo></contactInfo>
+          </tenantsAndContactInfo>
+        </questions>
+      </unitStatusChangeReq>
+    </api:updateUnitStatusChange>
   </soapenv:Body>
 </soapenv:Envelope>

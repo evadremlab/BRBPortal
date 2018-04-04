@@ -40,22 +40,22 @@ namespace BRBPortal_CSharp.MyProperties {
         protected global::System.Web.UI.WebControls.HiddenField hdnExemptReas;
         
         /// <summary>
-        /// MainAddress control.
+        /// litMainAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal MainAddress;
+        protected global::System.Web.UI.WebControls.Literal litMainAddress;
         
         /// <summary>
-        /// UnitNo control.
+        /// litUnitNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal UnitNo;
+        protected global::System.Web.UI.WebControls.Literal litUnitNo;
         
         /// <summary>
         /// litUnitStatus control.

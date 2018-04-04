@@ -99,12 +99,12 @@
                     $('#MainContent_UserIDGrp').show();
                     $('#MainContent_BillCodeGrp').hide();
                     $('#MainContent_BillCode').val('');
-                    $('#MainContent_UserCode').focus();
+                    $('#MainContent_UserIDCode').focus();
                 } else {
                     $('#MainContent_UserIDGrp').hide();
                     $('#MainContent_BillCodeGrp').show();
                     $('#MainContent_UserCode').val('');
-                    $('#MainContent_BillCode').focus();
+                    $('#MainContent_BillingCode').focus();
                 }
             });
 

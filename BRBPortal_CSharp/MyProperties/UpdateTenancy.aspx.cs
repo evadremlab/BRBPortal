@@ -188,7 +188,7 @@ namespace BRBPortal_CSharp.MyProperties
                 {
                     Session["ShowAfterRedirect"] = "Tenancy has been updated.|Update Tenancy";
 
-                    Response.Redirect("~/MyProperties/My", false);
+                    Response.Redirect("~/MyProperties/MyUnits", false);
                 }
                 else
                 {

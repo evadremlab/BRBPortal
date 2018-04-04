@@ -10,9 +10,8 @@ namespace BRBPortal_CSharp.Account
         {
             if (!IsPostBack)
             {
-                ErrMessage.Visible = false;
-                btnResetPWD.Enabled = false;
                 UserIDCode.Focus();
+                btnResetPWD.Enabled = false;
             }
         }
 
@@ -32,7 +31,9 @@ namespace BRBPortal_CSharp.Account
 
                 if (string.IsNullOrEmpty(Master.User.Question1) || string.IsNullOrEmpty(Master.User.Question2))
                 {
+                    EnableInputFields();
                     Master.ShowErrorModal("Your profile does not have security questions assigned. Please contact the system administrator.", "Profile Error", 250);
+                    return;
                 }
 
                 Quest1.Text = Master.User.Question1;
@@ -41,8 +42,8 @@ namespace BRBPortal_CSharp.Account
             }
             else
             {
+                EnableInputFields();
                 Master.ShowErrorModal("Error: Invalid User ID or Billing Code.", "Reset Password");
-                UserIDCode.Focus();
             }
         }
 
@@ -72,6 +73,22 @@ namespace BRBPortal_CSharp.Account
             else
             {
                 Master.ShowErrorModal("Security answer(s) did not match.", "Reset Password");
+            }
+        }
+
+        private void EnableInputFields()
+        {
+            if (UserIDOrBillCode.SelectedValue == "UserID")
+            {
+                UserIDCode.Focus();
+                UserIDGrp.Style["display"] = "";
+                BillCodeGrp.Style["display"] = "none";
+            }
+            else
+            {
+                BillCodeGrp.Focus();
+                BillCodeGrp.Style["display"] = "";
+                UserIDGrp.Style["display"] = "none";
             }
         }
     }

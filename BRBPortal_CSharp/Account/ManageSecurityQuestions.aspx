@@ -10,6 +10,7 @@
                 <asp:Label runat="server" AssociatedControlID="Quest1" CssClass="col-md-2 control-label">* Security Question:</asp:Label>
                 <div class="col-md-10" style="max-width:43rem;">
                     <asp:dropdownlist runat="server" ID="Quest1" ToolTip="Select a question from the list." CssClass="form-control selectpicker">
+                        <asp:ListItem Enabled="false" Text="select one" Value=""></asp:ListItem>
                         <asp:ListItem enabled="true" text="What was your favorite sport in high school?" value="What was your favorite sport in high school?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="What was your favorite food as a child?" value="What was your favorite food as a child?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="What is your favorite movie?" value="What is your favorite movie?"></asp:ListItem>
@@ -28,6 +29,7 @@
                 <asp:Label runat="server" AssociatedControlID="Quest2" CssClass="col-md-2 control-label">* Security Question:</asp:Label>
                 <div class="col-md-10" style="max-width:43rem;">
                     <asp:dropdownlist runat="server" ID="Quest2" ToolTip="Select a question from the list." CssClass="form-control selectpicker">
+                        <asp:ListItem Enabled="false" Text="select one" Value=""></asp:ListItem>
                         <asp:ListItem enabled="true" text="What was your favorite sport in high school?" value="What was your favorite sport in high school?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="What was your favorite food as a child?" value="What was your favorite food as a child?"></asp:ListItem>
                         <asp:ListItem enabled="true" text="What is your favorite movie?" value="What is your favorite movie?"></asp:ListItem>

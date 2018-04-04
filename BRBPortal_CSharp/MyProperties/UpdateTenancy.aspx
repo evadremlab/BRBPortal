@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        html, body { height: 101%; } /* always show scrollbar so the controls don't jump when hiding/showing fields */
+        html, body { height: 101%; } /* always show scrollbar so the controls don't shife when hiding/showing fields */
         #MainContent_HServs { min-width: 35rem; margin-top: 0.7rem; }
         #MainContent_HServs label { padding-left: 0.5rem; }
     </style>
@@ -107,6 +107,7 @@
                 <asp:Label runat="server" AssociatedControlID="TermReas" CssClass="col-md-2 control-label">Reason for Termination:&nbsp;</asp:Label>
                 <div class="col-md-10" style="max-width:24.5rem;">
                     <asp:DropDownList runat="server" ID="TermReas" ToolTip="Select a termination reason." CssClass="form-control selectpicker">
+                        <asp:ListItem Enabled="false" Text="select one" Value=""></asp:ListItem>
                         <asp:ListItem enabled="true" text="Voluntary Vacancy" value="1"></asp:ListItem>
                         <asp:ListItem enabled="true" text="Landlord move in" value="2"></asp:ListItem>
                         <asp:ListItem enabled="true" text="Non-payment of rent" value="3"></asp:ListItem>
@@ -194,6 +195,7 @@
 
         function validate() {
             var tenants = [];
+            var housingServices = 0;
 
             valErrors = [];
 
@@ -213,6 +215,16 @@
 
                 $('#<%:hdnDelimitedTenants.ClientID%>').val(tenants.join('|'));
                 $('#<%:hdnRemovedTenantIDs.ClientID%>').val(removedTenantIDs.join(','));
+
+                for (var i = 0; i < 10; i++) {
+                    if ($('#MainContent_HServs_' + i).is(':checked')) {
+                        housingServices++;
+                    }
+                }
+
+                if (housingServices === 0) {
+                    addValError('Some Housing Services must be selected');
+                }
 
                 if ($('#<%:InitRent.ClientID%>').val() === '') {
                     addValError('Initial Rent is required.');

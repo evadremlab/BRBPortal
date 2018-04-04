@@ -59,6 +59,7 @@
                     <asp:Label runat="server" AssociatedControlID="Suffix" CssClass="col-md-2 control-label">Suffix: </asp:Label>
                     <div class="col-md-10" style="max-width:15.5rem;">
                         <asp:DropDownlist runat="server" ID="Suffix" ToolTip="Select a suffix from the list (optional)." CssClass="form-control selectpicker">
+                            <asp:ListItem Enabled="false" Text="select one" Value=""></asp:ListItem>
                             <asp:ListItem enabled="true" text="Jr." value="1"></asp:ListItem>
                             <asp:ListItem enabled="true" text="Sr." value="2"></asp:ListItem>
                             <asp:ListItem enabled="true" text="I." value="3"></asp:ListItem>
@@ -112,6 +113,7 @@
                 <div class="col-md-10">
                     <span style="display:inline-block; max-width:15.5rem;">
                         <asp:DropDownlist runat="server" ID="StState" ToolTip="Select a state from the list." CssClass="form-control selectpicker">
+                            <asp:ListItem Enabled="false" Text="select one" Value=""></asp:ListItem>
                             <asp:ListItem enabled="true" text="AK" value="AK"></asp:ListItem>
                             <asp:ListItem enabled="true" text="AL" value="AL"></asp:ListItem>
                             <asp:ListItem enabled="true" text="AR" value="AR"></asp:ListItem>

@@ -99,6 +99,7 @@
                     <div class="col-md-10">
                         <span style="display:inline-block; max-width:12.5rem;">
                             <asp:dropdownlist runat="server" ID="StState" CssClass="form-control selectpicker" ToolTip="Select a state from the list.">
+                                <asp:ListItem Enabled="false" Text="select one" Value=""></asp:ListItem>
                                 <asp:ListItem enabled="true" text="AK" value="AK"></asp:ListItem>
                                 <asp:ListItem enabled="true" text="AL" value="AL"></asp:ListItem>
                                 <asp:ListItem enabled="true" text="AR" value="AR"></asp:ListItem>
